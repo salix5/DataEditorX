@@ -133,7 +133,7 @@ namespace DataEditorX.Core
         #region 检查更新
         public static void CheckVersion(bool showNew)
         {
-            string newver = CheckUpdate.GetNewVersion(MyConfig.ReadString(MyConfig.TAG_UPDATE_URL));
+            string newver = CheckUpdate.GetNewVersion(MyConfig.updateURL);
             if (newver == CheckUpdate.DEFAULT)
             {   //检查失败
                 if (!showNew)

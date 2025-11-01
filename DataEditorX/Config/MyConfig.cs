@@ -70,11 +70,11 @@ namespace DataEditorX.Config
         /// <summary>
         /// 源码链接
         /// </summary>
-        public const string TAG_SOURCE_URL = "sourceURL";
+        public const string sourceURL = "https://github.com/salix5/DataEditorX";
         /// <summary>
         /// 升级链接
         /// </summary>
-        public const string TAG_UPDATE_URL = "updateURL";
+        public const string updateURL = "https://github.com/salix5/DataEditorX/raw/refs/heads/master/DataEditorX/readme.txt";
         /// <summary>
         /// 删除卡片的时候，删除图片脚本
         /// </summary>

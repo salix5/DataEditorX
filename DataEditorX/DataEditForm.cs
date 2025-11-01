@@ -1121,7 +1121,7 @@ namespace DataEditorX
 		}
 		void Menuitem_githubClick(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start(MyConfig.ReadString(MyConfig.TAG_SOURCE_URL));
+			System.Diagnostics.Process.Start(MyConfig.sourceURL);
 		}
 		#endregion
 
