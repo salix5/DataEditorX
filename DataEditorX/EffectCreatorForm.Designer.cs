@@ -1,4 +1,4 @@
-﻿namespace DataEditorX
+namespace DataEditorX
 {
     partial class EffectCreatorForm
     {

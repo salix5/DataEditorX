@@ -1,4 +1,4 @@
-﻿using DataEditorX.Config;
+using DataEditorX.Config;
 using DataEditorX.Core.Info;
 using Microsoft.VisualBasic.FileIO;
 using System;

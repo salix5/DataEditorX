@@ -1,4 +1,4 @@
-﻿#Effect Creator setting file
+#Effect Creator setting file
 #Use '#' at the start of a line to write a single-line comment.
 !EFFECT_CODES
 EFFECT_IMMUNE_EFFECT					目标卡不受效果影响

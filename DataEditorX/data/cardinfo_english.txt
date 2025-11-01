@@ -1,4 +1,4 @@
-﻿################ use tab
+################ use tab
 ##rule
 0x0	Rule
 0x1	OCG

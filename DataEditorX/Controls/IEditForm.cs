@@ -1,4 +1,4 @@
-﻿namespace DataEditorX.Controls
+namespace DataEditorX.Controls
 {
     public interface IEditForm
     {

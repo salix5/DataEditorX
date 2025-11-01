@@ -1,4 +1,4 @@
-﻿
+
 ★Environment
 This program is based on .Net Framework 4.6
 

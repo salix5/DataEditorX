@@ -1,4 +1,4 @@
-﻿using DataEditorX.Config;
+using DataEditorX.Config;
 using DataEditorX.Language;
 using System.Collections.Generic;
 using System.IO;

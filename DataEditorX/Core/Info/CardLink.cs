@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 由SharpDevelop创建。
  * 用户： Administrator
  * 日期: 2017/5/11

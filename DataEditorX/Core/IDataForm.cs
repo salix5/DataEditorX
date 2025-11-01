@@ -1,4 +1,4 @@
-﻿using DataEditorX.Config;
+using DataEditorX.Config;
 using DataEditorX.Controls;
 
 namespace DataEditorX.Core

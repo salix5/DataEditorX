@@ -1,4 +1,4 @@
-﻿#
+#
 CodeEditForm.mainMenu.menuitem_file	File(&F)
 CodeEditForm.mainMenu.menuitem_open	Open
 CodeEditForm.mainMenu.menuitem_save	Save

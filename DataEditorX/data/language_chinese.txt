@@ -1,4 +1,4 @@
-﻿#
+#
 CodeEditForm.mainMenu.menuitem_file	文件(&F)
 CodeEditForm.mainMenu.menuitem_open	打开
 CodeEditForm.mainMenu.menuitem_save	保存

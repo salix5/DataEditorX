@@ -1,4 +1,4 @@
-﻿
+
 namespace DataEditorX.Core.Info
 {
     public enum CardRule : int

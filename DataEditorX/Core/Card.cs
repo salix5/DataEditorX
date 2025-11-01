@@ -1,4 +1,4 @@
-﻿/*
+/*
  * CreateDate :2014-02-07
  * desc :卡片类
  * ModiftyDate :2014-02-12

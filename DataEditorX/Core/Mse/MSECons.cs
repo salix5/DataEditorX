@@ -1,4 +1,4 @@
-﻿namespace DataEditorX.Core.Mse
+namespace DataEditorX.Core.Mse
 {
     public class MseAttribute
     {
