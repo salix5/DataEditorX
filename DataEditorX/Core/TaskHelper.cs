@@ -151,6 +151,8 @@ namespace DataEditorX.Core
                 {
                     return;
                 }
+                
+                MyUtils.OpenRepository();
             }
             else
             {//现在就是最新版本
@@ -159,20 +161,7 @@ namespace DataEditorX.Core
                     return;
                 }
 
-                if (!MyMsg.Question(LMSG.NowIsNewVersion))
-                {
-                    return;
-                }
-            }
-            //下载文件
-            if (CheckUpdate.DownLoad(
-                MyPath.Combine(Application.StartupPath, newver + ".zip")))
-            {
-                MyMsg.Show(LMSG.DownloadSucceed);
-            }
-            else
-            {
-                MyMsg.Show(LMSG.DownloadFail);
+                MyMsg.Show(LMSG.NowIsNewVersion);
             }
         }
         public void OnCheckUpdate(bool showNew)
@@ -463,7 +452,7 @@ namespace DataEditorX.Core
                     showNew = false;
                     if (this.mArgs != null && this.mArgs.Length >= 1)
                     {
-                        showNew = (this.mArgs[0] == bool.TrueString) ? true : false;
+                        showNew = (this.mArgs[0] == bool.TrueString);
                     }
                     this.OnCheckUpdate(showNew);
                     break;

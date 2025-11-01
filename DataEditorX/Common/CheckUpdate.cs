@@ -23,10 +23,6 @@ namespace DataEditorX.Common
             ServicePointManager.DefaultConnectionLimit = 255;
         }
         /// <summary>
-        /// 下载URL
-        /// </summary>
-        public static string URL = "";
-        /// <summary>
         /// 从HEAD获取版本号
         /// </summary>
         public const string DEFAULT = "0.0.0.0";
@@ -35,25 +31,21 @@ namespace DataEditorX.Common
         /// <summary>
         /// 获取新版本
         /// </summary>
-        /// <param name="VERURL">链接</param>
+        /// <param name="versionURL">链接</param>
         /// <returns>版本号</returns>
-        public static string GetNewVersion(string VERURL)
+        public static string GetNewVersion(string versionURL)
         {
-            string urlver = DEFAULT;
-            string html = GetHtmlContentByUrl(VERURL);
+            string html = GetHtmlContentByUrl(versionURL);
             if (!string.IsNullOrEmpty(html))
             {
                 Regex ver = new Regex(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
-                Regex url = new Regex(@"\[URL\]([^\[]+?)\[URL\]");
-                if (ver.IsMatch(html) && url.IsMatch(html))
+                if (ver.IsMatch(html))
                 {
                     Match mVer = ver.Match(html);
-                    Match mUrl = url.Match(html);
-                    URL = mUrl.Groups[1].Value;
                     return $"{mVer.Groups[1].Value}";
                 }
             }
-            return urlver;
+            return DEFAULT;
         }
         /// <summary>
         /// 检查版本号，格式0.0.0.0
@@ -146,7 +138,7 @@ namespace DataEditorX.Common
                     File.Delete(filename);
                 }
 
-                HttpWebRequest Myrq = (HttpWebRequest)WebRequest.Create(URL);
+                HttpWebRequest Myrq = (HttpWebRequest)WebRequest.Create("null");
                 HttpWebResponse myrp = (HttpWebResponse)Myrq.GetResponse();
                 long totalBytes = myrp.ContentLength;
 

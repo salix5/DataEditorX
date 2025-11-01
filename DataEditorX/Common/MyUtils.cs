@@ -48,5 +48,10 @@ namespace DataEditorX.Common
         {
             return md5 == null || md5.Length < 16;
         }
+
+        public static void OpenRepository()
+        {
+            System.Diagnostics.Process.Start(DataEditorX.Config.MyConfig.sourceURL);
+        }
     }
 }
