@@ -271,23 +271,22 @@ namespace DataEditorX.Core
 
         #region 打开脚本
         //打开脚本
-        public bool OpenScript(bool openinthis, string addrequire)
+        public bool OpenScript(bool openinthis, string default_script)
         {
-            if (!this.dataform.CheckOpen())
+            if (!dataform.CheckOpen())
             {
                 return false;
             }
 
-            Card c = this.dataform.GetCard();
-            long id = c.id;
+            Card c = dataform.GetCard();
             string lua;
             if (c.id > 0)
             {
-                lua = this.dataform.GetPath().GetScript(id);
+                lua = dataform.GetPath().GetScript(c.id);
             }
-            else if (addrequire.Length > 0)
+            else if (default_script.Length > 0)
             {
-                lua = this.dataform.GetPath().GetModuleScript(addrequire);
+                lua = dataform.GetPath().GetModuleScript(default_script);
             }
             else
             {
@@ -302,29 +301,11 @@ namespace DataEditorX.Core
                         FileMode.OpenOrCreate, FileAccess.Write))
                     {
                         StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
-                        if (string.IsNullOrEmpty(addrequire))
-                        {
-                            // OCG script
-                            sw.WriteLine("--" + c.name);
-                            sw.WriteLine("function c" + id.ToString() + ".initial_effect(c)");
-                            sw.WriteLine("\t");
-                            sw.WriteLine("end");
-                        }
-                        else
-                        {
-                            // DIY script
-                            sw.WriteLine("--" + c.name);
-                            sw.WriteLine("local m=" + id.ToString());
-                            sw.WriteLine("local cm=_G[\"c\"..m]");
-                            sw.WriteLine("Duel.LoadScript(\"" + addrequire + ".lua\")");
-                            sw.WriteLine("function cm.initial_effect(c)");
-                            sw.WriteLine("\t");
-                            sw.WriteLine("end");
-                        }
-                        /*else
-                        { //module script
-                            sw.WriteLine("--Module script \"" + addrequire + "\"");
-                        }*/
+                        sw.WriteLine("--" + c.name);
+                        sw.WriteLine("local s,id,o=GetID()");
+                        sw.WriteLine("function s.initial_effect(c)");
+                        sw.WriteLine("\t");
+                        sw.WriteLine("end");
                         sw.Close();
                         fs.Close();
                     }
