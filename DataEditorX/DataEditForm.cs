@@ -1929,7 +1929,7 @@ namespace DataEditorX
             this.menuitem_autocheckupdate.Checked = !this.menuitem_autocheckupdate.Checked;
             XMLReader.Save(MyConfig.TAG_AUTO_CHECK_UPDATE, this.menuitem_autocheckupdate.Checked.ToString().ToLower());
         }
-        //add require automatically
+        //set default script name
         private void menuitem_default_script_Click(object sender, EventArgs e)
         {
             DefaultScriptName = Microsoft.VisualBasic.Interaction.InputBox("Set default script name (without extension).\n\nPress \"Cancel\" to remove default script name.", "", DefaultScriptName);
