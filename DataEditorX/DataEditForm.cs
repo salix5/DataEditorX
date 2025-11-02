@@ -1077,9 +1077,9 @@ namespace DataEditorX
         void Menuitem_aboutClick(object sender, EventArgs e)
         {
             MyMsg.Show(
-                LanguageHelper.GetMsg(LMSG.About) + "\t" + Application.ProductName + "\n"
-                + LanguageHelper.GetMsg(LMSG.Version) + "\t" + Application.ProductVersion + "\n"
-                + LanguageHelper.GetMsg(LMSG.Author) + "\tNanahira & JoyJ");
+                LanguageHelper.GetMsg(LMSG.About) + Application.ProductName + "\n"
+                + LanguageHelper.GetMsg(LMSG.Version) + Application.ProductVersion + "\n"
+                + LanguageHelper.GetMsg(LMSG.Author) + "salix5");
         }
 
         void Menuitem_checkupdateClick(object sender, EventArgs e)

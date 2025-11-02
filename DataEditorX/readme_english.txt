@@ -8,7 +8,7 @@ DataEditorX can open files with specified extension:
 .cdb (DataEditorX)
 
 ★Feedback
-Please report on https://github.com/purerosefallen/DataEditorX/issues with a format like below, if you have any problem in use.
+Please report on https://github.com/salix5/DataEditorX/issues with a format like below, if you have any problem in use.
 
 Version:
 DataEditorX X.X.X.X
