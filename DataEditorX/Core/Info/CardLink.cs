@@ -12,14 +12,15 @@ namespace DataEditorX.Core.Info
     public static class CardLink
     {
         /*
-				0x1	↙
-0x2	↓
-0x4	↘
-0x8	←
-0x20	→
-0x40	↖
-0x80	↑
-0x100	↗*/
+        0x1	  ↙
+        0x2	  ↓
+        0x4	  ↘
+        0x8	  ←
+        0x20  →
+        0x40  ↖
+        0x80  ↑
+        0x100 ↗
+        */
         public const int DownLeft=0x1;
         public const int Down = 0x2;
         public const int DownRight = 0x4;

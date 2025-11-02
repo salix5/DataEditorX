@@ -79,9 +79,9 @@ namespace DataEditorX.Config
         {
             string[] files = new string[]{
                 this.GetImage(id),//大图
-				//GetImageThum(id),//小图
-				this.GetImageField(id),//场地图
-				this.GetScript(id)
+                //GetImageThum(id),//小图
+                this.GetImageField(id),//场地图
+                this.GetScript(id)
            };
             return files;
         }
@@ -89,9 +89,9 @@ namespace DataEditorX.Config
         {
             string[] files = new string[]{
                 this.GetImage(id),//大图
-				//GetImageThum(id),//小图
-				this.GetImageField(id),//场地图
-				this.GetScript(id)
+                //GetImageThum(id),//小图
+                this.GetImageField(id),//场地图
+                this.GetScript(id)
            };
             return files;
         }

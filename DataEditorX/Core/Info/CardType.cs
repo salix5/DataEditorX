@@ -150,7 +150,7 @@ namespace DataEditorX.Core.Info
             CardType.TYPE_TUNER,
             CardType.TYPE_EFFECT,
 //			CardType.TYPE_NORMAL,
-		};
+        };
 
         public static readonly CardType[] TYPE4_10 ={
             CardType.TYPE_TUNER,

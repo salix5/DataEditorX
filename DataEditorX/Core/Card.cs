@@ -267,7 +267,7 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-		public bool IsType(CardType type)
+        public bool IsType(CardType type)
         {
             if ((this.type & (long)type) == (long)type)
             {
@@ -281,7 +281,7 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="sc"></param>
         /// <returns></returns>
-		public bool IsSetCode(long sc)
+        public bool IsSetCode(long sc)
         {
             long settype = sc & 0xfff;
             long setsubtype = sc & 0xf000;

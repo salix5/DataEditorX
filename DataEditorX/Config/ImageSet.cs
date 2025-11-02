@@ -12,7 +12,7 @@ namespace DataEditorX.Config
     /// <summary>
     /// 裁剪图片是、配置
     /// </summary>
-	public class ImageSet
+    public class ImageSet
     {
         public ImageSet()
         {
@@ -39,7 +39,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// jpeg质量
         /// </summary>
-		public int quilty;
+        public int quilty;
         /// <summary>
         /// 小图的宽
         /// </summary>
