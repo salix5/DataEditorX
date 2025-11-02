@@ -1,9 +1,5 @@
 
 
-using Newtonsoft.Json;
-using System;
-using System.IO;
-
 namespace DataEditorX
 {
     public class CardSet
@@ -51,22 +47,5 @@ namespace DataEditorX
 
     public class CardJson
     {
-        public static void Test()
-        {
-            string json = File.ReadAllText(@"F:\TCGEditor_v1.2\t.tcgb");
-            CardSet cardset = JsonConvert.DeserializeObject<CardSet>(json);
-            if (cardset.cards != null)
-            {
-                int index=0;
-                foreach (string key in cardset.cards.Keys)
-                {
-                    Console.WriteLine(key);
-                    CardInfo card = cardset.cards.Values[index];
-                    Console.WriteLine(card);
-                    index++;
-                }
-            }
-            Console.ReadKey();
-        }
     }
 }
