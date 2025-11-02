@@ -36,7 +36,6 @@ namespace DataEditorX
 		private void InitializeComponent()
 		{
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.theme = new WeifenLuo.WinFormsUI.Docking.VS2015LightTheme();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuitem_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_open = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +76,6 @@ namespace DataEditorX
             this.dockPanel.ShowAutoHideContentOnHover = false;
             this.dockPanel.Size = new System.Drawing.Size(992, 725);
             this.dockPanel.TabIndex = 0;
-            this.dockPanel.Theme = this.theme;
             // 
             // mainMenu
             // 
@@ -321,6 +319,5 @@ namespace DataEditorX
 		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
         private System.Windows.Forms.ToolStripMenuItem menuitem_shistory;
         private System.ComponentModel.BackgroundWorker bgWorker1;
-        private WeifenLuo.WinFormsUI.Docking.VS2015LightTheme theme;
     }
 }
