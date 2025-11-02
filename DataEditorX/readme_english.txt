@@ -1,14 +1,14 @@
 
 ★Environment
-This program is based on .Net Framework 4.6
+This program is based on .Net Framework 4.8
 
 ★File association
 DataEditorX can open files with specified extension:
-.lua (Notepad++/Sublime text/DataEditorX)
 .cdb (DataEditorX)
+.lua (Visual Studio Code)
 
 ★Feedback
-Please report on https://github.com/salix5/DataEditorX/issues with a format like below, if you have any problem in use.
+Please send bug report to https://github.com/salix5/DataEditorX/issues with the format below.
 
 Version:
 DataEditorX X.X.X.X

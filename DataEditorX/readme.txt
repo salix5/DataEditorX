@@ -1,19 +1,16 @@
-[DataEditorX]3.0.0.8[DataEditorX]
+[DataEditorX]3.1.0.0[DataEditorX]
 
 ★运行环境(Environment)
-本程序基于.Net framework 4.6开发
-必备DLL：
+本程序基于.Net framework 4.8开发
+DLL：
 System.Data.SQLite.dll				数据库操作
 FastColoredTextBox.dll				脚本编辑
 WeifenLuo.WinFormsUI.Docking.dll	多标签
 
-win7(自带.Net2.0)
-win8(需要安装.Net3.5包含2.0)
-
 
 ★文件关联(File association)
-.cdb (必选)DataEditorX
-.lua (可选)Visual Studio Code
+.cdb DataEditorX
+.lua Visual Studio Code
 方法：
 右键文件，打开方式，浏览文件，选择，点击确定。
 注意：
