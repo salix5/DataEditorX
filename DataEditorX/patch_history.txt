@@ -1,4 +1,15 @@
-★更新历史
+★更新歷史
+3.1.0.0
+auto_check_update(啟動時自動檢查更新)：預設為false
+open_file_in_this(使用CodeEditor開啟Lua腳本)：預設為false
+新增選項：default_script_name(預設開啟的腳本主檔名)
+移除sourceURL選項
+移除updateURL選項
+檢查更新與原始碼網址改為 https://github.com/salix5/DataEditorX
+移除下載檔案功能
+移除已不再使用的套件
+System.Data.SQLite更新至1.0.119
+
 3.0.0.8
 对于 YGOPro 的更新，增加了「简体中文」卡片允许类型。
 3.0.0.6
