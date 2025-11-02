@@ -19,7 +19,7 @@ test: off
 
 artifacts:
   - path: win32.zip
-    name: DataEditorX-Koishi
+    name: DataEditorX
 
 deploy:
   release: latest

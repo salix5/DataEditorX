@@ -9,12 +9,12 @@ apt update
 apt -y install wget p7zip-full
 
 # data files
-wget -O DataEditorX/data/constant.lua https://koishi.pro/ygopro/script/constant.lua
-wget -O DataEditorX/data/strings.conf https://koishi.pro/ygopro/strings.conf
+wget -O DataEditorX/data/constant.lua https://github.com/Fluorohydride/ygopro-scripts/raw/refs/heads/master/constant.lua
+wget -O DataEditorX/data/strings.conf https://salix5.github.io/CardEditor/strings.conf
 
 # build
 nuget restore
-msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:OutDir=$PWD/output/ /p:TargetFrameworkVersion=v4.6
+msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:OutDir=$PWD/output/ /p:TargetFrameworkVersion=v4.8
 
 # zip
 mkdir -p dist/releases
