@@ -186,7 +186,6 @@ namespace DataEditorX
             this.AddMenuItemFormMSE();
             //
             this.GetLanguageItem();
-            //   CheckUpdate(false);//检查更新
         }
         //窗体关闭
         void DataEditFormFormClosing(object sender, FormClosingEventArgs e)
@@ -276,16 +275,16 @@ namespace DataEditorX
             }
         }
         //按cdb路径设置目录
-        void SetCDB(string cdb)
+        void SetCDBPath(string cdb)
         {
-            this.nowCdbFile = cdb;
-            this.SetTitle();
+            nowCdbFile = cdb;
+            SetTitle();
             string path = Application.StartupPath;
             if (cdb.Length > 0)
             {
                 path = Path.GetDirectoryName(cdb);
             }
-            this.ygopath.SetPath(path);
+            ygopath.SetPath(path);
         }
         //初始化文件路径
         void InitPath(string datapath)
@@ -583,7 +582,7 @@ namespace DataEditorX
         #region 设置卡片
         public YgoPath GetPath()
         {
-            return this.ygopath;
+            return ygopath;
         }
         public Card GetOldCard()
         {
@@ -805,7 +804,7 @@ namespace DataEditorX
         //打开数据库
         public bool Open(string file)
         {
-            this.SetCDB(file);
+            this.SetCDBPath(file);
             if (!File.Exists(file))
             {
                 MyMsg.Error(LMSG.FileIsNotExists);
@@ -948,10 +947,7 @@ namespace DataEditorX
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
         {
-            if (this.cardedit != null)
-            {
-                this.cardedit.OpenScript(this.menuitem_openfileinthis.Checked, this.Addrequire);
-            }
+            cardedit?.OpenScript(menuitem_openfileinthis.Checked, Addrequire);
         }
         //删除
         void Btn_delClick(object sender, EventArgs e)
