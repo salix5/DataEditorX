@@ -22,15 +22,15 @@ namespace DataEditorX
 {
     public partial class DataEditForm : DockContent, IDataForm
     {
-        private string addrequire_str;
+        private string default_script_name;
 
-        public string Addrequire
+        public string DefaultScriptName
         {
             get
             {
-                if (!string.IsNullOrEmpty(this.addrequire_str))
+                if (!string.IsNullOrEmpty(default_script_name))
                 {
-                    return this.addrequire_str;
+                    return default_script_name;
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace DataEditorX
             }
             set
             {
-                this.addrequire_str = value;
+                default_script_name = value;
             }
         }
 
@@ -175,9 +175,8 @@ namespace DataEditorX
             this.menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
             //自动检查更新
             this.menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
-            //add require automatically
-            this.Addrequire = MyConfig.ReadString(MyConfig.TAG_ADD_REQUIRE);
-            this.menuitem_addrequire.Checked = (this.Addrequire.Length > 0);
+            //default script name
+            DefaultScriptName = MyConfig.ReadString(MyConfig.TAG_DEFAULT_SCRIPT_NAME);
             if (this.nowCdbFile != null && File.Exists(this.nowCdbFile))
             {
                 this.Open(this.nowCdbFile);
@@ -947,7 +946,7 @@ namespace DataEditorX
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
         {
-            cardedit?.OpenScript(menuitem_openfileinthis.Checked, Addrequire);
+            cardedit?.OpenScript(menuitem_openfileinthis.Checked, DefaultScriptName);
         }
         //删除
         void Btn_delClick(object sender, EventArgs e)
@@ -1640,7 +1639,7 @@ namespace DataEditorX
                                    this.ygopath.gamepath,
                                    dlg.FileName,
                                    this.GetOpenFile(),
-                                   this.Addrequire);
+                                   this.DefaultScriptName);
                     this.Run(LanguageHelper.GetMsg(LMSG.ExportData));
                 }
             }
@@ -1931,11 +1930,10 @@ namespace DataEditorX
             XMLReader.Save(MyConfig.TAG_AUTO_CHECK_UPDATE, this.menuitem_autocheckupdate.Checked.ToString().ToLower());
         }
         //add require automatically
-        private void menuitem_addrequire_Click(object sender, EventArgs e)
+        private void menuitem_default_script_Click(object sender, EventArgs e)
         {
-            this.Addrequire = Microsoft.VisualBasic.Interaction.InputBox("Module script?\n\nPress \"Cancel\" to remove module script.", "", this.Addrequire);
-            this.menuitem_addrequire.Checked = (this.Addrequire.Length > 0);
-            XMLReader.Save(MyConfig.TAG_ADD_REQUIRE, this.Addrequire);
+            DefaultScriptName = Microsoft.VisualBasic.Interaction.InputBox("Set default script name (without extension).\n\nPress \"Cancel\" to remove default script name.", "", DefaultScriptName);
+            XMLReader.Save(MyConfig.TAG_DEFAULT_SCRIPT_NAME, DefaultScriptName);
         }
         #endregion
 
