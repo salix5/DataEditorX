@@ -346,7 +346,7 @@ namespace DataEditorX.Core
         public static string GetSelectSQL(Card c)
         {
             StringBuilder sb=new StringBuilder();
-            sb.Append("SELECT datas.*,texts.* FROM datas,texts WHERE datas.id=texts.id ");
+            sb.Append("SELECT * FROM datas,texts WHERE datas.id=texts.id ");
             if (c == null)
             {
                 return sb.ToString();
