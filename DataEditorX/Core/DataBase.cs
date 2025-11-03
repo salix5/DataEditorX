@@ -497,33 +497,25 @@ namespace DataEditorX.Core
         /// <returns>SQL语句</returns>
         public static string GetUpdateSQL(Card c)
         {
-            StringBuilder st = new StringBuilder();
-            st.Append("update datas set ot="); st.Append(c.ot.ToString());
-            st.Append(",alias="); st.Append(c.alias.ToString());
-            st.Append(",setcode="); st.Append(c.setcode.ToString());
-            st.Append(",type="); st.Append(c.type.ToString());
-            st.Append(",atk="); st.Append(c.atk.ToString());
-            st.Append(",def="); st.Append(c.def.ToString());
-            st.Append(",level="); st.Append(c.level.ToString());
-            st.Append(",race="); st.Append(c.race.ToString());
-            st.Append(",attribute="); st.Append(c.attribute.ToString());
-            st.Append(",category="); st.Append(c.category.ToString());
-            st.Append(" where id="); st.Append(c.id.ToString());
-            st.Append("; update texts set name='"); st.Append(c.name.Replace("'", "''"));
-            st.Append("',desc='"); st.Append(c.desc.Replace("'", "''")); st.Append("', ");
+            string[] strEscaped = new string[0x10];
             for (int i = 0; i < 0x10; i++)
             {
-                st.Append("str"); st.Append((i + 1).ToString()); st.Append("='");
-                st.Append(c.Str[i].Replace("'", "''"));
-                if (i < 15)
-                {
-                    st.Append("',");
-                }
+                strEscaped[i] = c.Str[i].Replace("'", "''");
             }
-            st.Append("' where id="); st.Append(c.id.ToString());
-            st.Append(";");
-            string sql = st.ToString();
-            return sql;
+
+            string stmt_datas =
+                $"UPDATE datas SET ot={c.ot},alias={c.alias},setcode={c.setcode},type={c.type},atk={c.atk},def={c.def},level={c.level},race={c.race},attribute={c.attribute},category={c.category} WHERE id={c.id};\n";
+
+            string name = c.name.Replace("'", "''");
+            string desc = c.desc.Replace("'", "''");
+            string[] strAssignments = new string[0x10];
+            for (int i = 0; i < 0x10; i++)
+            {
+                strAssignments[i] = $"str{i + 1}='{strEscaped[i]}'";
+            }
+            string stmt_texts = $"UPDATE texts SET name='{name}',desc='{desc}', {string.Join(",", strAssignments)} WHERE id={c.id};\n";
+
+            return $"{stmt_datas}{stmt_texts}";
         }
         #endregion
 
