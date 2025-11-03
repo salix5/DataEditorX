@@ -473,8 +473,8 @@ namespace DataEditorX.Core
             string name = c.name.Replace("'", "''");
             string desc = c.desc.Replace("'", "''");
 
-            string[] strs = new string[0x10];
-            for (int i = 0; i < 0x10; i++)
+            string[] strs = new string[c.Str.Length];
+            for (int i = 0; i < c.Str.Length; i++)
             {
                 strs[i] = c.Str[i].Replace("'", "''");
             }
@@ -508,8 +508,8 @@ namespace DataEditorX.Core
 
             string name = c.name.Replace("'", "''");
             string desc = c.desc.Replace("'", "''");
-            string[] strAssignments = new string[0x10];
-            for (int i = 0; i < 0x10; i++)
+            string[] strAssignments = new string[c.Str.Length];
+            for (int i = 0; i < c.Str.Length; i++)
             {
                 strAssignments[i] = $"str{i + 1}='{strEscaped[i]}'";
             }
