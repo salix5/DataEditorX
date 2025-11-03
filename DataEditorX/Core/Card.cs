@@ -23,23 +23,23 @@ namespace DataEditorX.Core
         /// <param name="cardName">名字</param>
         public Card(long cardCode)
         {
-            this.id = cardCode;
-            this.name = "";
-            this.ot = 0;
-            this.alias = 0;
-            this.setcode = 0;
-            this.type = 0;
-            this.atk = 0;
-            this.def = 0;
-            this.level = 0;
-            this.race = 0;
-            this.attribute = 0;
-            this.category = 0;
-            this.desc = "";
-            this.str = new string[STR_SIZE];
+            id = cardCode;
+            name = "";
+            ot = 0;
+            alias = 0;
+            setcode = 0;
+            type = 0;
+            atk = 0;
+            def = 0;
+            level = 0;
+            race = 0;
+            attribute = 0;
+            category = 0;
+            desc = "";
+            str = new string[STR_SIZE];
             for (int i = 0; i < str.Length; i++)
             {
-                this.str[i] = "";
+                str[i] = "";
             }
         }
         #endregion
@@ -77,36 +77,36 @@ namespace DataEditorX.Core
         {
             get
             {
-                if (this.str == null)
+                if (str == null)
                 {
-                    this.str = new string[STR_SIZE];
+                    str = new string[STR_SIZE];
                     for (int i = 0; i < STR_SIZE; i++)
                     {
-                        this.str[i] = "";
+                        str[i] = "";
                     }
                 }
-                return this.str;
+                return str;
             }
-            set { this.str = value; }
+            set { str = value; }
         }
         public long[] GetSetCode()
         {
             long[] setcodes = new long[SETCODE_SIZE];
             for (int i = 0, k = 0; i < SETCODE_SIZE; k += 0x10, i++)
             {
-                setcodes[i] = (this.setcode >> k) & 0xffff;
+                setcodes[i] = (setcode >> k) & 0xffff;
             }
             return setcodes;
         }
         public void SetSetCode(params long[] setcodes)
         {
             int i = 0;
-            this.setcode = 0;
+            setcode = 0;
             if (setcodes != null)
             {
                 foreach (long sc in setcodes)
                 {
-                    this.setcode += (sc << i);
+                    setcode += (sc << i);
                     i += 0x10;
                 }
             }
@@ -114,24 +114,24 @@ namespace DataEditorX.Core
         public void SetSetCode(params string[] setcodes)
         {
             int i = 0;
-            this.setcode = 0;
+            setcode = 0;
             if (setcodes != null)
             {
                 foreach (string sc in setcodes)
                 {
                     long.TryParse(sc, NumberStyles.HexNumber, null, out long temp);
-                    this.setcode += (temp << i);
+                    setcode += (temp << i);
                     i += 0x10;
                 }
             }
         }
         public long GetLeftScale()
         {
-            return (this.level >> 24) & 0xff;
+            return (level >> 24) & 0xff;
         }
         public long GetRightScale()
         {
-            return (this.level >> 16) & 0xff;
+            return (level >> 16) & 0xff;
         }
         #endregion
 
@@ -145,7 +145,7 @@ namespace DataEditorX.Core
         {
             if (obj is Card)
             {
-                return this.Equals((Card)obj); // use Equals method below
+                return Equals((Card)obj); // use Equals method below
             }
             else
             {
@@ -160,55 +160,55 @@ namespace DataEditorX.Core
         public bool EqualsData(Card other)
         {
             bool equalBool = true;
-            if (this.id != other.id)
+            if (id != other.id)
             {
                 equalBool = false;
             }
-            else if (this.ot != other.ot)
+            else if (ot != other.ot)
             {
                 equalBool = false;
             }
-            else if (this.alias != other.alias)
+            else if (alias != other.alias)
             {
                 equalBool = false;
             }
-            else if (this.setcode != other.setcode)
+            else if (setcode != other.setcode)
             {
                 equalBool = false;
             }
-            else if (this.type != other.type)
+            else if (type != other.type)
             {
                 equalBool = false;
             }
-            else if (this.atk != other.atk)
+            else if (atk != other.atk)
             {
                 equalBool = false;
             }
-            else if (this.def != other.def)
+            else if (def != other.def)
             {
                 equalBool = false;
             }
-            else if (this.level != other.level)
+            else if (level != other.level)
             {
                 equalBool = false;
             }
-            else if (this.race != other.race)
+            else if (race != other.race)
             {
                 equalBool = false;
             }
-            else if (this.attribute != other.attribute)
+            else if (attribute != other.attribute)
             {
                 equalBool = false;
             }
-            else if (this.category != other.category)
+            else if (category != other.category)
             {
                 equalBool = false;
             }
-            else if (!this.name.Equals(other.name))
+            else if (!name.Equals(other.name))
             {
                 equalBool = false;
             }
-            else if (!this.desc.Equals(other.desc))
+            else if (!desc.Equals(other.desc))
             {
                 equalBool = false;
             }
@@ -222,21 +222,21 @@ namespace DataEditorX.Core
         /// <returns>结果</returns>
         public bool Equals(Card other)
         {
-            bool equalBool=this.EqualsData(other);
+            bool equalBool=EqualsData(other);
             if (!equalBool)
             {
                 return false;
             }
-            else if (this.str.Length != other.str.Length)
+            else if (str.Length != other.str.Length)
             {
                 equalBool = false;
             }
             else
             {
-                int l = this.str.Length;
+                int l = str.Length;
                 for (int i = 0; i < l; i++)
                 {
-                    if (!this.str[i].Equals(other.str[i]))
+                    if (!str[i].Equals(other.str[i]))
                     {
                         equalBool = false;
                         break;
@@ -252,7 +252,7 @@ namespace DataEditorX.Core
         public override int GetHashCode()
         {
             // combine the hash codes of all members here (e.g. with XOR operator ^)
-            int hashCode = this.id.GetHashCode() + this.name.GetHashCode();
+            int hashCode = id.GetHashCode() + name.GetHashCode();
             return hashCode;//member.GetHashCode();
         }
         /// <summary>
@@ -312,7 +312,7 @@ namespace DataEditorX.Core
         /// </summary>
         public string IdString
         {
-            get { return this.id.ToString("00000000"); }
+            get { return id.ToString("00000000"); }
         }
         /// <summary>
         /// 字符串化
@@ -320,33 +320,33 @@ namespace DataEditorX.Core
         public override string ToString()
         {
             string str;
-            if (this.IsType(CardType.TYPE_MONSTER))
+            if (IsType(CardType.TYPE_MONSTER))
             {
-                str = this.name + "[" + this.IdString + "]\n["
-                    + YGOUtil.GetTypeString(this.type) + "] "
-                    + YGOUtil.GetRace(this.race) + "/" + YGOUtil.GetAttributeString(this.attribute)
-                    + "\n" + this.levelString() + " " + this.atk + "/" + this.def + "\n" + this.redesc();
+                str = name + "[" + IdString + "]\n["
+                    + YGOUtil.GetTypeString(type) + "] "
+                    + YGOUtil.GetRace(race) + "/" + YGOUtil.GetAttributeString(attribute)
+                    + "\n" + levelString() + " " + atk + "/" + def + "\n" + redesc();
             }
             else
             {
-                str = this.name + "[" + this.IdString + "]\n[" + YGOUtil.GetTypeString(this.type) + "]\n" + this.redesc();
+                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + redesc();
             }
 
             return str;
         }
         public string ToShortString()
         {
-            return this.name + " [" + this.IdString + "]";
+            return name + " [" + IdString + "]";
         }
         public string ToLongString()
         {
-            return this.ToString();
+            return ToString();
         }
 
         string levelString()
         {
             string star = "[";
-            long j = this.level & 0xff;
+            long j = level & 0xff;
             long i;
             for (i = 0; i < j; i++)
             {
@@ -361,7 +361,7 @@ namespace DataEditorX.Core
         }
         string redesc()
         {
-            string str = this.desc.Replace(Environment.NewLine, "\n");
+            string str = desc.Replace(Environment.NewLine, "\n");
             str = Regex.Replace(str, "([。|？|?])", "$1\n");
             str = str.Replace("\n\n", "\n");
             return str;

@@ -49,7 +49,7 @@ namespace DataEditorX.Config
         //字符串id
         public string GetImage(string id)
         {
-            return MyPath.Combine(this.picpath, id + ".jpg");
+            return MyPath.Combine(picpath, id + ".jpg");
         }
         public string GetImageField(string id)
         {

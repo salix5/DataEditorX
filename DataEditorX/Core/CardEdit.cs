@@ -17,10 +17,10 @@ namespace DataEditorX.Core
         public CardEdit(IDataForm dataform)
         {
             this.dataform = dataform;
-            this.addCard = new AddCommand(this);
-            this.modCard = new ModCommand(this);
-            this.delCard = new DelCommand(this);
-            this.copyCard = new CopyCommand(this);
+            addCard = new AddCommand(this);
+            modCard = new ModCommand(this);
+            delCard = new DelCommand(this);
+            copyCard = new CopyCommand(this);
         }
 
         #region 添加
@@ -31,23 +31,23 @@ namespace DataEditorX.Core
             readonly IDataForm dataform;
             public AddCommand(CardEdit cardedit)
             {
-                this.dataform = cardedit.dataform;
+                dataform = cardedit.dataform;
             }
 
             public bool Execute(params object[] args)
             {
-                if (!this.dataform.CheckOpen())
+                if (!dataform.CheckOpen())
                 {
                     return false;
                 }
 
-                Card c = this.dataform.GetCard();
+                Card c = dataform.GetCard();
                 if (c.id <= 0)//卡片密码不能小于等于0
                 {
                     MyMsg.Error(LMSG.CodeCanNotIsZero);
                     return false;
                 }
-                Card[] cards = this.dataform.GetCardList(false);
+                Card[] cards = dataform.GetCardList(false);
                 foreach (Card ckey in cards)//卡片id存在
                 {
                     if (c.id == ckey.id)
@@ -56,13 +56,13 @@ namespace DataEditorX.Core
                         return false;
                     }
                 }
-                if (DataBase.Command(this.dataform.GetOpenFile(),
+                if (DataBase.Command(dataform.GetOpenFile(),
                     DataBase.GetInsertSQL(c, true)) >= 2)
                 {
                     MyMsg.Show(LMSG.AddSucceed);
-                    this.undoSQL = DataBase.GetDeleteSQL(c);
-                    this.dataform.Search(true);
-                    this.dataform.SetCard(c);
+                    undoSQL = DataBase.GetDeleteSQL(c);
+                    dataform.Search(true);
+                    dataform.SetCard(c);
                     return true;
                 }
                 MyMsg.Error(LMSG.AddFail);
@@ -70,12 +70,12 @@ namespace DataEditorX.Core
             }
             public void Undo()
             {
-                DataBase.Command(this.dataform.GetOpenFile(), this.undoSQL);
+                DataBase.Command(dataform.GetOpenFile(), undoSQL);
             }
 
             public object Clone()
             {
-                return this.MemberwiseClone();
+                return MemberwiseClone();
             }
         }
         #endregion
@@ -92,20 +92,20 @@ namespace DataEditorX.Core
             readonly IDataForm dataform;
             public ModCommand(CardEdit cardedit)
             {
-                this.dataform = cardedit.dataform;
+                dataform = cardedit.dataform;
             }
 
             public bool Execute(params object[] args)
             {
-                if (!this.dataform.CheckOpen())
+                if (!dataform.CheckOpen())
                 {
                     return false;
                 }
 
                 bool modfiles = (bool)args[0];
 
-                Card c = this.dataform.GetCard();
-                Card oldCard = this.dataform.GetOldCard();
+                Card c = dataform.GetCard();
+                Card oldCard = dataform.GetOldCard();
                 if (c.Equals(oldCard))//没有修改
                 {
                     MyMsg.Show(LMSG.ItIsNotChanged);
@@ -123,7 +123,7 @@ namespace DataEditorX.Core
                     bool delold = MyMsg.Question(LMSG.IfDeleteCard);
                     if (delold)//是否删除旧卡片
                     {
-                        if (DataBase.Command(this.dataform.GetOpenFile(),
+                        if (DataBase.Command(dataform.GetOpenFile(),
                             DataBase.GetDeleteSQL(oldCard)) < 2)
                         {
                             //删除失败
@@ -132,41 +132,41 @@ namespace DataEditorX.Core
                         }
                         else
                         {//删除成功，添加还原sql
-                            this.undoSQL = DataBase.GetDeleteSQL(c) + DataBase.GetInsertSQL(oldCard, false);
+                            undoSQL = DataBase.GetDeleteSQL(c) + DataBase.GetInsertSQL(oldCard, false);
                         }
                     }
                     else
                     {
-                        this.undoSQL = DataBase.GetDeleteSQL(c);//还原就是删除
+                        undoSQL = DataBase.GetDeleteSQL(c);//还原就是删除
                     }
                     //如果删除旧卡片，则把资源修改名字,否则复制资源
                     if (modfiles)
                     {
                         if (delold)
                         {
-                            YGOUtil.CardRename(c.id, oldCard.id, this.dataform.GetPath());
+                            YGOUtil.CardRename(c.id, oldCard.id, dataform.GetPath());
                         }
                         else
                         {
-                            YGOUtil.CardCopy(c.id, oldCard.id, this.dataform.GetPath());
+                            YGOUtil.CardCopy(c.id, oldCard.id, dataform.GetPath());
                         }
 
-                        this.modifiled = true;
-                        this.oldid = oldCard.id;
-                        this.newid = c.id;
+                        modifiled = true;
+                        oldid = oldCard.id;
+                        newid = c.id;
                         this.delold = delold;
                     }
                 }
                 else
                 {//更新数据
                     sql = DataBase.GetUpdateSQL(c);
-                    this.undoSQL = DataBase.GetUpdateSQL(oldCard);
+                    undoSQL = DataBase.GetUpdateSQL(oldCard);
                 }
-                if (DataBase.Command(this.dataform.GetOpenFile(), sql) > 0)
+                if (DataBase.Command(dataform.GetOpenFile(), sql) > 0)
                 {
                     MyMsg.Show(LMSG.ModifySucceed);
-                    this.dataform.Search(true);
-                    this.dataform.SetCard(c);
+                    dataform.Search(true);
+                    dataform.SetCard(c);
                     return true;
                 }
                 else
@@ -179,23 +179,23 @@ namespace DataEditorX.Core
 
             public void Undo()
             {
-                DataBase.Command(this.dataform.GetOpenFile(), this.undoSQL);
-                if (this.modifiled)
+                DataBase.Command(dataform.GetOpenFile(), undoSQL);
+                if (modifiled)
                 {
-                    if (this.delold)
+                    if (delold)
                     {
-                        YGOUtil.CardRename(this.oldid, this.newid, this.dataform.GetPath());
+                        YGOUtil.CardRename(oldid, newid, dataform.GetPath());
                     }
                     else
                     {
-                        YGOUtil.CardDelete(this.newid, this.dataform.GetPath());
+                        YGOUtil.CardDelete(newid, dataform.GetPath());
                     }
                 }
             }
 
             public object Clone()
             {
-                return this.MemberwiseClone();
+                return MemberwiseClone();
             }
         }
         #endregion
@@ -208,19 +208,19 @@ namespace DataEditorX.Core
             readonly IDataForm dataform;
             public DelCommand(CardEdit cardedit)
             {
-                this.dataform = cardedit.dataform;
+                dataform = cardedit.dataform;
             }
 
             public bool Execute(params object[] args)
             {
-                if (!this.dataform.CheckOpen())
+                if (!dataform.CheckOpen())
                 {
                     return false;
                 }
 
                 bool deletefiles = (bool)args[0];
 
-                Card[] cards = this.dataform.GetCardList(true);
+                Card[] cards = dataform.GetCardList(true);
                 if (cards == null || cards.Length == 0)
                 {
                     return false;
@@ -240,31 +240,31 @@ namespace DataEditorX.Core
                     //删除资源
                     if (deletefiles)
                     {
-                        YGOUtil.CardDelete(c.id, this.dataform.GetPath());
+                        YGOUtil.CardDelete(c.id, dataform.GetPath());
                     }
                 }
-                if (DataBase.Command(this.dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
+                if (DataBase.Command(dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
                 {
                     MyMsg.Show(LMSG.DeleteSucceed);
-                    this.dataform.Search(true);
-                    this.undoSQL = undo;
+                    dataform.Search(true);
+                    undoSQL = undo;
                     return true;
                 }
                 else
                 {
                     MyMsg.Error(LMSG.DeleteFail);
-                    this.dataform.Search(true);
+                    dataform.Search(true);
                 }
                 return false;
             }
             public void Undo()
             {
-                DataBase.Command(this.dataform.GetOpenFile(), this.undoSQL);
+                DataBase.Command(dataform.GetOpenFile(), undoSQL);
             }
 
             public object Clone()
             {
-                return this.MemberwiseClone();
+                return MemberwiseClone();
             }
         }
         #endregion
@@ -340,12 +340,12 @@ namespace DataEditorX.Core
             public CopyCommand(CardEdit cardedit)
             {
                 this.cardedit = cardedit;
-                this.dataform = cardedit.dataform;
+                dataform = cardedit.dataform;
             }
 
             public bool Execute(params object[] args)
             {
-                if (!this.dataform.CheckOpen())
+                if (!dataform.CheckOpen())
                 {
                     return false;
                 }
@@ -358,7 +358,7 @@ namespace DataEditorX.Core
                 }
 
                 bool replace = false;
-                Card[] oldcards = DataBase.Read(this.dataform.GetOpenFile(), true, "");
+                Card[] oldcards = DataBase.Read(dataform.GetOpenFile(), true, "");
                 if (oldcards != null && oldcards.Length != 0)
                 {
                     int i = 0;
@@ -382,30 +382,30 @@ namespace DataEditorX.Core
                         }
                     }
                 }
-                DataBase.CopyDB(this.dataform.GetOpenFile(), !replace, cards);
-                this.copied = true;
-                this.newCards = cards;
+                DataBase.CopyDB(dataform.GetOpenFile(), !replace, cards);
+                copied = true;
+                newCards = cards;
                 this.replace = replace;
-                this.oldCards = oldcards;
+                oldCards = oldcards;
                 return true;
             }
             public void Undo()
             {
-                DataBase.DeleteDB(this.dataform.GetOpenFile(), this.newCards);
-                DataBase.CopyDB(this.dataform.GetOpenFile(), !this.replace, this.oldCards);
+                DataBase.DeleteDB(dataform.GetOpenFile(), newCards);
+                DataBase.CopyDB(dataform.GetOpenFile(), !replace, oldCards);
             }
 
             public object Clone()
             {
-                CopyCommand replica = new CopyCommand(this.cardedit)
+                CopyCommand replica = new CopyCommand(cardedit)
                 {
-                    copied = this.copied,
-                    newCards = (Card[])this.newCards.Clone(),
-                    replace = this.replace
+                    copied = copied,
+                    newCards = (Card[])newCards.Clone(),
+                    replace = replace
                 };
-                if (this.oldCards != null)
+                if (oldCards != null)
                 {
-                    replica.oldCards = (Card[])this.oldCards.Clone();
+                    replica.oldCards = (Card[])oldCards.Clone();
                 }
 
                 return replica;
