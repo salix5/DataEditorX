@@ -891,8 +891,7 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (tmpCodes.Count > 0)
             {
-                _ = DataBase.Read(nowCdbFile,
-                                              true, tmpCodes.ToArray());
+                _ = DataBase.Read(nowCdbFile, true, tmpCodes.ToArray());
                 SetCards(getCompCards(), true);
             }
             else
