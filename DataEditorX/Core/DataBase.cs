@@ -40,7 +40,6 @@ namespace DataEditorX.Core
             st.Append("setcode integer,type integer,atk integer,def integer,");
             st.Append("level integer,race integer,attribute integer,category integer) ");
             _defaultTableSQL = st.ToString();
-            st.Remove(0, st.Length);
         }
         #endregion
 
@@ -148,7 +147,7 @@ namespace DataEditorX.Core
             };
             if (reNewLine)
             {
-                c.desc = Retext(c.desc);
+                c.desc = ToEnvironmentNewline(c.desc);
             }
 
             for (int i = 0; i < 0x10; i++)
@@ -158,13 +157,13 @@ namespace DataEditorX.Core
             }
             return c;
         }
-        static string Retext(string text)
+        static string ToEnvironmentNewline(string text)
         {
             StringBuilder sr = new StringBuilder(text);
             sr.Replace("\r\n", "\n");
-            sr.Replace("\n", Environment.NewLine);//换为当前系统的换行符
+            sr.Replace("\r", "\n");
+            sr.Replace("\n", Environment.NewLine);
             text = sr.ToString();
-            sr.Remove(0, sr.Length);
             return text;
         }
 
