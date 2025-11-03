@@ -13,7 +13,7 @@ namespace DataEditorX.Core
     public struct Card : IEquatable<Card>
     {
         public const int STR_SIZE = 0x10;
-        public const int SETCODE_MAX = 4;
+        public const int SETCODE_SIZE = 4;
 
         #region 构造
         /// <summary>
@@ -91,8 +91,8 @@ namespace DataEditorX.Core
         }
         public long[] GetSetCode()
         {
-            long[] setcodes = new long[SETCODE_MAX];
-            for (int i = 0, k = 0; i < SETCODE_MAX; k += 0x10, i++)
+            long[] setcodes = new long[SETCODE_SIZE];
+            for (int i = 0, k = 0; i < SETCODE_SIZE; k += 0x10, i++)
             {
                 setcodes[i] = (this.setcode >> k) & 0xffff;
             }
