@@ -528,7 +528,7 @@ namespace DataEditorX.Core
         public static string GetDeleteSQL(Card c)
         {
             string id = c.id.ToString();
-            return "Delete from datas where id=" + id + ";Delete from texts where id=" + id + ";";
+            return $"DELETE FROM datas WHERE id={id};\nDELETE FROM texts WHERE id={id};\n";
         }
         #endregion
         #endregion
