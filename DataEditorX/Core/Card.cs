@@ -12,7 +12,7 @@ namespace DataEditorX.Core
 {
     public struct Card : IEquatable<Card>
     {
-        public const int STR_MAX = 0x10;
+        public const int STR_SIZE = 0x10;
         public const int SETCODE_MAX = 4;
 
         #region 构造
@@ -36,8 +36,8 @@ namespace DataEditorX.Core
             this.attribute = 0;
             this.category = 0;
             this.desc = "";
-            this.str = new string[STR_MAX];
-            for (int i = 0; i < STR_MAX; i++)
+            this.str = new string[STR_SIZE];
+            for (int i = 0; i < str.Length; i++)
             {
                 this.str[i] = "";
             }
@@ -79,8 +79,8 @@ namespace DataEditorX.Core
             {
                 if (this.str == null)
                 {
-                    this.str = new string[STR_MAX];
-                    for (int i = 0; i < STR_MAX; i++)
+                    this.str = new string[STR_SIZE];
+                    for (int i = 0; i < STR_SIZE; i++)
                     {
                         this.str[i] = "";
                     }

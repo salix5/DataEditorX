@@ -605,7 +605,7 @@ namespace DataEditorX
             this.tb_cardtext.Text = c.desc;
 
             this.strs = new string[c.Str.Length];
-            Array.Copy(c.Str, this.strs, Card.STR_MAX);
+            Array.Copy(c.Str, this.strs, c.Str.Length);
             this.lb_scripttext.Items.Clear();
             this.lb_scripttext.Items.AddRange(c.Str);
             this.tb_edittext.Text = "";
@@ -661,7 +661,7 @@ namespace DataEditorX
                 desc = this.tb_cardtext.Text
             };
 
-            Array.Copy(this.strs, c.Str, Card.STR_MAX);
+            Array.Copy(this.strs, c.Str, c.Str.Length);
 
             c.ot = (int)this.GetSelect(this.cb_cardrule);
             c.attribute = (int)this.GetSelect(this.cb_cardattribute);
