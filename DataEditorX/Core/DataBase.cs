@@ -324,7 +324,7 @@ namespace DataEditorX.Core
                     con.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(con))
                     {
-                        cmd.CommandText = "vacuum";
+                        cmd.CommandText = "VACUUM;";
                         cmd.ExecuteNonQuery();
                     }
                     con.Close();
