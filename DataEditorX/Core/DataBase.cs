@@ -471,7 +471,7 @@ namespace DataEditorX.Core
             string category = hex ? $"0x{c.category:x}" : c.category.ToString();
 
             string name = c.name.Replace("'", "''");
-            string desc = c.desc.Replace("'", "''");
+            string desc = c.NormalizedDesc().Replace("'", "''");
 
             string[] strs = new string[c.Str.Length];
             for (int i = 0; i < c.Str.Length; i++)
@@ -507,7 +507,7 @@ namespace DataEditorX.Core
                 $"UPDATE datas SET ot={c.ot},alias={c.alias},setcode={c.setcode},type={c.type},atk={c.atk},def={c.def},level={c.level},race={c.race},attribute={c.attribute},category={c.category} WHERE id={c.id};\n";
 
             string name = c.name.Replace("'", "''");
-            string desc = c.desc.Replace("'", "''");
+            string desc = c.NormalizedDesc().Replace("'", "''");
             string[] strAssignments = new string[c.Str.Length];
             for (int i = 0; i < c.Str.Length; i++)
             {
