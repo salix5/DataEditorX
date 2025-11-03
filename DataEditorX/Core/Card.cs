@@ -325,11 +325,11 @@ namespace DataEditorX.Core
                 str = name + "[" + IdString + "]\n["
                     + YGOUtil.GetTypeString(type) + "] "
                     + YGOUtil.GetRace(race) + "/" + YGOUtil.GetAttributeString(attribute)
-                    + "\n" + levelString() + " " + atk + "/" + def + "\n" + redesc();
+                    + "\n" + levelString() + " " + atk + "/" + def + "\n" + NormalizedDesc();
             }
             else
             {
-                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + redesc();
+                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + NormalizedDesc();
             }
 
             return str;
@@ -359,12 +359,9 @@ namespace DataEditorX.Core
             }
             return star + "]";
         }
-        string redesc()
+        public string NormalizedDesc()
         {
-            string str = desc.Replace(Environment.NewLine, "\n");
-            str = Regex.Replace(str, "([。|？|?])", "$1\n");
-            str = str.Replace("\n\n", "\n");
-            return str;
+            return desc.Replace(Environment.NewLine, "\n");
         }
         #endregion
     }
