@@ -462,64 +462,30 @@ namespace DataEditorX.Core
         /// <returns>SQL语句</returns>
         public static string GetInsertSQL(Card c, bool ignore, bool hex = false)
         {
-            StringBuilder st = new StringBuilder();
-            if (ignore)
-            {
-                st.Append("INSERT or ignore into datas values(");
-            }
-            else
-            {
-                st.Append("INSERT or replace into datas values(");
-            }
+            string insertMode = ignore ? "INSERT OR IGNORE" : "INSERT OR REPLACE";
+            string setcode = hex ? $"0x{c.setcode:x}" : c.setcode.ToString();
+            string type = hex ? $"0x{c.type:x}" : c.type.ToString();
+            string level = hex ? $"0x{c.level:x}" : c.level.ToString();
+            string race = hex ? $"0x{c.race:x}" : c.race.ToString();
+            string attribute = hex ? $"0x{c.attribute:x}" : c.attribute.ToString();
+            string category = hex ? $"0x{c.category:x}" : c.category.ToString();
 
-            st.Append(c.id.ToString()); st.Append(",");
-            st.Append(c.ot.ToString()); st.Append(",");
-            st.Append(c.alias.ToString()); st.Append(",");
-            if (hex)
-            {
-                st.Append("0x" + c.setcode.ToString("x")); st.Append(",");
-                st.Append("0x" + c.type.ToString("x")); st.Append(",");
-            }
-            else
-            {
-                st.Append(c.setcode.ToString()); st.Append(",");
-                st.Append(c.type.ToString()); st.Append(",");
-            }
-            st.Append(c.atk.ToString()); ; st.Append(",");
-            st.Append(c.def.ToString()); st.Append(",");
-            if (hex)
-            {
-                st.Append("0x" + c.level.ToString("x")); st.Append(",");
-                st.Append("0x" + c.race.ToString("x")); st.Append(",");
-                st.Append("0x" + c.attribute.ToString("x")); st.Append(",");
-                st.Append("0x" + c.category.ToString("x")); st.Append(")");
-            }
-            else
-            {
-                st.Append(c.level.ToString()); st.Append(",");
-                st.Append(c.race.ToString()); st.Append(",");
-                st.Append(c.attribute.ToString()); st.Append(",");
-                st.Append(c.category.ToString()); st.Append(")");
-            }
-            if (ignore)
-            {
-                st.Append(";\nINSERT or ignore into texts values(");
-            }
-            else
-            {
-                st.Append(";\nINSERT or replace into texts values(");
-            }
+            string name = c.name.Replace("'", "''");
+            string desc = c.desc.Replace("'", "''");
 
-            st.Append(c.id.ToString()); st.Append(",'");
-            st.Append(c.name.Replace("'", "''")); st.Append("','");
-            st.Append(c.desc.Replace("'", "''"));
+            string[] strs = new string[0x10];
             for (int i = 0; i < 0x10; i++)
             {
-                st.Append("','"); st.Append(c.Str[i].Replace("'", "''"));
+                strs[i] = c.Str[i].Replace("'", "''");
             }
-            st.Append("');");
-            string sql = st.ToString();
-            return sql;
+
+            string stmt_datas =
+                $"{insertMode} INTO datas VALUES({c.id},{c.ot},{c.alias},{setcode},{type},{c.atk},{c.def},{level},{race},{attribute},{category});\n";
+
+            string stmt_texts =
+                $"{insertMode} INTO texts VALUES({c.id},'{name}','{desc}','{string.Join("','", strs)}');\n";
+
+            return $"{stmt_datas}{stmt_texts}";
         }
         #endregion
 
