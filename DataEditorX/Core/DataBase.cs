@@ -141,19 +141,18 @@ namespace DataEditorX.Core
                 race = reader.GetInt64(reader.GetOrdinal("race")),
                 attribute = reader.GetInt32(reader.GetOrdinal("attribute")),
                 category = reader.GetInt64(reader.GetOrdinal("category")),
-                name = reader.GetString(reader.GetOrdinal("name")),
 
-                desc = reader.GetString(reader.GetOrdinal("desc"))
+                name = reader.GetString(reader.GetOrdinal("name")),
+                desc = reader.GetString(reader.GetOrdinal("desc")),
             };
             if (reNewLine)
             {
                 c.desc = ToEnvironmentNewline(c.desc);
             }
 
-            for (int i = 0; i < 0x10; i++)
+            for (int i = 0; i < c.Str.Length; i++)
             {
-                string temp = reader.GetString(reader.GetOrdinal("str" + (i + 1).ToString()));
-                c.Str[i] = temp ?? "";
+                c.Str[i] = reader.GetString(reader.GetOrdinal($"str{i + 1}")) ?? "";
             }
             return c;
         }
@@ -490,8 +489,8 @@ namespace DataEditorX.Core
         /// <returns>SQL语句</returns>
         public static string GetUpdateSQL(Card c)
         {
-            string[] strEscaped = new string[0x10];
-            for (int i = 0; i < 0x10; i++)
+            string[] strEscaped = new string[c.Str.Length];
+            for (int i = 0; i < c.Str.Length; i++)
             {
                 strEscaped[i] = c.Str[i].Replace("'", "''");
             }

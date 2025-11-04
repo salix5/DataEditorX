@@ -12,7 +12,7 @@ namespace DataEditorX.Core
 {
     public struct Card : IEquatable<Card>
     {
-        public const int STR_SIZE = 0x10;
+        public const int STR_SIZE = 16;
         public const int SETCODE_SIZE = 4;
 
         #region 构造
