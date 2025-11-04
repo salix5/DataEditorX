@@ -336,13 +336,6 @@ namespace DataEditorX.Core
 
         #region SQL语句
         #region 查询
-        static string toInt(long l)
-        {
-            unchecked
-            {
-                return ((int)l).ToString();
-            }
-        }
         public static string GetSelectSQL(Card c)
         {
             StringBuilder sb=new StringBuilder();
@@ -363,89 +356,89 @@ namespace DataEditorX.Core
                     c.name = "%" + c.name.Replace("%", "/%").Replace("_", "/_") + "%";
                 }
 
-                sb.Append(" and texts.name like '" + c.name.Replace("'", "''") + "' ");
+                sb.Append(" AND texts.name LIKE '" + c.name.Replace("'", "''") + "' ");
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
-                sb.Append(" and texts.desc like '%" + c.desc.Replace("'", "''") + "%' ");
+                sb.Append($" AND texts.desc LIKE '%{c.NormalizedDesc().Replace("'", "''")}%'");
             }
 
             if (c.ot > 0)
             {
-                sb.Append(" and datas.ot = " + c.ot.ToString());
+                sb.Append($" AND datas.ot = {c.ot}");
             }
 
             if (c.attribute > 0)
             {
-                sb.Append(" and datas.attribute = " + c.attribute.ToString());
+                sb.Append($" AND datas.attribute = {c.attribute}");
             }
 
             if ((c.level & 0xff) > 0)
             {
-                sb.Append(" and (datas.level & 255) = " + toInt(c.level & 0xff));
+                sb.Append($" AND (datas.level & 0xffff) = {c.level & 0xffff}");
             }
 
             if ((c.level & 0xff000000) > 0)
             {
-                sb.Append(" and (datas.level & 4278190080) = " + toInt(c.level & 0xff000000));
+                sb.Append($" AND (datas.level & 0xff000000) = {c.level & 0xff000000}");
             }
 
             if ((c.level & 0xff0000) > 0)
             {
-                sb.Append(" and (datas.level & 16711680) = " + toInt(c.level & 0xff0000));
+                sb.Append($" AND (datas.level & 0xff0000) = {c.level & 0xff0000}");
             }
 
             if (c.race > 0)
             {
-                sb.Append(" and datas.race = " + toInt(c.race));
+                sb.Append($" AND datas.race = {c.race}");
             }
 
             if (c.type > 0)
             {
-                sb.Append(" and datas.type & " + toInt(c.type) + " = " + toInt(c.type));
+                sb.Append($" AND datas.type & {c.type} = {c.type}");
             }
 
             if (c.category > 0)
             {
-                sb.Append(" and datas.category & " + toInt(c.category) + " = " + toInt(c.category));
+                sb.Append($" AND datas.category & {c.category} = {c.category}");
             }
 
             if (c.atk == -1)
             {
-                sb.Append(" and datas.type & 1 = 1 and datas.atk = 0");
+                sb.Append($" AND datas.type & 1 = 1 AND datas.atk = 0");
             }
             else if (c.atk < 0 || c.atk > 0)
             {
-                sb.Append(" and datas.atk = " + c.atk.ToString());
+                sb.Append($" AND datas.atk = {c.atk}");
             }
 
             if (c.IsType(Info.CardType.TYPE_LINK))
             {
-                sb.Append(" and datas.def &" + c.def.ToString() + "=" + c.def.ToString());
+                sb.Append($" AND datas.def & {c.def} = {c.def}");
             }
             else
             {
                 if (c.def == -1)
                 {
-                    sb.Append(" and datas.type & 1 = 1 and datas.def = 0");
+                    sb.Append(" AND datas.type & 1 = 1 AND datas.def = 0");
                 }
                 else if (c.def < 0 || c.def > 0)
                 {
-                    sb.Append(" and datas.def = " + c.def.ToString());
+                    sb.Append($" AND datas.def = {c.def}");
                 }
             }
 
             if (c.id > 0 && c.alias > 0)
             {
-                sb.Append(" and datas.id BETWEEN " + c.alias.ToString() + " and " + c.id.ToString());
+                sb.Append($" AND datas.id BETWEEN {c.alias} AND {c.id}");
             }
             else if (c.id > 0)
             {
-                sb.Append(" and ( datas.id=" + c.id.ToString() + " or datas.alias=" + c.id.ToString() + ") ");
+                sb.Append($" AND (datas.id={c.id} OR datas.alias={c.id}) ");
             }
             else if (c.alias > 0)
             {
-                sb.Append(" and datas.alias= " + c.alias.ToString());
+                sb.Append($" AND datas.alias={c.alias}");
             }
 
             return sb.ToString();
