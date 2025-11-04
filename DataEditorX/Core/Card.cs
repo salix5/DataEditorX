@@ -48,7 +48,7 @@ namespace DataEditorX.Core
         /// <summary>卡片密码</summary>
         public long id;
         /// <summary>卡片规则</summary>
-        public int ot;
+        public long ot;
         /// <summary>卡片同名卡</summary>
         public long alias;
         /// <summary>卡片系列号</summary>
@@ -56,15 +56,15 @@ namespace DataEditorX.Core
         /// <summary>卡片种类</summary>
         public long type;
         /// <summary>攻击力</summary>
-        public int atk;
+        public long atk;
         /// <summary>防御力</summary>
-        public int def;
+        public long def;
         /// <summary>卡片等级</summary>
         public long level;
         /// <summary>卡片种族</summary>
         public long race;
         /// <summary>卡片属性</summary>
-        public int attribute;
+        public long attribute;
         /// <summary>效果种类</summary>
         public long category;
         /// <summary>卡片名称</summary>
@@ -100,15 +100,14 @@ namespace DataEditorX.Core
         }
         public void SetSetCode(params long[] setcodes)
         {
-            int i = 0;
-            setcode = 0;
+            ulong setcode_bytes = 0;
             if (setcodes != null)
             {
-                foreach (long sc in setcodes)
+                for (int i = 0; i < SETCODE_SIZE; i++)
                 {
-                    setcode += (sc << i);
-                    i += 0x10;
+                    setcode_bytes |= (ulong)setcodes[i] << (16 * i);
                 }
+                setcode = unchecked((long)setcode_bytes);
             }
         }
         public void SetSetCode(params string[] setcodes)

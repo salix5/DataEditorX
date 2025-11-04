@@ -42,7 +42,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region 获取属性，种族
-        public static string GetAttributeString(int attr)
+        public static string GetAttributeString(long attr)
         {
             return DataManager.GetValue(_datacfg.dicCardAttributes, attr);
         }
@@ -172,9 +172,9 @@ namespace DataEditorX.Core
         public static string GetSetNameString(long setcode)
         {
             long sc1 = setcode & 0xffff;
-            long sc2 = (setcode >> 0x10) & 0xffff;
-            long sc3 = (setcode >> 0x20) & 0xffff;
-            long sc4 = (setcode >> 0x30) & 0xffff;
+            long sc2 = (setcode >> 16) & 0xffff;
+            long sc3 = (setcode >> 32) & 0xffff;
+            long sc4 = (setcode >> 48) & 0xffff;
             string setname = DataManager.GetValue(_datacfg.dicSetnames, sc1)
                     + " " + DataManager.GetValue(_datacfg.dicSetnames, sc2)
                     + " " + DataManager.GetValue(_datacfg.dicSetnames, sc3)
