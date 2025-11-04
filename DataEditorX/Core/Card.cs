@@ -80,7 +80,7 @@ namespace DataEditorX.Core
                 if (str == null)
                 {
                     str = new string[STR_SIZE];
-                    for (int i = 0; i < STR_SIZE; i++)
+                    for (int i = 0; i < str.Length; i++)
                     {
                         str[i] = "";
                     }
@@ -91,12 +91,12 @@ namespace DataEditorX.Core
         }
         public long[] GetSetCode()
         {
-            long[] setcodes = new long[SETCODE_SIZE];
-            for (int i = 0, k = 0; i < SETCODE_SIZE; k += 0x10, i++)
+            long[] list = new long[SETCODE_SIZE];
+            for (int i = 0; i < list.Length; i++)
             {
-                setcodes[i] = (setcode >> k) & 0xffff;
+                list[i] = (setcode >> (16 * i)) & 0xffff;
             }
-            return setcodes;
+            return list;
         }
         public void SetSetCode(params long[] setcodes)
         {
@@ -132,6 +132,10 @@ namespace DataEditorX.Core
         public long GetRightScale()
         {
             return (level >> 16) & 0xff;
+        }
+        public long GetLevel()
+        {
+            return level & 0xffff;
         }
         #endregion
 
@@ -325,7 +329,7 @@ namespace DataEditorX.Core
                 str = name + "[" + IdString + "]\n["
                     + YGOUtil.GetTypeString(type) + "] "
                     + YGOUtil.GetRace(race) + "/" + YGOUtil.GetAttributeString(attribute)
-                    + "\n" + levelString() + " " + atk + "/" + def + "\n" + NormalizedDesc();
+                    + "\n" + LevelString() + " " + atk + "/" + def + "\n" + NormalizedDesc();
             }
             else
             {
@@ -336,28 +340,17 @@ namespace DataEditorX.Core
         }
         public string ToShortString()
         {
-            return name + " [" + IdString + "]";
+            return $"{name} [{IdString}]";
         }
         public string ToLongString()
         {
             return ToString();
         }
 
-        string levelString()
+        string LevelString()
         {
-            string star = "[";
-            long j = level & 0xff;
-            long i;
-            for (i = 0; i < j; i++)
-            {
-                if (i > 0 && (i % 4) == 0)
-                {
-                    star += " ";
-                }
-
-                star += "★";
-            }
-            return star + "]";
+            long star = level & 0xffff;
+            return $"[★{star}]";
         }
         public string NormalizedDesc()
         {
