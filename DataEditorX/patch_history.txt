@@ -1,11 +1,17 @@
 ★更新歷史
 3.1.0.0
-auto_check_update(啟動時自動檢查更新)：預設為false
-open_file_in_this(使用CodeEditor開啟Lua腳本)：預設為false
-新增選項：default_script_name(預設開啟的腳本主檔名)
-移除sourceURL選項
-移除updateURL選項
-檢查更新與原始碼網址改為 https://github.com/salix5/DataEditorX
+DataEditorX.exe.config選項
+auto_check_update(啟動時自動檢查更新)
+現在預設為false
+open_file_in_this(使用CodeEditor開啟Lua腳本)
+現在預設為false
+新增：default_script_name(預設開啟的腳本主檔名)
+移除sourceURL
+移除updateURL
+
+更新網址
+檢查更新與原始碼網址改成
+https://github.com/salix5/DataEditorX
 移除下載檔案功能
 移除已不再使用的套件
 System.Data.SQLite更新至1.0.119
