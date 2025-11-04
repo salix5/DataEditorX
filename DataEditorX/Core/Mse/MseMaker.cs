@@ -212,7 +212,7 @@ namespace DataEditorX.Core.Mse
             return "";
         }
         //获取属性
-        public static string GetAttribute(int attr)
+        public static string GetAttribute(long attr)
         {
             CardAttribute cattr = (CardAttribute)attr;
             string sattr = MseAttribute.NONE;
@@ -789,7 +789,7 @@ namespace DataEditorX.Core.Mse
             }
             else
             {
-                int.TryParse(tmp, out c.atk);
+                long.TryParse(tmp, out c.atk);
             }
             //DEF
             tmp = GetValue(content, TAG_DEF);
@@ -799,7 +799,7 @@ namespace DataEditorX.Core.Mse
             }
             else
             {
-                int.TryParse(tmp, out c.def);
+                long.TryParse(tmp, out c.def);
             }
             //图片
             img = GetValue(content, TAG_IMAGE);

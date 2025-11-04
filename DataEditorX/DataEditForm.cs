@@ -691,7 +691,7 @@ namespace DataEditorX
             }
             else
             {
-                int.TryParse(tb_atk.Text, out c.atk);
+                long.TryParse(tb_atk.Text, out c.atk);
             }
 
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
@@ -710,7 +710,7 @@ namespace DataEditorX
                 }
                 else
                 {
-                    int.TryParse(tb_def.Text, out c.def);
+                    long.TryParse(tb_def.Text, out c.def);
                 }
             }
             long.TryParse(tb_cardcode.Text, out c.id);
