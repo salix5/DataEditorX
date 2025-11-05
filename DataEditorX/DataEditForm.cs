@@ -869,7 +869,6 @@ namespace DataEditorX
                 tb_pagenum.Text = pageNum.ToString();
                 cardlist.Clear();
                 lv_cardlist.Items.Clear();
-                //SetCard(new Card(0));
             }
         }
         //搜索卡片
@@ -894,11 +893,6 @@ namespace DataEditorX
                 srcCard = c;
                 string sql = DataBase.GetSelectSQL(c);
                 SetCards(DataBase.Read(nowCdbFile, true, sql), isfresh);
-            }
-            if (lv_cardlist.Items.Count > 0)
-            {
-                lv_cardlist.SelectedIndices.Clear();
-                lv_cardlist.SelectedIndices.Add(0);
             }
         }
         //更新临时卡片
