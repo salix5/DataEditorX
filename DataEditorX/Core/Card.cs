@@ -94,47 +94,47 @@ namespace DataEditorX.Core
             long[] list = new long[SETCODE_SIZE];
             for (int i = 0; i < list.Length; i++)
             {
-                list[i] = (setcode >> (16 * i)) & 0xffff;
+                list[i] = (setcode >> (16 * i)) & 0xffffL;
             }
             return list;
         }
         public void SetSetCode(params long[] setcodes)
         {
-            ulong setcode_bytes = 0;
             if (setcodes != null)
             {
-                for (int i = 0; i < SETCODE_SIZE; i++)
+                int len = setcodes.Length <= SETCODE_SIZE ? setcodes.Length : SETCODE_SIZE;
+                long setcode_bytes = 0;
+                for (int i = 0; i < len; i++)
                 {
-                    setcode_bytes |= (ulong)setcodes[i] << (16 * i);
+                    setcode_bytes |= (setcodes[i] & 0xffffL) << (16 * i);
                 }
-                setcode = unchecked((long)setcode_bytes);
+                setcode = setcode_bytes;
             }
         }
         public void SetSetCode(params string[] setcodes)
         {
-            int i = 0;
-            setcode = 0;
             if (setcodes != null)
             {
-                foreach (string sc in setcodes)
+                int len = setcodes.Length <= SETCODE_SIZE ? setcodes.Length : SETCODE_SIZE;
+                long[] setcodes_value = new long[SETCODE_SIZE] { 0, 0, 0, 0 };
+                for (int i = 0; i < len; i++)
                 {
-                    long.TryParse(sc, NumberStyles.HexNumber, null, out long temp);
-                    setcode += (temp << i);
-                    i += 0x10;
+                    long.TryParse(setcodes[i], NumberStyles.HexNumber, null, out setcodes_value[i]);
                 }
+                SetSetCode(setcodes_value);
             }
         }
         public long GetLeftScale()
         {
-            return (level >> 24) & 0xff;
+            return (level >> 24) & 0xffL;
         }
         public long GetRightScale()
         {
-            return (level >> 16) & 0xff;
+            return (level >> 16) & 0xffL;
         }
         public long GetLevel()
         {
-            return level & 0xffff;
+            return level & 0xffffL;
         }
         #endregion
 
@@ -348,8 +348,7 @@ namespace DataEditorX.Core
 
         string LevelString()
         {
-            long star = level & 0xffff;
-            return $"[★{star}]";
+            return $"[★{GetLevel()}]";
         }
         public string NormalizedDesc()
         {
