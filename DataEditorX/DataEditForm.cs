@@ -495,28 +495,20 @@ namespace DataEditorX
         //得到checkbox的总值
         long GetCheck(FlowLayoutPanel fpl)
         {
-            long number = 0;
-            long temp;
+            long result = 0;
             foreach (Control c in fpl.Controls)
             {
-                if (c is CheckBox cbox)
+                if (c is CheckBox cbox && cbox.Checked)
                 {
-                    if (cbox.Tag == null)
-                    {
-                        temp = 0;
-                    }
-                    else
+                    long temp = 0;
+                    if (cbox.Tag != null)
                     {
                         temp = (long)cbox.Tag;
                     }
-
-                    if (cbox.Checked)
-                    {
-                        number += temp;
-                    }
+                    result |= temp;
                 }
             }
-            return number;
+            return result;
         }
         //添加列表行
         void AddListView(int p)
