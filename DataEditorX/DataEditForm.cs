@@ -631,14 +631,14 @@ namespace DataEditorX
             tb_pleft.Text = c.GetLeftScale().ToString();
             tb_pright.Text = c.GetRightScale().ToString();
             //atk，def
-            tb_atk.Text = (c.atk < 0) ? "?" : c.atk.ToString();
+            tb_atk.Text = c.atk.ToString();
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
             {
                 tb_def.Text = "0";
             }
             else
             {
-                tb_def.Text = (c.def < 0) ? "?" : c.def.ToString();
+                tb_def.Text = c.def.ToString();
             }
 
             tb_cardcode.Text = c.id.ToString();
