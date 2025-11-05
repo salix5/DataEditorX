@@ -655,11 +655,9 @@ namespace DataEditorX
 
             Array.Copy(strs, c.Str, c.Str.Length);
 
-            c.ot = (int)GetSelect(cb_cardrule);
-            c.attribute = (int)GetSelect(cb_cardattribute);
-            c.level = (int)GetSelect(cb_cardlevel);
-            c.race = (int)GetSelect(cb_cardrace);
-            //系列
+            long.TryParse(tb_cardcode.Text, out c.id);
+            long.TryParse(tb_cardalias.Text, out c.alias);
+            c.ot = GetSelect(cb_cardrule);
             c.SetSetCode(
                 tb_setcode1.Text,
                 tb_setcode2.Text,
@@ -667,12 +665,16 @@ namespace DataEditorX
                 tb_setcode4.Text);
 
             c.type = GetCheck(pl_cardtype);
+            c.race = GetSelect(cb_cardrace);
+            c.attribute = GetSelect(cb_cardattribute);    
             c.category = GetCheck(pl_category);
 
-            int.TryParse(tb_pleft.Text, out int temp);
-            c.level += (temp << 24);
-            int.TryParse(tb_pright.Text, out temp);
-            c.level += (temp << 16);
+            long level = GetSelect(cb_cardlevel) & 0xffffL;
+            uint.TryParse(tb_pleft.Text, out uint temp);
+            level |= (temp & 0xffU) << 24;
+            uint.TryParse(tb_pright.Text, out temp);
+            level |= (temp & 0xffU) << 16;
+            c.level = level;
             if (tb_atk.Text == "?" || tb_atk.Text == "？")
             {
                 c.atk = -2;
@@ -688,7 +690,7 @@ namespace DataEditorX
 
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
             {
-                c.def = (int)GetCheck(pl_markers);
+                c.def = GetCheck(pl_markers);
             }
             else
             {
@@ -705,8 +707,6 @@ namespace DataEditorX
                     long.TryParse(tb_def.Text, out c.def);
                 }
             }
-            long.TryParse(tb_cardcode.Text, out c.id);
-            long.TryParse(tb_cardalias.Text, out c.alias);
 
             return c;
         }
