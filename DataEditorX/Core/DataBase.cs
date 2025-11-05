@@ -131,15 +131,15 @@ namespace DataEditorX.Core
             Card c = new Card(0)
             {
                 id = reader.GetInt64(reader.GetOrdinal("id")),
-                ot = reader.GetInt32(reader.GetOrdinal("ot")),
+                ot = reader.GetInt64(reader.GetOrdinal("ot")),
                 alias = reader.GetInt64(reader.GetOrdinal("alias")),
                 setcode = reader.GetInt64(reader.GetOrdinal("setcode")),
                 type = reader.GetInt64(reader.GetOrdinal("type")),
-                atk = reader.GetInt32(reader.GetOrdinal("atk")),
-                def = reader.GetInt32(reader.GetOrdinal("def")),
+                atk = reader.GetInt64(reader.GetOrdinal("atk")),
+                def = reader.GetInt64(reader.GetOrdinal("def")),
                 level = reader.GetInt64(reader.GetOrdinal("level")),
                 race = reader.GetInt64(reader.GetOrdinal("race")),
-                attribute = reader.GetInt32(reader.GetOrdinal("attribute")),
+                attribute = reader.GetInt64(reader.GetOrdinal("attribute")),
                 category = reader.GetInt64(reader.GetOrdinal("category")),
 
                 name = reader.GetString(reader.GetOrdinal("name")),
@@ -162,8 +162,7 @@ namespace DataEditorX.Core
             sr.Replace("\r\n", "\n");
             sr.Replace("\r", "\n");
             sr.Replace("\n", Environment.NewLine);
-            text = sr.ToString();
-            return text;
+            return sr.ToString();
         }
 
         public static Card[] Read(string DB, bool reNewLine, params long[] ids)
@@ -455,7 +454,7 @@ namespace DataEditorX.Core
         public static string GetInsertSQL(Card c, bool ignore, bool hex = false)
         {
             string insertMode = ignore ? "INSERT OR IGNORE" : "INSERT OR REPLACE";
-            string setcode = hex ? $"0x{c.setcode:x}" : c.setcode.ToString();
+            string setcode = c.setcode.ToString();
             string type = hex ? $"0x{c.type:x}" : c.type.ToString();
             string level = hex ? $"0x{c.level:x}" : c.level.ToString();
             string race = hex ? $"0x{c.race:x}" : c.race.ToString();
