@@ -371,9 +371,9 @@ namespace DataEditorX.Core
                 sb.Append($" AND datas.attribute = {c.attribute}");
             }
 
-            if ((c.level & 0xff) > 0)
+            if (c.GetLevel() > 0)
             {
-                sb.Append($" AND (datas.level & 0xffff) = {c.level & 0xffff}");
+                sb.Append($" AND (datas.level & 0xffff) = {c.GetLevel()}");
             }
 
             if ((c.level & 0xff000000) > 0)
@@ -403,7 +403,7 @@ namespace DataEditorX.Core
 
             if (c.atk == -1)
             {
-                sb.Append($" AND datas.type & 1 = 1 AND datas.atk = 0");
+                sb.Append($" AND datas.type & 0x1 = 0x1 AND datas.atk = 0");
             }
             else if (c.atk < 0 || c.atk > 0)
             {
@@ -418,7 +418,7 @@ namespace DataEditorX.Core
             {
                 if (c.def == -1)
                 {
-                    sb.Append(" AND datas.type & 1 = 1 AND datas.def = 0");
+                    sb.Append(" AND datas.type & 0x1 = 0x1 AND datas.def = 0");
                 }
                 else if (c.def < 0 || c.def > 0)
                 {
