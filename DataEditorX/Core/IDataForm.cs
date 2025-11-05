@@ -14,7 +14,7 @@ namespace DataEditorX.Core
         void Search(bool isfresh);
         Card GetOldCard();
         Card GetCard();
-        void SetCard(Card c);
+        void UpdateCardInfo(Card c);
         void SaveCards(Card[] cards);
         void CompareCards(string cdbfile, bool checktext);
     }

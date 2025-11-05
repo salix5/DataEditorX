@@ -62,7 +62,7 @@ namespace DataEditorX.Core
                     MyMsg.Show(LMSG.AddSucceed);
                     undoSQL = DataBase.GetDeleteSQL(c);
                     dataform.Search(true);
-                    dataform.SetCard(c);
+                    dataform.UpdateCardInfo(c);
                     return true;
                 }
                 MyMsg.Error(LMSG.AddFail);
@@ -166,7 +166,7 @@ namespace DataEditorX.Core
                 {
                     MyMsg.Show(LMSG.ModifySucceed);
                     dataform.Search(true);
-                    dataform.SetCard(c);
+                    dataform.UpdateCardInfo(c);
                     return true;
                 }
                 else

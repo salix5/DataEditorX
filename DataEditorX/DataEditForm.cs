@@ -168,7 +168,7 @@ namespace DataEditorX
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
             //设置空白卡片
             oldCard = new Card(0);
-            SetCard(oldCard);
+            UpdateCardInfo(oldCard);
             //删除资源
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_DELETE_WITH);
             //用CodeEditor打开脚本
@@ -588,7 +588,7 @@ namespace DataEditorX
             tb_link.Text = Convert.ToString(mark, 2).PadLeft(9, '0');
         }
 
-        public void SetCard(Card c)
+        public void UpdateCardInfo(Card c)
         {
             oldCard = c;
 
@@ -726,7 +726,7 @@ namespace DataEditorX
                 if (index < cardlist.Count)
                 {
                     Card c = cardlist[index];
-                    SetCard(c);
+                    UpdateCardInfo(c);
                 }
             }
         }
@@ -905,7 +905,7 @@ namespace DataEditorX
         public void Reset()
         {
             oldCard = new Card(0);
-            SetCard(oldCard);
+            UpdateCardInfo(oldCard);
         }
         #endregion
 
