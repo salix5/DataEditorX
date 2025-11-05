@@ -355,8 +355,7 @@ namespace DataEditorX
                 {
                     CheckBox _cbox = new CheckBox
                     {
-                        //_cbox.Name = fpanel.Name + key.ToString("x");
-                        Tag = key,//绑定值
+                        Tag = key,
                         Text = value,
                         AutoSize = true,
                         Margin = fpanel.Margin
@@ -604,7 +603,7 @@ namespace DataEditorX
             //data
             SetSelect(cb_cardrule, c.ot);
             SetSelect(cb_cardattribute, c.attribute);
-            SetSelect(cb_cardlevel, (c.level & 0xff));
+            SetSelect(cb_cardlevel, c.GetLevel());
             SetSelect(cb_cardrace, c.race);
             //setcode
             long[] setcodes = c.GetSetCode();
@@ -612,6 +611,10 @@ namespace DataEditorX
             tb_setcode2.Text = setcodes[1].ToString("x");
             tb_setcode3.Text = setcodes[2].ToString("x");
             tb_setcode4.Text = setcodes[3].ToString("x");
+            SetSelect(cb_setname1, setcodes[0]);
+            SetSelect(cb_setname2, setcodes[1]);
+            SetSelect(cb_setname3, setcodes[2]);
+            SetSelect(cb_setname4, setcodes[3]);
             //type,category
             SetCheck(pl_cardtype, c.type);
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
@@ -625,8 +628,8 @@ namespace DataEditorX
             }
             SetCheck(pl_category, c.category);
             //Pendulum
-            tb_pleft.Text = ((c.level >> 24) & 0xff).ToString();
-            tb_pright.Text = ((c.level >> 16) & 0xff).ToString();
+            tb_pleft.Text = c.GetLeftScale().ToString();
+            tb_pright.Text = c.GetRightScale().ToString();
             //atk，def
             tb_atk.Text = (c.atk < 0) ? "?" : c.atk.ToString();
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
