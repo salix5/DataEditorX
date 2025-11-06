@@ -53,5 +53,17 @@ namespace DataEditorX.Common
         {
             System.Diagnostics.Process.Start(DataEditorX.Config.MyConfig.sourceURL);
         }
+
+        public static string ConvertNewline(string text, bool isEnvironment)
+        {
+            StringBuilder sr = new StringBuilder(text);
+            sr.Replace("\r\n", "\n");
+            sr.Replace("\r", "\n");
+            if (isEnvironment)
+            {
+                sr.Replace("\n", System.Environment.NewLine);
+            }
+            return sr.ToString();
+        }
     }
 }

@@ -5,11 +5,11 @@
  * 时间: 17:01
  * 
  */
-using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Text;
+using DataEditorX.Common;
 
 namespace DataEditorX.Core
 {
@@ -147,7 +147,7 @@ namespace DataEditorX.Core
             };
             if (reNewLine)
             {
-                c.desc = ToEnvironmentNewline(c.desc);
+                c.desc = MyUtils.ConvertNewline(c.desc, true);
             }
 
             for (int i = 0; i < c.Str.Length; i++)
@@ -155,14 +155,6 @@ namespace DataEditorX.Core
                 c.Str[i] = reader.GetString(reader.GetOrdinal($"str{i + 1}")) ?? "";
             }
             return c;
-        }
-        static string ToEnvironmentNewline(string text)
-        {
-            StringBuilder sr = new StringBuilder(text);
-            sr.Replace("\r\n", "\n");
-            sr.Replace("\r", "\n");
-            sr.Replace("\n", Environment.NewLine);
-            return sr.ToString();
         }
 
         public static Card[] Read(string DB, bool reNewLine, params long[] ids)
@@ -206,7 +198,7 @@ namespace DataEditorX.Core
                                 {
                                     SQLstr = _defaultSQL + " and datas.id=" + tmp.ToString();
                                 }
-                                else if (str.StartsWith("select", StringComparison.OrdinalIgnoreCase))
+                                else if (str.StartsWith("select", System.StringComparison.OrdinalIgnoreCase))
                                 {
                                     SQLstr = str;
                                 }

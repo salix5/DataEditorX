@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using DataEditorX.Common;
 
 namespace DataEditorX
 {
@@ -204,10 +205,7 @@ namespace DataEditorX
             {
                 if (mc.Groups.Count > 1)
                 {
-                    return mc.Groups[0].Value
-                        .Replace("\r\n", "\n")
-                        .Replace("\r", "\n")
-                        .Replace("\n", Environment.NewLine);
+                    return MyUtils.ConvertNewline(mc.Groups[0].Value, true);
                 }
             }
             return "";
