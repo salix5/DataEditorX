@@ -8,6 +8,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using DataEditorX.Common;
 
 namespace DataEditorX.Config
 {
@@ -44,7 +45,7 @@ namespace DataEditorX.Config
                 return;
             }
             //提取内容
-            string text = File.ReadAllText(conf);
+            string text = MyUtils.ConvertNewline(File.ReadAllText(conf), false);
             dicCardRules = DataManager.Read(text, MyConfig.TAG_RULE);
             dicSetnames = DataManager.Read(text, MyConfig.TAG_SETNAME);
             dicCardTypes = DataManager.Read(text, MyConfig.TAG_TYPE);

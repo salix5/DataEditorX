@@ -5,11 +5,8 @@
  * 时间: 18:08
  * 
  */
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DataEditorX.Config
@@ -30,19 +27,13 @@ namespace DataEditorX.Config
         public const char LINE_SEPARATOR = '\t';
 
         #region 根据tag获取内容
-        static string reReturn(string content)
-        {
-            string text = content.Replace("\r\n", "\n");
-            text = text.Replace("\r", "\n");
-            return text;
-        }
         public static string SubString(string content, string tag)
         {
             Regex reg = new Regex(string.Format(@"{0}{1}\n([\S\s]*?)\n{2}", TAG_START, tag, TAG_END), RegexOptions.Multiline);
-            Match mac = reg.Match(reReturn(content));
+            Match mac = reg.Match(content);
             if (mac.Success)//把相应的内容提取出来
             {
-                return mac.Groups[1].Value.Replace("\n", Environment.NewLine);
+                return mac.Groups[1].Value;
             }
             return "";
         }
@@ -57,39 +48,16 @@ namespace DataEditorX.Config
         /// <returns></returns>
         public static Dictionary<long, string> Read(string content, string tag)
         {
-            return Read(SubString(content, tag));
-        }
-        /// <summary>
-        /// 从文件读取内容，按行读取
-        /// </summary>
-        /// <param name="strFile"></param>
-        /// <param name="encode"></param>
-        /// <returns></returns>
-        public static Dictionary<long, string> Read(string strFile, Encoding encode)
-        {
-            return Read(File.ReadAllLines(strFile, encode));
-        }
-        /// <summary>
-        /// 从字符串中读取内容，需要分行
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public static Dictionary<long, string> Read(string content)
-        {
-            string text = reReturn(content);
-            text = text.Replace("\r", "\n");
-            text = text.Replace("\n\n", "\n"); //Linux & MacOS 适配 190324 by JoyJ
-            return Read(text.Split('\n'));
+            return LinesToDictionary(SubString(content, tag).Split('\n'));
         }
         /// <summary>
         /// 从行读取内容
         /// </summary>
         /// <param name="lines"></param>
         /// <returns></returns>
-        public static Dictionary<long, string> Read(string[] lines)
+        public static Dictionary<long, string> LinesToDictionary(string[] lines)
         {
-            Dictionary<long, string> tempDic = new Dictionary<long, string>();
-            long lkey;
+            Dictionary<long, string> result = new Dictionary<long, string>();
             foreach (string line in lines)
             {
                 if (line.StartsWith("#"))
@@ -102,7 +70,12 @@ namespace DataEditorX.Config
                 {
                     continue;
                 }
+                if (words[1] == "N/A")
+                {
+                    continue;
+                }
 
+                long lkey;
                 if (words[0].StartsWith("0x"))
                 {
                     long.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out lkey);
@@ -111,13 +84,13 @@ namespace DataEditorX.Config
                 {
                     long.TryParse(words[0], out lkey);
                 }
-                // N/A 的数据不显示
-                if (!tempDic.ContainsKey(lkey) && words[1] != "N/A")
+                if (result.ContainsKey(lkey))
                 {
-                    tempDic.Add(lkey, words[1]);
+                    continue;
                 }
+                result.Add(lkey, words[1]);
             }
-            return tempDic;
+            return result;
         }
 
         #endregion
