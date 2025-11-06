@@ -27,7 +27,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 行分隔符
         /// </summary>
-        public const char SEP_LINE = '\t';
+        public const char LINE_SEPARATOR = '\t';
 
         #region 根据tag获取内容
         static string reReturn(string content)
@@ -97,7 +97,7 @@ namespace DataEditorX.Config
                     continue;
                 }
 
-                string[] words = line.Split(SEP_LINE);
+                string[] words = line.Split(LINE_SEPARATOR);
                 if (words.Length < 2)
                 {
                     continue;
