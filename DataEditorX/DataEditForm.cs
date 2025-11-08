@@ -1964,10 +1964,6 @@ namespace DataEditorX
                     menuitem_exportMSEimage.Checked = false;
                     return;
                 }
-                else
-                {
-
-                }
             }
             //select open mse-set
             using (OpenFileDialog dlg = new OpenFileDialog())
