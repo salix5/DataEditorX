@@ -611,10 +611,6 @@ namespace DataEditorX
             tb_setcode2.Text = setcodes[1].ToString("x");
             tb_setcode3.Text = setcodes[2].ToString("x");
             tb_setcode4.Text = setcodes[3].ToString("x");
-            SetSelect(cb_setname1, setcodes[0]);
-            SetSelect(cb_setname2, setcodes[1]);
-            SetSelect(cb_setname3, setcodes[2]);
-            SetSelect(cb_setname4, setcodes[3]);
             //type,category
             SetCheck(pl_cardtype, c.type);
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
@@ -635,10 +631,12 @@ namespace DataEditorX
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
             {
                 tb_def.Text = "0";
+                tb_def.Enabled = false;
             }
             else
             {
                 tb_def.Text = c.def.ToString();
+                tb_def.Enabled = true;
             }
 
             tb_cardcode.Text = c.id.ToString();
