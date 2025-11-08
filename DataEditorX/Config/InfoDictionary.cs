@@ -1,33 +1,33 @@
-/*
- * 由SharpDevelop创建。
- * 用户： Acer
- * 日期: 5月18 星期日
- * 时间: 18:08
- * 
- */
-using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace DataEditorX.Config
 {
-    public class DataManager
+    public class InfoItem
+    {
+        public long Key{ get; set; }
+        public string Value{ get; set; }
+    }
+    public class InfoDictionary : OrderedDictionary
     {
         /// <summary>
         /// 内容开头
         /// </summary>
-        public const string TAG_START = "##";
+        const string TAG_START = "##";
         /// <summary>
         /// 内容结尾
         /// </summary>
-        public const string TAG_END = "#";
+        const string TAG_END = "#";
         /// <summary>
         /// 行分隔符
         /// </summary>
-        public const char LINE_SEPARATOR = '\t';
+        const char LINE_SEPARATOR = '\t';
 
         #region 根据tag获取内容
-        public static string SubString(string content, string tag)
+        static string SubString(string content, string tag)
         {
             Regex reg = new Regex(string.Format(@"{0}{1}\n([\S\s]*?)\n{2}", TAG_START, tag, TAG_END), RegexOptions.Multiline);
             Match mac = reg.Match(content);
@@ -39,25 +39,25 @@ namespace DataEditorX.Config
         }
         #endregion
 
-        #region 读取
         /// <summary>
         /// 从字符串中，按tag来分割内容，并读取内容
         /// </summary>
         /// <param name="content">字符串</param>
         /// <param name="tag">开始的标志</param>
         /// <returns></returns>
-        public static Dictionary<long, string> Read(string content, string tag)
+        public void Initialize(string content, string tag)
         {
-            return LinesToDictionary(SubString(content, tag).Split('\n'));
+            Initialize(SubString(content, tag).Split('\n'));
         }
+
         /// <summary>
         /// 从行读取内容
         /// </summary>
         /// <param name="lines"></param>
         /// <returns></returns>
-        public static Dictionary<long, string> LinesToDictionary(string[] lines)
+        public void Initialize(string[] lines)
         {
-            Dictionary<long, string> result = new Dictionary<long, string>();
+            Clear();
             foreach (string line in lines)
             {
                 if (line.StartsWith("#"))
@@ -75,60 +75,44 @@ namespace DataEditorX.Config
                     continue;
                 }
 
-                long lkey;
+                long key;
                 if (words[0].StartsWith("0x"))
                 {
-                    long.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out lkey);
+                    long.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out key);
                 }
                 else
                 {
-                    long.TryParse(words[0], out lkey);
+                    long.TryParse(words[0], out key);
                 }
-                if (result.ContainsKey(lkey))
-                {
-                    continue;
-                }
-                result.Add(lkey, words[1]);
+                Add(key, words[1]);
             }
-            return result;
         }
 
-        #endregion
+        public InfoItem[] GetItems()
+        {
+            InfoItem[] items = new InfoItem[Count];
+            int index = 0;
+            foreach (DictionaryEntry entry in this)
+            {
+                items[index] = new InfoItem { Key = (long)entry.Key, Value = (string)entry.Value };
+                index++;
+            }
+            return items;
+        }
 
-        #region 查找
-        public static List<long> GetKeys(Dictionary<long, string> dic)
-        {
-            List<long> list = new List<long>();
-            foreach (long l in dic.Keys)
-            {
-                list.Add(l);
-            }
-            return list;
-        }
-        public static string[] GetValues(Dictionary<long, string> dic)
-        {
-            List<string> list = new List<string>();
-            foreach (long l in dic.Keys)
-            {
-                list.Add(dic[l]);
-            }
-            return list.ToArray();
-        }
         /// <summary>
         /// 获取值
         /// </summary>
-        /// <param name="dic"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static string GetValue(Dictionary<long, string> dic, long key)
+        public string GetValue(long key)
         {
-            if (dic.ContainsKey(key))
+            if (Contains(key))
             {
-                return dic[key].Trim();
+                return ((string)this[key]).Trim();
             }
 
             return key.ToString("x");
         }
-        #endregion
     }
 }

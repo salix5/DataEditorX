@@ -45,14 +45,14 @@ namespace DataEditorX.Config
         /// 设置系列名
         /// </summary>
         /// <param name="dic"></param>
-        public void SetNames(Dictionary<long, string> dic)
+        public void SetNames(InfoDictionary dic)
         {
             foreach (long k in dic.Keys)
             {
                 string key = "0x" + k.ToString("x");
                 if (!tooltipDic.ContainsKey(key))
                 {
-                    AddToolIipDic(key, dic[k]);
+                    AddToolIipDic(key, (string)dic[k]);
                 }
             }
         }

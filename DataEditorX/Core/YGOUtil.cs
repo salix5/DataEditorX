@@ -44,13 +44,13 @@ namespace DataEditorX.Core
         #region 获取属性，种族
         public static string GetAttributeString(long attr)
         {
-            return DataManager.GetValue(_datacfg.dicCardAttributes, attr);
+            return _datacfg.dicCardAttributes.GetValue(attr);
         }
 
 
         public static string GetRace(long race)
         {
-            return DataManager.GetValue(_datacfg.dicCardRaces, race);
+            return _datacfg.dicCardRaces.GetValue(race);
         }
         #endregion
 
@@ -142,7 +142,7 @@ namespace DataEditorX.Core
 
         static string GetType(CardType type)
         {
-            return DataManager.GetValue(_datacfg.dicCardTypes, (long)type);
+            return _datacfg.dicCardTypes.GetValue((long)type);
         }
 
         public static string GetTypeString(long type)
@@ -175,10 +175,10 @@ namespace DataEditorX.Core
             long sc2 = (setcode >> 16) & 0xffff;
             long sc3 = (setcode >> 32) & 0xffff;
             long sc4 = (setcode >> 48) & 0xffff;
-            string setname = DataManager.GetValue(_datacfg.dicSetnames, sc1)
-                    + " " + DataManager.GetValue(_datacfg.dicSetnames, sc2)
-                    + " " + DataManager.GetValue(_datacfg.dicSetnames, sc3)
-                    + " " + DataManager.GetValue(_datacfg.dicSetnames, sc4);
+            string setname = _datacfg.dicSetnames.GetValue(sc1)
+                    + " " + _datacfg.dicSetnames.GetValue(sc2)
+                    + " " + _datacfg.dicSetnames.GetValue(sc3)
+                    + " " + _datacfg.dicSetnames.GetValue(sc4);
 
             return setname;
         }
