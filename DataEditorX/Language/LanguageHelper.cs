@@ -23,6 +23,7 @@ namespace DataEditorX.Language
         static readonly SortedList<LMSG, string> _gMsgList = new SortedList<LMSG, string>();
         const char SEP_CONTROL = '.';
         const char SEP_LINE = '\t';
+        const string STR_COMMENT = "#";
         readonly Dictionary<string, string> mWordslist = new Dictionary<string, string>();
 
         #region 获取消息文字
@@ -302,8 +303,12 @@ namespace DataEditorX.Language
                     {
                         continue;
                     }
+                    if (line.StartsWith(STR_COMMENT))
+                    {
+                        continue;
+                    }
 
-                    string[] words = line.Split(SEP_LINE);
+                    string[] words = line.Split(new[] { SEP_LINE }, 2);
                     if (words.Length < 2)
                     {
                         continue;
@@ -318,7 +323,7 @@ namespace DataEditorX.Language
                             _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
                         }
                     }
-                    else if (!line.StartsWith("#"))//加载界面语言
+                    else //加载界面语言
                     {
                         if (!_gWordsList.ContainsKey(words[0]))
                         {
@@ -326,8 +331,6 @@ namespace DataEditorX.Language
                         }
                     }
                 }
-                sr.Close();
-                fs.Close();
             }
 
         }
