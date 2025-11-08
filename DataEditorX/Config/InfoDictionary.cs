@@ -8,8 +8,8 @@ namespace DataEditorX.Config
 {
     public class InfoItem
     {
-        public long Key{ get; set; }
-        public string Value{ get; set; }
+        public long Key { get; set; }
+        public string Value { get; set; }
     }
     public class InfoDictionary : OrderedDictionary
     {

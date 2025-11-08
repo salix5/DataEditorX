@@ -64,7 +64,7 @@ namespace DataEditorX
         /// <summary>
         /// 对比的id集合
         /// </summary>
-        List<string>tmpCodes;
+        List<string> tmpCodes;
         //初始标题
         string title;
         string nowCdbFile = "";
@@ -164,7 +164,7 @@ namespace DataEditorX
             //InitListRows();//调整卡片列表的函数
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
-                            //加载
+                       //加载
             msecfg = new MSEConfig(datapath);
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
             //设置空白卡片
@@ -340,7 +340,7 @@ namespace DataEditorX
                 string value = (string)entry.Value;
                 if (value != null && value.StartsWith("NULL"))
                 {
-                    Label lab=new Label();
+                    Label lab = new Label();
                     string[] sizes = value.Split(',');
                     if (sizes.Length >= 3)
                     {
@@ -643,7 +643,7 @@ namespace DataEditorX
 
             c.type = GetCheck(pl_cardtype);
             c.race = GetSelect(cb_cardrace);
-            c.attribute = GetSelect(cb_cardattribute);    
+            c.attribute = GetSelect(cb_cardattribute);
             c.category = GetCheck(pl_category);
 
             long level = GetSelect(cb_cardlevel) & 0xffffL;
@@ -1949,7 +1949,7 @@ namespace DataEditorX
                 return;
             }
 
-            string msepath=MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_PATH));
+            string msepath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_PATH));
             if (!File.Exists(msepath))
             {
                 MyMsg.Error(LMSG.exportMseImagesErr);
@@ -1980,8 +1980,8 @@ namespace DataEditorX
                 catch { }
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    string mseset=dlg.FileName;
-                    string exportpath=MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_EXPORT));
+                    string mseset = dlg.FileName;
+                    string exportpath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_EXPORT));
                     MseMaker.ExportSet(msepath, mseset, exportpath, delegate
                     {
                         menuitem_exportMSEimage.Checked = false;
@@ -2112,7 +2112,7 @@ namespace DataEditorX
         {
             try
             {
-                long mark=Convert.ToInt64(text, 2);
+                long mark = Convert.ToInt64(text, 2);
                 setLinkMarks(mark, true);
             }
             catch
