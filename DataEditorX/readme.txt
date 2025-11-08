@@ -117,8 +117,6 @@ Ctrl+T			常量列表
 Ctrl+鼠标滑轮 	缩放文字
 
 ★Magic Set Editor 2
-下载/更新："Magic Set Editor 2/download.bat"
-或者
 https://github.com/247321453/MagicSetEditor2
 
 ★MSE存档生成设置

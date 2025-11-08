@@ -101,8 +101,6 @@ Ctrl+T			List of constant
 Ctrl+The mouse wheel 	Zoom in/out
 
 ★Magic Set Editor 2
-Download/update："Magic Set Editor 2/download.bat"
-Or
 https://github.com/247321453/MagicSetEditor2
 
 ★MSE pics
