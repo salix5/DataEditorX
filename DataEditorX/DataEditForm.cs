@@ -319,7 +319,7 @@ namespace DataEditorX
                 InitComboBox(cb_cardlevel, datacfg.dicCardLevels);
                 InitCheckPanel(pl_cardtype, datacfg.dicCardTypes);
                 InitCheckPanel(pl_markers, datacfg.dicLinkMarkers);
-                InitCheckPanel(pl_category, datacfg.dicCardcategorys);
+                InitCheckPanel(pl_category, datacfg.dicCardCategorys);
                 InitComboBox(cb_setname1, datacfg.dicSetnames);
                 InitComboBox(cb_setname2, datacfg.dicSetnames);
                 InitComboBox(cb_setname3, datacfg.dicSetnames);

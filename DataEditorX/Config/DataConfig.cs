@@ -41,7 +41,7 @@ namespace DataEditorX.Config
             dicSetnames.Initialize(text, MyConfig.TAG_SETNAME);
             dicCardTypes.Initialize(text, MyConfig.TAG_TYPE);
             dicLinkMarkers.Initialize(text, MyConfig.TAG_MARKER);
-            dicCardcategorys.Initialize(text, MyConfig.TAG_CATEGORY);
+            dicCardCategorys.Initialize(text, MyConfig.TAG_CATEGORY);
             dicCardAttributes.Initialize(text, MyConfig.TAG_ATTRIBUTE);
             dicCardRaces.Initialize(text, MyConfig.TAG_RACE);
             dicCardLevels.Initialize(text, MyConfig.TAG_LEVEL);
@@ -77,6 +77,6 @@ namespace DataEditorX.Config
         /// <summary>
         /// 效果类型
         /// </summary>
-        public InfoDictionary dicCardcategorys = new InfoDictionary();
+        public InfoDictionary dicCardCategorys = new InfoDictionary();
     }
 }
