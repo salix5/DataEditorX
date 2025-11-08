@@ -145,9 +145,9 @@ namespace DataEditorX.Core
         /// <returns>结果</returns>
         public override bool Equals(object obj)
         {
-            if (obj is Card)
+            if (obj is Card card)
             {
-                return Equals((Card)obj); // use Equals method below
+                return Equals(card); // use Equals method below
             }
             else
             {
@@ -224,29 +224,22 @@ namespace DataEditorX.Core
         /// <returns>结果</returns>
         public bool Equals(Card other)
         {
-            bool equalBool=EqualsData(other);
-            if (!equalBool)
+            if (!EqualsData(other))
             {
                 return false;
             }
-            else if (str.Length != other.str.Length)
+            if (str.Length != other.str.Length)
             {
-                equalBool = false;
+                return false;
             }
-            else
+            for (int i = 0; i < str.Length; i++)
             {
-                int l = str.Length;
-                for (int i = 0; i < l; i++)
+                if (!str[i].Equals(other.str[i]))
                 {
-                    if (!str[i].Equals(other.str[i]))
-                    {
-                        equalBool = false;
-                        break;
-                    }
+                    return false;
                 }
             }
-            return equalBool;
-
+            return true;
         }
         /// <summary>
         /// 得到哈希值
