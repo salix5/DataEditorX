@@ -820,7 +820,7 @@ namespace DataEditorX
             bool res = true;
             if (sc.setcode != 0)
             {
-                res &= c.IsSetCode(sc.setcode & 0xffff);
+                res = c.IsSetCode(sc.setcode & 0xffff);
             }
 
             return res;

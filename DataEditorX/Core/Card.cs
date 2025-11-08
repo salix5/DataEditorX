@@ -285,17 +285,19 @@ namespace DataEditorX.Core
         /// <returns></returns>
         public bool IsSetCode(long sc)
         {
-            long settype = sc & 0xfff;
-            long setsubtype = sc & 0xf000;
-            long setcode = this.setcode;
-            while (setcode != 0)
+            if (setcode == 0)
             {
-                if ((setcode & 0xfff) == settype && (setcode & 0xf000 & setsubtype) == setsubtype)
+                return false;
+            }
+            long settype = sc & 0x0fffL;
+            long setsubtype = sc & 0xf000L;
+            for (int i = 0; i < SETCODE_SIZE; i++)
+            {
+                long section = (setcode >> (16 * i)) & 0xffffL;
+                if ((section & 0x0fffL) == settype && (section & setsubtype) == setsubtype)
                 {
                     return true;
                 }
-
-                setcode >>= 0x10;
             }
             return false;
         }
