@@ -11,6 +11,7 @@ using DataEditorX.Core;
 using DataEditorX.Core.Mse;
 using DataEditorX.Language;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -310,8 +311,6 @@ namespace DataEditorX
                 return;
             }
 
-            List<long> setcodes = DataManager.GetKeys(datacfg.dicSetnames);
-            string[] setnames = DataManager.GetValues(datacfg.dicSetnames);
             try
             {
                 InitComboBox(cb_cardrace, datacfg.dicCardRaces);
@@ -321,10 +320,10 @@ namespace DataEditorX
                 InitCheckPanel(pl_cardtype, datacfg.dicCardTypes);
                 InitCheckPanel(pl_markers, datacfg.dicLinkMarkers);
                 InitCheckPanel(pl_category, datacfg.dicCardcategorys);
-                InitComboBox(cb_setname1, setcodes, setnames);
-                InitComboBox(cb_setname2, setcodes, setnames);
-                InitComboBox(cb_setname3, setcodes, setnames);
-                InitComboBox(cb_setname4, setcodes, setnames);
+                InitComboBox(cb_setname1, datacfg.dicSetnames);
+                InitComboBox(cb_setname2, datacfg.dicSetnames);
+                InitComboBox(cb_setname3, datacfg.dicSetnames);
+                InitComboBox(cb_setname4, datacfg.dicSetnames);
             }
             catch (Exception ex)
             {
@@ -332,13 +331,13 @@ namespace DataEditorX
             }
         }
         //初始化FlowLayoutPanel
-        void InitCheckPanel(FlowLayoutPanel fpanel, Dictionary<long, string> dic)
+        void InitCheckPanel(FlowLayoutPanel fpanel, InfoDictionary dict)
         {
             fpanel.SuspendLayout();
             fpanel.Controls.Clear();
-            foreach (long key in dic.Keys)
+            foreach (DictionaryEntry entry in dict)
             {
-                string value = dic[key];
+                string value = (string)entry.Value;
                 if (value != null && value.StartsWith("NULL"))
                 {
                     Label lab=new Label();
@@ -355,7 +354,7 @@ namespace DataEditorX
                 {
                     CheckBox _cbox = new CheckBox
                     {
-                        Tag = key,
+                        Tag = entry.Key,
                         Text = value,
                         AutoSize = true,
                         Margin = fpanel.Margin
@@ -369,22 +368,17 @@ namespace DataEditorX
         }
 
         //初始化ComboBox
-        void InitComboBox(ComboBox cb, Dictionary<long, string> tempdic)
+        void InitComboBox(ComboBox cb, InfoDictionary dict)
         {
-            InitComboBox(cb, DataManager.GetKeys(tempdic),
-                         DataManager.GetValues(tempdic));
-        }
-        //初始化ComboBox
-        void InitComboBox(ComboBox cb, List<long> keys, string[] values)
-        {
-            cb.Items.Clear();
-            cb.Tag = keys;
-            cb.Items.AddRange(values);
+            cb.ValueMember = "Key";
+            cb.DisplayMember = "Value";
+            cb.DataSource = dict.GetItems();
             if (cb.Items.Count > 0)
             {
                 cb.SelectedIndex = 0;
             }
         }
+
         //计算list最大行数
         void InitListRows()
         {
@@ -461,35 +455,17 @@ namespace DataEditorX
         //设置combobox
         void SetSelect(ComboBox cb, long k)
         {
-            if (cb.Tag == null)
-            {
-                cb.SelectedIndex = 0;
-                return;
-            }
-            List<long> keys = (List<long>)cb.Tag;
-            int index = keys.IndexOf(k);
-            if (index >= 0 && index < cb.Items.Count)
-            {
-                cb.SelectedIndex = index;
-            }
+            cb.SelectedIndex = -1;
+            cb.SelectedValue = k;
         }
         //得到所选值
         long GetSelect(ComboBox cb)
         {
-            if (cb.Tag == null)
+            if (cb.SelectedIndex == -1)
             {
                 return 0;
             }
-            List<long> keys = (List<long>)cb.Tag;
-            int index = cb.SelectedIndex;
-            if (index >= keys.Count || index < 0)
-            {
-                return 0;
-            }
-            else
-            {
-                return keys[index];
-            }
+            return (long)cb.SelectedValue;
         }
         //得到checkbox的总值
         long GetCheck(FlowLayoutPanel fpl)
@@ -1781,13 +1757,7 @@ namespace DataEditorX
                 }
 
                 setcodeIsedit[index] = true;
-                int.TryParse(tb.Text, NumberStyles.HexNumber, null, out int temp);
-                //tb.Text = temp.ToString("x");
-                if (temp == 0 && (tb.Text != "0" || tb.Text.Length == 0))
-                {
-                    temp = -1;
-                }
-
+                long.TryParse(tb.Text, NumberStyles.HexNumber, null, out long temp);
                 SetSelect(cb, temp);
                 setcodeIsedit[index] = false;
             }
