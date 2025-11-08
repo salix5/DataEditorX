@@ -1,7 +1,7 @@
 [DataEditorX]3.1.0.0[DataEditorX]
 
 ★运行环境(Environment)
-本程序基于.Net framework 4.8开发
+本程序基于.Net framework 4.8.1开发
 DLL：
 System.Data.SQLite.dll				数据库操作
 FastColoredTextBox.dll				脚本编辑
@@ -11,14 +11,12 @@ WeifenLuo.WinFormsUI.Docking.dll	多标签
 ★文件关联(File association)
 .cdb DataEditorX
 .lua Visual Studio Code
-方法：
-右键文件，打开方式，浏览文件，选择，点击确定。
 注意：
-如果需要lua用本程序打开，在★设置 open_file_in_this设为true
+如果需要lua用本程序打开，open_file_in_this设为true
 
 
 ★设置
-DataEditorX.exe.config ★语言设置，★图片设置，★CodeEditor设置
+DataEditorX.exe.config 语言设置，图片设置，CodeEditor设置
 data/language_xxx.txt 界面和消息提示文字
 data/cardinfo_xxx.txt 种族，类型，系列名
 
@@ -34,20 +32,6 @@ DataEditorX.exe.config
 data/language_xxx.txt
 data/cardinfo_xxx.txt
 
-★图片设置
-在裁剪和导入图片时候使用。
-	image_quilty	保存的图片质量 1-100
-	image			游戏图片大小，小图宽，高，大图宽，高，共4个值
-	image_other		一般卡图裁剪
-	image_xyz		xyz卡图裁剪
-	image_pendulum	Pendulum卡图裁剪
-★CodeEditor设置
-	IME			使用输入法
-    wordwrap	自动换行
-    tabisspace	tab转换为space
-	fontname    字体名
-	fontsize	字体大小
-
 ★DataEditor：
 攻击力为？，可以输入？，?，-2任意一个都可以。
 文件夹pics和script和cdb所在文件夹一致。
@@ -58,6 +42,37 @@ data/cardinfo_xxx.txt
 
 ★从ydk和图片文件夹读取卡片列表
 支持：密码，带0密码，卡名的png，jpg图片
+
+★卡片复制：
+替换复制：如果存在卡片，就用最新的替换
+不替换复制：如果存在卡片，就跳过
+
+★卡片搜索
+1.仅支持第一个系列名搜索,暂不支持P的刻度搜索
+2.支持卡片名称，效果描述，规则，属性，等级，种族，卡片类型，效果类型，密码
+3.ATK,DEF搜索：
+	如果是0，则输入-1或者.搜索
+	如果是?，则输入-2或者?或者？搜索
+4.卡片名称搜索：
+	AOJ%%		以“AOJ”开头
+	流%%天		以“流”开头，“天”结尾
+	%%战士		以“战士”结尾
+
+5.密码范围搜索示例：
+--密码或同名卡为10000000，的卡片        卡片密码： 10000000 同名卡: 0
+--同名卡为10000000的卡片               卡片密码：  0       同名卡: 10000000 
+--大于密码10000000，小于20000000的卡片  同名卡：  10000000   卡片密码: 20000000
+
+
+
+
+★图片设置
+在裁剪和导入图片时候使用。
+	image_quilty	保存的图片质量 1-100
+	image			游戏图片大小，小图宽，高，大图宽，高，共4个值
+	image_other		一般卡图裁剪
+	image_xyz		xyz卡图裁剪
+	image_pendulum	Pendulum卡图裁剪
 
 ★MSE存档
 读取
@@ -80,41 +95,6 @@ card:
 脚本script
 图片pics
 生成mydiy.zip，可以放在音效版的expansions，直接使用，也可以用来发布。
-
-★数据库对比
-
-★Lua函数查找
-从C++源码获取Lua函数
-返回类型，参数类型，C++实现代码。
-
-★卡片复制：
-替换复制：如果存在卡片，就用最新的替换
-不替换复制：如果存在卡片，就跳过
-
-★卡片搜索
-1.仅支持第一个系列名搜索,暂不支持P的刻度搜索
-2.支持卡片名称，效果描述，规则，属性，等级，种族，卡片类型，效果类型，密码
-3.ATK,DEF搜索：
-	如果是0，则输入-1或者.搜索
-	如果是?，则输入-2或者?或者？搜索
-4.卡片名称搜索：
-	AOJ%%		以“AOJ”开头
-	流%%天		以“流”开头，“天”结尾
-	%%战士		以“战士”结尾
-
-5.密码范围搜索示例：
---密码或同名卡为10000000，的卡片        卡片密码： 10000000 同名卡: 0
---同名卡为10000000的卡片               卡片密码：  0       同名卡: 10000000 
---大于密码10000000，小于20000000的卡片  同名卡：  10000000   卡片密码: 20000000
-
-★CodeEditor：
-在下面的文本框输入关键字，按Enter
-Ctrl+F			查找
-Ctrl+H			替换
-Ctrl+鼠标左键 	跳转到函数定义
-Ctrl+K			函数列表
-Ctrl+T			常量列表
-Ctrl+鼠标滑轮 	缩放文字
 
 ★Magic Set Editor 2
 https://github.com/247321453/MagicSetEditor2
