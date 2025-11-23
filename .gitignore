@@ -1,7 +1,6 @@
 Images/
 Images_backup/
 *.tmp
-/win32
 mse-set.txt
 #################
 ## Eclipse
@@ -135,8 +134,7 @@ publish/
 *.pubxml
 
 # NuGet Packages Directory
-## TODO: If you have NuGet Package Restore enabled, uncomment the next line
-#packages/
+packages/
 
 # Windows Azure Build Output
 csx
@@ -219,10 +217,3 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-/win32/*.cdb
-/win32/data/history.txt
-/win32/*.mse-set
-/win32/set
-
-/temp
-/packages
