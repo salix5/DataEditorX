@@ -1,0 +1,55 @@
+name: Automated Test Build
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    env:
+      Solution_Name: DataEditorX.sln
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore $env:Solution_Name
+
+    - name: Build
+      run: msbuild $env:Solution_Name /t:Build /p:Configuration=Release
+
+    - name: Pack
+      run: |
+        tar -cf DataEditorX.zip --format=zip release
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        path: DataEditorX
+  
+    - name: GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: salix5/action-automatic-releases@75f1a65738686fd56793b41982fd0ed01cc8e96c
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          DataEditorX.zip
