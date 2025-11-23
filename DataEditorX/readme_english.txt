@@ -1,6 +1,6 @@
 
 ★Environment
-This program is based on .Net Framework 4.8.1
+This program is based on .Net Framework 4.8
 
 ★File association
 DataEditorX can open files with specified extension:

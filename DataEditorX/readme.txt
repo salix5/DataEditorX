@@ -1,7 +1,7 @@
 [DataEditorX]3.1.0.0[DataEditorX]
 
 ★运行环境(Environment)
-本程序基于.Net framework 4.8.1开发
+本程序基于.Net framework 4.8开发
 DLL：
 System.Data.SQLite.dll				数据库操作
 FastColoredTextBox.dll				脚本编辑
