@@ -38,7 +38,7 @@ namespace DataEditorX.Common
             string html = GetHtmlContentByUrl(versionURL);
             if (!string.IsNullOrEmpty(html))
             {
-                Regex ver = new Regex(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
+                Regex ver = new Regex(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
                 if (ver.IsMatch(html))
                 {
                     Match mVer = ver.Match(html);
