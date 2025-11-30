@@ -115,9 +115,6 @@ ClientBin/
 *.pfx
 *.publishsettings
 
-# RIA/Silverlight projects
-Generated_Code/
-
 #############
 ## Windows detritus
 #############
