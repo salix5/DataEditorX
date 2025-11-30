@@ -19,6 +19,7 @@ jobs:
     runs-on: windows-2022
 
     env:
+      Release_Name: DataEditorX.zip
       Solution_Name: DataEditorX.sln
 
     steps:
@@ -38,12 +39,12 @@ jobs:
 
     - name: Pack
       run: |
-        tar -cf DataEditorX.zip --format=zip release
+        tar -cf $env:Release_Name --format=zip release
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        path: DataEditorX.zip
+        path: ${{ env.Release_Name }}
   
     - name: GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
@@ -52,4 +53,4 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
         files: |
-          DataEditorX.zip
+          ${{ env.Release_Name }}
