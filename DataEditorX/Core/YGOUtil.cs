@@ -4,6 +4,7 @@ using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace DataEditorX.Core
@@ -192,27 +193,27 @@ namespace DataEditorX.Core
         /// <returns>密码数组</returns>
         public static string[] ReadYDK(string ydkfile)
         {
-            string str;
-            List<string> IDs = new List<string>();
+            HashSet<string> IDs = new HashSet<string>();
             if (File.Exists(ydkfile))
             {
                 using (FileStream f = new FileStream(ydkfile, FileMode.Open, FileAccess.Read))
                 {
-                    StreamReader sr = new StreamReader(f, Encoding.Default);
-                    str = sr.ReadLine();
-                    while (str != null)
+                    using (StreamReader reader = new StreamReader(f, Encoding.UTF8)) 
                     {
-                        if (!str.StartsWith("!") && !str.StartsWith("#") && str.Length > 0)
+                        string str;
+                        while ((str = reader.ReadLine()) != null)
                         {
-                            if (IDs.IndexOf(str) < 0)
+                            if (string.IsNullOrWhiteSpace(str))
                             {
-                                IDs.Add(str);
+                                continue;
                             }
+                            if (str.StartsWith("!") || str.StartsWith("#"))
+                            {
+                                continue;
+                            }
+                            IDs.Add(str);
                         }
-                        str = sr.ReadLine();
                     }
-                    sr.Close();
-                    f.Close();
                 }
             }
             if (IDs.Count == 0)
