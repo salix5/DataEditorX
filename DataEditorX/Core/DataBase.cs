@@ -146,25 +146,21 @@ namespace DataEditorX.Core
             return c;
         }
 
-        public static Card[] Read(string DB, params long[] ids)
-        {
-            List<string> idlist = new List<string>();
-            foreach (long id in ids)
-            {
-                idlist.Add(id.ToString());
-            }
-            return Read(DB, idlist.ToArray());
-        }
         /// <summary>
-        /// 根据密码集合，读取数据
+        /// 根据密码集合读取数据
         /// </summary>
         /// <param name="DB">数据库</param>
-        /// <param name="SQLs">SQL/密码语句集合集合</param>
-        public static Card[] Read(string DB, params string[] SQLs)
+        /// <param name="ids">密码集合</param>
+        public static Card[] ReadFromId(string DB, string[] ids)
+        {
+            string stmt1 = $"{_defaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
+            return Read(DB, stmt1);
+        }
+       
+        public static Card[] Read(string DB, string SQL)
         {
             List<Card> list = new List<Card>();
-            List<long> idlist = new List<long>();
-            if (File.Exists(DB) && SQLs != null)
+            if (File.Exists(DB) && SQL != null)
             {
                 using (SQLiteConnection sqliteconn = new SQLiteConnection($"Data Source={DB}"))
                 {
@@ -173,42 +169,24 @@ namespace DataEditorX.Core
                     {
                         using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
                         {
-                            foreach (string str in SQLs)
+                            string stmt1;
+                            if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                             {
-                                int.TryParse(str, out int tmp);
+                                stmt1 = SQL;
+                            }
+                            else
+                            {
+                                stmt1 = _defaultSQL;
+                            }
 
-                                string SQLstr;
-                                if (string.IsNullOrEmpty(str))
+                            sqlitecommand.CommandText = stmt1;
+                            using (SQLiteDataReader reader = sqlitecommand.ExecuteReader())
+                            {
+                                while (reader.Read())
                                 {
-                                    SQLstr = _defaultSQL;
+                                    list.Add(ReadCard(reader));
                                 }
-                                else if (tmp > 0)
-                                {
-                                    SQLstr = $"{_defaultSQL} AND datas.id={str}";
-                                }
-                                else if (str.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
-                                {
-                                    SQLstr = str;
-                                }
-                                else
-                                {
-                                    SQLstr = _defaultSQL + " and texts.name like '%" + str + "%'";
-                                }
-
-                                sqlitecommand.CommandText = SQLstr;
-                                using (SQLiteDataReader reader = sqlitecommand.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        Card c = ReadCard(reader);
-                                        if (idlist.IndexOf(c.id) < 0)
-                                        {//不存在，则添加
-                                            idlist.Add(c.id);
-                                            list.Add(c);
-                                        }
-                                    }
-                                    reader.Close();
-                                }
+                                reader.Close();
                             }
                         }
                         trans.Commit();

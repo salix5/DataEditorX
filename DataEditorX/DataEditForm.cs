@@ -859,7 +859,7 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (tmpCodes.Count > 0)
             {
-                _ = DataBase.Read(nowCdbFile, tmpCodes.ToArray());
+                _ = DataBase.ReadFromId(nowCdbFile, tmpCodes.ToArray());
                 SetCards(getCompCards(), true);
             }
             else
@@ -1144,7 +1144,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadYDK(dlg.FileName);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.Read(nowCdbFile, ids), false);
+                    SetCards(DataBase.ReadFromId(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1164,7 +1164,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.Read(nowCdbFile, ids), false);
+                    SetCards(DataBase.ReadFromId(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1644,7 +1644,7 @@ namespace DataEditorX
                 return null;
             }
 
-            return DataBase.Read(nowCdbFile, tmpCodes.ToArray());
+            return DataBase.ReadFromId(nowCdbFile, tmpCodes.ToArray());
         }
         public void CompareCards(string cdbfile, bool checktext)
         {
