@@ -126,7 +126,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region 根据SQL读取
-        static Card ReadCard(SQLiteDataReader reader, bool reNewLine)
+        static Card ReadCard(SQLiteDataReader reader)
         {
             Card c = new Card(0)
             {
@@ -142,37 +142,32 @@ namespace DataEditorX.Core
                 attribute = reader.GetInt64(reader.GetOrdinal("attribute")),
                 category = reader.GetInt64(reader.GetOrdinal("category")),
 
-                name = reader.GetString(reader.GetOrdinal("name")),
-                desc = reader.GetString(reader.GetOrdinal("desc")),
+                name = (string)reader["name"],
+                desc = MyUtils.ConvertNewline((string)reader["desc"], true),
             };
-            if (reNewLine)
-            {
-                c.desc = MyUtils.ConvertNewline(c.desc, true);
-            }
 
             for (int i = 0; i < c.Str.Length; i++)
             {
-                c.Str[i] = reader.GetString(reader.GetOrdinal($"str{i + 1}")) ?? "";
+                c.Str[i] = (string)reader[$"str{i + 1}"] ?? "";
             }
             return c;
         }
 
-        public static Card[] Read(string DB, bool reNewLine, params long[] ids)
+        public static Card[] Read(string DB, params long[] ids)
         {
             List<string> idlist = new List<string>();
             foreach (long id in ids)
             {
                 idlist.Add(id.ToString());
             }
-            return Read(DB, reNewLine, idlist.ToArray());
+            return Read(DB, idlist.ToArray());
         }
         /// <summary>
         /// 根据密码集合，读取数据
         /// </summary>
         /// <param name="DB">数据库</param>
-        /// <param name="reNewLine">调整换行符</param>
         /// <param name="SQLs">SQL/密码语句集合集合</param>
-        public static Card[] Read(string DB, bool reNewLine, params string[] SQLs)
+        public static Card[] Read(string DB, params string[] SQLs)
         {
             List<Card> list = new List<Card>();
             List<long> idlist = new List<long>();
@@ -216,7 +211,7 @@ namespace DataEditorX.Core
                                 {
                                     while (reader.Read())
                                     {
-                                        Card c = ReadCard(reader, reNewLine);
+                                        Card c = ReadCard(reader);
                                         if (idlist.IndexOf(c.id) < 0)
                                         {//不存在，则添加
                                             idlist.Add(c.id);

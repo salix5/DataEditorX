@@ -358,7 +358,7 @@ namespace DataEditorX.Core
                 }
 
                 bool replace = false;
-                Card[] oldcards = DataBase.Read(dataform.GetOpenFile(), true, "");
+                Card[] oldcards = DataBase.Read(dataform.GetOpenFile(), "");
                 if (oldcards != null && oldcards.Length != 0)
                 {
                     int i = 0;

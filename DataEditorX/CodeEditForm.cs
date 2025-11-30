@@ -544,7 +544,7 @@ namespace DataEditorX
         {
             if (nowcdb != null && File.Exists(nowcdb))
             {
-                SetCards(DataBase.Read(nowcdb, true, ""));
+                SetCards(DataBase.Read(nowcdb, ""));
             }
         }
         public void SetCards(Card[] cards)

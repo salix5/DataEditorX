@@ -784,7 +784,7 @@ namespace DataEditorX
             //检查表是否存在
             DataBase.CheckTable(file);
             srcCard = new Card();
-            SetCards(DataBase.Read(file, true, ""), false);
+            SetCards(DataBase.Read(file, ""), false);
 
             return true;
         }
@@ -859,14 +859,14 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (tmpCodes.Count > 0)
             {
-                _ = DataBase.Read(nowCdbFile, true, tmpCodes.ToArray());
+                _ = DataBase.Read(nowCdbFile, tmpCodes.ToArray());
                 SetCards(getCompCards(), true);
             }
             else
             {
                 srcCard = c;
                 string sql = DataBase.GetSelectSQL(c);
-                SetCards(DataBase.Read(nowCdbFile, true, sql), isfresh);
+                SetCards(DataBase.Read(nowCdbFile, sql), isfresh);
             }
         }
         //更新临时卡片
@@ -1144,8 +1144,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadYDK(dlg.FileName);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.Read(nowCdbFile, true,
-                                           ids), false);
+                    SetCards(DataBase.Read(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1165,8 +1164,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.Read(nowCdbFile, true,
-                                           ids), false);
+                    SetCards(DataBase.Read(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1646,7 +1644,7 @@ namespace DataEditorX
                 return null;
             }
 
-            return DataBase.Read(nowCdbFile, true, tmpCodes.ToArray());
+            return DataBase.Read(nowCdbFile, tmpCodes.ToArray());
         }
         public void CompareCards(string cdbfile, bool checktext)
         {
@@ -1657,8 +1655,8 @@ namespace DataEditorX
 
             tmpCodes.Clear();
             srcCard = new Card();
-            Card[] mcards = DataBase.Read(nowCdbFile, true, "");
-            Card[] cards = DataBase.Read(cdbfile, true, "");
+            Card[] mcards = DataBase.Read(nowCdbFile, "");
+            Card[] cards = DataBase.Read(cdbfile, "");
             foreach (Card card in mcards)
             {
                 if (!CheckCard(cards, card, checktext))//添加到id集合
@@ -2037,7 +2035,7 @@ namespace DataEditorX
                 catch { }
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    Card[] cards = DataBase.Read(nowCdbFile, true, "");
+                    Card[] cards = DataBase.Read(nowCdbFile, "");
                     int count = cards.Length;
                     if (cards == null || cards.Length == 0)
                     {
@@ -2079,7 +2077,7 @@ namespace DataEditorX
                 catch { }
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    Card[] cards = DataBase.Read(nowCdbFile, true, "");
+                    Card[] cards = DataBase.Read(nowCdbFile, "");
                     int count = cards.Length;
                     if (cards == null || cards.Length == 0)
                     {

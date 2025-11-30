@@ -58,7 +58,6 @@ namespace DataEditorX.Common
         {
             StringBuilder sr = new StringBuilder(text);
             sr.Replace("\r\n", "\n");
-            sr.Replace("\r", "\n");
             if (isEnvironment)
             {
                 sr.Replace("\n", System.Environment.NewLine);
