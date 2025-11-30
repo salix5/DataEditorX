@@ -173,7 +173,7 @@ namespace DataEditorX.Core
             List<long> idlist = new List<long>();
             if (File.Exists(DB) && SQLs != null)
             {
-                using (SQLiteConnection sqliteconn = new SQLiteConnection(@"Data Source=" + DB))
+                using (SQLiteConnection sqliteconn = new SQLiteConnection($"Data Source={DB}"))
                 {
                     sqliteconn.Open();
                     using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
@@ -191,15 +191,11 @@ namespace DataEditorX.Core
                                 }
                                 else if (tmp > 0)
                                 {
-                                    SQLstr = _defaultSQL + " and datas.id=" + tmp.ToString();
+                                    SQLstr = $"{_defaultSQL} AND datas.id={str}";
                                 }
-                                else if (str.StartsWith("select", System.StringComparison.OrdinalIgnoreCase))
+                                else if (str.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                                 {
                                     SQLstr = str;
-                                }
-                                else if (str.IndexOf("and ") >= 0)
-                                {
-                                    SQLstr = _defaultSQL + str;
                                 }
                                 else
                                 {
