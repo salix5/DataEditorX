@@ -25,20 +25,13 @@ namespace DataEditorX.Core
         static DataBase()
         {
             _defaultSQL =
-                "SELECT datas.*,texts.* FROM datas,texts WHERE datas.id=texts.id ";
+                "SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,"
+                + "texts.name,texts.desc,texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,"
+                + "texts.str11,texts.str12,texts.str13,texts.str14,texts.str15,texts.str16 FROM datas JOIN texts USING(id) WHERE 1 = 1";
             StringBuilder st = new StringBuilder();
-            st.Append(@"CREATE TABLE texts(id integer primary key,name text,desc text");
-            for (int i = 1; i <= 16; i++)
-            {
-                st.Append(",str");
-                st.Append(i.ToString());
-                st.Append(" text");
-            }
-            st.Append(");");
-            st.Append(@"CREATE TABLE datas(");
-            st.Append("id integer primary key,ot integer,alias integer,");
-            st.Append("setcode integer,type integer,atk integer,def integer,");
-            st.Append("level integer,race integer,attribute integer,category integer) ");
+            st.Append("CREATE TABLE datas(id INTEGER PRIMARY KEY, ot INTEGER, alias INTEGER, setcode INTEGER, type INTEGER, atk INTEGER, def INTEGER, level INTEGER, race INTEGER, attribute INTEGER, category INTEGER);");
+            st.Append("CREATE TABLE texts(id INTEGER PRIMARY KEY, name TEXT, desc TEXT, str1 TEXT, str2 TEXT, str3 TEXT, str4 TEXT, str5 TEXT, str6 TEXT, str7 TEXT, str8 TEXT, str9 TEXT, str10 TEXT,");
+            st.Append(" str11 TEXT, str12 TEXT, str13 TEXT, str14 TEXT, str15 TEXT, str16 TEXT);");
             _defaultTableSQL = st.ToString();
         }
         #endregion
@@ -319,8 +312,7 @@ namespace DataEditorX.Core
         #region 查询
         public static string GetSelectSQL(Card c)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT * FROM datas,texts WHERE datas.id=texts.id ");
+            StringBuilder sb = new StringBuilder(_defaultSQL);
             if (c == null)
             {
                 return sb.ToString();
