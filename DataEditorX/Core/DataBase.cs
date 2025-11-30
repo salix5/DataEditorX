@@ -446,10 +446,12 @@ namespace DataEditorX.Core
             }
 
             string stmt_datas =
-                $"{insertMode} INTO datas VALUES({c.id},{c.ot},{c.alias},{setcode},{type},{c.atk},{c.def},{level},{race},{attribute},{category});\n";
+                $"{insertMode} INTO datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category) "
+                + $"VALUES({c.id},{c.ot},{c.alias},{setcode},{type},{c.atk},{c.def},{level},{race},{attribute},{category});\n";
 
             string stmt_texts =
-                $"{insertMode} INTO texts VALUES({c.id},'{name}','{desc}','{string.Join("','", strs)}');\n";
+                $"{insertMode} INTO texts (id, name, desc, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16) "
+                + $"VALUES({c.id},'{name}','{desc}','{string.Join("','", strs)}');\n";
 
             return $"{stmt_datas}{stmt_texts}";
         }
