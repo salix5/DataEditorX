@@ -47,7 +47,7 @@ jobs:
   
     - name: GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
-      uses: salix5/action-automatic-releases@75f1a65738686fd56793b41982fd0ed01cc8e96c
+      uses: salix5/action-automatic-releases@e0545bc14e9677f38aa573f1a52563022f987356 # node24
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
