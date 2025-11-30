@@ -413,6 +413,7 @@ namespace DataEditorX.Core
             {
                 sb.Append($" AND datas.alias={c.alias}");
             }
+            sb.Append(" ORDER BY id");
 
             return sb.ToString();
 
