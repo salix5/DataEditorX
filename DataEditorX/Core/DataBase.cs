@@ -495,7 +495,7 @@ namespace DataEditorX.Core
         #endregion
 
 
-        public static void ExportSql(string file, params Card[] cards)
+        public static void ExportSQL(string file, params Card[] cards)
         {
             using (FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write))
             {

@@ -2002,7 +2002,7 @@ namespace DataEditorX
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataBase.ExportSql(dlg.FileName, GetCardList(true));
+                    DataBase.ExportSQL(dlg.FileName, GetCardList(true));
                     MyMsg.Show("OK");
                 }
             }
@@ -2013,7 +2013,7 @@ namespace DataEditorX
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataBase.ExportSql(dlg.FileName, GetCardList(false));
+                    DataBase.ExportSQL(dlg.FileName, GetCardList(false));
                     MyMsg.Show("OK");
                 }
             }
