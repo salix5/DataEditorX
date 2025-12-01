@@ -256,16 +256,18 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection(@"Data Source=" + DB))
+                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
                 {
                     con.Open();
                     using (SQLiteTransaction trans = con.BeginTransaction())
                     {
                         using (SQLiteCommand cmd = new SQLiteCommand(con))
                         {
+                            cmd.CommandText = DeleteSQL;
+                            var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
                             foreach (Card c in cards)
                             {
-                                cmd.CommandText = GetDeleteSQL(c);
+                                parameter.Value = c.id;
                                 result += cmd.ExecuteNonQuery();
                             }
                         }
