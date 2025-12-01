@@ -97,7 +97,7 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && SQLs != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection(@"Data Source=" + DB))
+                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
                 {
                     con.Open();
                     using (SQLiteTransaction trans = con.BeginTransaction())
@@ -285,7 +285,7 @@ namespace DataEditorX.Core
         {
             if (File.Exists(db))
             {
-                using (SQLiteConnection con = new SQLiteConnection(@"Data Source=" + db))
+                using (SQLiteConnection con = new SQLiteConnection($"Data Source={db}"))
                 {
                     con.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(con))
