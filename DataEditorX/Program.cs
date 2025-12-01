@@ -20,7 +20,7 @@ namespace DataEditorX
         private static void Main(string[] args)
         {
             string arg = (args.Length > 0) ? args[0] : "";
-            if (arg == MyConfig.TAG_SAVE_LAGN || arg == MyConfig.TAG_SAVE_LAGN2)
+            if (arg == MyConfig.TAG_SAVE_LANG || arg == MyConfig.TAG_SAVE_LANG2)
             {
                 //保存语言
                 SaveLanguage();
