@@ -18,7 +18,7 @@ namespace DataEditorX.Core
     /// </summary>
     public static class DataBase
     {
-        #region 默认
+        #region SQL statements
         static readonly string DefaultSQL =
             "SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,"
             + "texts.name,texts.desc,texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,"
@@ -42,17 +42,13 @@ namespace DataEditorX.Core
             + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16 WHERE id=@id;";
         static readonly string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
-
-        static DataBase()
-        {
-        }
         #endregion
 
-        #region 创建数据库
+        #region Create table
         /// <summary>
-        /// 创建数据库
+        /// Create new database.
         /// </summary>
-        /// <param name="Db">新数据库路径</param>
+        /// <param name="Db">New database file path</param>
         public static bool Create(string Db)
         {
             if (File.Exists(Db))
@@ -85,13 +81,13 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 执行sql语句
+        #region Execute SQL
         /// <summary>
-        /// 执行sql语句
+        /// Execute SQL statements.
         /// </summary>
-        /// <param name="DB">数据库</param>
-        /// <param name="SQLs">sql语句</param>
-        /// <returns>返回影响行数</returns>
+        /// <param name="DB">Database file path</param>
+        /// <param name="SQLs">SQL statements</param>
+        /// <returns>Number of affected rows</returns>
         public static int Command(string DB, params string[] SQLs)
         {
             int result = 0;
@@ -130,7 +126,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 根据SQL读取
+        #region Read from database
         static Card ReadCard(SQLiteDataReader reader)
         {
             Card c = new Card(0)
@@ -159,10 +155,10 @@ namespace DataEditorX.Core
         }
 
         /// <summary>
-        /// 根据密码集合读取数据
+        /// Read cards from database by IDs.
         /// </summary>
-        /// <param name="DB">数据库</param>
-        /// <param name="ids">密码集合</param>
+        /// <param name="DB">Database file path</param>
+        /// <param name="ids">Collection of IDs</param>
         public static Card[] ReadFromId(string DB, string[] ids)
         {
             string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
@@ -259,14 +255,14 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 复制数据库
+        #region Copy cards to database
         /// <summary>
-        /// 复制数据库
+        /// Copy cards to database
         /// </summary>
-        /// <param name="DB">复制到的数据库</param>
-        /// <param name="cards">卡片集合</param>
-        /// <param name="ignore">是否忽略存在</param>
-        /// <returns>更新数x2</returns>
+        /// <param name="DB">Destination database file path</param>
+        /// <param name="cards">Collection of cards</param>
+        /// <param name="ignore">Ignore existing entries</param>
+        /// <returns>Number of updates x2</returns>
         public static int CopyDB(string DB, bool ignore, params Card[] cards)
         {
             int result = 0;
@@ -296,7 +292,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 删除记录
+        #region Delete cards from database
         public static int DeleteDB(string DB, params Card[] cards)
         {
             int result = 0;
@@ -326,7 +322,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 压缩数据库
+        #region Vacuum
         public static void Compression(string db)
         {
             if (File.Exists(db))
@@ -346,8 +342,8 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region SQL语句
-        #region 查询
+        #region Generate SQL statements
+        #region SELECT
         public static string GetSelectSQL(Card c)
         {
             StringBuilder sb = new StringBuilder(DefaultSQL);
@@ -457,14 +453,14 @@ namespace DataEditorX.Core
 
         }
         #endregion
-
-        #region 插入
+    
+        #region INSERT
         /// <summary>
-        /// 转换为插入语句
+        /// Generate INSERT statements.
         /// </summary>
-        /// <param name="c">卡片数据</param>
-        /// <param name="ignore"></param>
-        /// <returns>SQL语句</returns>
+        /// <param name="c">Card data</param>
+        /// <param name="ignore">Ignore existing entries</param>
+        /// <returns>SQL statements</returns>
         public static string GetInsertSQL(Card c, bool ignore, bool hex = false)
         {
             string insertMode = ignore ? "INSERT OR IGNORE" : "INSERT OR REPLACE";
@@ -496,12 +492,12 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 更新
+        #region UPDATE
         /// <summary>
-        /// 转换为更新语句
+        /// Generate UPDATE statements.
         /// </summary>
-        /// <param name="c">卡片数据</param>
-        /// <returns>SQL语句</returns>
+        /// <param name="c">Card data</param>
+        /// <returns>SQL statements</returns>
         public static string GetUpdateSQL(Card c)
         {
             string[] strEscaped = new string[c.Str.Length];
@@ -526,12 +522,12 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 删除
+        #region DELETE
         /// <summary>
-        /// 转换删除语句
+        /// Generate DELETE statements.
         /// </summary>
-        /// <param name="c">卡片密码</param>
-        /// <returns>SQL语句</returns>
+        /// <param name="c">Card ID</param>
+        /// <returns>SQL statements</returns>
         public static string GetDeleteSQL(Card c)
         {
             string id = c.id.ToString();
