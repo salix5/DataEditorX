@@ -19,20 +19,32 @@ namespace DataEditorX.Core
     public static class DataBase
     {
         #region 默认
-        static readonly string _defaultSQL;
-        static readonly string _defaultTableSQL;
+        static readonly string DefaultSQL =
+            "SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,"
+            + "texts.name,texts.desc,texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,"
+            + "texts.str11,texts.str12,texts.str13,texts.str14,texts.str15,texts.str16 FROM datas JOIN texts USING(id) WHERE 1 = 1";
+        static readonly string DefaultTableSQL =
+            "CREATE TABLE datas(id INTEGER PRIMARY KEY, ot INTEGER, alias INTEGER, setcode INTEGER, type INTEGER, atk INTEGER, def INTEGER, level INTEGER, race INTEGER, attribute INTEGER, category INTEGER);"
+            + "CREATE TABLE texts(id INTEGER PRIMARY KEY, name TEXT, desc TEXT, str1 TEXT, str2 TEXT, str3 TEXT, str4 TEXT, str5 TEXT, str6 TEXT, str7 TEXT, str8 TEXT, str9 TEXT, str10 TEXT,"
+            + " str11 TEXT, str12 TEXT, str13 TEXT, str14 TEXT, str15 TEXT, str16 TEXT);";
+
+        static readonly string InsertDatas =
+            " INTO datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category) "
+            + "VALUES(@id, @ot, @alias, @setcode, @type, @atk, @def, @level, @race, @attribute, @category);";
+        static readonly string InsertTexts =
+            " INTO texts (id, name, desc, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16) "
+            + "VALUES(@id, @name, @desc, @str1, @str2, @str3, @str4, @str5, @str6, @str7, @str8, @str9, @str10, @str11, @str12, @str13, @str14, @str15, @str16);";
+        static readonly string InsertReplaceSQL = $"INSERT OR REPLACE{InsertDatas}INSERT OR REPLACE{InsertTexts}";
+        static readonly string InsertIgnoreSQL = $"INSERT OR IGNORE{InsertDatas}INSERT OR IGNORE{InsertTexts}";
+        static readonly string UpdateSQL =
+            "UPDATE datas SET ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category WHERE id=@id;"
+            + "UPDATE texts SET name=@name, desc=@desc, str1=@str1, str2=@str2, str3=@str3, str4=@str4, str5=@str5, str6=@str6, str7=@str7, str8=@str8, str9=@str9, str10=@str10,"
+            + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16 WHERE id=@id;";
+        static readonly string DeleteSQL =
+            "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
 
         static DataBase()
         {
-            _defaultSQL =
-                "SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,"
-                + "texts.name,texts.desc,texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,"
-                + "texts.str11,texts.str12,texts.str13,texts.str14,texts.str15,texts.str16 FROM datas JOIN texts USING(id) WHERE 1 = 1";
-            StringBuilder st = new StringBuilder();
-            st.Append("CREATE TABLE datas(id INTEGER PRIMARY KEY, ot INTEGER, alias INTEGER, setcode INTEGER, type INTEGER, atk INTEGER, def INTEGER, level INTEGER, race INTEGER, attribute INTEGER, category INTEGER);");
-            st.Append("CREATE TABLE texts(id INTEGER PRIMARY KEY, name TEXT, desc TEXT, str1 TEXT, str2 TEXT, str3 TEXT, str4 TEXT, str5 TEXT, str6 TEXT, str7 TEXT, str8 TEXT, str9 TEXT, str10 TEXT,");
-            st.Append(" str11 TEXT, str12 TEXT, str13 TEXT, str14 TEXT, str15 TEXT, str16 TEXT);");
-            _defaultTableSQL = st.ToString();
         }
         #endregion
 
@@ -51,7 +63,7 @@ namespace DataEditorX.Core
             try
             {
                 SQLiteConnection.CreateFile(Db);
-                Command(Db, _defaultTableSQL);
+                Command(Db, DefaultTableSQL);
             }
             catch
             {
@@ -63,7 +75,7 @@ namespace DataEditorX.Core
         {
             try
             {
-                Command(db, _defaultTableSQL);
+                Command(db, DefaultTableSQL);
             }
             catch
             {
@@ -153,7 +165,7 @@ namespace DataEditorX.Core
         /// <param name="ids">密码集合</param>
         public static Card[] ReadFromId(string DB, string[] ids)
         {
-            string stmt1 = $"{_defaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
+            string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
             return Read(DB, stmt1);
         }
        
@@ -176,7 +188,7 @@ namespace DataEditorX.Core
                             }
                             else
                             {
-                                stmt1 = _defaultSQL;
+                                stmt1 = DefaultSQL;
                             }
 
                             sqlitecommand.CommandText = stmt1;
@@ -290,7 +302,7 @@ namespace DataEditorX.Core
         #region 查询
         public static string GetSelectSQL(Card c)
         {
-            StringBuilder sb = new StringBuilder(_defaultSQL);
+            StringBuilder sb = new StringBuilder(DefaultSQL);
             if (c == null)
             {
                 return sb.ToString();
