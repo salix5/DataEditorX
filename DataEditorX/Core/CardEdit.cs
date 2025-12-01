@@ -56,8 +56,7 @@ namespace DataEditorX.Core
                         return false;
                     }
                 }
-                if (DataBase.Command(dataform.GetOpenFile(),
-                    DataBase.GetInsertSQL(c, true)) >= 2)
+                if (DataBase.Command(dataform.GetOpenFile(), DataBase.GetInsertSQL(c, true)) >= 2)
                 {
                     MyMsg.Show(LMSG.AddSucceed);
                     undoSQL = DataBase.GetDeleteSQL(c);
@@ -123,8 +122,7 @@ namespace DataEditorX.Core
                     bool delold = MyMsg.Question(LMSG.IfDeleteCard);
                     if (delold)//是否删除旧卡片
                     {
-                        if (DataBase.Command(dataform.GetOpenFile(),
-                            DataBase.GetDeleteSQL(oldCard)) < 2)
+                        if (DataBase.Command(dataform.GetOpenFile(), DataBase.GetDeleteSQL(oldCard)) < 2)
                         {
                             //删除失败
                             MyMsg.Error(LMSG.DeleteFail);
