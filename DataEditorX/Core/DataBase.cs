@@ -272,16 +272,18 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection(@"Data Source=" + DB))
+                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
                 {
                     con.Open();
                     using (SQLiteTransaction trans = con.BeginTransaction())
                     {
                         using (SQLiteCommand cmd = new SQLiteCommand(con))
                         {
+                            cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                            InitParameters(cmd);
                             foreach (Card c in cards)
                             {
-                                cmd.CommandText = GetInsertSQL(c, ignore);
+                                AddParameters(cmd, c);
                                 result += cmd.ExecuteNonQuery();
                             }
                         }
