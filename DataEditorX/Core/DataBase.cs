@@ -215,6 +215,50 @@ namespace DataEditorX.Core
         }
         #endregion
 
+        #region SQL parameters
+        public static void InitParameters(SQLiteCommand cmd)
+        {
+            cmd.Parameters.Add("@id", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@ot", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@alias", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@setcode", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@type", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@atk", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@def", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@level", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@race", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@attribute", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@category", System.Data.DbType.Int64);
+            cmd.Parameters.Add("@name", System.Data.DbType.String);
+            cmd.Parameters.Add("@desc", System.Data.DbType.String);
+            for (int i = 0; i < Card.STR_SIZE; i++)
+            {
+                cmd.Parameters.Add($"@str{i + 1}", System.Data.DbType.String);
+            }
+        }
+
+        public static void AddParameters(SQLiteCommand cmd, Card c)
+        {
+            cmd.Parameters["@id"].Value = c.id;
+            cmd.Parameters["@ot"].Value = c.ot;
+            cmd.Parameters["@alias"].Value = c.alias;
+            cmd.Parameters["@setcode"].Value = c.setcode;
+            cmd.Parameters["@type"].Value = c.type;
+            cmd.Parameters["@atk"].Value = c.atk;
+            cmd.Parameters["@def"].Value = c.def;
+            cmd.Parameters["@level"].Value = c.level;
+            cmd.Parameters["@race"].Value = c.race;
+            cmd.Parameters["@attribute"].Value = c.attribute;
+            cmd.Parameters["@category"].Value = c.category;
+            cmd.Parameters["@name"].Value = c.name;
+            cmd.Parameters["@desc"].Value = c.NormalizedDesc();
+            for (int i = 0; i < c.Str.Length; i++)
+            {
+                cmd.Parameters[$"@str{i + 1}"].Value = c.Str[i];
+            }
+        }
+        #endregion
+
         #region 复制数据库
         /// <summary>
         /// 复制数据库
