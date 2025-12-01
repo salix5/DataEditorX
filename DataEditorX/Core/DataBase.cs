@@ -323,7 +323,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region Vacuum
-        public static void Compression(string db)
+        public static void Vacuum(string db)
         {
             if (File.Exists(db))
             {

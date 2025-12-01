@@ -1859,7 +1859,7 @@ namespace DataEditorX
                 return;
             }
 
-            DataBase.Compression(nowCdbFile);
+            DataBase.Vacuum(nowCdbFile);
             MyMsg.Show(LMSG.CompDBOK);
         }
         #endregion
