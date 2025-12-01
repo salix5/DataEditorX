@@ -24,21 +24,11 @@ namespace DataEditorX.Core
         #region 判断文件类型
         public static bool IsScript(string file)
         {
-            if (file != null && file.EndsWith(".lua", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            return false;
+            return file?.EndsWith(".lua", StringComparison.OrdinalIgnoreCase) ?? false;
         }
         public static bool IsDataBase(string file)
         {
-            if (file != null && file.EndsWith(".cdb", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            return false;
+            return file?.EndsWith(".cdb", StringComparison.OrdinalIgnoreCase) ?? false;
         }
         #endregion
 
