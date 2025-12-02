@@ -193,11 +193,11 @@ namespace DataEditorX.Core
                         string str;
                         while ((str = reader.ReadLine()) != null)
                         {
-                            if (string.IsNullOrWhiteSpace(str))
+                            if (str.StartsWith("!") || str.StartsWith("#"))
                             {
                                 continue;
                             }
-                            if (str.StartsWith("!") || str.StartsWith("#"))
+                            if (!long.TryParse(str, out _))
                             {
                                 continue;
                             }
@@ -206,11 +206,6 @@ namespace DataEditorX.Core
                     }
                 }
             }
-            if (IDs.Count == 0)
-            {
-                return null;
-            }
-
             return IDs.ToArray();
         }
         #endregion
@@ -220,14 +215,19 @@ namespace DataEditorX.Core
         {
             List<string> list = new List<string>();
             string[] files = Directory.GetFiles(path, "*.*");
-            int n = files.Length;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < files.Length; i++)
             {
                 string ex = Path.GetExtension(files[i]).ToLower();
-                if (ex == ".jpg" || ex == ".png" || ex == ".bmp")
+                if (ex != ".jpg" && ex != ".png" && ex != ".bmp")
                 {
-                    list.Add(Path.GetFileNameWithoutExtension(files[i]));
+                    continue;
                 }
+                string id = Path.GetFileNameWithoutExtension(files[i]);
+                if (!long.TryParse(id, out _))
+                {
+                    continue;
+                }
+                list.Add(id);
             }
             return list.ToArray();
         }
