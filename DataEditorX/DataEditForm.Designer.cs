@@ -889,7 +889,7 @@ namespace DataEditorX
             this.lb_categorys.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.lb_categorys.Size = new System.Drawing.Size(303, 20);
             this.lb_categorys.TabIndex = 11;
-            this.lb_categorys.Text = "Card Categorys";
+            this.lb_categorys.Text = "Card Category";
             this.lb_categorys.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb2
@@ -925,7 +925,7 @@ namespace DataEditorX
             this.lb_types.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.lb_types.Size = new System.Drawing.Size(305, 20);
             this.lb_types.TabIndex = 11;
-            this.lb_types.Text = "Card Types";
+            this.lb_types.Text = "Card Type";
             this.lb_types.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb_tiptexts
@@ -938,7 +938,7 @@ namespace DataEditorX
             this.lb_tiptexts.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.lb_tiptexts.Size = new System.Drawing.Size(301, 20);
             this.lb_tiptexts.TabIndex = 11;
-            this.lb_tiptexts.Text = "Tips Texts";
+            this.lb_tiptexts.Text = "Tip Texts";
             this.lb_tiptexts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bgWorker1
@@ -1167,12 +1167,12 @@ namespace DataEditorX
             // 
             // ch_cardcode
             // 
-            this.ch_cardcode.Text = "Card Code";
+            this.ch_cardcode.Text = "ID";
             this.ch_cardcode.Width = 70;
             // 
             // ch_cardname
             // 
-            this.ch_cardname.Text = "Card Name";
+            this.ch_cardname.Text = "Name";
             this.ch_cardname.Width = 1294;
             // 
             // pl_markers
