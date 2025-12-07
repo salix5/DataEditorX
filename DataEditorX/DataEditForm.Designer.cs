@@ -518,9 +518,10 @@ namespace DataEditorX
             // 
             this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_cardname.Font = new System.Drawing.Font("Microsoft JhengHei", 10F);
             this.tb_cardname.Location = new System.Drawing.Point(5, 3);
             this.tb_cardname.Name = "tb_cardname";
-            this.tb_cardname.Size = new System.Drawing.Size(339, 21);
+            this.tb_cardname.Size = new System.Drawing.Size(339, 25);
             this.tb_cardname.TabIndex = 1;
             this.tb_cardname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_cardname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cardnameKeyDown);
@@ -630,7 +631,7 @@ namespace DataEditorX
             this.tb_cardtext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_cardtext.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_cardtext.Font = new System.Drawing.Font("Microsoft JhengHei", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_cardtext.Location = new System.Drawing.Point(4, 349);
             this.tb_cardtext.MaxLength = 5000;
             this.tb_cardtext.Multiline = true;
@@ -1150,6 +1151,7 @@ namespace DataEditorX
             this.lv_cardlist.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ch_cardcode,
             this.ch_cardname});
+            this.lv_cardlist.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.lv_cardlist.FullRowSelect = true;
             this.lv_cardlist.GridLines = true;
             this.lv_cardlist.HideSelection = false;
@@ -1168,7 +1170,7 @@ namespace DataEditorX
             // ch_cardcode
             // 
             this.ch_cardcode.Text = "ID";
-            this.ch_cardcode.Width = 70;
+            this.ch_cardcode.Width = 75;
             // 
             // ch_cardname
             // 
