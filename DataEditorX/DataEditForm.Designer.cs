@@ -508,10 +508,11 @@ namespace DataEditorX
             this.cb_cardattribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardattribute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_cardattribute.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_cardattribute.FormattingEnabled = true;
             this.cb_cardattribute.Location = new System.Drawing.Point(194, 56);
             this.cb_cardattribute.Name = "cb_cardattribute";
-            this.cb_cardattribute.Size = new System.Drawing.Size(150, 20);
+            this.cb_cardattribute.Size = new System.Drawing.Size(150, 23);
             this.cb_cardattribute.TabIndex = 2;
             // 
             // tb_cardname
@@ -531,10 +532,11 @@ namespace DataEditorX
             this.cb_cardrule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_cardrule.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_cardrule.FormattingEnabled = true;
             this.cb_cardrule.Location = new System.Drawing.Point(194, 30);
             this.cb_cardrule.Name = "cb_cardrule";
-            this.cb_cardrule.Size = new System.Drawing.Size(150, 20);
+            this.cb_cardrule.Size = new System.Drawing.Size(150, 23);
             this.cb_cardrule.TabIndex = 2;
             // 
             // cb_cardlevel
@@ -542,10 +544,11 @@ namespace DataEditorX
             this.cb_cardlevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardlevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_cardlevel.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_cardlevel.FormattingEnabled = true;
             this.cb_cardlevel.Location = new System.Drawing.Point(194, 83);
             this.cb_cardlevel.Name = "cb_cardlevel";
-            this.cb_cardlevel.Size = new System.Drawing.Size(150, 20);
+            this.cb_cardlevel.Size = new System.Drawing.Size(150, 23);
             this.cb_cardlevel.TabIndex = 2;
             // 
             // cb_cardrace
@@ -554,10 +557,11 @@ namespace DataEditorX
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardrace.DropDownWidth = 107;
+            this.cb_cardrace.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_cardrace.FormattingEnabled = true;
             this.cb_cardrace.Location = new System.Drawing.Point(194, 108);
             this.cb_cardrace.Name = "cb_cardrace";
-            this.cb_cardrace.Size = new System.Drawing.Size(150, 20);
+            this.cb_cardrace.Size = new System.Drawing.Size(150, 23);
             this.cb_cardrace.TabIndex = 2;
             // 
             // cb_setname2
@@ -567,12 +571,12 @@ namespace DataEditorX
             this.cb_setname2.DropDownHeight = 320;
             this.cb_setname2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_setname2.DropDownWidth = 140;
+            this.cb_setname2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_setname2.FormattingEnabled = true;
             this.cb_setname2.IntegralHeight = false;
-            this.cb_setname2.ItemHeight = 12;
             this.cb_setname2.Location = new System.Drawing.Point(195, 160);
             this.cb_setname2.Name = "cb_setname2";
-            this.cb_setname2.Size = new System.Drawing.Size(113, 20);
+            this.cb_setname2.Size = new System.Drawing.Size(113, 23);
             this.cb_setname2.TabIndex = 2;
             this.cb_setname2.SelectedIndexChanged += new System.EventHandler(this.cb_setname2_SelectedIndexChanged);
             // 
@@ -583,12 +587,12 @@ namespace DataEditorX
             this.cb_setname1.DropDownHeight = 320;
             this.cb_setname1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_setname1.DropDownWidth = 140;
+            this.cb_setname1.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_setname1.FormattingEnabled = true;
             this.cb_setname1.IntegralHeight = false;
-            this.cb_setname1.ItemHeight = 12;
             this.cb_setname1.Location = new System.Drawing.Point(195, 134);
             this.cb_setname1.Name = "cb_setname1";
-            this.cb_setname1.Size = new System.Drawing.Size(113, 20);
+            this.cb_setname1.Size = new System.Drawing.Size(113, 23);
             this.cb_setname1.TabIndex = 2;
             this.cb_setname1.SelectedIndexChanged += new System.EventHandler(this.cb_setname1_SelectedIndexChanged);
             // 
@@ -599,12 +603,12 @@ namespace DataEditorX
             this.cb_setname4.DropDownHeight = 320;
             this.cb_setname4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_setname4.DropDownWidth = 140;
+            this.cb_setname4.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_setname4.FormattingEnabled = true;
             this.cb_setname4.IntegralHeight = false;
-            this.cb_setname4.ItemHeight = 12;
             this.cb_setname4.Location = new System.Drawing.Point(195, 212);
             this.cb_setname4.Name = "cb_setname4";
-            this.cb_setname4.Size = new System.Drawing.Size(113, 20);
+            this.cb_setname4.Size = new System.Drawing.Size(113, 23);
             this.cb_setname4.TabIndex = 2;
             this.cb_setname4.SelectedIndexChanged += new System.EventHandler(this.cb_setname4_SelectedIndexChanged);
             // 
@@ -615,12 +619,12 @@ namespace DataEditorX
             this.cb_setname3.DropDownHeight = 320;
             this.cb_setname3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_setname3.DropDownWidth = 140;
+            this.cb_setname3.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.cb_setname3.FormattingEnabled = true;
             this.cb_setname3.IntegralHeight = false;
-            this.cb_setname3.ItemHeight = 12;
             this.cb_setname3.Location = new System.Drawing.Point(195, 186);
             this.cb_setname3.Name = "cb_setname3";
-            this.cb_setname3.Size = new System.Drawing.Size(113, 20);
+            this.cb_setname3.Size = new System.Drawing.Size(113, 23);
             this.cb_setname3.TabIndex = 2;
             this.cb_setname3.SelectedIndexChanged += new System.EventHandler(this.cb_setname3_SelectedIndexChanged);
             // 
@@ -1034,7 +1038,7 @@ namespace DataEditorX
             // lb_markers
             // 
             this.lb_markers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.lb_markers.Location = new System.Drawing.Point(195, 236);
+            this.lb_markers.Location = new System.Drawing.Point(195, 238);
             this.lb_markers.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lb_markers.Name = "lb_markers";
             this.lb_markers.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -1180,7 +1184,7 @@ namespace DataEditorX
             // pl_markers
             // 
             this.pl_markers.AutoScroll = true;
-            this.pl_markers.Location = new System.Drawing.Point(265, 234);
+            this.pl_markers.Location = new System.Drawing.Point(265, 236);
             this.pl_markers.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.pl_markers.Name = "pl_markers";
             this.pl_markers.Padding = new System.Windows.Forms.Padding(2);
