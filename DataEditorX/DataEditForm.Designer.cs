@@ -648,6 +648,7 @@ namespace DataEditorX
             // tb_edittext
             // 
             this.tb_edittext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_edittext.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.tb_edittext.HideSelection = false;
             this.tb_edittext.Location = new System.Drawing.Point(348, 493);
             this.tb_edittext.MaxLength = 2000;
@@ -1220,9 +1221,10 @@ namespace DataEditorX
             this.lb_scripttext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_scripttext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lb_scripttext.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.lb_scripttext.FormattingEnabled = true;
             this.lb_scripttext.IntegralHeight = false;
-            this.lb_scripttext.ItemHeight = 12;
+            this.lb_scripttext.ItemHeight = 15;
             this.lb_scripttext.Location = new System.Drawing.Point(348, 371);
             this.lb_scripttext.Name = "lb_scripttext";
             this.lb_scripttext.ScrollAlwaysVisible = true;
