@@ -992,7 +992,7 @@ namespace DataEditorX
             }
         }
         //卡片描述编辑
-        void Setscripttext(string str)
+        void SetScriptText(string str)
         {
             int index;
             try
@@ -1014,7 +1014,7 @@ namespace DataEditorX
             }
         }
 
-        string Getscripttext()
+        string GetScriptText()
         {
             int index;
             try
@@ -1038,13 +1038,13 @@ namespace DataEditorX
         //脚本文本
         void Lb_scripttextSelectedIndexChanged(object sender, EventArgs e)
         {
-            tb_edittext.Text = Getscripttext();
+            tb_edittext.Text = GetScriptText();
         }
 
         //脚本文本
         void Tb_edittextTextChanged(object sender, EventArgs e)
         {
-            Setscripttext(tb_edittext.Text);
+            SetScriptText(tb_edittext.Text);
         }
         #endregion
 
