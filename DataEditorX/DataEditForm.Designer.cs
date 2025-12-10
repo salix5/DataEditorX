@@ -519,10 +519,10 @@ namespace DataEditorX
             // 
             this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_cardname.Font = new System.Drawing.Font("Microsoft JhengHei", 10F);
-            this.tb_cardname.Location = new System.Drawing.Point(5, 3);
+            this.tb_cardname.Font = new System.Drawing.Font("Microsoft JhengHei", 11F);
+            this.tb_cardname.Location = new System.Drawing.Point(5, 1);
             this.tb_cardname.Name = "tb_cardname";
-            this.tb_cardname.Size = new System.Drawing.Size(339, 25);
+            this.tb_cardname.Size = new System.Drawing.Size(339, 27);
             this.tb_cardname.TabIndex = 1;
             this.tb_cardname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_cardname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cardnameKeyDown);
