@@ -159,7 +159,7 @@ namespace DataEditorX
 
         #region 窗体
         //窗体第一次加载
-        void DataEditFormLoad(object sender, EventArgs e)
+        void DataEditForm_Load(object sender, EventArgs e)
         {
             //InitListRows();//调整卡片列表的函数
             HideMenu();//是否需要隐藏菜单
@@ -188,7 +188,7 @@ namespace DataEditorX
             GetLanguageItem();
         }
         //窗体关闭
-        void DataEditFormFormClosing(object sender, FormClosingEventArgs e)
+        void DataEditForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //当前有任务执行，是否结束
             if (tasker != null && tasker.IsRuning())
@@ -201,7 +201,7 @@ namespace DataEditorX
             }
         }
         //窗体激活
-        void DataEditFormEnter(object sender, EventArgs e)
+        void DataEditForm_Enter(object sender, EventArgs e)
         {
             SetTitle();
         }

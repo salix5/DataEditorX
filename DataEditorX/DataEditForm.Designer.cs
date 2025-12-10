@@ -1247,12 +1247,12 @@ namespace DataEditorX
             this.Name = "DataEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataEditorX";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEditFormFormClosing);
-            this.Load += new System.EventHandler(this.DataEditFormLoad);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEditForm_FormClosing);
+            this.Load += new System.EventHandler(this.DataEditForm_Load);
             this.Shown += new System.EventHandler(this.DataEditForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
-            this.Enter += new System.EventHandler(this.DataEditFormEnter);
+            this.Enter += new System.EventHandler(this.DataEditForm_Enter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataEditForm_KeyDown);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
