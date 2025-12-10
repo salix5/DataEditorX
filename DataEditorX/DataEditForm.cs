@@ -988,7 +988,7 @@ namespace DataEditorX
             }
             if (e.KeyCode == Keys.R && e.Control)
             {
-                Btn_resetClick(null, null);
+                Reset();
             }
         }
         //卡片描述编辑
@@ -2142,7 +2142,7 @@ namespace DataEditorX
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.R)
             {
-                Btn_resetClick(null, null);
+                Reset();
             }
             else if (e.Modifiers == Keys.Control && e.KeyCode == Keys.F)
             {
