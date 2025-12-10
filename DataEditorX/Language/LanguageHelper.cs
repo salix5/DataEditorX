@@ -20,23 +20,20 @@ namespace DataEditorX.Language
     public class LanguageHelper
     {
         static readonly Dictionary<string, string> _gWordsList = new Dictionary<string, string>();
-        static readonly SortedList<LMSG, string> _gMsgList = new SortedList<LMSG, string>();
+        static readonly Dictionary<LMSG, string> _gMsgList = new Dictionary<LMSG, string>();
         const char SEP_CONTROL = '.';
         const char SEP_LINE = '\t';
         const string STR_COMMENT = "#";
         readonly Dictionary<string, string> mWordslist = new Dictionary<string, string>();
 
         #region 获取消息文字
-        public static string GetMsg(LMSG lMsg)
+        public static string GetMsg(LMSG key)
         {
-            if (_gMsgList.IndexOfKey(lMsg) >= 0)
+            if (_gMsgList.TryGetValue(key, out string value))
             {
-                return _gMsgList[lMsg];
+                return value;
             }
-            else
-            {
-                return lMsg.ToString().Replace("_", " ");
-            }
+            return key.ToString();
         }
         #endregion
 
@@ -318,7 +315,7 @@ namespace DataEditorX.Language
                     {
                         uint.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out uint utemp);
                         ltemp = (LMSG)utemp;
-                        if (_gMsgList.IndexOfKey(ltemp) < 0)//记得替换换行符
+                        if (!_gMsgList.ContainsKey(ltemp))//记得替换换行符
                         {
                             _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
                         }
