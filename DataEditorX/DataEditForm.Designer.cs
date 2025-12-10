@@ -1249,7 +1249,7 @@ namespace DataEditorX
             this.Text = "DataEditorX";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEditFormFormClosing);
             this.Load += new System.EventHandler(this.DataEditFormLoad);
-            this.SizeChanged += new System.EventHandler(this.DataEditFormSizeChanged);
+            this.Shown += new System.EventHandler(this.DataEditForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
             this.Enter += new System.EventHandler(this.DataEditFormEnter);

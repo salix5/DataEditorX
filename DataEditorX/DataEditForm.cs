@@ -205,6 +205,16 @@ namespace DataEditorX
         {
             SetTitle();
         }
+        private void DataEditForm_Shown(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)(() =>
+            {
+                InitListRows();
+                AddListView(page);
+                tmpCodes.Clear();
+                Search(true);
+            }));
+        }
         #endregion
 
         #region 初始化设置
@@ -2192,13 +2202,6 @@ namespace DataEditorX
             {
                 text2LinkMarks(tb_link.Text);
             }
-        }
-        void DataEditFormSizeChanged(object sender, EventArgs e)
-        {
-            InitListRows();
-            AddListView(page);
-            tmpCodes.Clear();//清空临时的结果
-            Search(true);
         }
 
     }
