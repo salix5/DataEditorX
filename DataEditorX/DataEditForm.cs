@@ -205,6 +205,14 @@ namespace DataEditorX
         {
             SetTitle();
         }
+        private void DataEditForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                tb_cardname.Focus();
+                tb_cardname.SelectAll();
+            }
+        }
         private void DataEditForm_Shown(object sender, EventArgs e)
         {
             BeginInvoke((Action)(() =>
@@ -2128,15 +2136,6 @@ namespace DataEditorX
         void Tb_linkTextChanged(object sender, EventArgs e)
         {
             text2LinkMarks(tb_link.Text);
-        }
-
-        private void DataEditForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.F)
-            {
-                tb_cardname.Focus();
-                tb_cardname.SelectAll();
-            }
         }
 
         private void tb_cardtext_KeyDown(object sender, KeyEventArgs e)
