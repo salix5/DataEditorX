@@ -991,60 +991,30 @@ namespace DataEditorX
                 Reset();
             }
         }
-        //卡片描述编辑
-        void SetScriptText(string str)
-        {
-            int index;
-            try
-            {
-                index = lb_scripttext.SelectedIndex;
-            }
-            catch
-            {
-                index = -1;
-                MyMsg.Error(LMSG.NotSelectScriptText);
-            }
-            if (index >= 0)
-            {
-                strs[index] = str;
 
-                lb_scripttext.Items.Clear();
-                lb_scripttext.Items.AddRange(strs);
-                lb_scripttext.SelectedIndex = index;
-            }
-        }
-
-        string GetScriptText()
-        {
-            int index;
-            try
-            {
-                index = lb_scripttext.SelectedIndex;
-            }
-            catch
-            {
-                index = -1;
-                MyMsg.Error(LMSG.NotSelectScriptText);
-            }
-            if (index >= 0)
-            {
-                return strs[index];
-            }
-            else
-            {
-                return "";
-            }
-        }
         //脚本文本
         void Lb_scripttextSelectedIndexChanged(object sender, EventArgs e)
         {
-            tb_edittext.Text = GetScriptText();
+            int index = lb_scripttext.SelectedIndex;
+            if (index < 0)
+            {
+                tb_edittext.Text = "";
+            }
+            tb_edittext.Text = strs[index];
         }
 
         //脚本文本
         void Tb_edittextTextChanged(object sender, EventArgs e)
         {
-            SetScriptText(tb_edittext.Text);
+            int index = lb_scripttext.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            strs[index] = tb_edittext.Text;
+            lb_scripttext.Items.Clear();
+            lb_scripttext.Items.AddRange(strs);
+            lb_scripttext.SelectedIndex = index;
         }
         #endregion
 
