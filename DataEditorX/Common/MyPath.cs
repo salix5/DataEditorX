@@ -112,7 +112,7 @@ namespace System.IO
         /// <returns></returns>
         public static string GetFileName(string tag, string lang)
         {
-            return tag + "_" + lang + ".txt";
+            return $"{tag}_{lang}.txt";
         }
         /// <summary>
         /// 由tag和lang获取文件名
