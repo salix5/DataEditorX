@@ -1124,7 +1124,7 @@ namespace DataEditorX
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
                 try
                 {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.ydkType);
+                    dlg.Filter = LanguageHelper.GetMsg(LMSG.YdkType);
                 }
                 catch { }
                 if (dlg.ShowDialog() == DialogResult.OK)
@@ -1407,7 +1407,7 @@ namespace DataEditorX
             //select save mse-set
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.selectMseset);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
                 try
                 {
                     dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
@@ -1822,7 +1822,7 @@ namespace DataEditorX
             //select open mse-set
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.selectMseset);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
                 try
                 {
                     dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
@@ -1938,7 +1938,7 @@ namespace DataEditorX
             string msepath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_PATH));
             if (!File.Exists(msepath))
             {
-                MyMsg.Error(LMSG.exportMseImagesErr);
+                MyMsg.Error(LMSG.ExportMseImagesErr);
                 menuitem_exportMSEimage.Checked = false;
                 return;
             }
@@ -1954,7 +1954,7 @@ namespace DataEditorX
             //select open mse-set
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.selectMseset);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
                 try
                 {
                     dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
@@ -2144,7 +2144,7 @@ namespace DataEditorX
             }
             if (files.Count > 5)
             {
-                if (!MyMsg.Question(LMSG.IfOpenLotsOfFile))
+                if (!MyMsg.Question(LMSG.ManyFilesWarning))
                 {
                     return;
                 }

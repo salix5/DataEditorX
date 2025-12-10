@@ -644,7 +644,7 @@ namespace DataEditorX
             }
             if (files.Count > 5)
             {
-                if (!MyMsg.Question(LMSG.IfOpenLotsOfFile))
+                if (!MyMsg.Question(LMSG.ManyFilesWarning))
                 {
                     return;
                 }

@@ -944,7 +944,7 @@ namespace DataEditorX.Core.Mse
             string[] args=(string[])obj;
             if (args == null || args.Length < 3)
             {
-                MessageBox.Show(LanguageHelper.GetMsg(LMSG.exportMseImagesErr));
+                MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
                 return;
             }
             string mse_path=args[0];
@@ -952,7 +952,7 @@ namespace DataEditorX.Core.Mse
             string path=args[2];
             if (string.IsNullOrEmpty(mse_path) || string.IsNullOrEmpty(setfile))
             {
-                MessageBox.Show(LanguageHelper.GetMsg(LMSG.exportMseImagesErr));
+                MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
                 return;
             }
             else
@@ -972,7 +972,7 @@ namespace DataEditorX.Core.Mse
                     _mseProcess.Exited += new EventHandler(_exitHandler);
                     _mseProcess.Close();
                     _mseProcess = null;
-                    MessageBox.Show(LanguageHelper.GetMsg(LMSG.exportMseImages));
+                    MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImages));
                 }
                 catch
                 {
