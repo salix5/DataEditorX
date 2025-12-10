@@ -96,10 +96,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string TAG_DEFAULT_SCRIPT_NAME = "default_script_name";
         /// <summary>
-        /// 检查系统语言
-        /// </summary>
-        public const string TAG_CHECK_SYSLANG = "check_system_language";
-        /// <summary>
         /// 一般的裁剪
         /// </summary>
         public const string TAG_IMAGE_OTHER = "image_other";
@@ -285,27 +281,6 @@ namespace DataEditorX.Config
         /// <returns></returns>
         public static string GetLanguageFile(string path)
         {
-            if (ReadBoolean(TAG_CHECK_SYSLANG) && Directory.Exists(path))
-            {
-                Save(TAG_CHECK_SYSLANG, "false");
-                string[] words = CultureInfo.InstalledUICulture.EnglishName.Split(' ');
-                string syslang = words[0];
-                string[] files = Directory.GetFiles(path);
-                foreach (string file in files)
-                {
-                    string name = MyPath.GetFullFileName(TAG_LANGUAGE, file);
-                    if (string.IsNullOrEmpty(name))
-                    {
-                        continue;
-                    }
-
-                    if (syslang.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Save(TAG_LANGUAGE, syslang);
-                        break;
-                    }
-                }
-            }
             return MyPath.Combine(path, MyPath.GetFileName(TAG_LANGUAGE, GetAppConfig(TAG_LANGUAGE)));
         }
         /// <summary>
