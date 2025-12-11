@@ -326,18 +326,15 @@ namespace DataEditorX.Config
         {
             Process current = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(current.ProcessName);
-            //遍历与当前进程名称相同的进程列表
             foreach (Process process in processes)
             {
-                //如果实例已经存在则忽略当前进程
-                if (process.Id != current.Id)
+                if (process.Id == current.Id)
                 {
-                    //保证要打开的进程同已经存在的进程来自同一文件路径
-                    if (filename == current.MainModule.FileName)
-                    {
-                        //返回已经存在的进程
-                        return process;
-                    }
+                    continue;
+                }
+                if (process.MainModule.FileName == filename)
+                {
+                    return process;
                 }
             }
             return null;
