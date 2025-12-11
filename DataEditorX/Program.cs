@@ -9,6 +9,7 @@ using DataEditorX.Config;
 using DataEditorX.Language;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -27,12 +28,15 @@ namespace DataEditorX
                 MessageBox.Show("Save Language OK.");
                 Environment.Exit(1);
             }
-            if (MyConfig.OpenOnExistForm(arg))//在已经存在的窗口打开文件
+            // single-instance guard: use a named Mutex and exit silently if another instance exists
+            bool createdNew;
+            using (var mutex = new Mutex(true, "DataEditorX_SingleInstance", out createdNew))
             {
-                Environment.Exit(1);
-            }
-            else//新建窗口
-            {
+                if (!createdNew)
+                {
+                    return;
+                }
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 MainForm mainForm = new MainForm();
