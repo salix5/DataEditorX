@@ -1077,11 +1077,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     Open(dlg.FileName);
@@ -1094,11 +1090,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     if (DataBase.Create(dlg.FileName))
@@ -1122,11 +1114,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.YdkType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.YdkType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     tmpCodes.Clear();
@@ -1337,11 +1325,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     filename = dlg.FileName;
@@ -1408,11 +1392,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isUpdate = false;
@@ -1439,11 +1419,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectImage) + "-" + tb_cardname.Text;
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.ImageType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.ImageType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     //dlg.FileName;
@@ -1575,11 +1551,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.InitialDirectory = ygopath.gamepath;
-                try
-                {
-                    dlg.Filter = "Zip|(*.zip|All Files(*.*)|*.*";
-                }
-                catch { }
+                dlg.Filter = "Zip|*.zip|All Files(*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     tasker.SetTask(MyTask.ExportData,
@@ -1823,11 +1795,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
@@ -1955,11 +1923,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     string mseset = dlg.FileName;
@@ -2016,11 +1980,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     Card[] cards = DataBase.Read(nowCdbFile, "");
@@ -2058,11 +2018,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                try
-                {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                }
-                catch { }
+                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     Card[] cards = DataBase.Read(nowCdbFile, "");
