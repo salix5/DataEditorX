@@ -1963,40 +1963,6 @@ namespace DataEditorX
         }
         void Menuitem_autoreturnClick(object sender, EventArgs e)
         {
-            if (!CheckOpen())
-            {
-                return;
-            }
-
-            using (SaveFileDialog dlg = new SaveFileDialog())
-            {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    Card[] cards = DataBase.Read(nowCdbFile, "");
-                    int count = cards.Length;
-                    if (cards == null || cards.Length == 0)
-                    {
-                        return;
-                    }
-
-                    if (DataBase.Create(dlg.FileName))
-                    {
-                        //
-                        int len = MyConfig.ReadInteger(MyConfig.TAG_AUTO_LEN, 30);
-                        for (int i = 0; i < count; i++)
-                        {
-                            if (cards[i].desc != null)
-                            {
-                                cards[i].desc = StrUtil.AutoEnter(cards[i].desc, len, ' ');
-                            }
-                        }
-                        DataBase.CopyDB(dlg.FileName, false, cards);
-                        MyMsg.Show(LMSG.CopyCardsToDBIsOK);
-                    }
-                }
-            }
         }
 
         void Menuitem_replaceClick(object sender, EventArgs e)
@@ -2021,8 +1987,6 @@ namespace DataEditorX
 
                     if (DataBase.Create(dlg.FileName))
                     {
-                        //
-                        _ = MyConfig.ReadInteger(MyConfig.TAG_AUTO_LEN, 30);
                         for (int i = 0; i < count; i++)
                         {
                             if (cards[i].desc != null)
