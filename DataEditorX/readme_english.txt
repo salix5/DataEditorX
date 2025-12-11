@@ -39,7 +39,7 @@ data/cardinfo_xxx.txt
 	image_pendulum	        Pendulum
 
 ★CodeEditor Settings
-    IME			Editors Input Method
+    use_IME			Editors Input Method
     wordwrap	 
     tabisspace	tab→space
 	fontname     

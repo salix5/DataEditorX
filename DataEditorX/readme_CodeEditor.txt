@@ -8,7 +8,7 @@ Ctrl+T			常量列表
 Ctrl+鼠标滑轮 	缩放文字
 
 ★CodeEditor设置
-	IME			使用输入法
+	use_IME			使用输入法
     wordwrap	自动换行
     tabisspace	tab转换为space
 	fontname    字体名

@@ -56,7 +56,7 @@ namespace DataEditorX
             string fontname = MyConfig.ReadString(MyConfig.TAG_FONT_NAME);
             float fontsize = MyConfig.ReadFloat(MyConfig.TAG_FONT_SIZE, fctb.Font.Size);
             fctb.Font = new Font(fontname, fontsize);
-            if (MyConfig.ReadBoolean(MyConfig.TAG_IME))
+            if (MyConfig.ReadBoolean(MyConfig.TAG_USE_IME))
             {
                 fctb.ImeMode = ImeMode.On;
             }
