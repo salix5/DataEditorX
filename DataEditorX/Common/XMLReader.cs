@@ -1,11 +1,9 @@
-using System.Windows.Forms;
-using System.Xml;
+using System.Configuration;
 
 namespace DataEditorX.Common
 {
     public class XMLReader
     {
-        #region XML操作config
         /// <summary>
         /// 保存值
         /// </summary>
@@ -13,24 +11,25 @@ namespace DataEditorX.Common
         /// <param name="appValue"></param>
         public static void Save(string appKey, string appValue)
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(Application.ExecutablePath + ".config");
-
-            XmlNode xNode = xDoc.SelectSingleNode("//appSettings");
-
-            XmlElement xElem = (XmlElement)xNode.SelectSingleNode("//add[@key='" + appKey + "']");
-            if (xElem != null) //存在，则更新
+            try
             {
-                xElem.SetAttribute("value", appValue);
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = config.AppSettings.Settings;
+                if (settings[appKey] == null)
+                {
+                    settings.Add(appKey, appValue);
+                }
+                else
+                {
+                    settings[appKey].Value = appValue;
+                }
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
             }
-            else//不存在，则插入
+            catch
             {
-                XmlElement xNewElem = xDoc.CreateElement("add");
-                xNewElem.SetAttribute("key", appKey);
-                xNewElem.SetAttribute("value", appValue);
-                xNode.AppendChild(xNewElem);
+                // ignore failures to save configuration
             }
-            xDoc.Save(Application.ExecutablePath + ".config");
         }
         /// <summary>
         /// 获取值
@@ -39,19 +38,15 @@ namespace DataEditorX.Common
         /// <returns></returns>
         public static string GetAppConfig(string appKey)
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(Application.ExecutablePath + ".config");
-
-            XmlNode xNode = xDoc.SelectSingleNode("//appSettings");
-
-            XmlElement xElem = (XmlElement)xNode.SelectSingleNode("//add[@key='" + appKey + "']");
-
-            if (xElem != null)
+            try
             {
-                return xElem.Attributes["value"].Value;
+                string val = ConfigurationManager.AppSettings[appKey];
+                return val ?? string.Empty;
             }
-            return string.Empty;
+            catch
+            {
+                return string.Empty;
+            }
         }
-        #endregion
     }
 }
