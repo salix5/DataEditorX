@@ -74,7 +74,6 @@ namespace DataEditorX
             this.menuitem_convertimage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_cancelTask = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_autoreturn = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_replace = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_help = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_about = new System.Windows.Forms.ToolStripMenuItem();
@@ -324,7 +323,6 @@ namespace DataEditorX
             this.menuitem_convertimage,
             this.tsep1,
             this.menuitem_cancelTask,
-            this.menuitem_autoreturn,
             this.menuitem_replace});
             this.menu_data.Name = "menu_data";
             this.menu_data.Size = new System.Drawing.Size(61, 20);
@@ -440,13 +438,6 @@ namespace DataEditorX
             this.menuitem_cancelTask.Size = new System.Drawing.Size(204, 22);
             this.menuitem_cancelTask.Text = "Cancel Task";
             this.menuitem_cancelTask.Click += new System.EventHandler(this.Menuitem_cancelTaskClick);
-            // 
-            // menuitem_autoreturn
-            // 
-            this.menuitem_autoreturn.Name = "menuitem_autoreturn";
-            this.menuitem_autoreturn.Size = new System.Drawing.Size(204, 22);
-            this.menuitem_autoreturn.Text = "*Auto return";
-            this.menuitem_autoreturn.Click += new System.EventHandler(this.Menuitem_autoreturnClick);
             // 
             // menuitem_replace
             // 
@@ -1363,7 +1354,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_language;
         private System.Windows.Forms.ToolStripMenuItem menuitem_export_select_sql;
         private System.Windows.Forms.ToolStripMenuItem menuitem_export_all_sql;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_autoreturn;
         private System.Windows.Forms.ToolStripMenuItem menuitem_replace;
         private System.Windows.Forms.Label lb_markers;
         private System.Windows.Forms.TextBox tb_link;

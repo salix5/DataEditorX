@@ -1961,10 +1961,6 @@ namespace DataEditorX
                 }
             }
         }
-        void Menuitem_autoreturnClick(object sender, EventArgs e)
-        {
-        }
-
         void Menuitem_replaceClick(object sender, EventArgs e)
         {
             if (!CheckOpen())
