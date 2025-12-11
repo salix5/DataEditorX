@@ -188,31 +188,31 @@ namespace DataEditorX.Config
         /// 读取int值
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="def"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static int ReadInteger(string key, int def)
+        public static int ReadInteger(string key, int defaultValue)
         {
             if (int.TryParse(ReadString(key), out int i))
             {
                 return i;
             }
 
-            return def;
+            return defaultValue;
         }
         /// <summary>
         /// 读取float值
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="def"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static float ReadFloat(string key, float def)
+        public static float ReadFloat(string key, float defaultValue)
         {
             if (float.TryParse(ReadString(key), out float i))
             {
                 return i;
             }
 
-            return def;
+            return defaultValue;
         }
         /// <summary>
         /// 读取int数组
