@@ -29,11 +29,11 @@ namespace DataEditorX.Language
         #region 获取消息文字
         public static string GetMsg(LMSG key)
         {
-            if (_gMsgList.TryGetValue(key, out string value))
+            if (!_gMsgList.TryGetValue(key, out string value))
             {
-                return value;
+                return key.ToString();
             }
-            return key.ToString();
+            return value;
         }
         #endregion
 
