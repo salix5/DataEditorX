@@ -34,7 +34,7 @@ namespace DataEditorX.Config
             W = ints[2];
             H = ints[3];
 
-            quilty = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUILTY, 95);
+            quilty = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUALITY, 95);
         }
         /// <summary>
         /// jpeg质量

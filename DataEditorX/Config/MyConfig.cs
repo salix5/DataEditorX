@@ -114,7 +114,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 图片质量
         /// </summary>
-        public const string TAG_IMAGE_QUILTY = "image_quilty";
+        public const string TAG_IMAGE_QUALITY = "image_quality";
         //CodeEditor
         /// <summary>
         /// 字体名

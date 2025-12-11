@@ -68,7 +68,7 @@ data/cardinfo_xxx.txt
 
 ★图片设置
 在裁剪和导入图片时候使用。
-	image_quilty	保存的图片质量 1-100
+	image_quality	保存的图片质量 1-100
 	image			游戏图片大小，小图宽，高，大图宽，高，共4个值
 	image_other		一般卡图裁剪
 	image_xyz		xyz卡图裁剪

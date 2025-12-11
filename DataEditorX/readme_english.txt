@@ -32,7 +32,7 @@ data/language_xxx.txt
 data/cardinfo_xxx.txt
 
 ★Image settings
-	image_quilty	        1-100
+	image_quality	        1-100
 	image			Width/height of image and thumbnail,total four numerical value; 
 	image_other		pendulum of other cards
 	image_xyz		pendulum of Xyz monsters
