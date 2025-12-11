@@ -79,7 +79,7 @@ namespace DataEditorX.Language
                 for (i = 0; i < count; i++)
                 {
                     ColumnHeader ch = lv.Columns[i];
-                    if (GetLabel(pName + SEP_CONTROL + i.ToString(), out title))
+                    if (GetLabel($"{pName}{SEP_CONTROL}{i}", out title))
                     {
                         ch.Text = title;
                     }
@@ -89,7 +89,7 @@ namespace DataEditorX.Language
             {
                 foreach (ToolStripItem tsi in ms.Items)
                 {
-                    SetMenuItem(formName + SEP_CONTROL + ms.Name, tsi);
+                    SetMenuItem($"{formName}{SEP_CONTROL}{ms.Name}", tsi);
                 }
             }
             else
@@ -112,7 +112,7 @@ namespace DataEditorX.Language
             {
                 foreach (ToolStripItem ts in conms.Items)
                 {
-                    SetMenuItem(formName + SEP_CONTROL + conms.Name, ts);
+                    SetMenuItem($"{formName}{SEP_CONTROL}{conms.Name}", ts);
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace DataEditorX.Language
 
             if (tsi is ToolStripMenuItem tsmi)
             {
-                if (GetLabel(pName + SEP_CONTROL + tsmi.Name, out title))
+                if (GetLabel($"{pName}{SEP_CONTROL}{tsmi.Name}", out title))
                 {
                     tsmi.Text = title;
                 }
@@ -138,7 +138,7 @@ namespace DataEditorX.Language
             }
             else if (tsi is ToolStripLabel tlbl)
             {
-                if (GetLabel(pName + SEP_CONTROL + tlbl.Name, out title))
+                if (GetLabel($"{pName}{SEP_CONTROL}{tlbl.Name}", out title))
                 {
                     tlbl.Text = title;
                 }
@@ -154,11 +154,7 @@ namespace DataEditorX.Language
             {
                 return;
             }
-            // fm.SuspendLayout();
-            //fm.ResumeLayout(true);
             GetControlLabel(fm, "", fm.Name);
-            //fm.ResumeLayout(false);
-            //fm.PerformLayout();
         }
 
         void AddLabel(string key, string title)
@@ -169,8 +165,7 @@ namespace DataEditorX.Language
             }
         }
 
-        void GetControlLabel(Control c, string pName,
-            string formName)
+        void GetControlLabel(Control c, string pName, string formName)
         {
             if (!string.IsNullOrEmpty(pName))
             {
@@ -188,15 +183,14 @@ namespace DataEditorX.Language
                 int i, count = lv.Columns.Count;
                 for (i = 0; i < count; i++)
                 {
-                    AddLabel(pName + SEP_CONTROL + i.ToString(),
-                        lv.Columns[i].Text);
+                    AddLabel($"{pName}{SEP_CONTROL}{i}", lv.Columns[i].Text);
                 }
             }
             else if (c is ToolStrip ms)
             {
                 foreach (ToolStripItem tsi in ms.Items)
                 {
-                    GetMenuItem(formName + SEP_CONTROL + ms.Name, tsi);
+                    GetMenuItem($"{formName}{SEP_CONTROL}{ms.Name}", tsi);
                 }
             }
             else
@@ -216,7 +210,7 @@ namespace DataEditorX.Language
             {
                 foreach (ToolStripItem ts in conms.Items)
                 {
-                    GetMenuItem(formName + SEP_CONTROL + conms.Text, ts);
+                    GetMenuItem($"{formName}{SEP_CONTROL}{conms.Name}", ts);
                 }
             }
         }
@@ -230,7 +224,7 @@ namespace DataEditorX.Language
 
             if (tsi is ToolStripMenuItem tsmi)
             {
-                AddLabel(pName + SEP_CONTROL + tsmi.Name, tsmi.Text);
+                AddLabel($"{pName}{SEP_CONTROL}{tsmi.Name}", tsmi.Text);
                 if (tsmi.HasDropDownItems)
                 {
                     foreach (ToolStripItem subtsi in tsmi.DropDownItems)
@@ -241,7 +235,7 @@ namespace DataEditorX.Language
             }
             else if (tsi is ToolStripLabel tlbl)
             {
-                AddLabel(pName + SEP_CONTROL + tlbl.Name, tlbl.Text);
+                AddLabel($"{pName}{SEP_CONTROL}{tlbl.Name}", tlbl.Text);
             }
         }
 
