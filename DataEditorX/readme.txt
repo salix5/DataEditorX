@@ -22,7 +22,7 @@ data/cardinfo_xxx.txt 种族，类型，系列名
 
 ★其他设置
 async					后台加载数据（显示快）为true，直接加载数据为false
-opera_with_cards_file	修改，删除卡片的同时，也会删除，修改，复制卡图和脚本。
+sync_with_card			修改卡片同时也修改卡图和脚本。
 open_file_in_this		用自带的脚本编辑器打开lua
 
 ★语言设置

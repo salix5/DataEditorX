@@ -77,7 +77,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 删除卡片的时候，删除图片脚本
         /// </summary>
-        public const string TAG_DELETE_WITH = "opera_with_cards_file";
+        public const string TAG_SYNC_WITH_CARD = "sync_with_card";
         /// <summary>
         /// 异步加载数据
         /// </summary>

@@ -171,7 +171,7 @@ namespace DataEditorX
             oldCard = new Card(0);
             UpdateCardInfo(oldCard);
             //删除资源
-            menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_DELETE_WITH);
+            menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
             //用CodeEditor打开脚本
             menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
             //自动检查更新
@@ -1816,7 +1816,7 @@ namespace DataEditorX
         private void menuitem_deletecardsfile_Click(object sender, EventArgs e)
         {
             menuitem_operacardsfile.Checked = !menuitem_operacardsfile.Checked;
-            ConfigManager.Save(MyConfig.TAG_DELETE_WITH, menuitem_operacardsfile.Checked.ToString().ToLower());
+            ConfigManager.Save(MyConfig.TAG_SYNC_WITH_CARD, menuitem_operacardsfile.Checked.ToString().ToLower());
         }
         //用CodeEditor打开lua
         private void menuitem_openfileinthis_Click(object sender, EventArgs e)
