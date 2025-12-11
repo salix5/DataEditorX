@@ -48,11 +48,9 @@ namespace DataEditorX.Language
             {
                 return;
             }
-            // fm.SuspendLayout();
-            fm.ResumeLayout(true);
+            fm.SuspendLayout();
             SetControlLabel(fm, "", fm.Name);
-            fm.ResumeLayout(false);
-            //fm.PerformLayout();
+            fm.ResumeLayout();
         }
 
         static bool GetLabel(string key, out string title)
