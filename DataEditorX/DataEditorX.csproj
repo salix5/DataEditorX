@@ -101,7 +101,7 @@
     <Compile Include="Common\MySortList.cs" />
     <Compile Include="Common\MyUtils.cs" />
     <Compile Include="Common\StrUtil.cs" />
-    <Compile Include="Common\XMLReader.cs" />
+    <Compile Include="Common\ConfigManager.cs" />
     <Compile Include="Config\YgoPath.cs" />
     <Compile Include="Controls\DFlowLayoutPanel.cs">
       <SubType>Component</SubType>
@@ -224,7 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
     <None Include="data\single.lua">
