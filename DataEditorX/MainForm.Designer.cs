@@ -7,34 +7,34 @@
  */
 namespace DataEditorX
 {
-	partial class MainForm
-	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
-		
-		/// <summary>
-		/// Disposes resources used by the form.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-		
-		/// <summary>
-		/// This method is required for Windows Forms designer support.
-		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Designer variable used to keep track of non-visual components.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+        
+        /// <summary>
+        /// Disposes resources used by the form.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) {
+                if (components != null) {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+        
+        /// <summary>
+        /// This method is required for Windows Forms designer support.
+        /// Do not change the method contents inside the source code editor. The Forms designer might
+        /// not be able to load this method if it was changed manually.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuitem_file = new System.Windows.Forms.ToolStripMenuItem();
@@ -292,31 +292,31 @@ namespace DataEditorX
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		private System.Windows.Forms.ToolStripMenuItem menuitem_save;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_codeeditor;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_copyall;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_comp2;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_comp1;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_pastecards;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_copyselect;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_history;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_new;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_open;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_closeall;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_closeother;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_close;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_dataeditor;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_windows;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_file;
-		private System.Windows.Forms.MenuStrip mainMenu;
-		private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
+        }
+        private System.Windows.Forms.ToolStripMenuItem menuitem_save;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_codeeditor;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_copyall;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_comp2;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_comp1;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_pastecards;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_copyselect;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_history;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_new;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_open;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_closeall;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_closeother;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_close;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_dataeditor;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_windows;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_file;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
         private System.Windows.Forms.ToolStripMenuItem menuitem_shistory;
         private System.ComponentModel.BackgroundWorker bgWorker1;
     }

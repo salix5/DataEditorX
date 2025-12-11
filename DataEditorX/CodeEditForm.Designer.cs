@@ -7,34 +7,34 @@
  */
 namespace DataEditorX
 {
-	partial class CodeEditForm
-	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
-		
-		/// <summary>
-		/// Disposes resources used by the form.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-		
-		/// <summary>
-		/// This method is required for Windows Forms designer support.
-		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    partial class CodeEditForm
+    {
+        /// <summary>
+        /// Designer variable used to keep track of non-visual components.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+        
+        /// <summary>
+        /// Disposes resources used by the form.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) {
+                if (components != null) {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+        
+        /// <summary>
+        /// This method is required for Windows Forms designer support.
+        /// Do not change the method contents inside the source code editor. The Forms designer might
+        /// not be able to load this method if it was changed manually.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeEditForm));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
@@ -336,24 +336,24 @@ namespace DataEditorX
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		private System.Windows.Forms.ToolStripMenuItem menuitem_setcard;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_replace;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_find;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_showinput;
-		private System.Windows.Forms.TextBox tb_input;
-		private FastColoredTextBoxNS.DocumentMap documentMap1;
-		private FastColoredTextBoxNS.FastColoredTextBoxEx fctb;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_showmap;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_about;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_help;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_setting;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_saveas;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_save;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_open;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_file;
+        }
+        private System.Windows.Forms.ToolStripMenuItem menuitem_setcard;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_replace;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_find;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_showinput;
+        private System.Windows.Forms.TextBox tb_input;
+        private FastColoredTextBoxNS.DocumentMap documentMap1;
+        private FastColoredTextBoxNS.FastColoredTextBoxEx fctb;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_showmap;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_about;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_help;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_setting;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_saveas;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_save;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_open;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_file;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolTip toolTip1;

@@ -1358,12 +1358,12 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_cutimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_operacardsfile;
         private System.Windows.Forms.ToolStripSeparator tsep2;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_openfileinthis;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_autocheckupdate;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_language;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_export_select_sql;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_export_all_sql;
-		private System.Windows.Forms.ToolStripMenuItem menuitem_autoreturn;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_openfileinthis;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_autocheckupdate;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_language;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_export_select_sql;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_export_all_sql;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_autoreturn;
         private System.Windows.Forms.ToolStripMenuItem menuitem_replace;
         private System.Windows.Forms.Label lb_markers;
         private System.Windows.Forms.TextBox tb_link;
