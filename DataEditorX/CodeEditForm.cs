@@ -656,19 +656,12 @@ namespace DataEditorX
         }
         private void menuitem_tooltipFont_Click(object sender, EventArgs e)
         {
-            FontDialog fd = new FontDialog();
-            string fontJson = MyConfig.ReadString(MyConfig.TOOLTIP_FONT);
-            Font f = new Font("微软雅黑",10);
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            try
+			FontDialog fd = new FontDialog
+			{
+				Font = new Font("微软雅黑", 10)
+			};
+			if (fd.ShowDialog() == DialogResult.OK)
             {
-                f = jss.Deserialize<Font>(fontJson);
-            }
-            catch { }
-            fd.Font = f;
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                Common.ConfigManager.Save(MyConfig.TOOLTIP_FONT, jss.Serialize(fd.Font));
                 fctb.lbTooltip.Font = fd.Font;
             }
         }
