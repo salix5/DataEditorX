@@ -11,7 +11,7 @@ namespace DataEditorX.Config
     /// <summary>
     /// 配置
     /// </summary>
-    public class MyConfig : XMLReader
+    public class MyConfig : ConfigManager
     {
         #region 常量
         public const string TAG_SAVE_LANG = "-savelanguage";

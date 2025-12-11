@@ -1672,7 +1672,7 @@ namespace DataEditorX
                 //刷新菜单
                 AddMenuItemFormMSE();
                 //保存配置
-                XMLReader.Save(MyConfig.TAG_MSE, tsmi.Text);
+                ConfigManager.Save(MyConfig.TAG_MSE, tsmi.Text);
             }
         }
         #endregion
@@ -1816,25 +1816,25 @@ namespace DataEditorX
         private void menuitem_deletecardsfile_Click(object sender, EventArgs e)
         {
             menuitem_operacardsfile.Checked = !menuitem_operacardsfile.Checked;
-            XMLReader.Save(MyConfig.TAG_DELETE_WITH, menuitem_operacardsfile.Checked.ToString().ToLower());
+            ConfigManager.Save(MyConfig.TAG_DELETE_WITH, menuitem_operacardsfile.Checked.ToString().ToLower());
         }
         //用CodeEditor打开lua
         private void menuitem_openfileinthis_Click(object sender, EventArgs e)
         {
             menuitem_openfileinthis.Checked = !menuitem_openfileinthis.Checked;
-            XMLReader.Save(MyConfig.TAG_OPEN_IN_THIS, menuitem_openfileinthis.Checked.ToString().ToLower());
+            ConfigManager.Save(MyConfig.TAG_OPEN_IN_THIS, menuitem_openfileinthis.Checked.ToString().ToLower());
         }
         //自动检查更新
         private void menuitem_autocheckupdate_Click(object sender, EventArgs e)
         {
             menuitem_autocheckupdate.Checked = !menuitem_autocheckupdate.Checked;
-            XMLReader.Save(MyConfig.TAG_AUTO_CHECK_UPDATE, menuitem_autocheckupdate.Checked.ToString().ToLower());
+            ConfigManager.Save(MyConfig.TAG_AUTO_CHECK_UPDATE, menuitem_autocheckupdate.Checked.ToString().ToLower());
         }
         //set default script name
         private void menuitem_default_script_Click(object sender, EventArgs e)
         {
             DefaultScriptName = Microsoft.VisualBasic.Interaction.InputBox("Set default script name (without extension).\n\nPress \"Cancel\" to remove default script name.", "", DefaultScriptName);
-            XMLReader.Save(MyConfig.TAG_DEFAULT_SCRIPT_NAME, DefaultScriptName);
+            ConfigManager.Save(MyConfig.TAG_DEFAULT_SCRIPT_NAME, DefaultScriptName);
         }
         #endregion
 
@@ -1879,7 +1879,7 @@ namespace DataEditorX
 
             if (sender is ToolStripMenuItem tsmi)
             {
-                XMLReader.Save(MyConfig.TAG_LANGUAGE, tsmi.Text);
+                ConfigManager.Save(MyConfig.TAG_LANGUAGE, tsmi.Text);
                 GetLanguageItem();
                 MyMsg.Show(LMSG.PlzRestart);
             }

@@ -668,7 +668,7 @@ namespace DataEditorX
             fd.Font = f;
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                Common.XMLReader.Save(MyConfig.TOOLTIP_FONT, jss.Serialize(fd.Font));
+                Common.ConfigManager.Save(MyConfig.TOOLTIP_FONT, jss.Serialize(fd.Font));
                 fctb.lbTooltip.Font = fd.Font;
             }
         }
