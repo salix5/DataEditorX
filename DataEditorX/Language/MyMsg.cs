@@ -24,24 +24,19 @@ namespace DataEditorX.Language
         }
         public static void Show(string strMsg)
         {
-            MessageBox.Show(strMsg, _info,
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(strMsg, _info, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public static void Warning(string strWarn)
         {
-            MessageBox.Show(strWarn, _warning,
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(strWarn, _warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         public static void Error(string strError)
         {
-            MessageBox.Show(strError, _error,
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(strError, _error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public static bool Question(string strQues)
         {
-            if (MessageBox.Show(strQues, _question,
-                               MessageBoxButtons.OKCancel,
-                               MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(strQues, _question, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 return true;
             }
@@ -52,24 +47,19 @@ namespace DataEditorX.Language
         }
         public static void Show(LMSG msg)
         {
-            MessageBox.Show(LanguageHelper.GetMsg(msg), _info,
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(LanguageHelper.GetMsg(msg), _info, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public static void Warning(LMSG msg)
         {
-            MessageBox.Show(LanguageHelper.GetMsg(msg), _warning,
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(LanguageHelper.GetMsg(msg), _warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         public static void Error(LMSG msg)
         {
-            MessageBox.Show(LanguageHelper.GetMsg(msg), _error,
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(LanguageHelper.GetMsg(msg), _error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public static bool Question(LMSG msg)
         {
-            return (MessageBox.Show(LanguageHelper.GetMsg(msg), _question,
-                           MessageBoxButtons.OKCancel,
-                           MessageBoxIcon.Question) == DialogResult.OK);
+            return MessageBox.Show(LanguageHelper.GetMsg(msg), _question, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK;
         }
     }
 }

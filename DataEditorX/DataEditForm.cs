@@ -1356,8 +1356,7 @@ namespace DataEditorX
             }
 
             bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
-            tasker.SetTask(MyTask.CutImages, cardlist.ToArray(),
-                           ygopath.picpath, isreplace.ToString());
+            tasker.SetTask(MyTask.CutImages, cardlist.ToArray(), ygopath.picpath, isreplace.ToString());
             Run(LanguageHelper.GetMsg(LMSG.CutImage));
         }
         void Menuitem_saveasmse_selectClick(object sender, EventArgs e)
@@ -1399,8 +1398,7 @@ namespace DataEditorX
 #if DEBUG
                     isUpdate = MyMsg.Question(LMSG.OnlySet);
 #endif
-                    tasker.SetTask(MyTask.SaveAsMSE, cards,
-                                   dlg.FileName, isUpdate.ToString());
+                    tasker.SetTask(MyTask.SaveAsMSE, cards, dlg.FileName, isUpdate.ToString());
                     Run(LanguageHelper.GetMsg(LMSG.SaveMse));
                 }
             }
@@ -1527,8 +1525,7 @@ namespace DataEditorX
                 if (fdlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                    tasker.SetTask(MyTask.ConvertImages, null,
-                                   fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
+                    tasker.SetTask(MyTask.ConvertImages, null, fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
                     Run(LanguageHelper.GetMsg(LMSG.ConvertImage));
                 }
             }
@@ -1554,12 +1551,7 @@ namespace DataEditorX
                 dlg.Filter = "Zip|*.zip|All Files(*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    tasker.SetTask(MyTask.ExportData,
-                                   GetCardList(false),
-                                   ygopath.gamepath,
-                                   dlg.FileName,
-                                   GetOpenFile(),
-                                   DefaultScriptName);
+                    tasker.SetTask(MyTask.ExportData, GetCardList(false), ygopath.gamepath, dlg.FileName, GetOpenFile(), DefaultScriptName);
                     Run(LanguageHelper.GetMsg(LMSG.ExportData));
                 }
             }
@@ -1799,8 +1791,7 @@ namespace DataEditorX
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                    tasker.SetTask(MyTask.ReadMSE, null,
-                                   dlg.FileName, isUpdate.ToString());
+                    tasker.SetTask(MyTask.ReadMSE, null, dlg.FileName, isUpdate.ToString());
                     Run(LanguageHelper.GetMsg(LMSG.ReadMSE));
                 }
             }

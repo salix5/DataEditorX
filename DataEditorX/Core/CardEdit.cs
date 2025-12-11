@@ -295,8 +295,7 @@ namespace DataEditorX.Core
                 MyPath.CreateDirByFile(lua);
                 if (MyMsg.Question(LMSG.IfCreateScript))//是否创建脚本
                 {
-                    using (FileStream fs = new FileStream(lua,
-                        FileMode.OpenOrCreate, FileAccess.Write))
+                    using (FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write))
                     {
                         StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
                         sw.WriteLine("--" + c.name);

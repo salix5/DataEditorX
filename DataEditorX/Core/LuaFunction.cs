@@ -197,9 +197,7 @@ namespace DataEditorX
         //查找c++代码
         static string FindCode(string texts, string name)
         {
-            Regex reg=new Regex(@"int32\s+?"+name
-                                +@"[\s\S]+?\{([\s\S]*?^)\}",
-                                RegexOptions.Multiline);
+            Regex reg = new Regex(@"int32\s+?" + name + @"[\s\S]+?\{([\s\S]*?^)\}", RegexOptions.Multiline);
             Match mc=reg.Match(texts);
             if (mc.Success)
             {
