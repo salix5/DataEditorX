@@ -1672,7 +1672,7 @@ namespace DataEditorX
                 //刷新菜单
                 AddMenuItemFormMSE();
                 //保存配置
-                ConfigManager.Save(MyConfig.TAG_MSE, tsmi.Text);
+                ConfigManager.Save(MyConfig.TAG_MSE_LANGUAGE, tsmi.Text);
             }
         }
         #endregion

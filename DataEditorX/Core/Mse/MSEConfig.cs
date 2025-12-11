@@ -190,7 +190,7 @@ namespace DataEditorX.Core.Mse
             Iscn2tw = false;
 
             //读取配置
-            string tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, MyConfig.ReadString(MyConfig.TAG_MSE)));
+            string tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, MyConfig.ReadString(MyConfig.TAG_MSE_LANGUAGE)));
 
             if (!File.Exists(tmp))
             {

@@ -37,7 +37,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// MSE
         /// </summary>
-        public const string TAG_MSE = "mse";
+        public const string TAG_MSE_LANGUAGE = "mse_language";
         /// <summary>
         /// 卡片信息
         /// </summary>
