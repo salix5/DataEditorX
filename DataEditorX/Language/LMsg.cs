@@ -20,7 +20,7 @@ namespace DataEditorX.Language
         AddSucceed = 0x6,
         AddFail = 0x7,
 
-        CodeCanNotIsZero = 0x8,
+        InvalidCode = 0x8,
         ItIsExists = 0x9,
 
         ItIsNotChanged = 0xa,

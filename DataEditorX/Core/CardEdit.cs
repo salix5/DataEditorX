@@ -44,7 +44,7 @@ namespace DataEditorX.Core
                 Card c = dataform.GetCard();
                 if (c.id <= 0)//卡片密码不能小于等于0
                 {
-                    MyMsg.Error(LMSG.CodeCanNotIsZero);
+                    MyMsg.Error(LMSG.InvalidCode);
                     return false;
                 }
                 Card[] cards = dataform.GetCardList(false);
@@ -112,7 +112,7 @@ namespace DataEditorX.Core
                 }
                 if (c.id <= 0)
                 {
-                    MyMsg.Error(LMSG.CodeCanNotIsZero);
+                    MyMsg.Error(LMSG.InvalidCode);
                     return false;
                 }
                 string sql;
