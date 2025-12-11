@@ -117,7 +117,7 @@ rarity扩展
 更新数据
 2.4.0.0
 1.mse的相对路径，默认为当前MagicSetEditor2，其他地方请设置config的mse_path，
-导出的文件夹为export，其他地方请设置config的mse_exprotpath，
+导出的文件夹为export，其他地方请设置config的mse_exportpath，
 2.从MSE存档导出图片，把MSE存档导出全部图片（如果需要停止，请到任务管理器结束mse.exe）
 3.生成MSE存档，不调整图片，测试没问题。
 如果需要开启，请修改data文件夹的MSE的配置文件
