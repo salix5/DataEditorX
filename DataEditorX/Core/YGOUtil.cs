@@ -26,7 +26,7 @@ namespace DataEditorX.Core
         {
             return file?.EndsWith(".lua", StringComparison.OrdinalIgnoreCase) ?? false;
         }
-        public static bool IsDataBase(string file)
+        public static bool IsDatabase(string file)
         {
             return file?.EndsWith(".cdb", StringComparison.OrdinalIgnoreCase) ?? false;
         }
@@ -188,7 +188,7 @@ namespace DataEditorX.Core
             {
                 using (FileStream f = new FileStream(ydkfile, FileMode.Open, FileAccess.Read))
                 {
-                    using (StreamReader reader = new StreamReader(f, Encoding.UTF8)) 
+                    using (StreamReader reader = new StreamReader(f, Encoding.UTF8))
                     {
                         string str;
                         while ((str = reader.ReadLine()) != null)

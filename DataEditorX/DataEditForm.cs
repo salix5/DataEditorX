@@ -145,7 +145,7 @@ namespace DataEditorX
         }
         public bool CanOpen(string file)
         {
-            return YGOUtil.IsDataBase(file);
+            return YGOUtil.IsDatabase(file);
         }
         public bool Create(string file)
         {

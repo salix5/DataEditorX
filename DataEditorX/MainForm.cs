@@ -233,7 +233,7 @@ namespace DataEditorX
             {
                 OpenScript(file);
             }
-            else if (YGOUtil.IsDataBase(file))
+            else if (YGOUtil.IsDatabase(file))
             {
                 OpenDatabase(file);
             }
@@ -388,7 +388,7 @@ namespace DataEditorX
                         File.Delete(file);
                     }
                     //是否是数据库
-                    if (YGOUtil.IsDataBase(file))
+                    if (YGOUtil.IsDatabase(file))
                     {
                         if (DataBase.Create(file))//是否创建成功
                         {
