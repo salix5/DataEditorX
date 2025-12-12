@@ -135,7 +135,7 @@ namespace DataEditorX.Core
         {
             string newver = CheckUpdate.GetNewVersion(MyConfig.updateURL);
             if (newver == CheckUpdate.DEFAULT)
-            {   //检查失败
+            {
                 if (!showNew)
                 {
                     return;
@@ -146,7 +146,7 @@ namespace DataEditorX.Core
             }
 
             if (CheckUpdate.CheckVersion(newver, Application.ProductVersion))
-            {//有最新版本
+            {
                 if (!MyMsg.Question(LMSG.HaveNewVersion))
                 {
                     return;
@@ -155,7 +155,7 @@ namespace DataEditorX.Core
                 MyUtils.OpenRepository();
             }
             else
-            {//现在就是最新版本
+            {
                 if (!showNew)
                 {
                     return;
