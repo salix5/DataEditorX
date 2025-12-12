@@ -16,7 +16,6 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
