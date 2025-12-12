@@ -151,7 +151,7 @@ namespace DataEditorX.Core
                 {
                     return;
                 }
-                
+
                 MyUtils.OpenRepository();
             }
             else
@@ -210,12 +210,10 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        //removed thumbnail
         #region 转换图片
         public void ConvertImages(string imgpath, string gamepath, bool isreplace)
         {
             string picspath = MyPath.Combine(gamepath, "pics");
-            //string thubpath = MyPath.Combine(picspath, "thumbnail");
             string[] files = Directory.GetFiles(imgpath);
             int i = 0;
             int count = files.Length;
@@ -232,7 +230,6 @@ namespace DataEditorX.Core
                 string ex = Path.GetExtension(f).ToLower();
                 string name = Path.GetFileNameWithoutExtension(f);
                 string jpg_b = MyPath.Combine(picspath, name + ".jpg");
-                //string jpg_s = MyPath.Combine(thubpath, name + ".jpg");
                 if (ex == ".jpg" || ex == ".png" || ex == ".bmp")
                 {
                     if (File.Exists(f))
@@ -245,13 +242,6 @@ namespace DataEditorX.Core
                             MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
                                                 jpg_b, imgSet.quilty);
                         }
-                        //小图，如果替换，或者不存在
-                        //if (isreplace || !File.Exists(jpg_s))
-                        //{
-                        //	MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.w, imgSet.h),
-                        //						jpg_s, imgSet.quilty);
-
-                        //}
                     }
                 }
             }
@@ -273,8 +263,8 @@ namespace DataEditorX.Core
                 return;
             }
 
-            string pack_db=MyPath.GetRealPath(MyConfig.ReadString("pack_db"));
-            bool rarity=MyConfig.ReadBoolean("mse_auto_rarity", false);
+            string pack_db = MyPath.GetRealPath(MyConfig.ReadString("pack_db"));
+            bool rarity = MyConfig.ReadBoolean("mse_auto_rarity", false);
 #if DEBUG
             MessageBox.Show("db = " + pack_db + ",auto rarity=" + rarity);
 #endif
@@ -314,7 +304,7 @@ namespace DataEditorX.Core
         public void SaveMSE(int num, string file, Card[] cards, string pack_db, bool rarity, bool isUpdate)
         {
             string setFile = file + ".txt";
-            Dictionary<Card, string> images = mseHelper.WriteSet(setFile, cards,pack_db,rarity);
+            Dictionary<Card, string> images = mseHelper.WriteSet(setFile, cards, pack_db, rarity);
             if (isUpdate)//仅更新文字
             {
                 return;
@@ -328,7 +318,7 @@ namespace DataEditorX.Core
                 zips.AddFile(setFile, "set", "");
                 foreach (Card c in images.Keys)
                 {
-                    string img=images[c];
+                    string img = images[c];
                     if (isCancel)
                     {
                         break;
