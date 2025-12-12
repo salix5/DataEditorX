@@ -2051,9 +2051,13 @@ namespace DataEditorX
                     return;
                 }
             }
+            if (DockPanel.Parent is not MainForm main)
+            {
+                return;
+            }
             foreach (string file in files)
             {
-                (DockPanel.Parent as MainForm).Open(file);
+                main.Open(file);
             }
         }
 
