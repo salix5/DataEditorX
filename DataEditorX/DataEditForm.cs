@@ -1077,7 +1077,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     Open(dlg.FileName);
@@ -1090,7 +1090,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     if (DataBase.Create(dlg.FileName))
@@ -1114,7 +1114,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.YdkType);
+                dlg.Filter = MyConfig.YDK_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     tmpCodes.Clear();
@@ -1325,7 +1325,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     filename = dlg.FileName;
@@ -1391,7 +1391,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
+                dlg.Filter = MyConfig.MSE_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isUpdate = false;
@@ -1417,7 +1417,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectImage) + "-" + tb_cardname.Text;
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.ImageType);
+                dlg.Filter = MyConfig.IMAGE_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     //dlg.FileName;
@@ -1787,7 +1787,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
+                dlg.Filter = MyConfig.MSE_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
@@ -1914,7 +1914,7 @@ namespace DataEditorX
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.MseType);
+                dlg.Filter = MyConfig.MSE_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     string mseset = dlg.FileName;
@@ -1971,7 +1971,7 @@ namespace DataEditorX
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
-                dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     Card[] cards = DataBase.Read(nowCdbFile, "");

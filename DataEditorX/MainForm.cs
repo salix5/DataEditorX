@@ -345,11 +345,11 @@ namespace DataEditorX
                 dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
                 if (GetActive() != null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
                 {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                    dlg.Filter = MyConfig.CDB_TYPE;
                 }
                 else
                 {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.ScriptFilter);
+                    dlg.Filter = MyConfig.SCRIPT_TYPE;
                 }
 
                 if (dlg.ShowDialog() == DialogResult.OK)
@@ -373,11 +373,11 @@ namespace DataEditorX
                 dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
                 if (GetActive() != null)//判断当前窗口是不是DataEditor
                 {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.CdbType);
+                    dlg.Filter = MyConfig.CDB_TYPE;
                 }
                 else
                 {
-                    dlg.Filter = LanguageHelper.GetMsg(LMSG.ScriptFilter);
+                    dlg.Filter = MyConfig.SCRIPT_TYPE;
                 }
 
                 if (dlg.ShowDialog() == DialogResult.OK)

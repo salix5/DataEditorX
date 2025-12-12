@@ -354,11 +354,7 @@ namespace DataEditorX
             {
                 using (SaveFileDialog sfdlg = new SaveFileDialog())
                 {
-                    try
-                    {
-                        sfdlg.Filter = LanguageHelper.GetMsg(LMSG.ScriptFilter);
-                    }
-                    catch { }
+                    sfdlg.Filter = MyConfig.SCRIPT_TYPE;
                     if (sfdlg.ShowDialog() == DialogResult.OK)
                     {
                         nowFile = sfdlg.FileName;
@@ -449,11 +445,7 @@ namespace DataEditorX
         {
             using (OpenFileDialog sfdlg = new OpenFileDialog())
             {
-                try
-                {
-                    sfdlg.Filter = LanguageHelper.GetMsg(LMSG.ScriptFilter);
-                }
-                catch { }
+                sfdlg.Filter = MyConfig.SCRIPT_TYPE;
                 if (sfdlg.ShowDialog() == DialogResult.OK)
                 {
                     nowFile = sfdlg.FileName;
@@ -471,7 +463,7 @@ namespace DataEditorX
             if (e.KeyCode == Keys.Enter)
             {
                 string key = tb_input.Text;
-                List<AutocompleteItem> list =new List<AutocompleteItem>();
+                List<AutocompleteItem> list = new List<AutocompleteItem>();
                 foreach (AutocompleteItem item in items)
                 {
                     if (item.ToolTipText.Contains(key))
@@ -656,11 +648,11 @@ namespace DataEditorX
         }
         private void menuitem_tooltipFont_Click(object sender, EventArgs e)
         {
-			FontDialog fd = new FontDialog
-			{
-				Font = new Font("微软雅黑", 10)
-			};
-			if (fd.ShowDialog() == DialogResult.OK)
+            FontDialog fd = new FontDialog
+            {
+                Font = new Font("微软雅黑", 10)
+            };
+            if (fd.ShowDialog() == DialogResult.OK)
             {
                 fctb.lbTooltip.Font = fd.Font;
             }
