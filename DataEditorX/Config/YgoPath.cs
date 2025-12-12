@@ -42,6 +42,6 @@ namespace DataEditorX.Config
             return MyPath.Combine(luapath, $"{modulescript}.lua");
         }
 
-        public string[] GetCardfiles<T>(T id) => [GetImage(id), GetImageField(id), GetScript(id)];
+        public string[] GetCardfiles<T>(T id) => new[] { GetImage(id), GetImageField(id), GetScript(id) };
     }
 }

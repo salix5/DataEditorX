@@ -2051,7 +2051,7 @@ namespace DataEditorX
                     return;
                 }
             }
-            if (DockPanel.Parent is not MainForm main)
+            if (!(DockPanel.Parent is MainForm main)) 
             {
                 return;
             }
