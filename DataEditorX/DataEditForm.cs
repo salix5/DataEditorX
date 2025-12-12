@@ -959,7 +959,7 @@ namespace DataEditorX
             {
                 if (menuitem_openfileinthis.Checked)
                 {
-                    if (!(DockPanel.Parent is MainForm main))
+                    if (DockPanel.Parent is not MainForm main)
                     {
                         return;
                     }
@@ -2099,7 +2099,7 @@ namespace DataEditorX
                     return;
                 }
             }
-            if (!(DockPanel.Parent is MainForm main)) 
+            if (DockPanel.Parent is not MainForm main) 
             {
                 return;
             }

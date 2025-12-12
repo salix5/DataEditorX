@@ -472,7 +472,7 @@ namespace System.IO.Compression
         /// <remarks>This method only works for storage of type FileStream</remarks>
         public static bool RemoveEntries(ref ZipStorer _zip, List<ZipFileEntry> _zfes)
         {
-            if (!(_zip.zipFileStream is FileStream))
+            if (_zip.zipFileStream is not FileStream)
             {
                 throw new InvalidOperationException("RemoveEntries is allowed just over streams of type FileStream");
             }
