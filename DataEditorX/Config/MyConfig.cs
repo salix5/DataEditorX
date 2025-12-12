@@ -31,10 +31,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string TAG_DATA = "data";
         /// <summary>
-        /// 将要打开
-        /// </summary>
-        //public const string TAG_OPEN = "open";
-        /// <summary>
         /// MSE
         /// </summary>
         public const string TAG_MSE_LANGUAGE = "mse_language";
