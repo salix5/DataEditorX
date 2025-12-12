@@ -9,6 +9,7 @@ using DataEditorX.Config;
 using DataEditorX.Language;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -19,20 +20,22 @@ namespace DataEditorX
         [STAThread]
         private static void Main(string[] args)
         {
-            string arg = (args.Length > 0) ? args[0] : "";
-            if (arg == MyConfig.TAG_SAVE_LANG || arg == MyConfig.TAG_SAVE_LANG2)
+            if(args.Length > 0)
             {
-                //保存语言
-                SaveLanguage();
-                MessageBox.Show("Save Language OK.");
-                Environment.Exit(1);
+                if (args[0] == MyConfig.TAG_SAVE_LANG || args[0] == MyConfig.TAG_SAVE_LANG2)
+                {
+                    //保存语言
+                    SaveLanguage();
+                    MessageBox.Show("Save Language OK.");
+                    Environment.Exit(1);
+                }
             }
-            if (MyConfig.OpenOnExistForm(arg))//在已经存在的窗口打开文件
+            using (var mutex = new Mutex(true, "DataEditorX_SingleInstance", out bool createdNew))
             {
-                Environment.Exit(1);
-            }
-            else//新建窗口
-            {
+                if (!createdNew)
+                {
+                    return;
+                }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 MainForm mainForm = new MainForm();

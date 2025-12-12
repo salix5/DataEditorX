@@ -288,28 +288,6 @@ namespace DataEditorX.Config
         {
             return MyPath.Combine(path, MyPath.GetFileName(TAG_CARDINFO, GetAppConfig(TAG_LANGUAGE)));
         }
-        /// <summary>
-        /// 发送消息打开文件
-        /// </summary>
-        /// <param name="file"></param>
-        public static bool OpenOnExistForm(string file)
-        {
-            Process instance = RunningInstance(Assembly.GetExecutingAssembly().Location.
-                        Replace('/', Path.DirectorySeparatorChar));
-            if (instance == null)
-            {
-                return false;
-            }
-            else
-            {
-                //把需要打开的文件写入临时文件
-                string tmpfile = Path.Combine(Application.StartupPath, FILE_TEMP);
-                File.WriteAllText(tmpfile, file);
-                //发送消息
-                User32.SendMessage(instance.MainWindowHandle, WM_OPEN, 0, 0);
-                return true;
-            }
-        }
         public static void OpenFileInThis(string file)
         {
             //把需要打开的文件写入临时文件
