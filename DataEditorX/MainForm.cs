@@ -121,7 +121,7 @@ namespace DataEditorX
             //如果没有将要打开的文件，则打开一个空数据库标签
             if (string.IsNullOrEmpty(openfile))
             {
-                OpenDataBase(null);
+                OpenDatabase(null);
             }
             else
             {
@@ -192,7 +192,7 @@ namespace DataEditorX
             cf.Show(dockPanel, DockState.Document);
         }
         //打开数据库
-        void OpenDataBase(string file)
+        void OpenDatabase(string file)
         {
             DataEditForm def;
             if (string.IsNullOrEmpty(file) || !File.Exists(file))
@@ -235,7 +235,7 @@ namespace DataEditorX
             }
             else if (YGOUtil.IsDataBase(file))
             {
-                OpenDataBase(file);
+                OpenDatabase(file);
             }
         }
         //检查是否打开
@@ -291,7 +291,7 @@ namespace DataEditorX
         //新建DataEditorX
         void DataEditorToolStripMenuItemClick(object sender, EventArgs e)
         {
-            OpenDataBase(null);
+            OpenDatabase(null);
         }
         //关闭其他或者所有
         void CloseMdi(bool isall)
@@ -392,7 +392,7 @@ namespace DataEditorX
                     {
                         if (DataBase.Create(file))//是否创建成功
                         {
-                            if (MyMsg.Question(LMSG.IfOpenDataBase))//是否打开新建的数据库
+                            if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
                             {
                                 Open(file);
                             }

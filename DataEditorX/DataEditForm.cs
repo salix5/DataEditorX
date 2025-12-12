@@ -1095,7 +1095,7 @@ namespace DataEditorX
                 {
                     if (DataBase.Create(dlg.FileName))
                     {
-                        if (MyMsg.Question(LMSG.IfOpenDataBase))
+                        if (MyMsg.Question(LMSG.IfOpenDatabase))
                         {
                             Open(dlg.FileName);
                         }

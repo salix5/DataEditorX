@@ -26,7 +26,7 @@ namespace DataEditorX.Language
         ItIsNotChanged = 0xa,
         IfDeleteCard = 0xb,
         IfCreateScript = 0xc,
-        IfOpenDataBase = 0xd,
+        IfOpenDatabase = 0xd,
         IfReplaceExistingCard = 0xe,
         NowIsNewVersion = 0xf,
 
