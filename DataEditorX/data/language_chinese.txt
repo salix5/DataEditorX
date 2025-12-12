@@ -26,7 +26,7 @@ DataEditForm.mainMenu.menuitem_open	打开(&O)
 DataEditForm.mainMenu.menuitem_new	新建(&N)
 DataEditForm.mainMenu.menuitem_copyselectto	把选中复制到...
 DataEditForm.mainMenu.menuitem_copyto	把结果复制到...
-DataEditForm.mainMenu.menuitem_openLastDataBase	打开最后的数据库
+DataEditForm.mainMenu.menuitem_openLastDatabase	打开最后的数据库
 DataEditForm.mainMenu.menuitem_quit	退出
 #
 DataEditForm.mainMenu.menu_data	数据(&D)

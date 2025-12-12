@@ -13,21 +13,23 @@ namespace DataEditorX
         /// Designer variable used to keep track of non-visual components.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        
+
         /// <summary>
         /// Disposes resources used by the form.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing) {
-                if (components != null) {
+            if (disposing)
+            {
+                if (components != null)
+                {
                     components.Dispose();
                 }
             }
             base.Dispose(disposing);
         }
-        
+
         /// <summary>
         /// This method is required for Windows Forms designer support.
         /// Do not change the method contents inside the source code editor. The Forms designer might
@@ -43,7 +45,7 @@ namespace DataEditorX
             this.menuitem_copyselectto = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_copyto = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep4 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_openLastDataBase = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuitem_openLastDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_quit = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,7 +171,7 @@ namespace DataEditorX
             this.menuitem_copyselectto,
             this.menuitem_copyto,
             this.tsep4,
-            this.menuitem_openLastDataBase,
+            this.menuitem_openLastDatabase,
             this.toolStripSeparator2,
             this.menuitem_quit});
             this.menuitem_file.Name = "menuitem_file";
@@ -212,11 +214,11 @@ namespace DataEditorX
             this.tsep4.Name = "tsep4";
             this.tsep4.Size = new System.Drawing.Size(223, 6);
             // 
-            // menuitem_openLastDataBase
+            // menuitem_openLastDatabase
             // 
-            this.menuitem_openLastDataBase.Name = "menuitem_openLastDataBase";
-            this.menuitem_openLastDataBase.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_openLastDataBase.Text = "Open Last DataBase";
+            this.menuitem_openLastDatabase.Name = "menuitem_openLastDatabase";
+            this.menuitem_openLastDatabase.Size = new System.Drawing.Size(226, 22);
+            this.menuitem_openLastDatabase.Text = "Open Last DataBase";
             // 
             // toolStripSeparator2
             // 
@@ -496,7 +498,7 @@ namespace DataEditorX
             // 
             // cb_cardattribute
             // 
-            this.cb_cardattribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_cardattribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardattribute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardattribute.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -508,7 +510,7 @@ namespace DataEditorX
             // 
             // tb_cardname
             // 
-            this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_cardname.Font = new System.Drawing.Font("Microsoft JhengHei", 11F);
             this.tb_cardname.Location = new System.Drawing.Point(5, 1);
@@ -520,7 +522,7 @@ namespace DataEditorX
             // 
             // cb_cardrule
             // 
-            this.cb_cardrule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_cardrule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardrule.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -532,7 +534,7 @@ namespace DataEditorX
             // 
             // cb_cardlevel
             // 
-            this.cb_cardlevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_cardlevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardlevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardlevel.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -544,7 +546,7 @@ namespace DataEditorX
             // 
             // cb_cardrace
             // 
-            this.cb_cardrace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_cardrace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardrace.DropDownWidth = 107;
@@ -557,7 +559,7 @@ namespace DataEditorX
             // 
             // cb_setname2
             // 
-            this.cb_setname2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_setname2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname2.DropDownHeight = 320;
             this.cb_setname2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -573,7 +575,7 @@ namespace DataEditorX
             // 
             // cb_setname1
             // 
-            this.cb_setname1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_setname1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname1.DropDownHeight = 320;
             this.cb_setname1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -589,7 +591,7 @@ namespace DataEditorX
             // 
             // cb_setname4
             // 
-            this.cb_setname4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_setname4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname4.DropDownHeight = 320;
             this.cb_setname4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -605,7 +607,7 @@ namespace DataEditorX
             // 
             // cb_setname3
             // 
-            this.cb_setname3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cb_setname3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname3.DropDownHeight = 320;
             this.cb_setname3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -623,8 +625,8 @@ namespace DataEditorX
             // 
             this.tb_cardtext.AcceptsReturn = true;
             this.tb_cardtext.AcceptsTab = true;
-            this.tb_cardtext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tb_cardtext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_cardtext.Font = new System.Drawing.Font("Microsoft JhengHei", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_cardtext.Location = new System.Drawing.Point(4, 349);
@@ -1085,8 +1087,8 @@ namespace DataEditorX
             // 
             // splitContainer
             // 
-            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer.Location = new System.Drawing.Point(3, 3);
             this.splitContainer.Name = "splitContainer";
@@ -1140,8 +1142,8 @@ namespace DataEditorX
             // 
             // lv_cardlist
             // 
-            this.lv_cardlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lv_cardlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lv_cardlist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lv_cardlist.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1209,7 +1211,7 @@ namespace DataEditorX
             // 
             // lb_scripttext
             // 
-            this.lb_scripttext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lb_scripttext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_scripttext.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lb_scripttext.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -1265,7 +1267,7 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_openLastDataBase;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_openLastDatabase;
         private System.Windows.Forms.ToolStripMenuItem menuitem_open;
         private System.Windows.Forms.ToolStripMenuItem menuitem_new;
         private System.Windows.Forms.ToolStripMenuItem menuitem_file;

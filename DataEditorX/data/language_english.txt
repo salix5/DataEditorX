@@ -41,7 +41,7 @@ DataEditForm.mainMenu.menuitem_open	Open(&O)
 DataEditForm.mainMenu.menuitem_new	New(&N)
 DataEditForm.mainMenu.menuitem_copyselectto	Copy Selected...
 DataEditForm.mainMenu.menuitem_copyto	Copy All Search...
-DataEditForm.mainMenu.menuitem_openLastDataBase	Open Last Database
+DataEditForm.mainMenu.menuitem_openLastDatabase	Open Last Database
 DataEditForm.mainMenu.menuitem_quit	Quit
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menu_data	Data(&D)
