@@ -25,7 +25,7 @@ namespace DataEditorX.Common
         /// <summary>
         /// 从HEAD获取版本号
         /// </summary>
-        public const string DEFAULT = "0.0.0.0";
+        public const string DEFAULT = "0.0.0";
 
         #region 检查版本
         /// <summary>
@@ -39,19 +39,19 @@ namespace DataEditorX.Common
             if (!string.IsNullOrEmpty(html))
             {
                 Regex ver = new Regex(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
-                if (ver.IsMatch(html))
+                Match mVer = ver.Match(html);
+                if (mVer.Success)
                 {
-                    Match mVer = ver.Match(html);
-                    return $"{mVer.Groups[1].Value}";
+                    return mVer.Groups[1].Value;
                 }
             }
             return DEFAULT;
         }
         /// <summary>
-        /// 检查版本号，格式0.0.0.0
+        /// 检查版本号，格式0.0.0
         /// </summary>
-        /// <param name="ver">0.0.0.0</param>
-        /// <param name="oldver">0.0.0.0</param>
+        /// <param name="ver">0.0.0</param>
+        /// <param name="oldver">0.0.0</param>
         /// <returns>是否有新版本</returns>
         public static bool CheckVersion(string ver, string oldver)
         {
