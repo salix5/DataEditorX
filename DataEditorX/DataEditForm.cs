@@ -33,13 +33,10 @@ namespace DataEditorX
                 {
                     return default_script_name;
                 }
-                else
+                string cdbName = Path.GetFileNameWithoutExtension(nowCdbFile);
+                if (cdbName.Length > 0 && File.Exists(ygopath.GetModuleScript(cdbName)))
                 {
-                    string cdbName = Path.GetFileNameWithoutExtension(nowCdbFile);
-                    if (cdbName.Length > 0 && File.Exists(GetPath().GetModuleScript(cdbName)))
-                    {
-                        return cdbName;
-                    }
+                    return cdbName;
                 }
                 return "";
             }
