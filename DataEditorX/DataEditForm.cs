@@ -1076,7 +1076,7 @@ namespace DataEditorX
         {
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
@@ -1089,7 +1089,7 @@ namespace DataEditorX
         {
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
@@ -1324,7 +1324,7 @@ namespace DataEditorX
             string filename = null;
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
@@ -1970,7 +1970,7 @@ namespace DataEditorX
 
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDataBasePath);
+                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {

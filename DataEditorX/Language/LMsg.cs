@@ -34,7 +34,7 @@ namespace DataEditorX.Language
         HaveNewVersion = 0x11,
         FileIsNotExists = 0x12,
         NotSelectDatabase = 0x13,
-        SelectDataBasePath = 0x14,
+        SelectDatabasePath = 0x14,
         SelectYdkPath = 0x15,
         SelectImagePath = 0x16,
         DownloadSucceed = 0x17,
