@@ -218,7 +218,7 @@ namespace DataEditorX
             // 
             this.menuitem_openLastDatabase.Name = "menuitem_openLastDatabase";
             this.menuitem_openLastDatabase.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_openLastDatabase.Text = "Open Last DataBase";
+            this.menuitem_openLastDatabase.Text = "Open Last Database";
             // 
             // toolStripSeparator2
             // 
@@ -379,7 +379,7 @@ namespace DataEditorX
             // 
             this.menuitem_compdb.Name = "menuitem_compdb";
             this.menuitem_compdb.Size = new System.Drawing.Size(204, 22);
-            this.menuitem_compdb.Text = "Compression DataBase";
+            this.menuitem_compdb.Text = "Compress Database";
             this.menuitem_compdb.Click += new System.EventHandler(this.menuitem_compdb_Click);
             // 
             // menuitem_export_select_sql
