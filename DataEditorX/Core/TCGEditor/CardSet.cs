@@ -26,7 +26,7 @@ namespace DataEditorX
         public int icon;
         public string description;
         public string pendulum_description;
-        public int[] pendulum_scales ;
+        public int[] pendulum_scales;
         public string[] subtypes;
         public string atk;
         public string def;
