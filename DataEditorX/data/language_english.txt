@@ -9,7 +9,7 @@ CodeEditForm.mainMenu.menuitem_showmap	Display/Hide Document Maps
 CodeEditForm.mainMenu.menuitem_showinput	Display/Hide TextBox
 CodeEditForm.mainMenu.menuitem_find	Find String
 CodeEditForm.mainMenu.menuitem_replace	Replace
-CodeEditForm.mainMenu.menuitem_setcard	Set DataBase
+CodeEditForm.mainMenu.menuitem_setcard	Set Database
 CodeEditForm.mainMenu.menuitem_help	Help(&H)
 CodeEditForm.mainMenu.menuitem_about	About
 DataEditForm.mainMenu.menuitem_replace	(*)...
@@ -41,7 +41,7 @@ DataEditForm.mainMenu.menuitem_open	Open(&O)
 DataEditForm.mainMenu.menuitem_new	New(&N)
 DataEditForm.mainMenu.menuitem_copyselectto	Copy Selected...
 DataEditForm.mainMenu.menuitem_copyto	Copy All Search...
-DataEditForm.mainMenu.menuitem_openLastDataBase	Open Last DataBase
+DataEditForm.mainMenu.menuitem_openLastDataBase	Open Last Database
 DataEditForm.mainMenu.menuitem_quit	Quit
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menu_data	Data(&D)
@@ -50,7 +50,7 @@ DataEditForm.mainMenu.menuitem_openfileinthis	Open Script With CodeEditor
 DataEditForm.mainMenu.menuitem_default_script	Set default script name
 DataEditForm.mainMenu.menuitem_readydk	Read From ydk File(&Y)
 DataEditForm.mainMenu.menuitem_readimages	Read From Images Path(&I)
-DataEditForm.mainMenu.menuitem_compdb	Compress DataBase
+DataEditForm.mainMenu.menuitem_compdb	Compress Database
 DataEditForm.mainMenu.menuitem_exportdata	Export Data As zip
 DataEditForm.mainMenu.menuitem_mseconfig	Set MSE Config
 DataEditForm.mainMenu.menuitem_testpendulumtext	test pendulum texts
@@ -80,7 +80,7 @@ MainForm.mainMenu.menuitem_copyall	Copy All Search
 MainForm.mainMenu.menuitem_pastecards	Paste Cards
 MainForm.mainMenu.menuitem_comp1Set Compare Database 1
 MainForm.mainMenu.menuitem_comp2Set Compare Database 2
-MainForm.mainMenu.menuitem_history	DataBase Histroy
+MainForm.mainMenu.menuitem_history	Database Histroy
 MainForm.mainMenu.menuitem_shistory	Script History
 MainForm.mainMenu.menuitem_quit	Quit
 MainForm.mainMenu.menuitem_windows	Windows(&W)
