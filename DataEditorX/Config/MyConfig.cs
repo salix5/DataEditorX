@@ -296,7 +296,7 @@ namespace DataEditorX.Config
             //发送消息
             User32.SendMessage(Process.GetCurrentProcess().MainWindowHandle, WM_OPEN, 0, 0);
         }
-        public static Process RunningInstance(string filename)
+        public static Process GetRunningInstance(string filename)
         {
             Process current = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(current.ProcessName);
