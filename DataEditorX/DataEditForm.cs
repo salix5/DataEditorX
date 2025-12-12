@@ -95,7 +95,7 @@ namespace DataEditorX
             nowCdbFile = cdbfile;
         }
         public DataEditForm()
-        {//默认启动
+        {
             string dir = MyConfig.ReadString(MyConfig.TAG_DATA);
             if (string.IsNullOrEmpty(dir))
             {

@@ -20,15 +20,13 @@ namespace DataEditorX
         [STAThread]
         private static void Main(string[] args)
         {
-            if(args.Length > 0)
+            string arg = (args.Length > 0) ? args[0] : "";
+            if (arg == MyConfig.TAG_SAVE_LANG || arg == MyConfig.TAG_SAVE_LANG2)
             {
-                if (args[0] == MyConfig.TAG_SAVE_LANG || args[0] == MyConfig.TAG_SAVE_LANG2)
-                {
-                    //保存语言
-                    SaveLanguage();
-                    MessageBox.Show("Save Language OK.");
-                    Environment.Exit(1);
-                }
+                //保存语言
+                SaveLanguage();
+                MessageBox.Show("Save Language OK.");
+                Environment.Exit(1);
             }
             using (var mutex = new Mutex(true, "DataEditorX_SingleInstance", out bool createdNew))
             {
