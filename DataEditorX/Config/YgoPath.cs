@@ -30,57 +30,18 @@ namespace DataEditorX.Config
         /// <summary>录像目录</summary>
         public string replaypath;
 
-        public string GetImage(long id)
-        {
-            return GetImage(id.ToString());
-        }
-        public string GetImageField(long id)
-        {
-            return GetImageField(id.ToString());//场地图
-        }
-        public string GetScript(long id)
-        {
-            return GetScript(id.ToString());
-        }
+        public string GetImage<T>(T id) => MyPath.Combine(picpath, $"{id}.jpg");
+        public string GetImageField<T>(T id) => MyPath.Combine(fieldpath, $"{id}.png");
+        public string GetScript<T>(T id) => MyPath.Combine(luapath, $"c{id}.lua");
         public string GetYdk(string name)
         {
-            return MyPath.Combine(ydkpath, name + ".ydk");
-        }
-        //字符串id
-        public string GetImage(string id)
-        {
-            return MyPath.Combine(picpath, id + ".jpg");
-        }
-        public string GetImageField(string id)
-        {
-            return MyPath.Combine(fieldpath, id + ".png");//场地图
-        }
-        public string GetScript(string id)
-        {
-            return MyPath.Combine(luapath, "c" + id + ".lua");
+            return MyPath.Combine(ydkpath, $"{name}.ydk");
         }
         public string GetModuleScript(string modulescript)
         {
-            return MyPath.Combine(luapath, modulescript + ".lua");
+            return MyPath.Combine(luapath, $"{modulescript}.lua");
         }
 
-        public string[] GetCardfiles(long id)
-        {
-            string[] files = new string[]{
-                GetImage(id),//大图
-                GetImageField(id),//场地图
-                GetScript(id)
-           };
-            return files;
-        }
-        public string[] GetCardfiles(string id)
-        {
-            string[] files = new string[]{
-                GetImage(id),//大图
-                GetImageField(id),//场地图
-                GetScript(id)
-           };
-            return files;
-        }
+        public string[] GetCardfiles<T>(T id) => [GetImage(id), GetImageField(id), GetScript(id)];
     }
 }
