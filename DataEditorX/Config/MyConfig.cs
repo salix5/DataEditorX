@@ -16,10 +16,6 @@ namespace DataEditorX.Config
         public const string TAG_MSE_PATH = "mse_path";
         public const string TAG_MSE_EXPORT = "mse_exportpath";
         /// <summary>
-        /// 窗口消息 打开文件
-        /// </summary>
-        public const int WM_OPEN = 0x0401;
-        /// <summary>
         /// 最大历史数量
         /// </summary>
         public const int MAX_HISTORY = 16;
@@ -39,10 +35,6 @@ namespace DataEditorX.Config
         /// 语言
         /// </summary>
         public const string TAG_LANGUAGE = "language";
-        /// <summary>
-        /// 临时文件
-        /// </summary>
-        public const string FILE_TEMP = "open.tmp";
         /// <summary>
         /// 历史记录
         /// </summary>

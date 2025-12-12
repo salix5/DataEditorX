@@ -123,7 +123,6 @@
     <Compile Include="Controls\IMainForm.cs" />
     <Compile Include="Controls\MySyntaxHighlighter.cs" />
     <Compile Include="Common\MyBitmap.cs" />
-    <Compile Include="Common\User32.cs" />
     <Compile Include="Common\ZipStorer.cs" />
     <Compile Include="Common\Area.cs" />
     <Compile Include="Config\MyConfig.cs" />
