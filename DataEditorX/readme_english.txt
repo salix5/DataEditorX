@@ -33,7 +33,7 @@ data/cardinfo_xxx.txt
 
 ★Image settings
 	image_quality	        1-100
-	image			Width/height of image and thumbnail,total four numerical value; 
+	image			Width/height of image, four number
 	image_other		pendulum of other cards
 	image_xyz		pendulum of Xyz monsters
 	image_pendulum	        Pendulum
