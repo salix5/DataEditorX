@@ -53,10 +53,10 @@ namespace DataEditorX.Core
                         return false;
                     }
                 }
-                if (DataBase.Command(dataform.GetOpenFile(), DataBase.GetInsertSQL(c, true)) >= 2)
+                if (Database.Command(dataform.GetOpenFile(), Database.GetInsertSQL(c, true)) >= 2)
                 {
                     MyMsg.Show(LMSG.AddSucceed);
-                    undoSQL = DataBase.GetDeleteSQL(c);
+                    undoSQL = Database.GetDeleteSQL(c);
                     dataform.Search(true);
                     dataform.UpdateCardInfo(c);
                     return true;
@@ -66,7 +66,7 @@ namespace DataEditorX.Core
             }
             public void Undo()
             {
-                DataBase.Command(dataform.GetOpenFile(), undoSQL);
+                Database.Command(dataform.GetOpenFile(), undoSQL);
             }
 
             public object Clone()
@@ -115,11 +115,11 @@ namespace DataEditorX.Core
                 string sql;
                 if (c.id != oldCard.id)//修改了id
                 {
-                    sql = DataBase.GetInsertSQL(c, false);//插入
+                    sql = Database.GetInsertSQL(c, false);//插入
                     bool delold = MyMsg.Question(LMSG.IfDeleteCard);
                     if (delold)//是否删除旧卡片
                     {
-                        if (DataBase.Command(dataform.GetOpenFile(), DataBase.GetDeleteSQL(oldCard)) < 2)
+                        if (Database.Command(dataform.GetOpenFile(), Database.GetDeleteSQL(oldCard)) < 2)
                         {
                             //删除失败
                             MyMsg.Error(LMSG.DeleteFail);
@@ -127,12 +127,12 @@ namespace DataEditorX.Core
                         }
                         else
                         {//删除成功，添加还原sql
-                            undoSQL = DataBase.GetDeleteSQL(c) + DataBase.GetInsertSQL(oldCard, false);
+                            undoSQL = Database.GetDeleteSQL(c) + Database.GetInsertSQL(oldCard, false);
                         }
                     }
                     else
                     {
-                        undoSQL = DataBase.GetDeleteSQL(c);//还原就是删除
+                        undoSQL = Database.GetDeleteSQL(c);//还原就是删除
                     }
                     //如果删除旧卡片，则把资源修改名字,否则复制资源
                     if (modfiles)
@@ -154,10 +154,10 @@ namespace DataEditorX.Core
                 }
                 else
                 {//更新数据
-                    sql = DataBase.GetUpdateSQL(c);
-                    undoSQL = DataBase.GetUpdateSQL(oldCard);
+                    sql = Database.GetUpdateSQL(c);
+                    undoSQL = Database.GetUpdateSQL(oldCard);
                 }
-                if (DataBase.Command(dataform.GetOpenFile(), sql) > 0)
+                if (Database.Command(dataform.GetOpenFile(), sql) > 0)
                 {
                     MyMsg.Show(LMSG.ModifySucceed);
                     dataform.Search(true);
@@ -174,7 +174,7 @@ namespace DataEditorX.Core
 
             public void Undo()
             {
-                DataBase.Command(dataform.GetOpenFile(), undoSQL);
+                Database.Command(dataform.GetOpenFile(), undoSQL);
                 if (modifiled)
                 {
                     if (delold)
@@ -230,15 +230,15 @@ namespace DataEditorX.Core
                 List<string> sql = new List<string>();
                 foreach (Card c in cards)
                 {
-                    sql.Add(DataBase.GetDeleteSQL(c));//删除
-                    undo += DataBase.GetInsertSQL(c, true);
+                    sql.Add(Database.GetDeleteSQL(c));//删除
+                    undo += Database.GetInsertSQL(c, true);
                     //删除资源
                     if (deletefiles)
                     {
                         YGOUtil.CardDelete(c.id, dataform.GetPath());
                     }
                 }
-                if (DataBase.Command(dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
+                if (Database.Command(dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
                 {
                     MyMsg.Show(LMSG.DeleteSucceed);
                     dataform.Search(true);
@@ -254,7 +254,7 @@ namespace DataEditorX.Core
             }
             public void Undo()
             {
-                DataBase.Command(dataform.GetOpenFile(), undoSQL);
+                Database.Command(dataform.GetOpenFile(), undoSQL);
             }
 
             public object Clone()
@@ -294,7 +294,7 @@ namespace DataEditorX.Core
                 }
 
                 bool replace = false;
-                Card[] oldcards = DataBase.Read(dataform.GetOpenFile(), "");
+                Card[] oldcards = Database.Read(dataform.GetOpenFile(), "");
                 if (oldcards != null && oldcards.Length != 0)
                 {
                     int i = 0;
@@ -318,7 +318,7 @@ namespace DataEditorX.Core
                         }
                     }
                 }
-                DataBase.CopyDB(dataform.GetOpenFile(), !replace, cards);
+                Database.CopyDB(dataform.GetOpenFile(), !replace, cards);
                 copied = true;
                 newCards = cards;
                 this.replace = replace;
@@ -327,8 +327,8 @@ namespace DataEditorX.Core
             }
             public void Undo()
             {
-                DataBase.DeleteDB(dataform.GetOpenFile(), newCards);
-                DataBase.CopyDB(dataform.GetOpenFile(), !replace, oldCards);
+                Database.DeleteDB(dataform.GetOpenFile(), newCards);
+                Database.CopyDB(dataform.GetOpenFile(), !replace, oldCards);
             }
 
             public object Clone()

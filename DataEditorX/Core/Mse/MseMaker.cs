@@ -391,7 +391,7 @@ namespace DataEditorX.Core.Mse
                         list.Add(c, jpg);
                         jpg = Path.GetFileName(jpg);
                     }
-                    CardPack cardpack=DataBase.FindPack(cardpack_db, c.id);
+                    CardPack cardpack=Database.FindPack(cardpack_db, c.id);
                     if (c.IsType(CardType.TYPE_SPELL) || c.IsType(CardType.TYPE_TRAP))
                     {
                         sw.WriteLine(getSpellTrap(c, jpg, c.IsType(CardType.TYPE_SPELL), cardpack, rarity));

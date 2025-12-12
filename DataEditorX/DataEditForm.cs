@@ -793,9 +793,9 @@ namespace DataEditorX
             tmpCodes.Clear();
             cardlist.Clear();
             //检查表是否存在
-            DataBase.CheckTable(file);
+            Database.CheckTable(file);
             srcCard = new Card();
-            SetCards(DataBase.Read(file, ""), false);
+            SetCards(Database.Read(file, ""), false);
 
             return true;
         }
@@ -870,14 +870,14 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (tmpCodes.Count > 0)
             {
-                _ = DataBase.ReadFromId(nowCdbFile, tmpCodes.ToArray());
+                _ = Database.ReadFromId(nowCdbFile, tmpCodes.ToArray());
                 SetCards(getCompCards(), true);
             }
             else
             {
                 srcCard = c;
-                string sql = DataBase.GetSelectSQL(c);
-                SetCards(DataBase.Read(nowCdbFile, sql), isfresh);
+                string sql = Database.GetSelectSQL(c);
+                SetCards(Database.Read(nowCdbFile, sql), isfresh);
             }
         }
         //更新临时卡片
@@ -1136,7 +1136,7 @@ namespace DataEditorX
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    if (DataBase.Create(dlg.FileName))
+                    if (Database.Create(dlg.FileName))
                     {
                         if (MyMsg.Question(LMSG.IfOpenDatabase))
                         {
@@ -1163,7 +1163,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadYDK(dlg.FileName);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.ReadFromId(nowCdbFile, ids), false);
+                    SetCards(Database.ReadFromId(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1183,7 +1183,7 @@ namespace DataEditorX
                     tmpCodes.Clear();
                     string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
                     tmpCodes.AddRange(ids);
-                    SetCards(DataBase.ReadFromId(nowCdbFile, ids), false);
+                    SetCards(Database.ReadFromId(nowCdbFile, ids), false);
                 }
             }
         }
@@ -1377,7 +1377,7 @@ namespace DataEditorX
             }
             if (!string.IsNullOrEmpty(filename))
             {
-                DataBase.CopyDB(filename, !replace, cards);
+                Database.CopyDB(filename, !replace, cards);
                 MyMsg.Show(LMSG.CopyCardsToDBIsOK);
             }
 
@@ -1639,7 +1639,7 @@ namespace DataEditorX
                 return null;
             }
 
-            return DataBase.ReadFromId(nowCdbFile, tmpCodes.ToArray());
+            return Database.ReadFromId(nowCdbFile, tmpCodes.ToArray());
         }
         public void CompareCards(string cdbfile, bool checktext)
         {
@@ -1650,8 +1650,8 @@ namespace DataEditorX
 
             tmpCodes.Clear();
             srcCard = new Card();
-            Card[] mcards = DataBase.Read(nowCdbFile, "");
-            Card[] cards = DataBase.Read(cdbfile, "");
+            Card[] mcards = Database.Read(nowCdbFile, "");
+            Card[] cards = Database.Read(cdbfile, "");
             foreach (Card card in mcards)
             {
                 if (!CheckCard(cards, card, checktext))//添加到id集合
@@ -1849,7 +1849,7 @@ namespace DataEditorX
                 return;
             }
 
-            DataBase.Vacuum(nowCdbFile);
+            Database.Vacuum(nowCdbFile);
             MyMsg.Show(LMSG.CompDBOK);
         }
         #endregion
@@ -1988,7 +1988,7 @@ namespace DataEditorX
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataBase.ExportSQL(dlg.FileName, GetCardList(true));
+                    Database.ExportSQL(dlg.FileName, GetCardList(true));
                     MyMsg.Show("OK");
                 }
             }
@@ -1999,7 +1999,7 @@ namespace DataEditorX
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataBase.ExportSQL(dlg.FileName, GetCardList(false));
+                    Database.ExportSQL(dlg.FileName, GetCardList(false));
                     MyMsg.Show("OK");
                 }
             }
@@ -2017,14 +2017,14 @@ namespace DataEditorX
                 dlg.Filter = MyConfig.CDB_TYPE;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    Card[] cards = DataBase.Read(nowCdbFile, "");
+                    Card[] cards = Database.Read(nowCdbFile, "");
                     int count = cards.Length;
                     if (cards == null || cards.Length == 0)
                     {
                         return;
                     }
 
-                    if (DataBase.Create(dlg.FileName))
+                    if (Database.Create(dlg.FileName))
                     {
                         for (int i = 0; i < count; i++)
                         {
@@ -2033,7 +2033,7 @@ namespace DataEditorX
                                 cards[i].desc = tasker.MseHelper.ReplaceText(cards[i].desc, cards[i].name);
                             }
                         }
-                        DataBase.CopyDB(dlg.FileName, false, cards);
+                        Database.CopyDB(dlg.FileName, false, cards);
                         MyMsg.Show(LMSG.CopyCardsToDBIsOK);
                     }
                 }

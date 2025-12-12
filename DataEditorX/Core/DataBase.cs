@@ -16,7 +16,7 @@ namespace DataEditorX.Core
     /// <summary>
     /// SQLite 操作
     /// </summary>
-    public static class DataBase
+    public static class Database
     {
         #region SQL statements
         static readonly string DefaultSQL =

@@ -119,7 +119,7 @@
     <Compile Include="Core\Info\CardRule.cs" />
     <Compile Include="Core\Info\CardType.cs" />
     <Compile Include="Config\CodeConfig.cs" />
-    <Compile Include="Core\DataBase.cs" />
+    <Compile Include="Core\Database.cs" />
     <Compile Include="Config\DataConfig.cs" />
     <Compile Include="Config\InfoDictionary.cs" />
     <Compile Include="Config\ImageSet.cs" />
