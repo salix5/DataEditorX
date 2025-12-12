@@ -153,29 +153,6 @@ namespace DataEditorX
         }
         #endregion
 
-        #region 处理窗口消息
-        protected override void DefWndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case MyConfig.WM_OPEN://处理消息
-                    string file = MyPath.Combine(Application.StartupPath, MyConfig.FILE_TEMP);
-                    if (File.Exists(file))
-                    {
-                        Activate();
-                        string openfile = File.ReadAllText(file);
-                        //获取需要打开的文件路径
-                        Open(openfile);
-                        //File.Delete(file);
-                    }
-                    break;
-                default:
-                    base.DefWndProc(ref m);
-                    break;
-            }
-        }
-        #endregion
-
         #region 打开文件
         //打开脚本
         void OpenScript(string file)

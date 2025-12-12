@@ -1,10 +1,7 @@
 using DataEditorX.Common;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
 
 namespace DataEditorX.Config
 {
@@ -287,14 +284,6 @@ namespace DataEditorX.Config
         public static string GetCardInfoFile(string path)
         {
             return MyPath.Combine(path, MyPath.GetFileName(TAG_CARDINFO, GetAppConfig(TAG_LANGUAGE)));
-        }
-        public static void OpenFileInThis(string file)
-        {
-            //把需要打开的文件写入临时文件
-            string tmpfile = Path.Combine(Application.StartupPath, FILE_TEMP);
-            File.WriteAllText(tmpfile, file);
-            //发送消息
-            User32.SendMessage(Process.GetCurrentProcess().MainWindowHandle, WM_OPEN, 0, 0);
         }
         public static Process GetRunningInstance(string filename)
         {

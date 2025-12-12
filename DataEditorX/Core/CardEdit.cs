@@ -1,8 +1,5 @@
-using DataEditorX.Config;
 using DataEditorX.Language;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace DataEditorX.Core
 {
@@ -264,64 +261,6 @@ namespace DataEditorX.Core
             {
                 return MemberwiseClone();
             }
-        }
-        #endregion
-
-        #region 打开脚本
-        //打开脚本
-        public bool OpenScript(bool openinthis, string default_script)
-        {
-            if (!dataform.CheckOpen())
-            {
-                return false;
-            }
-
-            Card c = dataform.GetCard();
-            string lua;
-            if (c.id > 0)
-            {
-                lua = dataform.GetPath().GetScript(c.id);
-            }
-            else if (default_script.Length > 0)
-            {
-                lua = dataform.GetPath().GetModuleScript(default_script);
-            }
-            else
-            {
-                return false;
-            }
-            if (!File.Exists(lua))
-            {
-                MyPath.CreateDirByFile(lua);
-                if (MyMsg.Question(LMSG.IfCreateScript))//是否创建脚本
-                {
-                    using (FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write))
-                    {
-                        StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
-                        sw.WriteLine("--" + c.name);
-                        sw.WriteLine("local s,id,o=GetID()");
-                        sw.WriteLine("function s.initial_effect(c)");
-                        sw.WriteLine("\t");
-                        sw.WriteLine("end");
-                        sw.Close();
-                        fs.Close();
-                    }
-                }
-            }
-            if (File.Exists(lua))//如果存在，则打开文件
-            {
-                if (openinthis)//是否用本程序打开
-                {
-                    MyConfig.OpenFileInThis(lua);
-                }
-                else
-                {
-                    System.Diagnostics.Process.Start(lua);
-                }
-
-                return true;
-            }
-            return false;
         }
         #endregion
 

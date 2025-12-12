@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -918,7 +919,57 @@ namespace DataEditorX
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
         {
-            cardedit?.OpenScript(menuitem_openfileinthis.Checked, DefaultScriptName);
+            if (!CheckOpen())
+            {
+                return;
+            }
+            Card c = GetCard();
+            string lua;
+            if (c.id > 0)
+            {
+                lua = ygopath.GetScript(c.id);
+            }
+            else if (DefaultScriptName.Length > 0)
+            {
+                lua = ygopath.GetModuleScript(DefaultScriptName);
+            }
+            else
+            {
+                return;
+            }
+            if (!File.Exists(lua))
+            {
+                MyPath.CreateDirByFile(lua);
+                if (MyMsg.Question(LMSG.IfCreateScript))
+                {
+                    using (FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write))
+                    {
+                        StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
+                        sw.WriteLine("--" + c.name);
+                        sw.WriteLine("local s,id,o=GetID()");
+                        sw.WriteLine("function s.initial_effect(c)");
+                        sw.WriteLine("\t");
+                        sw.WriteLine("end");
+                        sw.Close();
+                        fs.Close();
+                    }
+                }
+            }
+            if (File.Exists(lua))
+            {
+                if (menuitem_openfileinthis.Checked)
+                {
+                    if (!(DockPanel.Parent is MainForm main))
+                    {
+                        return;
+                    }
+                    main.Open(lua);
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(lua);
+                }
+            }
         }
         //删除
         void Btn_delClick(object sender, EventArgs e)
