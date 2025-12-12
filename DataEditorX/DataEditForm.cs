@@ -94,11 +94,6 @@ namespace DataEditorX
             Initialize(datapath);
             nowCdbFile = cdbfile;
         }
-
-        public DataEditForm(string datapath)
-        {
-            Initialize(datapath);
-        }
         public DataEditForm()
         {//默认启动
             string dir = MyConfig.ReadString(MyConfig.TAG_DATA);
@@ -178,7 +173,7 @@ namespace DataEditorX
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
             //default script name
             DefaultScriptName = MyConfig.ReadString(MyConfig.TAG_DEFAULT_SCRIPT_NAME);
-            if (nowCdbFile != null && File.Exists(nowCdbFile))
+            if (!string.IsNullOrEmpty(nowCdbFile) && File.Exists(nowCdbFile))
             {
                 Open(nowCdbFile);
             }

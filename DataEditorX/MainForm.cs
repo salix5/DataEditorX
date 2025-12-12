@@ -121,7 +121,7 @@ namespace DataEditorX
             //如果没有将要打开的文件，则打开一个空数据库标签
             if (string.IsNullOrEmpty(openfile))
             {
-                OpenDatabase(null);
+                OpenDatabase("");
             }
             else
             {
@@ -194,15 +194,7 @@ namespace DataEditorX
         //打开数据库
         void OpenDatabase(string file)
         {
-            DataEditForm def;
-            if (string.IsNullOrEmpty(file) || !File.Exists(file))
-            {
-                def = new DataEditForm(datapath);
-            }
-            else
-            {
-                def = new DataEditForm(datapath, file);
-            }
+            DataEditForm def = new DataEditForm(datapath, file);
             //设置语言
             LanguageHelper.SetFormLabel(def);
             //初始化界面数据
@@ -291,7 +283,7 @@ namespace DataEditorX
         //新建DataEditorX
         void DataEditorToolStripMenuItemClick(object sender, EventArgs e)
         {
-            OpenDatabase(null);
+            OpenDatabase("");
         }
         //关闭其他或者所有
         void CloseMdi(bool isall)
