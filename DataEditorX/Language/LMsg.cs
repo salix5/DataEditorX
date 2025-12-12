@@ -33,7 +33,7 @@ namespace DataEditorX.Language
         CheckUpdateFail = 0x10,
         HaveNewVersion = 0x11,
         FileIsNotExists = 0x12,
-        NotSelectDataBase = 0x13,
+        NotSelectDatabase = 0x13,
         SelectDataBasePath = 0x14,
         SelectYdkPath = 0x15,
         SelectImagePath = 0x16,
