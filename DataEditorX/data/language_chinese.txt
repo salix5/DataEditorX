@@ -88,7 +88,6 @@ CodeEditForm.mainMenu.menuitem_setcard	设置卡片库
 CodeEditForm.mainMenu.menuitem_help	帮助(&H)
 CodeEditForm.mainMenu.menuitem_about	关于
 CodeEditForm.mainMenu.menuitem_tools	工具(&T)
-CodeEditForm.mainMenu.menuitem_testlua	N/A
 CodeEditForm.mainMenu.menuitem_effectcreator	效果生成器
 #
 DataEditForm.mainMenu.menu_image	MSE(&M)
