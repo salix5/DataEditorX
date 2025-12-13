@@ -194,11 +194,6 @@ namespace DataEditorX.Core
                 }
                 sqliteconn.Close();
             }
-            if (list.Count == 0)
-            {
-                return null;
-            }
-
             return list.ToArray();
         }
         #endregion
