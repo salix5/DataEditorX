@@ -66,7 +66,6 @@ namespace DataEditorX
             this.menuitem_readydk = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_readimages = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep6 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_compdb = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_export_select_sql = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_export_all_sql = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_findluafunc = new System.Windows.Forms.ToolStripMenuItem();
@@ -315,7 +314,6 @@ namespace DataEditorX
             this.menuitem_readydk,
             this.menuitem_readimages,
             this.tsep6,
-            this.menuitem_compdb,
             this.menuitem_export_select_sql,
             this.menuitem_export_all_sql,
             this.menuitem_findluafunc,
@@ -333,118 +331,111 @@ namespace DataEditorX
             // menuitem_operacardsfile
             // 
             this.menuitem_operacardsfile.Name = "menuitem_operacardsfile";
-            this.menuitem_operacardsfile.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_operacardsfile.Size = new System.Drawing.Size(203, 22);
             this.menuitem_operacardsfile.Text = "Opera Card\'s Files";
             this.menuitem_operacardsfile.Click += new System.EventHandler(this.menuitem_deletecardsfile_Click);
             // 
             // menuitem_openfileinthis
             // 
             this.menuitem_openfileinthis.Name = "menuitem_openfileinthis";
-            this.menuitem_openfileinthis.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_openfileinthis.Size = new System.Drawing.Size(203, 22);
             this.menuitem_openfileinthis.Text = "Open File in This";
             this.menuitem_openfileinthis.Click += new System.EventHandler(this.menuitem_openfileinthis_Click);
             // 
             // menuitem_default_script
             // 
             this.menuitem_default_script.Name = "menuitem_default_script";
-            this.menuitem_default_script.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_default_script.Size = new System.Drawing.Size(203, 22);
             this.menuitem_default_script.Text = "Set default script name";
             this.menuitem_default_script.Click += new System.EventHandler(this.menuitem_default_script_Click);
             // 
             // tsep2
             // 
             this.tsep2.Name = "tsep2";
-            this.tsep2.Size = new System.Drawing.Size(201, 6);
+            this.tsep2.Size = new System.Drawing.Size(200, 6);
             // 
             // menuitem_readydk
             // 
             this.menuitem_readydk.Name = "menuitem_readydk";
-            this.menuitem_readydk.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_readydk.Size = new System.Drawing.Size(203, 22);
             this.menuitem_readydk.Text = "Cards Form ydk file(&Y)";
             this.menuitem_readydk.Click += new System.EventHandler(this.Menuitem_readydkClick);
             // 
             // menuitem_readimages
             // 
             this.menuitem_readimages.Name = "menuitem_readimages";
-            this.menuitem_readimages.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_readimages.Size = new System.Drawing.Size(203, 22);
             this.menuitem_readimages.Text = "Cards From Images(&I)";
             this.menuitem_readimages.Click += new System.EventHandler(this.Menuitem_readimagesClick);
             // 
             // tsep6
             // 
             this.tsep6.Name = "tsep6";
-            this.tsep6.Size = new System.Drawing.Size(201, 6);
-            // 
-            // menuitem_compdb
-            // 
-            this.menuitem_compdb.Name = "menuitem_compdb";
-            this.menuitem_compdb.Size = new System.Drawing.Size(204, 22);
-            this.menuitem_compdb.Text = "Compress Database";
-            this.menuitem_compdb.Click += new System.EventHandler(this.menuitem_compdb_Click);
+            this.tsep6.Size = new System.Drawing.Size(200, 6);
             // 
             // menuitem_export_select_sql
             // 
             this.menuitem_export_select_sql.Name = "menuitem_export_select_sql";
-            this.menuitem_export_select_sql.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_export_select_sql.Size = new System.Drawing.Size(203, 22);
             this.menuitem_export_select_sql.Text = "Export select to Sql";
             this.menuitem_export_select_sql.Click += new System.EventHandler(this.Menuitem_export_select_sqlClick);
             // 
             // menuitem_export_all_sql
             // 
             this.menuitem_export_all_sql.Name = "menuitem_export_all_sql";
-            this.menuitem_export_all_sql.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_export_all_sql.Size = new System.Drawing.Size(203, 22);
             this.menuitem_export_all_sql.Text = "Export all to Sql";
             this.menuitem_export_all_sql.Click += new System.EventHandler(this.Menuitem_export_all_sqlClick);
             // 
             // menuitem_findluafunc
             // 
             this.menuitem_findluafunc.Name = "menuitem_findluafunc";
-            this.menuitem_findluafunc.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_findluafunc.Size = new System.Drawing.Size(203, 22);
             this.menuitem_findluafunc.Text = "Find Lua Function";
             this.menuitem_findluafunc.Click += new System.EventHandler(this.menuitem_findluafunc_Click);
             // 
             // menuitem_exportdata
             // 
             this.menuitem_exportdata.Name = "menuitem_exportdata";
-            this.menuitem_exportdata.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_exportdata.Size = new System.Drawing.Size(203, 22);
             this.menuitem_exportdata.Text = "Export Data";
             this.menuitem_exportdata.Click += new System.EventHandler(this.Menuitem_exportdataClick);
             // 
             // tsep5
             // 
             this.tsep5.Name = "tsep5";
-            this.tsep5.Size = new System.Drawing.Size(201, 6);
+            this.tsep5.Size = new System.Drawing.Size(200, 6);
             // 
             // menuitem_cutimages
             // 
             this.menuitem_cutimages.Name = "menuitem_cutimages";
-            this.menuitem_cutimages.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_cutimages.Size = new System.Drawing.Size(203, 22);
             this.menuitem_cutimages.Text = "Cut Images";
             this.menuitem_cutimages.Click += new System.EventHandler(this.Menuitem_cutimagesClick);
             // 
             // menuitem_convertimage
             // 
             this.menuitem_convertimage.Name = "menuitem_convertimage";
-            this.menuitem_convertimage.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_convertimage.Size = new System.Drawing.Size(203, 22);
             this.menuitem_convertimage.Text = "Import Images";
             this.menuitem_convertimage.Click += new System.EventHandler(this.Menuitem_convertimageClick);
             // 
             // tsep1
             // 
             this.tsep1.Name = "tsep1";
-            this.tsep1.Size = new System.Drawing.Size(201, 6);
+            this.tsep1.Size = new System.Drawing.Size(200, 6);
             // 
             // menuitem_cancelTask
             // 
             this.menuitem_cancelTask.Name = "menuitem_cancelTask";
-            this.menuitem_cancelTask.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_cancelTask.Size = new System.Drawing.Size(203, 22);
             this.menuitem_cancelTask.Text = "Cancel Task";
             this.menuitem_cancelTask.Click += new System.EventHandler(this.Menuitem_cancelTaskClick);
             // 
             // menuitem_replace
             // 
             this.menuitem_replace.Name = "menuitem_replace";
-            this.menuitem_replace.Size = new System.Drawing.Size(204, 22);
+            this.menuitem_replace.Size = new System.Drawing.Size(203, 22);
             this.menuitem_replace.Text = "*Auto replace";
             this.menuitem_replace.Click += new System.EventHandler(this.Menuitem_replaceClick);
             // 
@@ -498,7 +489,7 @@ namespace DataEditorX
             // 
             // cb_cardattribute
             // 
-            this.cb_cardattribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_cardattribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardattribute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardattribute.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -510,7 +501,7 @@ namespace DataEditorX
             // 
             // tb_cardname
             // 
-            this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tb_cardname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_cardname.Font = new System.Drawing.Font("Microsoft JhengHei", 11F);
             this.tb_cardname.Location = new System.Drawing.Point(5, 1);
@@ -522,7 +513,7 @@ namespace DataEditorX
             // 
             // cb_cardrule
             // 
-            this.cb_cardrule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_cardrule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardrule.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -534,7 +525,7 @@ namespace DataEditorX
             // 
             // cb_cardlevel
             // 
-            this.cb_cardlevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_cardlevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardlevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardlevel.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -546,7 +537,7 @@ namespace DataEditorX
             // 
             // cb_cardrace
             // 
-            this.cb_cardrace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_cardrace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_cardrace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_cardrace.DropDownWidth = 107;
@@ -559,7 +550,7 @@ namespace DataEditorX
             // 
             // cb_setname2
             // 
-            this.cb_setname2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_setname2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname2.DropDownHeight = 320;
             this.cb_setname2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -575,7 +566,7 @@ namespace DataEditorX
             // 
             // cb_setname1
             // 
-            this.cb_setname1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_setname1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname1.DropDownHeight = 320;
             this.cb_setname1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -591,7 +582,7 @@ namespace DataEditorX
             // 
             // cb_setname4
             // 
-            this.cb_setname4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_setname4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname4.DropDownHeight = 320;
             this.cb_setname4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -607,7 +598,7 @@ namespace DataEditorX
             // 
             // cb_setname3
             // 
-            this.cb_setname3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cb_setname3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_setname3.DropDownHeight = 320;
             this.cb_setname3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -625,8 +616,8 @@ namespace DataEditorX
             // 
             this.tb_cardtext.AcceptsReturn = true;
             this.tb_cardtext.AcceptsTab = true;
-            this.tb_cardtext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tb_cardtext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_cardtext.Font = new System.Drawing.Font("Microsoft JhengHei", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_cardtext.Location = new System.Drawing.Point(4, 349);
@@ -1087,8 +1078,8 @@ namespace DataEditorX
             // 
             // splitContainer
             // 
-            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer.Location = new System.Drawing.Point(3, 3);
             this.splitContainer.Name = "splitContainer";
@@ -1142,8 +1133,8 @@ namespace DataEditorX
             // 
             // lv_cardlist
             // 
-            this.lv_cardlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lv_cardlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lv_cardlist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lv_cardlist.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1211,7 +1202,7 @@ namespace DataEditorX
             // 
             // lb_scripttext
             // 
-            this.lb_scripttext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lb_scripttext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_scripttext.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lb_scripttext.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
@@ -1342,7 +1333,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_importmseimg;
         private System.Windows.Forms.ToolStripMenuItem menuitem_findluafunc;
         private System.Windows.Forms.ToolStripSeparator tsep6;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_compdb;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse;

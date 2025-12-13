@@ -49,7 +49,6 @@ DataEditForm.mainMenu.menuitem_openfileinthis	Open Script With CodeEditor
 DataEditForm.mainMenu.menuitem_default_script	Set default script name
 DataEditForm.mainMenu.menuitem_readydk	Read From ydk File(&Y)
 DataEditForm.mainMenu.menuitem_readimages	Read From Images Path(&I)
-DataEditForm.mainMenu.menuitem_compdb	Compress Database
 DataEditForm.mainMenu.menuitem_exportdata	Export Data As zip
 DataEditForm.mainMenu.menuitem_mseconfig	Set MSE Config
 DataEditForm.mainMenu.menuitem_testpendulumtext	test pendulum texts

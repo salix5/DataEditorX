@@ -36,7 +36,6 @@ DataEditForm.mainMenu.menuitem_default_script	Set default script name
 DataEditForm.mainMenu.menuitem_findluafunc	从C++源码查找Lua函数
 DataEditForm.mainMenu.menuitem_readydk	从卡组文件读取卡片(&Y)
 DataEditForm.mainMenu.menuitem_readimages	从卡图文件夹读取卡片(&I)
-DataEditForm.mainMenu.menuitem_compdb	压缩数据库
 DataEditForm.mainMenu.menuitem_export_all_sql	所有卡片导出为sql
 DataEditForm.mainMenu.menuitem_export_select_sql	选择卡片导出为sql
 DataEditForm.mainMenu.menuitem_exportdata	导出数据库和图片脚本为zip

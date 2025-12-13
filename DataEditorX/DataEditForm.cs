@@ -1841,19 +1841,6 @@ namespace DataEditorX
         }
         #endregion
 
-        #region 压缩数据库
-        private void menuitem_compdb_Click(object sender, EventArgs e)
-        {
-            if (!CheckOpen())
-            {
-                return;
-            }
-
-            Database.Vacuum(nowCdbFile);
-            MyMsg.Show(LMSG.CompDBOK);
-        }
-        #endregion
-
         #region 设置
         //删除卡片的时候，是否要删除图片和脚本
         private void menuitem_deletecardsfile_Click(object sender, EventArgs e)
