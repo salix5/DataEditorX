@@ -347,18 +347,16 @@ namespace DataEditorX
 
             if (saveas)
             {
-                using (SaveFileDialog sfdlg = new SaveFileDialog())
+                using SaveFileDialog sfdlg = new SaveFileDialog();
+                sfdlg.Filter = MyConfig.SCRIPT_TYPE;
+                if (sfdlg.ShowDialog() == DialogResult.OK)
                 {
-                    sfdlg.Filter = MyConfig.SCRIPT_TYPE;
-                    if (sfdlg.ShowDialog() == DialogResult.OK)
-                    {
-                        nowFile = sfdlg.FileName;
-                        SetTitle();
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    nowFile = sfdlg.FileName;
+                    SetTitle();
+                }
+                else
+                {
+                    return false;
                 }
             }
             oldtext = fctb.Text;
@@ -438,14 +436,12 @@ namespace DataEditorX
 
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using (OpenFileDialog sfdlg = new OpenFileDialog())
+            using OpenFileDialog sfdlg = new OpenFileDialog();
+            sfdlg.Filter = MyConfig.SCRIPT_TYPE;
+            if (sfdlg.ShowDialog() == DialogResult.OK)
             {
-                sfdlg.Filter = MyConfig.SCRIPT_TYPE;
-                if (sfdlg.ShowDialog() == DialogResult.OK)
-                {
-                    nowFile = sfdlg.FileName;
-                    fctb.OpenFile(nowFile, new UTF8Encoding(false));
-                }
+                nowFile = sfdlg.FileName;
+                fctb.OpenFile(nowFile, new UTF8Encoding(false));
             }
         }
 

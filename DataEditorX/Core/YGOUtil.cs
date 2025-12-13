@@ -186,24 +186,20 @@ namespace DataEditorX.Core
             HashSet<string> IDs = new HashSet<string>();
             if (File.Exists(ydkfile))
             {
-                using (FileStream f = new FileStream(ydkfile, FileMode.Open, FileAccess.Read))
+                using FileStream f = new FileStream(ydkfile, FileMode.Open, FileAccess.Read);
+                using StreamReader reader = new StreamReader(f, Encoding.UTF8);
+                string str;
+                while ((str = reader.ReadLine()) != null)
                 {
-                    using (StreamReader reader = new StreamReader(f, Encoding.UTF8))
+                    if (str.StartsWith("!") || str.StartsWith("#"))
                     {
-                        string str;
-                        while ((str = reader.ReadLine()) != null)
-                        {
-                            if (str.StartsWith("!") || str.StartsWith("#"))
-                            {
-                                continue;
-                            }
-                            if (!long.TryParse(str, out _))
-                            {
-                                continue;
-                            }
-                            IDs.Add(str);
-                        }
+                        continue;
                     }
+                    if (!long.TryParse(str, out _))
+                    {
+                        continue;
+                    }
+                    IDs.Add(str);
                 }
             }
             return IDs.ToArray();

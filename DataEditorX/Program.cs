@@ -28,22 +28,20 @@ namespace DataEditorX
                 MessageBox.Show("Save Language OK.");
                 Environment.Exit(1);
             }
-            using (var mutex = new Mutex(true, "DataEditorX_SingleInstance", out bool createdNew))
+            using var mutex = new Mutex(true, "DataEditorX_SingleInstance", out bool createdNew);
+            if (!createdNew)
             {
-                if (!createdNew)
-                {
-                    return;
-                }
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                MainForm mainForm = new MainForm();
-                //设置将要打开的文件
-                mainForm.SetOpenFile(arg);
-                //数据目录
-                mainForm.SetDataPath(MyPath.Combine(Application.StartupPath, MyConfig.TAG_DATA));
-
-                Application.Run(mainForm);
+                return;
             }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            MainForm mainForm = new MainForm();
+            //设置将要打开的文件
+            mainForm.SetOpenFile(arg);
+            //数据目录
+            mainForm.SetDataPath(MyPath.Combine(Application.StartupPath, MyConfig.TAG_DATA));
+
+            Application.Run(mainForm);
         }
         static void SaveLanguage()
         {

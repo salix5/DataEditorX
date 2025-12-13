@@ -309,23 +309,21 @@ namespace DataEditorX
         //打开文件
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
+            if (GetActive() != null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
-                if (GetActive() != null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
-                {
-                    dlg.Filter = MyConfig.CDB_TYPE;
-                }
-                else
-                {
-                    dlg.Filter = MyConfig.SCRIPT_TYPE;
-                }
+                dlg.Filter = MyConfig.CDB_TYPE;
+            }
+            else
+            {
+                dlg.Filter = MyConfig.SCRIPT_TYPE;
+            }
 
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    string file = dlg.FileName;
-                    Open(file);
-                }
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string file = dlg.FileName;
+                Open(file);
             }
         }
 
@@ -337,40 +335,38 @@ namespace DataEditorX
         //新建文件
         void Menuitem_newClick(object sender, EventArgs e)
         {
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
+            if (GetActive() != null)//判断当前窗口是不是DataEditor
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
-                if (GetActive() != null)//判断当前窗口是不是DataEditor
+                dlg.Filter = MyConfig.CDB_TYPE;
+            }
+            else
+            {
+                dlg.Filter = MyConfig.SCRIPT_TYPE;
+            }
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string file = dlg.FileName;
+                if (File.Exists(file))
                 {
-                    dlg.Filter = MyConfig.CDB_TYPE;
+                    File.Delete(file);
+                }
+                //是否是数据库
+                if (YGOUtil.IsDatabase(file))
+                {
+                    if (Database.Create(file))//是否创建成功
+                    {
+                        if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
+                        {
+                            Open(file);
+                        }
+                    }
                 }
                 else
                 {
-                    dlg.Filter = MyConfig.SCRIPT_TYPE;
-                }
-
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    string file = dlg.FileName;
-                    if (File.Exists(file))
-                    {
-                        File.Delete(file);
-                    }
-                    //是否是数据库
-                    if (YGOUtil.IsDatabase(file))
-                    {
-                        if (Database.Create(file))//是否创建成功
-                        {
-                            if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
-                            {
-                                Open(file);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Open(file);
-                    }
+                    Open(file);
                 }
             }
         }

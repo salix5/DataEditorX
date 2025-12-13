@@ -938,17 +938,15 @@ namespace DataEditorX
                 MyPath.CreateDirByFile(lua);
                 if (MyMsg.Question(LMSG.IfCreateScript))
                 {
-                    using (FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write))
-                    {
-                        StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
-                        sw.WriteLine("--" + c.name);
-                        sw.WriteLine("local s,id,o=GetID()");
-                        sw.WriteLine("function s.initial_effect(c)");
-                        sw.WriteLine("\t");
-                        sw.WriteLine("end");
-                        sw.Close();
-                        fs.Close();
-                    }
+                    using FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write);
+                    StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
+                    sw.WriteLine("--" + c.name);
+                    sw.WriteLine("local s,id,o=GetID()");
+                    sw.WriteLine("function s.initial_effect(c)");
+                    sw.WriteLine("\t");
+                    sw.WriteLine("end");
+                    sw.Close();
+                    fs.Close();
                 }
             }
             if (File.Exists(lua))
@@ -1113,31 +1111,27 @@ namespace DataEditorX
         //打开文件
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
+            dlg.Filter = MyConfig.CDB_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
-                dlg.Filter = MyConfig.CDB_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    Open(dlg.FileName);
-                }
+                Open(dlg.FileName);
             }
         }
         //新建文件
         void Menuitem_newClick(object sender, EventArgs e)
         {
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
+            dlg.Filter = MyConfig.CDB_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
-                dlg.Filter = MyConfig.CDB_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
+                if (Database.Create(dlg.FileName))
                 {
-                    if (Database.Create(dlg.FileName))
+                    if (MyMsg.Question(LMSG.IfOpenDatabase))
                     {
-                        if (MyMsg.Question(LMSG.IfOpenDatabase))
-                        {
-                            Open(dlg.FileName);
-                        }
+                        Open(dlg.FileName);
                     }
                 }
             }
@@ -1150,17 +1144,15 @@ namespace DataEditorX
                 return;
             }
 
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
+            dlg.Filter = MyConfig.YDK_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
-                dlg.Filter = MyConfig.YDK_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    tmpCodes.Clear();
-                    string[] ids = YGOUtil.ReadYDK(dlg.FileName);
-                    tmpCodes.AddRange(ids);
-                    SetCards(Database.ReadFromId(nowCdbFile, ids), false);
-                }
+                tmpCodes.Clear();
+                string[] ids = YGOUtil.ReadYDK(dlg.FileName);
+                tmpCodes.AddRange(ids);
+                SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
         }
         //从图片文件夹读取
@@ -1171,16 +1163,14 @@ namespace DataEditorX
                 return;
             }
 
-            using (FolderBrowserDialog fdlg = new FolderBrowserDialog())
+            using FolderBrowserDialog fdlg = new FolderBrowserDialog();
+            fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
+            if (fdlg.ShowDialog() == DialogResult.OK)
             {
-                fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
-                if (fdlg.ShowDialog() == DialogResult.OK)
-                {
-                    tmpCodes.Clear();
-                    string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
-                    tmpCodes.AddRange(ids);
-                    SetCards(Database.ReadFromId(nowCdbFile, ids), false);
-                }
+                tmpCodes.Clear();
+                string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
+                tmpCodes.AddRange(ids);
+                SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
         }
         //关闭
@@ -1427,19 +1417,17 @@ namespace DataEditorX
                 return;
             }
             //select save mse-set
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
+            dlg.Filter = MyConfig.MSE_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = MyConfig.MSE_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    bool isUpdate = false;
+                bool isUpdate = false;
 #if DEBUG
-                    isUpdate = MyMsg.Question(LMSG.OnlySet);
+                isUpdate = MyMsg.Question(LMSG.OnlySet);
 #endif
-                    tasker.SetTask(MyTask.SaveAsMSE, cards, dlg.FileName, isUpdate.ToString());
-                    Run(LanguageHelper.GetMsg(LMSG.SaveMse));
-                }
+                tasker.SetTask(MyTask.SaveAsMSE, cards, dlg.FileName, isUpdate.ToString());
+                Run(LanguageHelper.GetMsg(LMSG.SaveMse));
             }
         }
         #endregion
@@ -1453,15 +1441,13 @@ namespace DataEditorX
                 return;
             }
 
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectImage) + "-" + tb_cardname.Text;
+            dlg.Filter = MyConfig.IMAGE_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectImage) + "-" + tb_cardname.Text;
-                dlg.Filter = MyConfig.IMAGE_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    //dlg.FileName;
-                    ImportImage(dlg.FileName, tid);
-                }
+                //dlg.FileName;
+                ImportImage(dlg.FileName, tid);
             }
         }
         private void pl_image_DoubleClick(object sender, EventArgs e)
@@ -1558,15 +1544,13 @@ namespace DataEditorX
                 return;
             }
 
-            using (FolderBrowserDialog fdlg = new FolderBrowserDialog())
+            using FolderBrowserDialog fdlg = new FolderBrowserDialog();
+            fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
+            if (fdlg.ShowDialog() == DialogResult.OK)
             {
-                fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
-                if (fdlg.ShowDialog() == DialogResult.OK)
-                {
-                    bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                    tasker.SetTask(MyTask.ConvertImages, null, fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
-                    Run(LanguageHelper.GetMsg(LMSG.ConvertImage));
-                }
+                bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
+                tasker.SetTask(MyTask.ConvertImages, null, fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
+                Run(LanguageHelper.GetMsg(LMSG.ConvertImage));
             }
         }
         #endregion
@@ -1584,15 +1568,13 @@ namespace DataEditorX
                 return;
             }
 
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            dlg.InitialDirectory = ygopath.gamepath;
+            dlg.Filter = "Zip|*.zip|All Files(*.*)|*.*";
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.InitialDirectory = ygopath.gamepath;
-                dlg.Filter = "Zip|*.zip|All Files(*.*)|*.*";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    tasker.SetTask(MyTask.ExportData, GetCardList(false), ygopath.gamepath, dlg.FileName, GetOpenFile(), DefaultScriptName);
-                    Run(LanguageHelper.GetMsg(LMSG.ExportData));
-                }
+                tasker.SetTask(MyTask.ExportData, GetCardList(false), ygopath.gamepath, dlg.FileName, GetOpenFile(), DefaultScriptName);
+                Run(LanguageHelper.GetMsg(LMSG.ExportData));
             }
 
         }
@@ -1720,15 +1702,13 @@ namespace DataEditorX
         private void menuitem_findluafunc_Click(object sender, EventArgs e)
         {
             string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-            using (FolderBrowserDialog fd = new FolderBrowserDialog())
+            using FolderBrowserDialog fd = new FolderBrowserDialog();
+            fd.Description = "Folder Name: ocgcore";
+            if (fd.ShowDialog() == DialogResult.OK)
             {
-                fd.Description = "Folder Name: ocgcore";
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    LuaFunction.Read(funtxt);//先读取旧函数列表
-                    LuaFunction.Find(fd.SelectedPath);//查找新函数，并保存
-                    MessageBox.Show("OK");
-                }
+                LuaFunction.Read(funtxt);//先读取旧函数列表
+                LuaFunction.Find(fd.SelectedPath);//查找新函数，并保存
+                MessageBox.Show("OK");
             }
         }
 
@@ -1823,16 +1803,14 @@ namespace DataEditorX
                 return;
             }
             //select open mse-set
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
+            dlg.Filter = MyConfig.MSE_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = MyConfig.MSE_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                    tasker.SetTask(MyTask.ReadMSE, null, dlg.FileName, isUpdate.ToString());
-                    Run(LanguageHelper.GetMsg(LMSG.ReadMSE));
-                }
+                bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
+                tasker.SetTask(MyTask.ReadMSE, null, dlg.FileName, isUpdate.ToString());
+                Run(LanguageHelper.GetMsg(LMSG.ReadMSE));
             }
         }
         #endregion
@@ -1937,24 +1915,22 @@ namespace DataEditorX
                 }
             }
             //select open mse-set
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
+            dlg.Filter = MyConfig.MSE_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-                dlg.Filter = MyConfig.MSE_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    string mseset = dlg.FileName;
-                    string exportpath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_EXPORT));
-                    MseMaker.ExportSet(msepath, mseset, exportpath, delegate
-                    {
-                        menuitem_exportMSEimage.Checked = false;
-                    });
-                    menuitem_exportMSEimage.Checked = true;
-                }
-                else
+                string mseset = dlg.FileName;
+                string exportpath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_EXPORT));
+                MseMaker.ExportSet(msepath, mseset, exportpath, delegate
                 {
                     menuitem_exportMSEimage.Checked = false;
-                }
+                });
+                menuitem_exportMSEimage.Checked = true;
+            }
+            else
+            {
+                menuitem_exportMSEimage.Checked = false;
             }
         }
         void Menuitem_testPendulumTextClick(object sender, EventArgs e)
@@ -1967,24 +1943,20 @@ namespace DataEditorX
         }
         void Menuitem_export_select_sqlClick(object sender, EventArgs e)
         {
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    Database.ExportSQL(dlg.FileName, GetCardList(true));
-                    MyMsg.Show("OK");
-                }
+                Database.ExportSQL(dlg.FileName, GetCardList(true));
+                MyMsg.Show("OK");
             }
         }
         void Menuitem_export_all_sqlClick(object sender, EventArgs e)
         {
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    Database.ExportSQL(dlg.FileName, GetCardList(false));
-                    MyMsg.Show("OK");
-                }
+                Database.ExportSQL(dlg.FileName, GetCardList(false));
+                MyMsg.Show("OK");
             }
         }
         void Menuitem_replaceClick(object sender, EventArgs e)
@@ -1994,31 +1966,29 @@ namespace DataEditorX
                 return;
             }
 
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
+            dlg.Filter = MyConfig.CDB_TYPE;
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
-                dlg.Filter = MyConfig.CDB_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
+                Card[] cards = Database.Read(nowCdbFile, "");
+                int count = cards.Length;
+                if (cards == null || cards.Length == 0)
                 {
-                    Card[] cards = Database.Read(nowCdbFile, "");
-                    int count = cards.Length;
-                    if (cards == null || cards.Length == 0)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    if (Database.Create(dlg.FileName))
+                if (Database.Create(dlg.FileName))
+                {
+                    for (int i = 0; i < count; i++)
                     {
-                        for (int i = 0; i < count; i++)
+                        if (cards[i].desc != null)
                         {
-                            if (cards[i].desc != null)
-                            {
-                                cards[i].desc = tasker.MseHelper.ReplaceText(cards[i].desc, cards[i].name);
-                            }
+                            cards[i].desc = tasker.MseHelper.ReplaceText(cards[i].desc, cards[i].name);
                         }
-                        Database.CopyDB(dlg.FileName, false, cards);
-                        MyMsg.Show(LMSG.CopyCardsToDBIsOK);
                     }
+                    Database.CopyDB(dlg.FileName, false, cards);
+                    MyMsg.Show(LMSG.CopyCardsToDBIsOK);
                 }
             }
         }
@@ -2082,7 +2052,7 @@ namespace DataEditorX
                     return;
                 }
             }
-            if (DockPanel.Parent is not MainForm main) 
+            if (DockPanel.Parent is not MainForm main)
             {
                 return;
             }

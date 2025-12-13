@@ -244,29 +244,27 @@ namespace DataEditorX.Language
         #region 保存语言文件
         public bool SaveLanguage(string conf)
         {
-            using (FileStream fs = new FileStream(conf, FileMode.Create, FileAccess.Write))
+            using FileStream fs = new FileStream(conf, FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+            foreach (string k in mWordslist.Keys)
             {
-                StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-                foreach (string k in mWordslist.Keys)
-                {
-                    sw.WriteLine(k + SEP_LINE + mWordslist[k]);
-                }
-                sw.WriteLine("#");
-                foreach (LMSG k in _gMsgList.Keys)
-                {
-                    //记得替换换行符
-                    sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + _gMsgList[k].Replace("\n", "\\n"));
-                }
-                foreach (LMSG k in Enum.GetValues(typeof(LMSG)))
-                {
-                    if (!_gMsgList.ContainsKey(k))
-                    {
-                        sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + k.ToString());
-                    }
-                }
-                sw.Close();
-                fs.Close();
+                sw.WriteLine(k + SEP_LINE + mWordslist[k]);
             }
+            sw.WriteLine("#");
+            foreach (LMSG k in _gMsgList.Keys)
+            {
+                //记得替换换行符
+                sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + _gMsgList[k].Replace("\n", "\\n"));
+            }
+            foreach (LMSG k in Enum.GetValues(typeof(LMSG)))
+            {
+                if (!_gMsgList.ContainsKey(k))
+                {
+                    sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + k.ToString());
+                }
+            }
+            sw.Close();
+            fs.Close();
             return true;
         }
         #endregion
@@ -281,43 +279,41 @@ namespace DataEditorX.Language
 
             _gWordsList.Clear();
             _gMsgList.Clear();
-            using (FileStream fs = new FileStream(f, FileMode.Open, FileAccess.Read))
+            using FileStream fs = new FileStream(f, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+            string line;
+            LMSG ltemp;
+            while ((line = sr.ReadLine()) != null)
             {
-                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-                string line;
-                LMSG ltemp;
-                while ((line = sr.ReadLine()) != null)
+                if (line.Length == 0)
                 {
-                    if (line.Length == 0)
-                    {
-                        continue;
-                    }
-                    if (line.StartsWith(STR_COMMENT))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
+                if (line.StartsWith(STR_COMMENT))
+                {
+                    continue;
+                }
 
-                    string[] words = line.Split(new[] { SEP_LINE }, 2);
-                    if (words.Length < 2)
-                    {
-                        continue;
-                    }
+                string[] words = line.Split(new[] { SEP_LINE }, 2);
+                if (words.Length < 2)
+                {
+                    continue;
+                }
 
-                    if (line.StartsWith("0x"))//加载消息文字
+                if (line.StartsWith("0x"))//加载消息文字
+                {
+                    uint.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out uint utemp);
+                    ltemp = (LMSG)utemp;
+                    if (!_gMsgList.ContainsKey(ltemp))//记得替换换行符
                     {
-                        uint.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out uint utemp);
-                        ltemp = (LMSG)utemp;
-                        if (!_gMsgList.ContainsKey(ltemp))//记得替换换行符
-                        {
-                            _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
-                        }
+                        _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
                     }
-                    else //加载界面语言
+                }
+                else //加载界面语言
+                {
+                    if (!_gWordsList.ContainsKey(words[0]))
                     {
-                        if (!_gWordsList.ContainsKey(words[0]))
-                        {
-                            _gWordsList.Add(words[0], words[1]);
-                        }
+                        _gWordsList.Add(words[0], words[1]);
                     }
                 }
             }

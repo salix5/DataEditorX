@@ -93,34 +93,30 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && SQLs != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
+                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                con.Open();
+                using (SQLiteTransaction trans = con.BeginTransaction())
                 {
-                    con.Open();
-                    using (SQLiteTransaction trans = con.BeginTransaction())
+                    try
                     {
-                        try
+                        using SQLiteCommand cmd = new SQLiteCommand(con);
+                        foreach (string SQLstr in SQLs)
                         {
-                            using (SQLiteCommand cmd = new SQLiteCommand(con))
-                            {
-                                foreach (string SQLstr in SQLs)
-                                {
-                                    cmd.CommandText = SQLstr;
-                                    result += cmd.ExecuteNonQuery();
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            trans.Rollback();//出错，回滚
-                            result = -1;
-                        }
-                        finally
-                        {
-                            trans.Commit();
+                            cmd.CommandText = SQLstr;
+                            result += cmd.ExecuteNonQuery();
                         }
                     }
-                    con.Close();
+                    catch
+                    {
+                        trans.Rollback();//出错，回滚
+                        result = -1;
+                    }
+                    finally
+                    {
+                        trans.Commit();
+                    }
                 }
+                con.Close();
             }
             return result;
         }
@@ -164,43 +160,39 @@ namespace DataEditorX.Core
             string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
             return Read(DB, stmt1);
         }
-       
+
         public static Card[] Read(string DB, string SQL)
         {
             List<Card> list = new List<Card>();
             if (File.Exists(DB) && SQL != null)
             {
-                using (SQLiteConnection sqliteconn = new SQLiteConnection($"Data Source={DB}"))
+                using SQLiteConnection sqliteconn = new SQLiteConnection($"Data Source={DB}");
+                sqliteconn.Open();
+                using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
                 {
-                    sqliteconn.Open();
-                    using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
+                    using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
                     {
-                        using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
+                        string stmt1;
+                        if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                         {
-                            string stmt1;
-                            if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
-                            {
-                                stmt1 = SQL;
-                            }
-                            else
-                            {
-                                stmt1 = DefaultSQL;
-                            }
-
-                            sqlitecommand.CommandText = stmt1;
-                            using (SQLiteDataReader reader = sqlitecommand.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    list.Add(ReadCard(reader));
-                                }
-                                reader.Close();
-                            }
+                            stmt1 = SQL;
                         }
-                        trans.Commit();
+                        else
+                        {
+                            stmt1 = DefaultSQL;
+                        }
+
+                        sqlitecommand.CommandText = stmt1;
+                        using SQLiteDataReader reader = sqlitecommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            list.Add(ReadCard(reader));
+                        }
+                        reader.Close();
                     }
-                    sqliteconn.Close();
+                    trans.Commit();
                 }
+                sqliteconn.Close();
             }
             if (list.Count == 0)
             {
@@ -268,25 +260,23 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
+                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                con.Open();
+                using (SQLiteTransaction trans = con.BeginTransaction())
                 {
-                    con.Open();
-                    using (SQLiteTransaction trans = con.BeginTransaction())
+                    using (SQLiteCommand cmd = new SQLiteCommand(con))
                     {
-                        using (SQLiteCommand cmd = new SQLiteCommand(con))
+                        cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                        InitParameters(cmd);
+                        foreach (Card c in cards)
                         {
-                            cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
-                            InitParameters(cmd);
-                            foreach (Card c in cards)
-                            {
-                                AddParameters(cmd, c);
-                                result += cmd.ExecuteNonQuery();
-                            }
+                            AddParameters(cmd, c);
+                            result += cmd.ExecuteNonQuery();
                         }
-                        trans.Commit();
                     }
-                    con.Close();
+                    trans.Commit();
                 }
+                con.Close();
             }
             return result;
         }
@@ -298,25 +288,23 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using (SQLiteConnection con = new SQLiteConnection($"Data Source={DB}"))
+                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                con.Open();
+                using (SQLiteTransaction trans = con.BeginTransaction())
                 {
-                    con.Open();
-                    using (SQLiteTransaction trans = con.BeginTransaction())
+                    using (SQLiteCommand cmd = new SQLiteCommand(con))
                     {
-                        using (SQLiteCommand cmd = new SQLiteCommand(con))
+                        cmd.CommandText = DeleteSQL;
+                        var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
+                        foreach (Card c in cards)
                         {
-                            cmd.CommandText = DeleteSQL;
-                            var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
-                            foreach (Card c in cards)
-                            {
-                                parameter.Value = c.id;
-                                result += cmd.ExecuteNonQuery();
-                            }
+                            parameter.Value = c.id;
+                            result += cmd.ExecuteNonQuery();
                         }
-                        trans.Commit();
                     }
-                    con.Close();
+                    trans.Commit();
                 }
+                con.Close();
             }
             return result;
         }
@@ -327,16 +315,14 @@ namespace DataEditorX.Core
         {
             if (File.Exists(db))
             {
-                using (SQLiteConnection con = new SQLiteConnection($"Data Source={db}"))
+                using SQLiteConnection con = new SQLiteConnection($"Data Source={db}");
+                con.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(con))
                 {
-                    con.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(con))
-                    {
-                        cmd.CommandText = "VACUUM;";
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
+                    cmd.CommandText = "VACUUM;";
+                    cmd.ExecuteNonQuery();
                 }
+                con.Close();
             }
 
         }
@@ -453,7 +439,7 @@ namespace DataEditorX.Core
 
         }
         #endregion
-    
+
         #region INSERT
         /// <summary>
         /// Generate INSERT statements.
@@ -539,15 +525,13 @@ namespace DataEditorX.Core
 
         public static void ExportSQL(string file, params Card[] cards)
         {
-            using (FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write))
+            using FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+            foreach (Card c in cards)
             {
-                StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-                foreach (Card c in cards)
-                {
-                    sw.WriteLine(GetInsertSQL(c, false, true));
-                }
-                sw.Close();
+                sw.WriteLine(GetInsertSQL(c, false, true));
             }
+            sw.Close();
         }
 
         public static CardPack FindPack(string db, long id)
@@ -555,29 +539,25 @@ namespace DataEditorX.Core
             CardPack cardpack = null;
             if (File.Exists(db) && id >= 0)
             {
-                using (SQLiteConnection sqliteconn = new SQLiteConnection(@"Data Source=" + db))
+                using SQLiteConnection sqliteconn = new SQLiteConnection(@"Data Source=" + db);
+                sqliteconn.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
                 {
-                    sqliteconn.Open();
-                    using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
+                    sqlitecommand.CommandText = "select id,pack_id,pack,rarity,date from pack where id=" + id + " order by date desc";
+                    using SQLiteDataReader reader = sqlitecommand.ExecuteReader();
+                    if (reader.Read())
                     {
-                        sqlitecommand.CommandText = "select id,pack_id,pack,rarity,date from pack where id=" + id + " order by date desc";
-                        using (SQLiteDataReader reader = sqlitecommand.ExecuteReader())
+                        cardpack = new CardPack(id)
                         {
-                            if (reader.Read())
-                            {
-                                cardpack = new CardPack(id)
-                                {
-                                    pack_id = reader.GetString(1),
-                                    pack_name = reader.GetString(2),
-                                    rarity = reader.GetString(3),
-                                    date = reader.GetString(4)
-                                };
-                            }
-                            reader.Close();
-                        }
+                            pack_id = reader.GetString(1),
+                            pack_name = reader.GetString(2),
+                            rarity = reader.GetString(3),
+                            date = reader.GetString(4)
+                        };
                     }
-                    sqliteconn.Close();
+                    reader.Close();
                 }
+                sqliteconn.Close();
             }
             return cardpack;
         }
