@@ -345,16 +345,8 @@ namespace DataEditorX.Core
 
             if (!string.IsNullOrEmpty(c.name))
             {
-                if (c.name.IndexOf("%%") >= 0)
-                {
-                    c.name = c.name.Replace("%%", "%");
-                }
-                else
-                {
-                    c.name = "%" + c.name.Replace("%", "/%").Replace("_", "/_") + "%";
-                }
-
-                sb.Append(" AND texts.name LIKE '" + c.name.Replace("'", "''") + "' ");
+                string escapedName = c.name.Replace("%", "$%");
+                sb.Append($" AND texts.name LIKE '%{escapedName.Replace("'", "''")}%' ESCAPE '$'");
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
@@ -376,14 +368,14 @@ namespace DataEditorX.Core
                 sb.Append($" AND (datas.level & 0xffff) = {c.GetLevel()}");
             }
 
-            if ((c.level & 0xff000000) > 0)
+            if (c.GetLeftScale() > 0)
             {
-                sb.Append($" AND (datas.level & 0xff000000) = {c.level & 0xff000000}");
+                sb.Append($" AND (datas.level >> 24 & 0xff) = {c.GetLeftScale()}");
             }
 
-            if ((c.level & 0xff0000) > 0)
+            if (c.GetRightScale() > 0)
             {
-                sb.Append($" AND (datas.level & 0xff0000) = {c.level & 0xff0000}");
+                sb.Append($" AND (datas.level >> 16 & 0xff) = {c.GetRightScale()}");
             }
 
             if (c.race > 0)
@@ -438,10 +430,8 @@ namespace DataEditorX.Core
             {
                 sb.Append($" AND datas.alias={c.alias}");
             }
-            sb.Append(" ORDER BY id");
-
+            sb.Append(" ORDER BY id;");
             return sb.ToString();
-
         }
         #endregion
 
