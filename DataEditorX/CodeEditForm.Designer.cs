@@ -209,7 +209,7 @@ namespace DataEditorX
             // 
             this.menuitem_effectcreator.Name = "menuitem_effectcreator";
             this.menuitem_effectcreator.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.menuitem_effectcreator.Size = new System.Drawing.Size(180, 22);
+            this.menuitem_effectcreator.Size = new System.Drawing.Size(171, 22);
             this.menuitem_effectcreator.Text = "Effect Creator";
             this.menuitem_effectcreator.Visible = false;
             this.menuitem_effectcreator.Click += new System.EventHandler(this.effectCreatorToolStripMenuItem_Click);
@@ -308,7 +308,7 @@ namespace DataEditorX
             this.Controls.Add(this.tb_input);
             this.Controls.Add(this.documentMap1);
             this.Controls.Add(this.mainMenu);
-            this.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("SimSun", 9F);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "CodeEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
