@@ -163,7 +163,7 @@ namespace DataEditorX.Config
             items.Clear();
             foreach (string k in tooltipDic.Keys)
             {
-                AutocompleteItem item = new AutocompleteItem(k)
+                AutocompleteItem item = new(k)
                 {
                     ToolTipTitle = k,
                     ToolTipText = tooltipDic[k]
@@ -177,7 +177,7 @@ namespace DataEditorX.Config
                     continue;
                 }
 
-                AutocompleteItem item = new AutocompleteItem(k)
+                AutocompleteItem item = new(k)
                 {
                     ToolTipTitle = k,
                     ToolTipText = longTooltipDic[k]

@@ -28,7 +28,7 @@ namespace DataEditorX.Config
         #region 根据tag获取内容
         static string SubString(string content, string tag)
         {
-            Regex reg = new Regex(string.Format(@"{0}{1}\n([\S\s]*?)\n{2}", TAG_START, tag, TAG_END), RegexOptions.Multiline);
+            Regex reg = new(string.Format(@"{0}{1}\n([\S\s]*?)\n{2}", TAG_START, tag, TAG_END), RegexOptions.Multiline);
             Match mac = reg.Match(content);
             if (mac.Success)//把相应的内容提取出来
             {

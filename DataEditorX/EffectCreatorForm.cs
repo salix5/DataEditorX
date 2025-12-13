@@ -37,7 +37,7 @@ namespace DataEditorX
                 return Value;
             }
         }
-        readonly Dictionary<string, List<EffectCreatorItem>> itemDic = new Dictionary<string, List<EffectCreatorItem>>();
+        readonly Dictionary<string, List<EffectCreatorItem>> itemDic = new();
         private void EffectCreatorForm_Load(object sender, EventArgs e)
         {
             string config = $"data{Path.DirectorySeparatorChar}effect_creator_settings.txt";
@@ -45,9 +45,9 @@ namespace DataEditorX
             {
                 return;
             }
-            char[] sepChars = new char[]{' ','\t','　'};
-            FileStream fs = new FileStream(config,FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
+            char[] sepChars = new char[] { ' ', '\t', '　' };
+            FileStream fs = new(config, FileMode.Open);
+            StreamReader sr = new(fs);
             string nowType = "";
             for (string line = sr.ReadLine(); line != null; line = sr.ReadLine())
             {
@@ -65,7 +65,7 @@ namespace DataEditorX
                 {
                     continue;
                 }
-                string[] split = line.Split(sepChars,StringSplitOptions.RemoveEmptyEntries);
+                string[] split = line.Split(sepChars, StringSplitOptions.RemoveEmptyEntries);
                 if (split.Length == 2)
                 {
                     itemDic[nowType].Add(new EffectCreatorItem(split[0], split[1]));
@@ -85,7 +85,7 @@ namespace DataEditorX
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append(ProcessDescription());
             sb.Append(ProcessSpecialOptions());
             sb.Append(ProcessEffectType());
@@ -114,7 +114,7 @@ namespace DataEditorX
             {
                 return "";
             }
-            List<string> extraOptions = new List<string>();
+            List<string> extraOptions = new();
             if (countLimit.IsHasCode)
             {
                 extraOptions.Add(countLimit.Code.ToString());
@@ -236,7 +236,7 @@ namespace DataEditorX
 
         private string ProcessSpecialOptions()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             if (checkEnableReviveLimit.Checked)
             {
                 sb.AppendLine("c:EnableReviveLimit()");
@@ -319,7 +319,7 @@ namespace DataEditorX
                 {
                     countLimit = new EffectCountLimit(numCardCode.Value);
                 }
-                CountLimitForm form = new CountLimitForm(countLimit);
+                CountLimitForm form = new(countLimit);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     countLimit = form.CountLimit;
@@ -335,7 +335,7 @@ namespace DataEditorX
                 {
                     countLimit = new EffectCountLimit(numCardCode.Value);
                 }
-                CountLimitForm form = new CountLimitForm(countLimit);
+                CountLimitForm form = new(countLimit);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     countLimit = form.CountLimit;

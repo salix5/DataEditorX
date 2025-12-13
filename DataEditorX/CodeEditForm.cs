@@ -28,7 +28,7 @@ namespace DataEditorX
     {
         #region Style
         SortedDictionary<long, string> cardlist;
-        readonly MarkerStyle sameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.White)));
+        readonly MarkerStyle sameWordsStyle = new(new SolidBrush(Color.FromArgb(40, Color.White)));
         #endregion
 
         #region init 函数提示菜单
@@ -78,7 +78,7 @@ namespace DataEditorX
                 tabisspaces = false;
             }
 
-            Font ft = new Font(fctb.Font.Name, fctb.Font.Size / 1.2f, FontStyle.Regular);
+            Font ft = new(fctb.Font.Name, fctb.Font.Size / 1.2f, FontStyle.Regular);
             popupMenu = new AutocompleteMenu(fctb)
             {
                 MinFragmentLength = 2
@@ -184,11 +184,11 @@ namespace DataEditorX
             {
                 if (!File.Exists(file))
                 {
-                    FileStream fs = new FileStream(file, FileMode.Create);
+                    FileStream fs = new(file, FileMode.Create);
                     fs.Close();
                 }
                 nowFile = file;
-                FileInfo fi = new FileInfo(file);
+                FileInfo fi = new(file);
                 if (fi.Name.ToUpper().EndsWith(".LUA"))
                 {
                     (fctb.SyntaxHighlighter as MySyntaxHighlighter).cCode
@@ -347,7 +347,7 @@ namespace DataEditorX
 
             if (saveas)
             {
-                using SaveFileDialog sfdlg = new SaveFileDialog();
+                using SaveFileDialog sfdlg = new();
                 sfdlg.Filter = MyConfig.SCRIPT_TYPE;
                 if (sfdlg.ShowDialog() == DialogResult.OK)
                 {
@@ -436,7 +436,7 @@ namespace DataEditorX
 
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using OpenFileDialog sfdlg = new OpenFileDialog();
+            using OpenFileDialog sfdlg = new();
             sfdlg.Filter = MyConfig.SCRIPT_TYPE;
             if (sfdlg.ShowDialog() == DialogResult.OK)
             {
@@ -454,7 +454,7 @@ namespace DataEditorX
             if (e.KeyCode == Keys.Enter)
             {
                 string key = tb_input.Text;
-                List<AutocompleteItem> list = new List<AutocompleteItem>();
+                List<AutocompleteItem> list = new();
                 foreach (AutocompleteItem item in items)
                 {
                     if (item.ToolTipText.Contains(key))
@@ -501,7 +501,7 @@ namespace DataEditorX
 
             foreach (string cdb in cdbs)
             {
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(cdb);
+                ToolStripMenuItem tsmi = new(cdb);
                 tsmi.Click += MenuItem_Click;
                 menuitem_setcard.DropDownItems.Add(tsmi);
             }
@@ -595,7 +595,7 @@ namespace DataEditorX
 
         private void effectCreatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EffectCreatorForm form = new EffectCreatorForm();
+            EffectCreatorForm form = new();
             form.Show();
         }
 
@@ -611,7 +611,7 @@ namespace DataEditorX
             {
                 return;
             }
-            List<string> files = new List<string>();
+            List<string> files = new();
             foreach (string file in drops)
             {
                 if (Directory.Exists(file))
@@ -635,7 +635,7 @@ namespace DataEditorX
         }
         private void menuitem_tooltipFont_Click(object sender, EventArgs e)
         {
-            FontDialog fd = new FontDialog
+            FontDialog fd = new()
             {
                 Font = new Font("微软雅黑", 10)
             };

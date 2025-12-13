@@ -49,34 +49,34 @@ namespace DataEditorX.Config
         /// <summary>
         /// 规则
         /// </summary>
-        public InfoDictionary dicCardRules = new InfoDictionary();
+        public InfoDictionary dicCardRules = new();
         /// <summary>
         /// 属性
         /// </summary>
-        public InfoDictionary dicCardAttributes = new InfoDictionary();
+        public InfoDictionary dicCardAttributes = new();
         /// <summary>
         /// 种族
         /// </summary>
-        public InfoDictionary dicCardRaces = new InfoDictionary();
+        public InfoDictionary dicCardRaces = new();
         /// <summary>
         /// 等级
         /// </summary>
-        public InfoDictionary dicCardLevels = new InfoDictionary();
+        public InfoDictionary dicCardLevels = new();
         /// <summary>
         /// 系列名
         /// </summary>
-        public InfoDictionary dicSetnames = new InfoDictionary();
+        public InfoDictionary dicSetnames = new();
         /// <summary>
         /// 卡片类型
         /// </summary>
-        public InfoDictionary dicCardTypes = new InfoDictionary();
+        public InfoDictionary dicCardTypes = new();
         /// <summary>
         /// 连接标志
         /// </summary>
-        public InfoDictionary dicLinkMarkers = new InfoDictionary();
+        public InfoDictionary dicLinkMarkers = new();
         /// <summary>
         /// 效果类型
         /// </summary>
-        public InfoDictionary dicCardCategorys = new InfoDictionary();
+        public InfoDictionary dicCardCategorys = new();
     }
 }

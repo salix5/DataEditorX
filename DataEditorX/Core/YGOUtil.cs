@@ -183,11 +183,11 @@ namespace DataEditorX.Core
         /// <returns>密码数组</returns>
         public static string[] ReadYDK(string ydkfile)
         {
-            HashSet<string> IDs = new HashSet<string>();
+            HashSet<string> IDs = new();
             if (File.Exists(ydkfile))
             {
-                using FileStream f = new FileStream(ydkfile, FileMode.Open, FileAccess.Read);
-                using StreamReader reader = new StreamReader(f, Encoding.UTF8);
+                using FileStream f = new(ydkfile, FileMode.Open, FileAccess.Read);
+                using StreamReader reader = new(f, Encoding.UTF8);
                 string str;
                 while ((str = reader.ReadLine()) != null)
                 {
@@ -209,7 +209,7 @@ namespace DataEditorX.Core
         #region 图像
         public static string[] ReadImage(string path)
         {
-            List<string> list = new List<string>();
+            List<string> list = new();
             string[] files = Directory.GetFiles(path, "*.*");
             for (int i = 0; i < files.Length; i++)
             {

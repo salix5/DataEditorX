@@ -35,7 +35,7 @@ namespace DataEditorX
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new();
             //设置将要打开的文件
             mainForm.SetOpenFile(arg);
             //数据目录
@@ -48,14 +48,14 @@ namespace DataEditorX
             string datapath = MyPath.Combine(Application.StartupPath, MyConfig.TAG_DATA);
             string conflang = MyConfig.GetLanguageFile(datapath);
             LanguageHelper.LoadFormLabels(conflang);
-            LanguageHelper langhelper = new LanguageHelper();
-            MainForm form1 = new MainForm();
+            LanguageHelper langhelper = new();
+            MainForm form1 = new();
             LanguageHelper.SetFormLabel(form1);
             langhelper.GetFormLabel(form1);
-            DataEditForm form2 = new DataEditForm();
+            DataEditForm form2 = new();
             LanguageHelper.SetFormLabel(form2);
             langhelper.GetFormLabel(form2);
-            CodeEditForm form3 = new CodeEditForm();
+            CodeEditForm form3 = new();
             LanguageHelper.SetFormLabel(form3);
             langhelper.GetFormLabel(form3);
             // LANG.GetFormLabel(this);

@@ -228,7 +228,7 @@ namespace DataEditorX.Config
         public static Area ReadArea(string key)
         {
             int[] ints = ReadIntegers(key, 4);
-            Area a = new Area();
+            Area a = new();
             if (ints != null)
             {
                 a.left = ints[0];

@@ -157,7 +157,7 @@ namespace DataEditorX
         //打开脚本
         void OpenScript(string file)
         {
-            CodeEditForm cf = new CodeEditForm();
+            CodeEditForm cf = new();
             //设置界面语言
             LanguageHelper.SetFormLabel(cf);
             //设置cdb列表
@@ -171,7 +171,7 @@ namespace DataEditorX
         //打开数据库
         void OpenDatabase(string file)
         {
-            DataEditForm def = new DataEditForm(datapath, file);
+            DataEditForm def = new(datapath, file);
             //设置语言
             LanguageHelper.SetFormLabel(def);
             //初始化界面数据
@@ -309,7 +309,7 @@ namespace DataEditorX
         //打开文件
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
             if (GetActive() != null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
             {
@@ -335,7 +335,7 @@ namespace DataEditorX
         //新建文件
         void Menuitem_newClick(object sender, EventArgs e)
         {
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
             if (GetActive() != null)//判断当前窗口是不是DataEditor
             {
@@ -512,7 +512,7 @@ namespace DataEditorX
             //检查更新
             if (MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE))
             {
-                Thread th = new Thread(CheckUpdate)
+                Thread th = new(CheckUpdate)
                 {
                     IsBackground = true//如果exe结束，则线程终止
                 };

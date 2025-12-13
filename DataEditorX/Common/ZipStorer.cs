@@ -70,7 +70,7 @@ namespace System.IO.Compression
 
         #region Private fields
         // List of files to store
-        private readonly List<ZipFileEntry> files = new List<ZipFileEntry>();
+        private readonly List<ZipFileEntry> files = new();
         // Filename of storage file
         private string fileName;
         // Stream object of storage file
@@ -136,7 +136,7 @@ namespace System.IO.Compression
         /// <returns>A valid ZipStorer object</returns>
         public static ZipStorer Create(Stream _stream, string _comment)
         {
-            ZipStorer zip = new ZipStorer
+            ZipStorer zip = new()
             {
                 comment = _comment,
                 zipFileStream = _stream,
@@ -173,7 +173,7 @@ namespace System.IO.Compression
                 throw new InvalidOperationException("Stream cannot seek");
             }
 
-            ZipStorer zip = new ZipStorer
+            ZipStorer zip = new()
             {
                 //zip.FileName = _filename;
                 zipFileStream = _stream,
@@ -196,13 +196,13 @@ namespace System.IO.Compression
         /// <param name="_comment">Comment for stored file</param>        
         public void AddFile(string _pathname, string _filenameInZip, string _comment)
         {
-            Compression _method=Compression.Deflate;
+            Compression _method = Compression.Deflate;
             if (access == FileAccess.Read)
             {
                 throw new InvalidOperationException("Writing is not alowed");
             }
 
-            FileStream stream = new FileStream(_pathname, FileMode.Open, FileAccess.Read);
+            FileStream stream = new(_pathname, FileMode.Open, FileAccess.Read);
             AddStream(_method, _filenameInZip, stream, File.GetLastWriteTime(_pathname), _comment);
             stream.Close();
         }
@@ -220,7 +220,7 @@ namespace System.IO.Compression
                 throw new InvalidOperationException("Writing is not alowed");
             }
 
-            FileStream stream = new FileStream(_pathname, FileMode.Open, FileAccess.Read);
+            FileStream stream = new(_pathname, FileMode.Open, FileAccess.Read);
             AddStream(_method, _filenameInZip, stream, File.GetLastWriteTime(_pathname), _comment);
             stream.Close();
         }
@@ -244,12 +244,12 @@ namespace System.IO.Compression
             }
             else
             {
-                ZipFileEntry last = files[files.Count-1];
+                ZipFileEntry last = files[files.Count - 1];
                 _ = last.HeaderOffset + last.HeaderSize;
             }
 
             // Prepare the fileinfo
-            ZipFileEntry zfe = new ZipFileEntry
+            ZipFileEntry zfe = new()
             {
                 Method = _method,
                 EncodeUTF8 = EncodeUTF8,
@@ -325,7 +325,7 @@ namespace System.IO.Compression
                 throw new InvalidOperationException("Central directory currently does not exist");
             }
 
-            List<ZipFileEntry> result = new List<ZipFileEntry>();
+            List<ZipFileEntry> result = new();
 
             for (int pointer = 0; pointer < centralDirImage.Length;)
             {
@@ -345,11 +345,11 @@ namespace System.IO.Compression
                 ushort extraSize = BitConverter.ToUInt16(centralDirImage, pointer + 30);
                 ushort commentSize = BitConverter.ToUInt16(centralDirImage, pointer + 32);
                 uint headerOffset = BitConverter.ToUInt32(centralDirImage, pointer + 42);
-                uint headerSize = (uint)( 46 + filenameSize + extraSize + commentSize);
+                uint headerSize = (uint)(46 + filenameSize + extraSize + commentSize);
 
                 Encoding encoder = encodeUTF8 ? Encoding.UTF8 : _defaultEncoding;
 
-                ZipFileEntry zfe = new ZipFileEntry
+                ZipFileEntry zfe = new()
                 {
                     Method = (Compression)method,
                     FilenameInZip = encoder.GetString(centralDirImage, pointer + 46, filenameSize),
@@ -787,7 +787,7 @@ namespace System.IO.Compression
             try
             {
                 zipFileStream.Seek(-17, SeekOrigin.End);
-                BinaryReader br = new BinaryReader(zipFileStream);
+                BinaryReader br = new(zipFileStream);
                 do
                 {
                     zipFileStream.Seek(-5, SeekOrigin.Current);

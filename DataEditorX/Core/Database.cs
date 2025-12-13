@@ -93,13 +93,13 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && SQLs != null)
             {
-                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                using SQLiteConnection con = new($"Data Source={DB}");
                 con.Open();
                 using (SQLiteTransaction trans = con.BeginTransaction())
                 {
                     try
                     {
-                        using SQLiteCommand cmd = new SQLiteCommand(con);
+                        using SQLiteCommand cmd = new(con);
                         foreach (string SQLstr in SQLs)
                         {
                             cmd.CommandText = SQLstr;
@@ -125,7 +125,7 @@ namespace DataEditorX.Core
         #region Read from database
         static Card ReadCard(SQLiteDataReader reader)
         {
-            Card c = new Card(0)
+            Card c = new(0)
             {
                 id = reader.GetInt64(reader.GetOrdinal("id")),
                 ot = reader.GetInt64(reader.GetOrdinal("ot")),
@@ -163,14 +163,14 @@ namespace DataEditorX.Core
 
         public static Card[] Read(string DB, string SQL)
         {
-            List<Card> list = new List<Card>();
+            List<Card> list = new();
             if (File.Exists(DB) && SQL != null)
             {
-                using SQLiteConnection sqliteconn = new SQLiteConnection($"Data Source={DB}");
+                using SQLiteConnection sqliteconn = new($"Data Source={DB}");
                 sqliteconn.Open();
                 using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
                 {
-                    using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
+                    using (SQLiteCommand sqlitecommand = new(sqliteconn))
                     {
                         string stmt1;
                         if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
@@ -260,11 +260,11 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                using SQLiteConnection con = new($"Data Source={DB}");
                 con.Open();
                 using (SQLiteTransaction trans = con.BeginTransaction())
                 {
-                    using (SQLiteCommand cmd = new SQLiteCommand(con))
+                    using (SQLiteCommand cmd = new(con))
                     {
                         cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
                         InitParameters(cmd);
@@ -288,11 +288,11 @@ namespace DataEditorX.Core
             int result = 0;
             if (File.Exists(DB) && cards != null)
             {
-                using SQLiteConnection con = new SQLiteConnection($"Data Source={DB}");
+                using SQLiteConnection con = new($"Data Source={DB}");
                 con.Open();
                 using (SQLiteTransaction trans = con.BeginTransaction())
                 {
-                    using (SQLiteCommand cmd = new SQLiteCommand(con))
+                    using (SQLiteCommand cmd = new(con))
                     {
                         cmd.CommandText = DeleteSQL;
                         var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
@@ -315,9 +315,9 @@ namespace DataEditorX.Core
         {
             if (File.Exists(db))
             {
-                using SQLiteConnection con = new SQLiteConnection($"Data Source={db}");
+                using SQLiteConnection con = new($"Data Source={db}");
                 con.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand(con))
+                using (SQLiteCommand cmd = new(con))
                 {
                     cmd.CommandText = "VACUUM;";
                     cmd.ExecuteNonQuery();
@@ -332,7 +332,7 @@ namespace DataEditorX.Core
         #region SELECT
         public static string GetSelectSQL(Card c)
         {
-            StringBuilder sb = new StringBuilder(DefaultSQL);
+            StringBuilder sb = new(DefaultSQL);
             if (c == null)
             {
                 return sb.ToString();
@@ -525,8 +525,8 @@ namespace DataEditorX.Core
 
         public static void ExportSQL(string file, params Card[] cards)
         {
-            using FileStream fs = new FileStream(file, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+            using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new(fs, Encoding.UTF8);
             foreach (Card c in cards)
             {
                 sw.WriteLine(GetInsertSQL(c, false, true));
@@ -539,9 +539,9 @@ namespace DataEditorX.Core
             CardPack cardpack = null;
             if (File.Exists(db) && id >= 0)
             {
-                using SQLiteConnection sqliteconn = new SQLiteConnection(@"Data Source=" + db);
+                using SQLiteConnection sqliteconn = new(@"Data Source=" + db);
                 sqliteconn.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand(sqliteconn))
+                using (SQLiteCommand sqlitecommand = new(sqliteconn))
                 {
                     sqlitecommand.CommandText = "select id,pack_id,pack,rarity,date from pack where id=" + id + " order by date desc";
                     using SQLiteDataReader reader = sqlitecommand.ExecuteReader();

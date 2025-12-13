@@ -42,7 +42,7 @@ namespace System.IO
             }
             else
             {
-                StringBuilder builder = new StringBuilder();
+                StringBuilder builder = new();
                 string spliter = Path.DirectorySeparatorChar.ToString();
                 string firstPath = paths[0];
                 if (firstPath.StartsWith("HTTP", StringComparison.OrdinalIgnoreCase))

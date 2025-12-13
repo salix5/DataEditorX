@@ -121,7 +121,7 @@ namespace DataEditorX.Core
                 return;
             }
 
-            Bitmap bmp = new Bitmap(img);
+            Bitmap bmp = new(img);
             MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
                                 saveimg1, imgSet.quilty);
             //MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.w, imgSet.h),
@@ -188,7 +188,7 @@ namespace DataEditorX.Core
                 string savejpg = MyPath.Combine(mseHelper.ImagePath, c.id + ".jpg");
                 if (File.Exists(jpg) && (isreplace || !File.Exists(savejpg)))
                 {
-                    Bitmap bp = new Bitmap(jpg);
+                    Bitmap bp = new(jpg);
                     Bitmap bmp;
                     if (c.IsType(CardType.TYPE_XYZ))//超量
                     {
@@ -234,7 +234,7 @@ namespace DataEditorX.Core
                 {
                     if (File.Exists(f))
                     {
-                        Bitmap bmp = new Bitmap(f);
+                        Bitmap bmp = new(f);
                         //大图，如果替换，或者不存在
                         if (isreplace || !File.Exists(jpg_b))
                         {
@@ -282,7 +282,7 @@ namespace DataEditorX.Core
                     nums++;
                 }
 
-                List<Card> clist = new List<Card>();
+                List<Card> clist = new();
                 for (int i = 0; i < nums; i++)//分别生成存档
                 {
                     clist.Clear();
@@ -364,7 +364,7 @@ namespace DataEditorX.Core
             }
 
             int count = cards.Length;
-            YgoPath ygopath = new YgoPath(path);
+            YgoPath ygopath = new(path);
             string name = Path.GetFileNameWithoutExtension(zipname);
             //数据库
             string cdbfile = zipname + ".cdb";

@@ -25,12 +25,12 @@ namespace DataEditorX.Common
         {
             try
             {
-                FileStream file = new FileStream(fileName, FileMode.Open);
+                FileStream file = new(fileName, FileMode.Open);
                 System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                 byte[] retVal = md5.ComputeHash(file);
                 file.Close();
 
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 for (int i = 0; i < retVal.Length; i++)
                 {
                     sb.Append(retVal[i].ToString("x2"));
@@ -56,7 +56,7 @@ namespace DataEditorX.Common
 
         public static string ConvertNewline(string text, bool isEnvironment)
         {
-            StringBuilder sr = new StringBuilder(text);
+            StringBuilder sr = new(text);
             sr.Replace("\r\n", "\n");
             if (isEnvironment)
             {

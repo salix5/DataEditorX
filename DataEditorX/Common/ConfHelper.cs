@@ -71,7 +71,7 @@ namespace DataEditorX.Common
         /// <returns></returns>
         public static string GetRegex(string word)
         {
-            StringBuilder sb = new StringBuilder(word);
+            StringBuilder sb = new(word);
             sb.Replace("\\r", "\r");
             sb.Replace("\\n", "\n");
             sb.Replace("\\t", "\t");

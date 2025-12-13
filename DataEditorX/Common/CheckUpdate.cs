@@ -38,7 +38,7 @@ namespace DataEditorX.Common
             string html = GetHtmlContentByUrl(versionURL);
             if (!string.IsNullOrEmpty(html))
             {
-                Regex ver = new Regex(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
+                Regex ver = new(@"\[DataEditorX\]([0-9]+\.[0-9]+\.[0-9]+)\[DataEditorX\]");
                 Match mVer = ver.Match(html);
                 if (mVer.Success)
                 {
@@ -104,7 +104,7 @@ namespace DataEditorX.Common
                     using (Stream stream = httpWebResponse.GetResponseStream())
                     {
                         using (StreamReader streamReader =
-                               new StreamReader(stream, Encoding.UTF8))
+                               new(stream, Encoding.UTF8))
                         {
                             htmlContent = streamReader.ReadToEnd();
                             streamReader.Close();

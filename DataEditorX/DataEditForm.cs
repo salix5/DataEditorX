@@ -53,9 +53,9 @@ namespace DataEditorX
         //目录
         YgoPath ygopath;
         /// <summary>当前卡片</summary>
-        Card oldCard = new Card(0);
+        Card oldCard = new(0);
         /// <summary>搜索条件</summary>
-        Card srcCard = new Card(0);
+        Card srcCard = new(0);
         //卡片编辑
         CardEdit cardedit;
         string[] strs = null;
@@ -76,11 +76,11 @@ namespace DataEditorX
         /// <summary>
         /// 搜索结果
         /// </summary>
-        readonly List<Card> cardlist = new List<Card>();
+        readonly List<Card> cardlist = new();
 
         //setcode正在输入
         readonly bool[] setcodeIsedit = new bool[5];
-        readonly CommandManager cmdManager = new CommandManager();
+        readonly CommandManager cmdManager = new();
 
         Image cover;
         MSEConfig msecfg;
@@ -347,7 +347,7 @@ namespace DataEditorX
                 string value = (string)entry.Value;
                 if (value != null && value.StartsWith("NULL"))
                 {
-                    Label lab = new Label();
+                    Label lab = new();
                     string[] sizes = value.Split(',');
                     if (sizes.Length >= 3)
                     {
@@ -359,7 +359,7 @@ namespace DataEditorX
                 }
                 else
                 {
-                    CheckBox _cbox = new CheckBox
+                    CheckBox _cbox = new()
                     {
                         Tag = entry.Key,
                         Text = value,
@@ -392,7 +392,7 @@ namespace DataEditorX
             bool addTest = lv_cardlist.Items.Count == 0;
             if (addTest)
             {
-                ListViewItem item = new ListViewItem
+                ListViewItem item = new()
                 {
                     Text = "Test"
                 };
@@ -631,7 +631,7 @@ namespace DataEditorX
         #region 获取卡片
         public Card GetCard()
         {
-            Card c = new Card(0)
+            Card c = new(0)
             {
                 name = tb_cardname.Text,
                 desc = tb_cardtext.Text
@@ -938,8 +938,8 @@ namespace DataEditorX
                 MyPath.CreateDirByFile(lua);
                 if (MyMsg.Question(LMSG.IfCreateScript))
                 {
-                    using FileStream fs = new FileStream(lua, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
+                    using FileStream fs = new(lua, FileMode.OpenOrCreate, FileAccess.Write);
+                    StreamWriter sw = new(fs, new UTF8Encoding(false));
                     sw.WriteLine("--" + c.name);
                     sw.WriteLine("local s,id,o=GetID()");
                     sw.WriteLine("function s.initial_effect(c)");
@@ -999,7 +999,7 @@ namespace DataEditorX
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                Card c = new Card(0);
+                Card c = new(0);
                 long.TryParse(tb_cardcode.Text, out c.id);
                 if (c.id > 0)
                 {
@@ -1013,7 +1013,7 @@ namespace DataEditorX
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Card c = new Card(0)
+                Card c = new(0)
                 {
                     name = tb_cardname.Text
                 };
@@ -1111,7 +1111,7 @@ namespace DataEditorX
         //打开文件
         void Menuitem_openClick(object sender, EventArgs e)
         {
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
             dlg.Filter = MyConfig.CDB_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1122,7 +1122,7 @@ namespace DataEditorX
         //新建文件
         void Menuitem_newClick(object sender, EventArgs e)
         {
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
             dlg.Filter = MyConfig.CDB_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1144,7 +1144,7 @@ namespace DataEditorX
                 return;
             }
 
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectYdkPath);
             dlg.Filter = MyConfig.YDK_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1163,7 +1163,7 @@ namespace DataEditorX
                 return;
             }
 
-            using FolderBrowserDialog fdlg = new FolderBrowserDialog();
+            using FolderBrowserDialog fdlg = new();
             fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
@@ -1284,7 +1284,7 @@ namespace DataEditorX
                 return null;
             }
 
-            List<Card> cards = new List<Card>();
+            List<Card> cards = new();
             if (onlyselect)
             {
                 foreach (ListViewItem lvitem in lv_cardlist.SelectedItems)
@@ -1351,7 +1351,7 @@ namespace DataEditorX
             //select file
             bool replace = false;
             string filename = null;
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using (OpenFileDialog dlg = new())
             {
                 dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
                 dlg.Filter = MyConfig.CDB_TYPE;
@@ -1417,7 +1417,7 @@ namespace DataEditorX
                 return;
             }
             //select save mse-set
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
             dlg.Filter = MyConfig.MSE_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1441,7 +1441,7 @@ namespace DataEditorX
                 return;
             }
 
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectImage) + "-" + tb_cardname.Text;
             dlg.Filter = MyConfig.IMAGE_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1544,7 +1544,7 @@ namespace DataEditorX
                 return;
             }
 
-            using FolderBrowserDialog fdlg = new FolderBrowserDialog();
+            using FolderBrowserDialog fdlg = new();
             fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
@@ -1568,7 +1568,7 @@ namespace DataEditorX
                 return;
             }
 
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             dlg.InitialDirectory = ygopath.gamepath;
             dlg.Filter = "Zip|*.zip|All Files(*.*)|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1666,7 +1666,7 @@ namespace DataEditorX
                     continue;
                 }
                 //菜单文字是语言
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(name)
+                ToolStripMenuItem tsmi = new(name)
                 {
                     ToolTipText = file//提示文字为真实路径
                 };
@@ -1702,7 +1702,7 @@ namespace DataEditorX
         private void menuitem_findluafunc_Click(object sender, EventArgs e)
         {
             string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-            using FolderBrowserDialog fd = new FolderBrowserDialog();
+            using FolderBrowserDialog fd = new();
             fd.Description = "Folder Name: ocgcore";
             if (fd.ShowDialog() == DialogResult.OK)
             {
@@ -1803,7 +1803,7 @@ namespace DataEditorX
                 return;
             }
             //select open mse-set
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
             dlg.Filter = MyConfig.MSE_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1861,7 +1861,7 @@ namespace DataEditorX
                 }
 
                 TextInfo txinfo = new CultureInfo(CultureInfo.InstalledUICulture.Name).TextInfo;
-                ToolStripMenuItem tsmi = new ToolStripMenuItem(txinfo.ToTitleCase(name))
+                ToolStripMenuItem tsmi = new(txinfo.ToTitleCase(name))
                 {
                     ToolTipText = file
                 };
@@ -1915,7 +1915,7 @@ namespace DataEditorX
                 }
             }
             //select open mse-set
-            using OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
             dlg.Filter = MyConfig.MSE_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -1943,7 +1943,7 @@ namespace DataEditorX
         }
         void Menuitem_export_select_sqlClick(object sender, EventArgs e)
         {
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 Database.ExportSQL(dlg.FileName, GetCardList(true));
@@ -1952,7 +1952,7 @@ namespace DataEditorX
         }
         void Menuitem_export_all_sqlClick(object sender, EventArgs e)
         {
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 Database.ExportSQL(dlg.FileName, GetCardList(false));
@@ -1966,7 +1966,7 @@ namespace DataEditorX
                 return;
             }
 
-            using SaveFileDialog dlg = new SaveFileDialog();
+            using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
             dlg.Filter = MyConfig.CDB_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -2035,7 +2035,7 @@ namespace DataEditorX
             {
                 return;
             }
-            List<string> files = new List<string>();
+            List<string> files = new();
             foreach (string file in drops)
             {
                 if (Directory.Exists(file))

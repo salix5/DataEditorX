@@ -246,7 +246,7 @@ namespace DataEditorX.Core.Mse
         public static string GetDesc(string cdesc, string regx)
         {
             string desc = MyUtils.ConvertNewline(cdesc, false);
-            Regex regex = new Regex(regx, RegexOptions.Multiline);
+            Regex regex = new(regx, RegexOptions.Multiline);
             Match mc = regex.Match(desc);
             if (mc.Success)
             {
@@ -259,7 +259,7 @@ namespace DataEditorX.Core.Mse
 
         public string ReText(string text)
         {
-            StringBuilder sb = new StringBuilder(text);
+            StringBuilder sb = new(text);
             sb.Replace("\r\n", "\n");
             sb.Replace("\r", "");
             sb.Replace("\n\n", "\n");
@@ -303,8 +303,8 @@ namespace DataEditorX.Core.Mse
         public string[] GetTypes(Card c)
         {
             //卡片类型，效果1，效果2，效果3
-            int MAX_TYPE= 5;
-            var types = new string[MAX_TYPE+1];
+            int MAX_TYPE = 5;
+            var types = new string[MAX_TYPE + 1];
             types[0] = MseCardType.CARD_NORMAL;
             for (int i = 1; i < types.Length; i++)
             {
@@ -376,12 +376,12 @@ namespace DataEditorX.Core.Mse
         public Dictionary<Card, string> WriteSet(string file, Card[] cards, string cardpack_db, bool rarity = true)
         {
             //			MessageBox.Show(""+cfg.replaces.Keys[0]+"/"+cfg.replaces[cfg.replaces.Keys[0]]);
-            Dictionary<Card, string> list = new Dictionary<Card, string>();
+            Dictionary<Card, string> list = new();
             string pic = cfg.imagepath;
-            using (FileStream fs = new FileStream(file,
+            using (FileStream fs = new(file,
                                                   FileMode.Create, FileAccess.Write))
             {
-                StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+                StreamWriter sw = new(fs, Encoding.UTF8);
                 sw.WriteLine(cfg.head);
                 foreach (Card c in cards)
                 {
@@ -391,7 +391,7 @@ namespace DataEditorX.Core.Mse
                         list.Add(c, jpg);
                         jpg = Path.GetFileName(jpg);
                     }
-                    CardPack cardpack=Database.FindPack(cardpack_db, c.id);
+                    CardPack cardpack = Database.FindPack(cardpack_db, c.id);
                     if (c.IsType(CardType.TYPE_SPELL) || c.IsType(CardType.TYPE_TRAP))
                     {
                         sw.WriteLine(getSpellTrap(c, jpg, c.IsType(CardType.TYPE_SPELL), cardpack, rarity));
@@ -410,7 +410,7 @@ namespace DataEditorX.Core.Mse
         int getLinkNumber(long link)
         {
             string str = Convert.ToString(link, 2);
-            char[] cs  = str.ToCharArray();
+            char[] cs = str.ToCharArray();
             int i = 0;
             foreach (char c in cs)
             {
@@ -424,7 +424,7 @@ namespace DataEditorX.Core.Mse
         //怪兽，pendulum怪兽
         string getMonster(Card c, string img, CardPack cardpack = null, bool rarity = true)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             string[] types = GetTypes(c);
             string race = GetRace(c.race);
             sb.AppendLine(TAG_CARD + ":");
@@ -533,7 +533,7 @@ namespace DataEditorX.Core.Mse
         //魔法陷阱
         string getSpellTrap(Card c, string img, bool isSpell, CardPack cardpack = null, bool rarity = true)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.AppendLine(TAG_CARD + ":");
             sb.AppendLine(GetLine(TAG_CARDTYPE, isSpell ? "spell card" : "trap card"));
             sb.AppendLine(GetLine(TAG_NAME, ReItalic(c.name)));
@@ -615,7 +615,7 @@ namespace DataEditorX.Core.Mse
         }
         static string GetValue(string content, string tag)
         {
-            Regex regx = new Regex(@"^[\t]+?" + tag + @":([\s\S]*?)$", RegexOptions.Multiline);
+            Regex regx = new(@"^[\t]+?" + tag + @":([\s\S]*?)$", RegexOptions.Multiline);
             Match m = regx.Match(content);
             if (m.Success)
             {
@@ -631,7 +631,7 @@ namespace DataEditorX.Core.Mse
         {
             //TODO
             content = content.Replace("\t\t", "");
-            Regex regx = new Regex(@"^[\t]+?" + tag + @":([\S\s]*?)^\t[\S\s]+?:", RegexOptions.Multiline);
+            Regex regx = new(@"^[\t]+?" + tag + @":([\S\s]*?)^\t[\S\s]+?:", RegexOptions.Multiline);
             Match m = regx.Match(content);
             if (m.Success)
             {
@@ -752,7 +752,7 @@ namespace DataEditorX.Core.Mse
         public Card ReadCard(string content, out string img)
         {
             string tmp;
-            Card c = new Card
+            Card c = new()
             {
                 ot = (int)CardRule.OCGTCG,
                 //卡名
@@ -824,7 +824,7 @@ namespace DataEditorX.Core.Mse
         //读取所有卡片
         public Card[] ReadCards(string set, bool repalceOld)
         {
-            List<Card> cards = new List<Card>();
+            List<Card> cards = new();
             if (!File.Exists(set))
             {
                 return null;
@@ -832,7 +832,7 @@ namespace DataEditorX.Core.Mse
 
             string allcontent = File.ReadAllText(set, Encoding.UTF8);
 
-            Regex regx = new Regex(@"^card:[\S\s]+?gamecode:[\S\s]+?$",
+            Regex regx = new(@"^card:[\S\s]+?gamecode:[\S\s]+?$",
                                    RegexOptions.Multiline);
             MatchCollection matchs = regx.Matches(allcontent);
             int i = 0;
@@ -909,7 +909,7 @@ namespace DataEditorX.Core.Mse
                     return img;
                 }
             }
-            string md5=MyUtils.GetMD5HashFromFile(img);
+            string md5 = MyUtils.GetMD5HashFromFile(img);
             if (MyUtils.Md5isEmpty(md5) || cfg.imagecache == null)
             {
                 //md5为空
@@ -919,7 +919,7 @@ namespace DataEditorX.Core.Mse
             if (!File.Exists(file))
             {
                 //生成缓存
-                Bitmap bmp=MyBitmap.ReadImage(img);
+                Bitmap bmp = MyBitmap.ReadImage(img);
                 //缩放
                 if (isPendulum)
                 {
@@ -941,15 +941,15 @@ namespace DataEditorX.Core.Mse
         static EventHandler _exitHandler;
         private static void exportSetThread(object obj)
         {
-            string[] args=(string[])obj;
+            string[] args = (string[])obj;
             if (args == null || args.Length < 3)
             {
                 MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
                 return;
             }
-            string mse_path=args[0];
-            string setfile=args[1];
-            string path=args[2];
+            string mse_path = args[0];
+            string setfile = args[1];
+            string path = args[2];
             if (string.IsNullOrEmpty(mse_path) || string.IsNullOrEmpty(setfile))
             {
                 MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
@@ -957,7 +957,7 @@ namespace DataEditorX.Core.Mse
             }
             else
             {
-                string cmd=" --export "+setfile.Replace("\\\\","\\").Replace("\\","/")+" {card.gamecode}.png";
+                string cmd = " --export " + setfile.Replace("\\\\", "\\").Replace("\\", "/") + " {card.gamecode}.png";
                 _mseProcess = new System.Diagnostics.Process();
                 _mseProcess.StartInfo.FileName = mse_path;
                 _mseProcess.StartInfo.Arguments = cmd;
@@ -1000,8 +1000,8 @@ namespace DataEditorX.Core.Mse
             {
                 return;
             }
-            ParameterizedThreadStart ParStart = new ParameterizedThreadStart(exportSetThread);
-            Thread myThread = new Thread(ParStart)
+            ParameterizedThreadStart ParStart = new(exportSetThread);
+            Thread myThread = new(ParStart)
             {
                 IsBackground = true
             };
@@ -1050,7 +1050,7 @@ namespace DataEditorX.Core.Mse
                     text = desc;
                 }
 
-                List<string> val = new List<string>
+                List<string> val = new()
                 {
                     text,
                     ptext

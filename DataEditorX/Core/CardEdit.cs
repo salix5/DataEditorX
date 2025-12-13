@@ -227,7 +227,7 @@ namespace DataEditorX.Core
                     return false;
                 }
 
-                List<string> sql = new List<string>();
+                List<string> sql = new();
                 foreach (Card c in cards)
                 {
                     sql.Add(Database.GetDeleteSQL(c));//删除
@@ -333,7 +333,7 @@ namespace DataEditorX.Core
 
             public object Clone()
             {
-                CopyCommand replica = new CopyCommand(cardedit)
+                CopyCommand replica = new(cardedit)
                 {
                     copied = copied,
                     newCards = (Card[])newCards.Clone(),
