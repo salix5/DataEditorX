@@ -85,7 +85,6 @@
     <Compile Include="Common\ConfHelper.cs" />
     <Compile Include="Common\MySortList.cs" />
     <Compile Include="Common\MyUtils.cs" />
-    <Compile Include="Common\StrUtil.cs" />
     <Compile Include="Common\ConfigManager.cs" />
     <Compile Include="Config\YgoPath.cs" />
     <Compile Include="Controls\DFlowLayoutPanel.cs">
