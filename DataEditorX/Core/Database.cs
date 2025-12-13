@@ -252,27 +252,32 @@ namespace DataEditorX.Core
         /// <returns>Number of updates x2</returns>
         public static int CopyDB(string DB, bool ignore, Card[] cards)
         {
-            int result = 0;
-            if (File.Exists(DB) && cards != null)
+            if (cards == null || cards.Length == 0)
             {
-                using SQLiteConnection con = new($"Data Source={DB}");
-                con.Open();
-                using (SQLiteTransaction trans = con.BeginTransaction())
-                {
-                    using (SQLiteCommand cmd = new(con))
-                    {
-                        cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
-                        InitParameters(cmd);
-                        foreach (Card c in cards)
-                        {
-                            AddParameters(cmd, c);
-                            result += cmd.ExecuteNonQuery();
-                        }
-                    }
-                    trans.Commit();
-                }
-                con.Close();
+                return 0;
             }
+            if (!File.Exists(DB))
+            {
+                return 0;
+            }
+            int result = 0;
+            using SQLiteConnection con = new($"Data Source={DB}");
+            con.Open();
+            using (SQLiteTransaction trans = con.BeginTransaction())
+            {
+                using (SQLiteCommand cmd = new(con))
+                {
+                    cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                    InitParameters(cmd);
+                    foreach (Card c in cards)
+                    {
+                        AddParameters(cmd, c);
+                        result += cmd.ExecuteNonQuery();
+                    }
+                }
+                trans.Commit();
+            }
+            con.Close();
             return result;
         }
         #endregion
@@ -280,27 +285,32 @@ namespace DataEditorX.Core
         #region Delete cards from database
         public static int DeleteDB(string DB, Card[] cards)
         {
-            int result = 0;
-            if (File.Exists(DB) && cards != null)
+            if (cards == null || cards.Length == 0)
             {
-                using SQLiteConnection con = new($"Data Source={DB}");
-                con.Open();
-                using (SQLiteTransaction trans = con.BeginTransaction())
-                {
-                    using (SQLiteCommand cmd = new(con))
-                    {
-                        cmd.CommandText = DeleteSQL;
-                        var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
-                        foreach (Card c in cards)
-                        {
-                            parameter.Value = c.id;
-                            result += cmd.ExecuteNonQuery();
-                        }
-                    }
-                    trans.Commit();
-                }
-                con.Close();
+                return 0;
             }
+            if (!File.Exists(DB))
+            {
+                return 0;
+            }
+            int result = 0;
+            using SQLiteConnection con = new($"Data Source={DB}");
+            con.Open();
+            using (SQLiteTransaction trans = con.BeginTransaction())
+            {
+                using (SQLiteCommand cmd = new(con))
+                {
+                    cmd.CommandText = DeleteSQL;
+                    var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
+                    foreach (Card c in cards)
+                    {
+                        parameter.Value = c.id;
+                        result += cmd.ExecuteNonQuery();
+                    }
+                }
+                trans.Commit();
+            }
+            con.Close();
             return result;
         }
         #endregion
@@ -308,18 +318,18 @@ namespace DataEditorX.Core
         #region Vacuum
         public static void Vacuum(string db)
         {
-            if (File.Exists(db))
+            if (!File.Exists(db))
             {
-                using SQLiteConnection con = new($"Data Source={db}");
-                con.Open();
-                using (SQLiteCommand cmd = new(con))
-                {
-                    cmd.CommandText = "VACUUM;";
-                    cmd.ExecuteNonQuery();
-                }
-                con.Close();
+                return;
             }
-
+            using SQLiteConnection con = new($"Data Source={db}");
+            con.Open();
+            using (SQLiteCommand cmd = new(con))
+            {
+                cmd.CommandText = "VACUUM;";
+                cmd.ExecuteNonQuery();
+            }
+            con.Close();
         }
         #endregion
 
