@@ -601,10 +601,6 @@ namespace DataEditorX
         }
         #endregion
 
-        private void menuitem_testlua_Click(object sender, EventArgs e)
-        {
-        }
-
         private void effectCreatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EffectCreatorForm form = new EffectCreatorForm();
