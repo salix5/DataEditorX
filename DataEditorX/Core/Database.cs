@@ -250,7 +250,7 @@ namespace DataEditorX.Core
         /// <param name="cards">Collection of cards</param>
         /// <param name="ignore">Ignore existing entries</param>
         /// <returns>Number of updates x2</returns>
-        public static int CopyDB(string DB, bool ignore, params Card[] cards)
+        public static int CopyDB(string DB, bool ignore, Card[] cards)
         {
             int result = 0;
             if (File.Exists(DB) && cards != null)
@@ -278,7 +278,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region Delete cards from database
-        public static int DeleteDB(string DB, params Card[] cards)
+        public static int DeleteDB(string DB, Card[] cards)
         {
             int result = 0;
             if (File.Exists(DB) && cards != null)
@@ -518,7 +518,7 @@ namespace DataEditorX.Core
         #endregion
 
 
-        public static void ExportSQL(string file, params Card[] cards)
+        public static void ExportSQL(string file, Card[] cards)
         {
             using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
             StreamWriter sw = new(fs, Encoding.UTF8);
