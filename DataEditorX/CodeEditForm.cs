@@ -162,10 +162,6 @@ namespace DataEditorX
         #endregion
 
         #region IEditForm接口
-        public void SetActived()
-        {
-            Activate();
-        }
         public bool CanOpen(string file)
         {
             return YGOUtil.IsScript(file);

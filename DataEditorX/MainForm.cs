@@ -224,7 +224,7 @@ namespace DataEditorX
                 {
                     if (file != null && file.Equals(edform.GetOpenFile()))
                     {
-                        edform.SetActived();
+                        edform.Activate();
                         return true;
                     }
                 }
@@ -233,7 +233,7 @@ namespace DataEditorX
                     if (string.IsNullOrEmpty(edform.GetOpenFile()) && edform.CanOpen(file))
                     {
                         edform.Open(file);
-                        edform.SetActived();
+                        edform.Activate();
                         return true;
                     }
                 }

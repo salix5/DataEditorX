@@ -128,10 +128,6 @@ namespace DataEditorX
         #endregion
 
         #region 接口
-        public void SetActived()
-        {
-            Activate();
-        }
         public string GetOpenFile()
         {
             return nowCdbFile;

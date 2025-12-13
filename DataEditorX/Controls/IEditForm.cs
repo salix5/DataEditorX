@@ -13,6 +13,6 @@ namespace DataEditorX.Controls
         //保存
         bool Save();
         //设置为活动窗口
-        void SetActived();
+        void Activate();
     }
 }
