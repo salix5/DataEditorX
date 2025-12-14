@@ -345,7 +345,7 @@ namespace DataEditorX.Core
 
             if (!string.IsNullOrEmpty(c.name))
             {
-                string escapedName = c.name.Replace("%", "$%");
+                string escapedName = c.name.Replace("%", "$%").Replace("_", "$_");
                 sb.Append($" AND texts.name LIKE '%{escapedName.Replace("'", "''")}%' ESCAPE '$'");
             }
             if (!string.IsNullOrEmpty(c.desc))
