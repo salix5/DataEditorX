@@ -583,7 +583,7 @@ namespace DataEditorX
             SetSelect(cb_cardlevel, c.GetLevel());
             SetSelect(cb_cardrace, c.race);
             //setcode
-            long[] setcodes = c.GetSetCode();
+            long[] setcodes = c.GetSetcode();
             tb_setcode1.Text = setcodes[0].ToString("x");
             tb_setcode2.Text = setcodes[1].ToString("x");
             tb_setcode3.Text = setcodes[2].ToString("x");

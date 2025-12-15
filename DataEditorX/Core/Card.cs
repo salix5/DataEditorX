@@ -89,7 +89,7 @@ namespace DataEditorX.Core
             }
             set { str = value; }
         }
-        public long[] GetSetCode()
+        public long[] GetSetcode()
         {
             long[] list = new long[SETCODE_SIZE];
             for (int i = 0; i < list.Length; i++)
