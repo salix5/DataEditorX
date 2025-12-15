@@ -5,6 +5,7 @@
  */
 using DataEditorX.Core.Info;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace DataEditorX.Core
@@ -97,31 +98,54 @@ namespace DataEditorX.Core
             }
             return list;
         }
-        public void SetSetCode(params long[] setcodes)
+        public void SetSetCode(long[] setcodes)
         {
-            if (setcodes != null)
+            if (setcodes == null)
             {
-                int len = setcodes.Length <= SETCODE_SIZE ? setcodes.Length : SETCODE_SIZE;
-                long setcode_bytes = 0;
-                for (int i = 0; i < len; i++)
-                {
-                    setcode_bytes |= (setcodes[i] & 0xffffL) << (16 * i);
-                }
-                setcode = setcode_bytes;
+                return;
             }
+            List<long> valueList = new();
+            HashSet<long> checker = new();
+            foreach (long sc in setcodes)
+            {
+                if (sc > 0xffffL)
+                {
+                    continue;
+                }
+                if (checker.Contains(sc))
+                {
+                    continue;
+                }
+                checker.Add(sc);
+                valueList.Add(sc);
+                if (valueList.Count >= SETCODE_SIZE)
+                {
+                    break;
+                }
+            }
+            long result = 0;
+            for (int i = 0; i < valueList.Count; i++)
+            {
+                result |= (valueList[i] & 0xffffL) << (16 * i);
+            }
+            setcode = result;
         }
         public void SetSetCode(params string[] setcodes)
         {
-            if (setcodes != null)
+            if (setcodes == null)
             {
-                int len = setcodes.Length <= SETCODE_SIZE ? setcodes.Length : SETCODE_SIZE;
-                long[] setcodes_value = new long[SETCODE_SIZE] { 0, 0, 0, 0 };
-                for (int i = 0; i < len; i++)
-                {
-                    long.TryParse(setcodes[i], NumberStyles.HexNumber, null, out setcodes_value[i]);
-                }
-                SetSetCode(setcodes_value);
+                return;
             }
+            List<long> valueList = new();
+            foreach (string str in setcodes)
+            {
+                if (!long.TryParse(str, NumberStyles.HexNumber, null, out long value))
+                {
+                    continue;
+                }
+                valueList.Add(value);
+            }
+            SetSetCode(valueList.ToArray());
         }
         public long GetLeftScale()
         {
