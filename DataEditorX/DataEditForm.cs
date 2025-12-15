@@ -749,10 +749,11 @@ namespace DataEditorX
             if (e.KeyChar == (char)Keys.Enter)
             {
                 int.TryParse(tb_page.Text, out int p);
-                if (p > 0)
+                if (p <= 0)
                 {
-                    AddListView(p);
+                    return;
                 }
+                AddListView(p);
             }
         }
         #endregion
@@ -993,13 +994,14 @@ namespace DataEditorX
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                Card c = new(0);
-                long.TryParse(tb_cardcode.Text, out c.id);
-                if (c.id > 0)
+                long.TryParse(tb_cardcode.Text, out long id);
+                if (id <= 0)
                 {
-                    codeList.Clear();
-                    Search(c, false);
+                    return;
                 }
+                Card c = new(id);
+                codeList.Clear();
+                Search(c, false);
             }
         }
         //卡片名称搜索、编辑
@@ -1007,15 +1009,16 @@ namespace DataEditorX
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (tb_cardname.Text.Length == 0)
+                {
+                    return;
+                }
                 Card c = new(0)
                 {
                     name = tb_cardname.Text
                 };
-                if (c.name.Length > 0)
-                {
-                    codeList.Clear();
-                    Search(c, false);
-                }
+                codeList.Clear();
+                Search(c, false);
             }
             if (e.KeyCode == Keys.R && e.Control)
             {
