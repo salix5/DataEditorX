@@ -338,14 +338,14 @@ namespace DataEditorX.Core
             string str;
             if (IsType(CardType.TYPE_MONSTER))
             {
-                str = name + "[" + IdString + "]\n["
-                    + YGOUtil.GetTypeString(type) + "] "
-                    + YGOUtil.GetRace(race) + "/" + YGOUtil.GetAttributeString(attribute)
-                    + "\n" + LevelString() + " " + atk + "/" + def + "\n" + desc;
+                str = $"{name} [{IdString}]\n"
+                    + $"[{YGOUtil.GetTypeString(type)}] ${YGOUtil.GetRace(race)}/{YGOUtil.GetAttributeString(attribute)}\n"
+                    + $"{LevelString()} {atk}/{def}\n"
+                    + desc;
             }
             else
             {
-                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + desc;
+                str = $"{name} [{IdString}]\n[{YGOUtil.GetTypeString(type)}]\n{desc}";
             }
 
             return str;
