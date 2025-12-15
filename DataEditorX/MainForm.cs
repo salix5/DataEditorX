@@ -38,22 +38,15 @@ namespace DataEditorX
         #endregion
 
         #region 设置界面，消息语言
-        public MainForm()
+        public MainForm(string datapath)
         {
             //初始化控件
             InitializeComponent();
-        }
-        public void SetDataPath(string datapath)
-        {
-            //判断是否合法
-            if (string.IsNullOrEmpty(datapath))
-            {
-                return;
-            }
-
-            tCards = null;
-            //数据目录
             this.datapath = datapath;
+        }
+        public void InitializeData()
+        {
+            //数据目录
             if (MyConfig.ReadBoolean(MyConfig.TAG_ASYNC))
             {
                 //后台加载数据

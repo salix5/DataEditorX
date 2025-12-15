@@ -33,14 +33,14 @@ namespace DataEditorX
             {
                 return;
             }
+            string datapath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new();
+            MainForm mainForm = new(datapath);
             //设置将要打开的文件
             mainForm.SetOpenFile(arg);
             //数据目录
-            mainForm.SetDataPath(MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA));
-
+            mainForm.InitializeData();
             Application.Run(mainForm);
         }
         static void SaveLanguage()
@@ -49,7 +49,7 @@ namespace DataEditorX
             string conflang = MyConfig.GetLanguageFile(datapath);
             LanguageHelper.LoadFormLabels(conflang);
             LanguageHelper langhelper = new();
-            MainForm form1 = new();
+            MainForm form1 = new(datapath);
             LanguageHelper.SetFormLabel(form1);
             langhelper.GetFormLabel(form1);
             DataEditForm form2 = new();
