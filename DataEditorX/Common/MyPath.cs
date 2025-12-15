@@ -45,10 +45,6 @@ namespace System.IO
                 StringBuilder builder = new();
                 string spliter = Path.DirectorySeparatorChar.ToString();
                 string firstPath = paths[0];
-                if (firstPath.StartsWith("HTTP", StringComparison.OrdinalIgnoreCase))
-                {
-                    spliter = "/";
-                }
                 if (!firstPath.EndsWith(spliter))
                 {
                     firstPath += spliter;

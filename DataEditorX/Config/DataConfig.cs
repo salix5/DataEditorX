@@ -30,7 +30,6 @@ namespace DataEditorX.Config
         /// <param name="conf"></param>
         public void InitMember(string conf)
         {
-            //conf = MyPath.Combine(datapath, MyConfig.FILE_INFO);
             if (!File.Exists(conf))
             {
                 return;
