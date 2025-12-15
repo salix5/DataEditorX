@@ -39,13 +39,13 @@ namespace DataEditorX
             //设置将要打开的文件
             mainForm.SetOpenFile(arg);
             //数据目录
-            mainForm.SetDataPath(MyPath.Combine(Application.StartupPath, MyConfig.TAG_DATA));
+            mainForm.SetDataPath(MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA));
 
             Application.Run(mainForm);
         }
         static void SaveLanguage()
         {
-            string datapath = MyPath.Combine(Application.StartupPath, MyConfig.TAG_DATA);
+            string datapath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA);
             string conflang = MyConfig.GetLanguageFile(datapath);
             LanguageHelper.LoadFormLabels(conflang);
             LanguageHelper langhelper = new();

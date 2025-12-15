@@ -22,7 +22,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 数据目录
         /// </summary>
-        public const string TAG_DATA = "data";
+        public const string PATH_DATA = "data";
         /// <summary>
         /// MSE
         /// </summary>

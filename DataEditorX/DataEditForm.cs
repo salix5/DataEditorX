@@ -95,7 +95,7 @@ namespace DataEditorX
         }
         public DataEditForm()
         {
-            string dir = MyConfig.ReadString(MyConfig.TAG_DATA);
+            string dir = MyConfig.ReadString(MyConfig.PATH_DATA);
             if (string.IsNullOrEmpty(dir))
             {
                 Application.Exit();
