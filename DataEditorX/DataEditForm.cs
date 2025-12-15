@@ -576,7 +576,7 @@ namespace DataEditorX
             oldCard = c;
 
             tb_cardname.Text = c.name;
-            tb_cardtext.Text = c.desc;
+            tb_cardtext.Text = c.NormalizedDesc;
 
             strs = new string[c.Str.Length];
             Array.Copy(c.Str, strs, c.Str.Length);
@@ -634,7 +634,7 @@ namespace DataEditorX
             Card c = new(0)
             {
                 name = tb_cardname.Text,
-                desc = tb_cardtext.Text
+                desc = MyUtils.ConvertNewline(tb_cardtext.Text, false)
             };
 
             Array.Copy(strs, c.Str, c.Str.Length);

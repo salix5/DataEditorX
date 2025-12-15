@@ -140,7 +140,7 @@ namespace DataEditorX.Core
                 category = reader.GetInt64(reader.GetOrdinal("category")),
 
                 name = (string)reader["name"],
-                desc = MyUtils.ConvertNewline((string)reader["desc"], true),
+                desc = MyUtils.ConvertNewline((string)reader["desc"], false),
             };
 
             for (int i = 0; i < c.Str.Length; i++)
@@ -234,7 +234,7 @@ namespace DataEditorX.Core
             cmd.Parameters["@attribute"].Value = c.attribute;
             cmd.Parameters["@category"].Value = c.category;
             cmd.Parameters["@name"].Value = c.name;
-            cmd.Parameters["@desc"].Value = c.NormalizedDesc();
+            cmd.Parameters["@desc"].Value = c.desc;
             for (int i = 0; i < c.Str.Length; i++)
             {
                 cmd.Parameters[$"@str{i + 1}"].Value = c.Str[i];
@@ -350,7 +350,7 @@ namespace DataEditorX.Core
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
-                sb.Append($" AND texts.desc LIKE '%{c.NormalizedDesc().Replace("'", "''")}%'");
+                sb.Append($" AND texts.desc LIKE '%{c.desc.Replace("'", "''")}%'");
             }
 
             if (c.ot > 0)
@@ -453,7 +453,7 @@ namespace DataEditorX.Core
             string category = hex ? $"0x{c.category:x}" : c.category.ToString();
 
             string name = c.name.Replace("'", "''");
-            string desc = c.NormalizedDesc().Replace("'", "''");
+            string desc = c.desc.Replace("'", "''");
 
             string[] strs = new string[c.Str.Length];
             for (int i = 0; i < c.Str.Length; i++)
@@ -491,7 +491,7 @@ namespace DataEditorX.Core
                 $"UPDATE datas SET ot={c.ot},alias={c.alias},setcode={c.setcode},type={c.type},atk={c.atk},def={c.def},level={c.level},race={c.race},attribute={c.attribute},category={c.category} WHERE id={c.id};\n";
 
             string name = c.name.Replace("'", "''");
-            string desc = c.NormalizedDesc().Replace("'", "''");
+            string desc = c.desc.Replace("'", "''");
             string[] strAssignments = new string[c.Str.Length];
             for (int i = 0; i < c.Str.Length; i++)
             {

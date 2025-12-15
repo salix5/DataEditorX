@@ -70,6 +70,7 @@ namespace DataEditorX.Core
         public string name;
         /// <summary>描述文本</summary>
         public string desc;
+        public string NormalizedDesc => desc.Replace("\n", Environment.NewLine);
         string[] str;
         /// <summary>脚本文件文字</summary>
         public string[] Str
@@ -340,11 +341,11 @@ namespace DataEditorX.Core
                 str = name + "[" + IdString + "]\n["
                     + YGOUtil.GetTypeString(type) + "] "
                     + YGOUtil.GetRace(race) + "/" + YGOUtil.GetAttributeString(attribute)
-                    + "\n" + LevelString() + " " + atk + "/" + def + "\n" + NormalizedDesc();
+                    + "\n" + LevelString() + " " + atk + "/" + def + "\n" + desc;
             }
             else
             {
-                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + NormalizedDesc();
+                str = name + "[" + IdString + "]\n[" + YGOUtil.GetTypeString(type) + "]\n" + desc;
             }
 
             return str;
@@ -361,10 +362,6 @@ namespace DataEditorX.Core
         string LevelString()
         {
             return $"[★{GetLevel()}]";
-        }
-        public string NormalizedDesc()
-        {
-            return desc.Replace(Environment.NewLine, "\n");
         }
         #endregion
     }
