@@ -155,7 +155,7 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="DB">Database file path</param>
         /// <param name="ids">Collection of IDs</param>
-        public static Card[] ReadFromId(string DB, string[] ids)
+        public static Card[] ReadFromId(string DB, long[] ids)
         {
             string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
             return Read(DB, stmt1);

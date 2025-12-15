@@ -62,7 +62,7 @@ namespace DataEditorX
         /// <summary>
         /// 对比的id集合
         /// </summary>
-        List<string> codeList = new();
+        List<long> codeList = new();
         //初始标题
         string title;
         string nowCdbFile = "";
@@ -1144,7 +1144,7 @@ namespace DataEditorX
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 codeList.Clear();
-                string[] ids = YGOUtil.ReadYDK(dlg.FileName);
+                long[] ids = YGOUtil.ReadYDK(dlg.FileName);
                 codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
@@ -1162,7 +1162,7 @@ namespace DataEditorX
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 codeList.Clear();
-                string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
+                long[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
                 codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
@@ -1626,9 +1626,9 @@ namespace DataEditorX
             Card[] cards = Database.Read(cdbfile, "");
             foreach (Card card in mcards)
             {
-                if (!CheckCard(cards, card, checktext))//添加到id集合
+                if (!CheckCard(cards, card, checktext))
                 {
-                    codeList.Add(card.id.ToString());
+                    codeList.Add(card.id);
                 }
             }
             if (codeList.Count == 0)

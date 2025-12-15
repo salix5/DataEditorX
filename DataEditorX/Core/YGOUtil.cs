@@ -181,9 +181,9 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="file">ydk文件</param>
         /// <returns>密码数组</returns>
-        public static string[] ReadYDK(string ydkfile)
+        public static long[] ReadYDK(string ydkfile)
         {
-            HashSet<string> IDs = new();
+            HashSet<long> IDs = new();
             if (File.Exists(ydkfile))
             {
                 using FileStream f = new(ydkfile, FileMode.Open, FileAccess.Read);
@@ -195,11 +195,11 @@ namespace DataEditorX.Core
                     {
                         continue;
                     }
-                    if (!long.TryParse(str, out _))
+                    if (!long.TryParse(str, out long id))
                     {
                         continue;
                     }
-                    IDs.Add(str);
+                    IDs.Add(id);
                 }
             }
             return IDs.ToArray();
@@ -207,9 +207,9 @@ namespace DataEditorX.Core
         #endregion
 
         #region 图像
-        public static string[] ReadImage(string path)
+        public static long[] ReadImage(string path)
         {
-            List<string> list = new();
+            List<long> list = new();
             string[] files = Directory.GetFiles(path, "*.*");
             for (int i = 0; i < files.Length; i++)
             {
@@ -218,8 +218,8 @@ namespace DataEditorX.Core
                 {
                     continue;
                 }
-                string id = Path.GetFileNameWithoutExtension(files[i]);
-                if (!long.TryParse(id, out _))
+                string baseFileName = Path.GetFileNameWithoutExtension(files[i]);
+                if (!long.TryParse(baseFileName, out long id))
                 {
                     continue;
                 }
