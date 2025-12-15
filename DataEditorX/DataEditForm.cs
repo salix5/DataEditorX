@@ -62,7 +62,7 @@ namespace DataEditorX
         /// <summary>
         /// 对比的id集合
         /// </summary>
-        List<string> tmpCodes = new();
+        List<string> codeList = new();
         //初始标题
         string title;
         string nowCdbFile = "";
@@ -204,7 +204,7 @@ namespace DataEditorX
             {
                 InitListRows();
                 AddListView(page);
-                tmpCodes.Clear();
+                codeList.Clear();
                 Search(true);
             }));
         }
@@ -780,7 +780,7 @@ namespace DataEditorX
                 return false;
             }
             //清空
-            tmpCodes.Clear();
+            codeList.Clear();
             cardlist.Clear();
             srcCard.Clear();
             //检查表是否存在
@@ -858,9 +858,9 @@ namespace DataEditorX
                 return;
             }
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
-            if (tmpCodes.Count > 0)
+            if (codeList.Count > 0)
             {
-                _ = Database.ReadFromId(nowCdbFile, tmpCodes.ToArray());
+                _ = Database.ReadFromId(nowCdbFile, codeList.ToArray());
                 SetCards(getCompCards(), true);
             }
             else
@@ -882,7 +882,7 @@ namespace DataEditorX
         //搜索卡片
         void Btn_serachClick(object sender, EventArgs e)
         {
-            tmpCodes.Clear();//清空临时的结果
+            codeList.Clear();
             Search(GetCard(), false);
         }
         //重置卡片
@@ -997,7 +997,7 @@ namespace DataEditorX
                 long.TryParse(tb_cardcode.Text, out c.id);
                 if (c.id > 0)
                 {
-                    tmpCodes.Clear();//清空临时的结果
+                    codeList.Clear();
                     Search(c, false);
                 }
             }
@@ -1013,7 +1013,7 @@ namespace DataEditorX
                 };
                 if (c.name.Length > 0)
                 {
-                    tmpCodes.Clear();//清空临时的结果
+                    codeList.Clear();
                     Search(c, false);
                 }
             }
@@ -1143,9 +1143,9 @@ namespace DataEditorX
             dlg.Filter = MyConfig.YDK_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                tmpCodes.Clear();
+                codeList.Clear();
                 string[] ids = YGOUtil.ReadYDK(dlg.FileName);
-                tmpCodes.AddRange(ids);
+                codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
         }
@@ -1161,9 +1161,9 @@ namespace DataEditorX
             fdlg.Description = LanguageHelper.GetMsg(LMSG.SelectImagePath);
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
-                tmpCodes.Clear();
+                codeList.Clear();
                 string[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
-                tmpCodes.AddRange(ids);
+                codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
         }
@@ -1601,7 +1601,7 @@ namespace DataEditorX
         //读取将要对比的数据
         Card[] getCompCards()
         {
-            if (tmpCodes.Count == 0)
+            if (codeList.Count == 0)
             {
                 return null;
             }
@@ -1611,7 +1611,7 @@ namespace DataEditorX
                 return null;
             }
 
-            return Database.ReadFromId(nowCdbFile, tmpCodes.ToArray());
+            return Database.ReadFromId(nowCdbFile, codeList.ToArray());
         }
         public void CompareCards(string cdbfile, bool checktext)
         {
@@ -1620,7 +1620,7 @@ namespace DataEditorX
                 return;
             }
 
-            tmpCodes.Clear();
+            codeList.Clear();
             srcCard.Clear();
             Card[] mcards = Database.Read(nowCdbFile, "");
             Card[] cards = Database.Read(cdbfile, "");
@@ -1628,10 +1628,10 @@ namespace DataEditorX
             {
                 if (!CheckCard(cards, card, checktext))//添加到id集合
                 {
-                    tmpCodes.Add(card.id.ToString());
+                    codeList.Add(card.id.ToString());
                 }
             }
-            if (tmpCodes.Count == 0)
+            if (codeList.Count == 0)
             {
                 SetCards(null, false);
                 return;
