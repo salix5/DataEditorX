@@ -19,7 +19,6 @@ namespace DataEditorX.Core
         /// 卡片
         /// </summary>
         /// <param name="cardCode">密码</param>
-        /// <param name="cardName">名字</param>
         public Card(long cardCode)
         {
             id = cardCode;
