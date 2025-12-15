@@ -339,7 +339,7 @@ namespace DataEditorX.Core
             if (IsType(CardType.TYPE_MONSTER))
             {
                 str = $"{name} [{IdString}]\n"
-                    + $"[{YGOUtil.GetTypeString(type)}] ${YGOUtil.GetRace(race)}/{YGOUtil.GetAttributeString(attribute)}\n"
+                    + $"[{YGOUtil.GetTypeString(type)}] ${YGOUtil.GetRace(race)}/{YGOUtil.GetAttribute(attribute)}\n"
                     + $"{LevelString()} {atk}/{def}\n"
                     + desc;
             }

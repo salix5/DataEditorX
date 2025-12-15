@@ -33,7 +33,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region 获取属性，种族
-        public static string GetAttributeString(long attr)
+        public static string GetAttribute(long attr)
         {
             return _datacfg.dicCardAttributes.GetValue(attr);
         }
