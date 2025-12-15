@@ -181,61 +181,59 @@ namespace DataEditorX.Core
         /// <returns></returns>
         public bool EqualsData(Card other)
         {
-            bool equalBool = true;
             if (id != other.id)
             {
-                equalBool = false;
+                return false;
             }
-            else if (ot != other.ot)
+            if (ot != other.ot)
             {
-                equalBool = false;
+                return false;
             }
-            else if (alias != other.alias)
+            if (alias != other.alias)
             {
-                equalBool = false;
+                return false;
             }
-            else if (setcode != other.setcode)
+            if (setcode != other.setcode)
             {
-                equalBool = false;
+                return false;
             }
-            else if (type != other.type)
+            if (type != other.type)
             {
-                equalBool = false;
+                return false;
             }
-            else if (atk != other.atk)
+            if (atk != other.atk)
             {
-                equalBool = false;
+                return false;
             }
-            else if (def != other.def)
+            if (def != other.def)
             {
-                equalBool = false;
+                return false;
             }
-            else if (level != other.level)
+            if (level != other.level)
             {
-                equalBool = false;
+                return false;
             }
-            else if (race != other.race)
+            if (race != other.race)
             {
-                equalBool = false;
+                return false;
             }
-            else if (attribute != other.attribute)
+            if (attribute != other.attribute)
             {
-                equalBool = false;
+                return false;
             }
-            else if (category != other.category)
+            if (category != other.category)
             {
-                equalBool = false;
+                return false;
             }
-            else if (!name.Equals(other.name))
+            if (!name.Equals(other.name))
             {
-                equalBool = false;
+                return false;
             }
-            else if (!desc.Equals(other.desc))
+            if (!desc.Equals(other.desc))
             {
-                equalBool = false;
+                return false;
             }
-
-            return equalBool;
+            return true;
         }
         /// <summary>
         /// 比较卡片是否一致？
