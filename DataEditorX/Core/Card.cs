@@ -98,7 +98,7 @@ namespace DataEditorX.Core
             }
             return list;
         }
-        public void SetSetCode(long[] setcodes)
+        public void SetSetcode(long[] setcodes)
         {
             if (setcodes == null)
             {
@@ -130,7 +130,7 @@ namespace DataEditorX.Core
             }
             setcode = result;
         }
-        public void SetSetCode(params string[] setcodes)
+        public void SetSetcode(params string[] setcodes)
         {
             if (setcodes == null)
             {
@@ -145,7 +145,7 @@ namespace DataEditorX.Core
                 }
                 valueList.Add(value);
             }
-            SetSetCode(valueList.ToArray());
+            SetSetcode(valueList.ToArray());
         }
         public long GetLeftScale()
         {

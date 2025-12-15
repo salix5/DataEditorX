@@ -636,7 +636,7 @@ namespace DataEditorX
             long.TryParse(tb_cardcode.Text, out c.id);
             long.TryParse(tb_cardalias.Text, out c.alias);
             c.ot = GetSelect(cb_cardrule);
-            c.SetSetCode(tb_setcode1.Text, tb_setcode2.Text, tb_setcode3.Text, tb_setcode4.Text);
+            c.SetSetcode(tb_setcode1.Text, tb_setcode2.Text, tb_setcode3.Text, tb_setcode4.Text);
 
             c.type = GetCheck(pl_cardtype);
             c.race = GetSelect(cb_cardrace);
