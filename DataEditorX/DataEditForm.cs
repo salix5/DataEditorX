@@ -48,8 +48,8 @@ namespace DataEditorX
         }
 
         #region 成员变量/构造
-        TaskHelper tasker = null;
-        string taskname;
+        TaskHelper tasker;
+        string taskname = "";
         //目录
         YgoPath ygopath;
         /// <summary>当前卡片</summary>
@@ -58,11 +58,11 @@ namespace DataEditorX
         Card srcCard = new(0);
         //卡片编辑
         CardEdit cardedit;
-        string[] strs = null;
+        string[] strs = new string[Card.STR_SIZE];
         /// <summary>
         /// 对比的id集合
         /// </summary>
-        List<string> tmpCodes;
+        List<string> tmpCodes = new();
         //初始标题
         string title;
         string nowCdbFile = "";
@@ -85,7 +85,8 @@ namespace DataEditorX
         Image cover;
         MSEConfig msecfg;
 
-        string datapath, confcover;
+        string datapath;
+        string confcover;
 
         public DataEditForm(string datapath, string cdbfile)
         {
@@ -106,12 +107,12 @@ namespace DataEditorX
         void Initialize(string datapath)
         {
             cardedit = new CardEdit(this);
-            tmpCodes = new List<string>();
             ygopath = new YgoPath(Application.StartupPath);
             InitPath(datapath);
             InitializeComponent();
             title = Text;
-            nowCdbFile = "";
+            msecfg = new MSEConfig(datapath);
+            tasker = new TaskHelper(datapath, bgWorker1, msecfg);
             cmdManager.UndoStateChanged += delegate (bool val)
             {
                 if (val)
@@ -153,10 +154,6 @@ namespace DataEditorX
             //InitListRows();//调整卡片列表的函数
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
-                       //加载
-            msecfg = new MSEConfig(datapath);
-            tasker = new TaskHelper(datapath, bgWorker1, msecfg);
-            //设置空白卡片
             oldCard.Clear();
             LoadCard(oldCard);
             //删除资源
@@ -578,7 +575,6 @@ namespace DataEditorX
             tb_cardname.Text = c.name;
             tb_cardtext.Text = c.NormalizedDesc;
 
-            strs = new string[c.Str.Length];
             Array.Copy(c.Str, strs, c.Str.Length);
             lb_scripttext.Items.Clear();
             lb_scripttext.Items.AddRange(c.Str);
