@@ -90,25 +90,24 @@ namespace DataEditorX
 
         public DataEditForm(string datapath, string cdbfile)
         {
-            Initialize(datapath);
+            this.datapath = datapath;
+            Initialize();
             nowCdbFile = cdbfile;
         }
-        public DataEditForm()
+        public DataEditForm(string datapath)
         {
-            string dir = MyConfig.ReadString(MyConfig.PATH_DATA);
-            if (string.IsNullOrEmpty(dir))
+            if (string.IsNullOrEmpty(datapath))
             {
                 Application.Exit();
             }
-            datapath = MyPath.Combine(Application.StartupPath, dir);
-
-            Initialize(datapath);
+            this.datapath = datapath;
+            Initialize();
         }
-        void Initialize(string datapath)
+        void Initialize()
         {
             cardedit = new CardEdit(this);
             ygopath = new YgoPath(Application.StartupPath);
-            InitPath(datapath);
+            InitPath();
             InitializeComponent();
             title = Text;
             msecfg = new MSEConfig(datapath);
@@ -291,9 +290,8 @@ namespace DataEditorX
             ygopath.SetPath(path);
         }
         //初始化文件路径
-        void InitPath(string datapath)
+        void InitPath()
         {
-            this.datapath = datapath;
             confcover = MyPath.Combine(datapath, "cover.jpg");
             if (File.Exists(confcover))
             {

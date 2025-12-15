@@ -52,7 +52,7 @@ namespace DataEditorX
             MainForm form1 = new(datapath);
             LanguageHelper.SetFormLabel(form1);
             langhelper.GetFormLabel(form1);
-            DataEditForm form2 = new();
+            DataEditForm form2 = new(datapath);
             LanguageHelper.SetFormLabel(form2);
             langhelper.GetFormLabel(form2);
             CodeEditForm form3 = new();
