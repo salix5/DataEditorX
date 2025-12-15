@@ -739,10 +739,9 @@ namespace DataEditorX
             page++;
             AddListView(page);
         }
-        //跳转到指定页数
-        void Tb_pageKeyPress(object sender, KeyPressEventArgs e)
+        private void tb_page_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 int.TryParse(tb_page.Text, out int p);
                 if (p <= 0)
@@ -751,6 +750,7 @@ namespace DataEditorX
                 }
                 AddListView(p);
             }
+            e.SuppressKeyPress = true;
         }
         #endregion
 
@@ -985,10 +985,9 @@ namespace DataEditorX
         #endregion
 
         #region 文本框
-        //卡片密码搜索
-        void Tb_cardcodeKeyPress(object sender, KeyPressEventArgs e)
+        private void tb_cardcode_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 long.TryParse(tb_cardcode.Text, out long id);
                 if (id <= 0)
@@ -999,6 +998,7 @@ namespace DataEditorX
                 codeList.Clear();
                 Search(c, false);
             }
+            e.SuppressKeyPress = true;
         }
         //卡片名称搜索、编辑
         void Tb_cardnameKeyDown(object sender, KeyEventArgs e)
@@ -1020,6 +1020,7 @@ namespace DataEditorX
             {
                 Reset();
             }
+            e.SuppressKeyPress = true;
         }
 
         //脚本文本

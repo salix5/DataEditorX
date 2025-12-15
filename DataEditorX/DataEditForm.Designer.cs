@@ -703,7 +703,7 @@ namespace DataEditorX
             this.tb_page.TabIndex = 8;
             this.tb_page.Text = "1";
             this.tb_page.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_page.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_pageKeyPress);
+            this.tb_page.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_page_KeyDown);
             // 
             // tb_pagenum
             // 
@@ -789,7 +789,7 @@ namespace DataEditorX
             this.tb_cardcode.TabIndex = 120;
             this.tb_cardcode.Text = "0";
             this.tb_cardcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_cardcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_cardcodeKeyPress);
+            this.tb_cardcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_cardcode_KeyDown);
             // 
             // lb_cardalias
             // 
