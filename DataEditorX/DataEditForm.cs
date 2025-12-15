@@ -157,7 +157,7 @@ namespace DataEditorX
             msecfg = new MSEConfig(datapath);
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
             //设置空白卡片
-            oldCard = new Card(0);
+            oldCard.Clear();
             LoadCard(oldCard);
             //删除资源
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
@@ -788,9 +788,9 @@ namespace DataEditorX
             //清空
             tmpCodes.Clear();
             cardlist.Clear();
+            srcCard.Clear();
             //检查表是否存在
             Database.CheckTable(file);
-            srcCard = new Card();
             SetCards(Database.Read(file, ""), false);
 
             return true;
@@ -879,7 +879,7 @@ namespace DataEditorX
         //更新临时卡片
         public void Reset()
         {
-            oldCard = new Card(0);
+            oldCard.Clear();
             LoadCard(oldCard);
         }
         #endregion
@@ -1627,7 +1627,7 @@ namespace DataEditorX
             }
 
             tmpCodes.Clear();
-            srcCard = new Card();
+            srcCard.Clear();
             Card[] mcards = Database.Read(nowCdbFile, "");
             Card[] cards = Database.Read(cdbfile, "");
             foreach (Card card in mcards)

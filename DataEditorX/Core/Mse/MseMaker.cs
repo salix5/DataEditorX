@@ -752,7 +752,7 @@ namespace DataEditorX.Core.Mse
         public Card ReadCard(string content, out string img)
         {
             string tmp;
-            Card c = new()
+            Card c = new(0)
             {
                 ot = (int)CardRule.OCGTCG,
                 //卡名
