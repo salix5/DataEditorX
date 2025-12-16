@@ -42,6 +42,7 @@ namespace DataEditorX.Core
             + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16 WHERE id=@id;";
         static readonly string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
+        static readonly string PragmaSQL = "PRAGMA trusted_schema=OFF;";
         #endregion
 
         #region Create table
