@@ -255,39 +255,36 @@ namespace DataEditorX.Core
         /// <summary>
         /// Copy cards to database
         /// </summary>
-        /// <param name="DB">Destination database file path</param>
+        /// <param name="db">Destination database file path</param>
         /// <param name="ignore">Ignore existing entries</param>
         /// <param name="cards">Collection of cards</param>
         /// <returns>Number of updated cards x2</returns>
-        public static int CopyDB(string DB, bool ignore, Card[] cards)
+        public static int CopyDB(string db, bool ignore, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
             {
                 return 0;
             }
-            if (!File.Exists(DB))
+            if (!File.Exists(db))
             {
                 return 0;
             }
             int result = 0;
-            using SQLiteConnection con = new($"Data Source={DB}");
+            using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using (SQLiteCommand cmd = new(PragmaSQL, con, trans))
+                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                InitParameters(cmd);
+                foreach (Card c in cards)
                 {
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
-                    InitParameters(cmd);
-                    foreach (Card c in cards)
-                    {
-                        AddParameters(cmd, c);
-                        result += cmd.ExecuteNonQuery();
-                    }
+                    AddParameters(cmd, c);
+                    result += cmd.ExecuteNonQuery();
                 }
                 trans.Commit();
             }
-            con.Close();
             return result;
         }
         #endregion
