@@ -194,8 +194,7 @@ namespace DataEditorX
                     (fctb.SyntaxHighlighter as MySyntaxHighlighter).cCode
                         = fi.Name.Substring(0, fi.Name.Length - 4);
                 }
-                string cdb = MyPath.Combine(
-                    Path.GetDirectoryName(file), "../cards.cdb");
+                string cdb = MyPath.Combine(Path.GetDirectoryName(file), "../cards.cdb");
                 SetCardDB(cdb);//后台加载卡片数据
                 fctb.OpenFile(nowFile, new UTF8Encoding(false));
                 oldtext = fctb.Text;
