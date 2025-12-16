@@ -123,7 +123,7 @@ MainForm.mainMenu.menuitem_closeall	Close All
 0x20	Author : 
 0x21	N/A
 0x22	N/A
-0x23	Invalid SetCode!
+0x23	Invalid Setcode!
 0x24	Select Image File
 0x25	N/A
 0x26	The Task is running.
