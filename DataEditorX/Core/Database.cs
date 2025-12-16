@@ -314,8 +314,9 @@ namespace DataEditorX.Core
             con.Open();
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using (SQLiteCommand cmd = new(con))
+                using (SQLiteCommand cmd = new(PragmaSQL, con, trans))
                 {
+                    cmd.ExecuteNonQuery();
                     cmd.CommandText = DeleteSQL;
                     var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
                     foreach (Card c in cards)
