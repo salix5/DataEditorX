@@ -50,18 +50,18 @@ namespace DataEditorX.Core
         /// <summary>
         /// Create new database.
         /// </summary>
-        /// <param name="Db">New database file path</param>
-        public static bool Create(string Db)
+        /// <param name="db">New database file path</param>
+        public static bool Create(string db)
         {
-            if (File.Exists(Db))
+            if (File.Exists(db))
             {
-                File.Delete(Db);
+                File.Delete(db);
             }
 
             try
             {
-                SQLiteConnection.CreateFile(Db);
-                Command(Db, DefaultTableSQL);
+                SQLiteConnection.CreateFile(db);
+                Command(db, DefaultTableSQL);
             }
             catch
             {
@@ -87,22 +87,22 @@ namespace DataEditorX.Core
         /// <summary>
         /// Execute SQL statements.
         /// </summary>
-        /// <param name="DB">Database file path</param>
+        /// <param name="db">Database file path</param>
         /// <param name="SQLs">SQL statements</param>
         /// <returns>Number of affected rows</returns>
-        public static int Command(string DB, params string[] SQLs)
+        public static int Command(string db, params string[] SQLs)
         {
             if (SQLs == null || SQLs.Length == 0)
             {
                 return 0;
             }
-            if (!File.Exists(DB))
+            if (!File.Exists(db))
             {
                 return -1;
             }
 
             int result = 0;
-            using SQLiteConnection con = new($"Data Source={DB}");
+            using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
@@ -125,9 +125,9 @@ namespace DataEditorX.Core
                     }
                     catch (System.Exception rbEx)
                     {
-                        Trace.TraceError($"Database.Command rollback failed on '{DB}': {rbEx}");
+                        Trace.TraceError($"Database.Command rollback failed on '{db}': {rbEx}");
                     }
-                    Trace.TraceError($"Database.Command failed on '{DB}': {ex}");
+                    Trace.TraceError($"Database.Command failed on '{db}': {ex}");
                     result = -1;
                 }
             }
