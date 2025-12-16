@@ -354,6 +354,10 @@ namespace DataEditorX.Core
         /// </summary>
         public override string ToString()
         {
+            return $"{name} [{IdString}]";
+        }
+        public string ToDisplayString()
+        {
             string str;
             if (IsType(CardType.TYPE_MONSTER))
             {
@@ -366,16 +370,7 @@ namespace DataEditorX.Core
             {
                 str = $"{name} [{IdString}]\n[{YGOUtil.GetTypeString(type)}]\n{desc}";
             }
-
             return str;
-        }
-        public string ToShortString()
-        {
-            return $"{name} [{IdString}]";
-        }
-        public string ToLongString()
-        {
-            return ToString();
         }
 
         string LevelString()
