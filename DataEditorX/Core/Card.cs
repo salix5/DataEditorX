@@ -318,7 +318,7 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="sc"></param>
         /// <returns></returns>
-        public bool IsSetCode(long sc)
+        public bool IsSetcode(long sc)
         {
             if (setcode == 0)
             {
