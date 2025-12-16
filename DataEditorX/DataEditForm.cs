@@ -758,14 +758,7 @@ namespace DataEditorX
         //检查是否打开数据库
         public bool IsFileExists()
         {
-            if (File.Exists(nowCdbFile))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return File.Exists(nowCdbFile);
         }
         //打开数据库
         public bool Open(string file)
