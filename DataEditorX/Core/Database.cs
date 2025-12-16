@@ -167,47 +167,41 @@ namespace DataEditorX.Core
         /// <summary>
         /// Read cards from database by IDs.
         /// </summary>
-        /// <param name="DB">Database file path</param>
+        /// <param name="db">Database file path</param>
         /// <param name="ids">Collection of IDs</param>
-        public static Card[] ReadFromId(string DB, long[] ids)
+        public static Card[] ReadFromId(string db, long[] ids)
         {
             string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
-            return Read(DB, stmt1);
+            return Read(db, stmt1);
         }
 
-        public static Card[] Read(string DB, string SQL)
+        public static Card[] Read(string db, string SQL)
         {
             List<Card> list = new();
-            if (File.Exists(DB) && SQL != null)
+            if (SQL == null || !File.Exists(db))
             {
-                using SQLiteConnection sqliteconn = new($"Data Source={DB}");
-                sqliteconn.Open();
-                using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
+                return list.ToArray();
+            }
+            using SQLiteConnection sqliteconn = new($"Data Source={db}");
+            sqliteconn.Open();
+            using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
+            {
+                using SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans);
+                cmd.ExecuteNonQuery();
+                if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                 {
-                    using (SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans))
-                    {
-                        cmd.ExecuteNonQuery();
-                        string stmt1;
-                        if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
-                        {
-                            stmt1 = SQL;
-                        }
-                        else
-                        {
-                            stmt1 = DefaultSQL;
-                        }
-
-                        cmd.CommandText = stmt1;
-                        using SQLiteDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            list.Add(ReadCard(reader));
-                        }
-                        reader.Close();
-                    }
-                    trans.Commit();
+                    cmd.CommandText = SQL;
                 }
-                sqliteconn.Close();
+                else
+                {
+                    cmd.CommandText = DefaultSQL;
+                }
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(ReadCard(reader));
+                }
+                trans.Commit();
             }
             return list.ToArray();
         }
