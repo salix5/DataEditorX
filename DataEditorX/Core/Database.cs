@@ -92,7 +92,7 @@ namespace DataEditorX.Core
         /// <returns>Number of affected rows</returns>
         public static int Command(string DB, params string[] SQLs)
         {
-            if (string.IsNullOrWhiteSpace(DB) || SQLs == null || SQLs.Length == 0)
+            if (SQLs == null || SQLs.Length == 0)
             {
                 return 0;
             }
