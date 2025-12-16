@@ -24,10 +24,10 @@ namespace DataEditorX.Core
             get;
             private set;
         }
-        public string pack_id;
-        public string pack_name;
-        public string rarity;
-        public string date;
+        public string pack_id = "";
+        public string pack_name = "";
+        public string rarity = "";
+        public string date = "";
 
         public string GetMseRarity()
         {
@@ -36,7 +36,7 @@ namespace DataEditorX.Core
                 return "common";
             }
 
-            string rarity=this.rarity.Trim().ToLower();
+            string rarity = this.rarity.Trim().ToLower();
             if (rarity.Equals("common") || rarity.Equals("short print"))
             {
                 return "common";
