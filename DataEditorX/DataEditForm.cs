@@ -138,7 +138,7 @@ namespace DataEditorX
         }
         public bool Create(string file)
         {
-            return Open(file);
+            return Database.CreateDatabase(file);
         }
         public bool Save()
         {

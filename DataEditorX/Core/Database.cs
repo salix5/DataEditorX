@@ -48,26 +48,22 @@ namespace DataEditorX.Core
 
         #region Create table
         /// <summary>
-        /// Create new database.
+        /// Create a new database.
         /// </summary>
         /// <param name="db">New database file path</param>
         public static bool CreateDatabase(string db)
         {
+            if (string.IsNullOrWhiteSpace(db))
+            {
+                return false;
+            }
+
             if (File.Exists(db))
             {
                 File.Delete(db);
             }
-
-            try
-            {
-                SQLiteConnection.CreateFile(db);
-                Command(db, DefaultTableSQL);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
+            SQLiteConnection.CreateFile(db);
+            return Command(db, DefaultTableSQL) >= 0;
         }
         public static bool CheckTable(string db)
         {
