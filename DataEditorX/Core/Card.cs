@@ -320,10 +320,6 @@ namespace DataEditorX.Core
         /// <returns></returns>
         public bool IsSetcode(long sc)
         {
-            if (setcode == 0)
-            {
-                return false;
-            }
             long settype = sc & 0x0fffL;
             long setsubtype = sc & 0xf000L;
             for (int i = 0; i < SETCODE_SIZE; i++)
