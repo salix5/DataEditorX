@@ -286,7 +286,12 @@ namespace DataEditorX.Core
         /// <summary>
         /// 得到哈希值
         /// </summary>
-        public override int GetHashCode() => HashCode.Combine(id, name, type);
+        public override int GetHashCode()
+        {
+            // combine the hash codes of all members here (e.g. with XOR operator ^)
+            int hashCode = id.GetHashCode() + name.GetHashCode();
+            return hashCode;//member.GetHashCode();
+        }
         /// <summary>
         /// 比较卡片是否相等
         /// </summary>
