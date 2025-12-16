@@ -7,6 +7,7 @@
  */
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using DataEditorX.Common;
@@ -91,34 +92,46 @@ namespace DataEditorX.Core
         /// <returns>Number of affected rows</returns>
         public static int Command(string DB, params string[] SQLs)
         {
-            int result = 0;
-            if (File.Exists(DB) && SQLs != null)
+            if (string.IsNullOrWhiteSpace(DB) || SQLs == null || SQLs.Length == 0)
             {
-                using SQLiteConnection con = new($"Data Source={DB}");
-                con.Open();
-                using (SQLiteTransaction trans = con.BeginTransaction())
+                return 0;
+            }
+            if (!File.Exists(DB))
+            {
+                return -1;
+            }
+
+            int result = 0;
+            using SQLiteConnection con = new($"Data Source={DB}");
+            con.Open();
+            using (SQLiteTransaction trans = con.BeginTransaction())
+            {
+                try
+                {
+                    using SQLiteCommand cmd = new(PragmaSQL, con, trans);
+                    cmd.ExecuteNonQuery();
+                    foreach (string SQLstr in SQLs)
+                    {
+                        cmd.CommandText = SQLstr;
+                        result += cmd.ExecuteNonQuery();
+                    }
+                    trans.Commit();
+                }
+                catch (System.Exception ex)
                 {
                     try
                     {
-                        using SQLiteCommand cmd = new(con);
-                        foreach (string SQLstr in SQLs)
-                        {
-                            cmd.CommandText = SQLstr;
-                            result += cmd.ExecuteNonQuery();
-                        }
+                        trans.Rollback();
                     }
-                    catch
+                    catch (System.Exception rbEx)
                     {
-                        trans.Rollback();//出错，回滚
-                        result = -1;
+                        Trace.TraceError($"Database.Command rollback failed on '{DB}': {rbEx}");
                     }
-                    finally
-                    {
-                        trans.Commit();
-                    }
+                    Trace.TraceError($"Database.Command failed on '{DB}': {ex}");
+                    result = -1;
                 }
-                con.Close();
             }
+            con.Close();
             return result;
         }
         #endregion
