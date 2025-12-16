@@ -131,7 +131,6 @@ namespace DataEditorX.Core
                     result = -1;
                 }
             }
-            con.Close();
             return result;
         }
         #endregion
