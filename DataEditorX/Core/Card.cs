@@ -108,7 +108,7 @@ namespace DataEditorX.Core
             HashSet<long> checker = new();
             foreach (long sc in setcodes)
             {
-                if (sc > 0xffffL)
+                if (sc <= 0 || sc > 0xffffL)
                 {
                     continue;
                 }
