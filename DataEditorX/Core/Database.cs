@@ -329,12 +329,8 @@ namespace DataEditorX.Core
             }
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
-            using (SQLiteCommand cmd = new(con))
-            {
-                cmd.CommandText = "VACUUM;";
-                cmd.ExecuteNonQuery();
-            }
-            con.Close();
+            using SQLiteCommand cmd = new("VACUUM;", con);
+            cmd.ExecuteNonQuery();
         }
         #endregion
 
