@@ -7,7 +7,7 @@ namespace DataEditorX.Core
     {
         YgoPath GetPath();
         Card[] GetCardList(bool onlyselect);
-        bool CheckOpen();
+        bool IsFileExists();
         void Reset();
         void SetImage(long id);
         void SetImage(string id);

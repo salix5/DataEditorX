@@ -33,7 +33,7 @@ namespace DataEditorX.Core
 
             public bool Execute(params object[] args)
             {
-                if (!dataform.CheckOpen())
+                if (!dataform.IsFileExists())
                 {
                     return false;
                 }
@@ -93,7 +93,7 @@ namespace DataEditorX.Core
 
             public bool Execute(params object[] args)
             {
-                if (!dataform.CheckOpen())
+                if (!dataform.IsFileExists())
                 {
                     return false;
                 }
@@ -208,7 +208,7 @@ namespace DataEditorX.Core
 
             public bool Execute(params object[] args)
             {
-                if (!dataform.CheckOpen())
+                if (!dataform.IsFileExists())
                 {
                     return false;
                 }
@@ -281,7 +281,7 @@ namespace DataEditorX.Core
 
             public bool Execute(params object[] args)
             {
-                if (!dataform.CheckOpen())
+                if (!dataform.IsFileExists())
                 {
                     return false;
                 }
