@@ -548,28 +548,28 @@ namespace DataEditorX.Core
 
         public static CardPack FindPack(string db, long id)
         {
-            CardPack cardpack = null;
-            if (File.Exists(db) && id >= 0)
+            if (id < 0 || !File.Exists(db))
             {
-                using SQLiteConnection sqliteconn = new(@"Data Source=" + db);
-                sqliteconn.Open();
-                using (SQLiteCommand sqlitecommand = new(sqliteconn))
+                return null;
+            }
+
+            CardPack cardpack = null;
+            using SQLiteConnection sqliteconn = new($"Data Source={db}");
+            sqliteconn.Open();
+            using SQLiteCommand cmd = new(PragmaSQL, sqliteconn);
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "SELECT id,pack_id,pack,rarity,date FROM pack WHERE id=@id ORDER BY date DESC;";
+            cmd.Parameters.Add("@id", System.Data.DbType.Int64).Value = id;
+            using SQLiteDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                cardpack = new CardPack(id)
                 {
-                    sqlitecommand.CommandText = "select id,pack_id,pack,rarity,date from pack where id=" + id + " order by date desc";
-                    using SQLiteDataReader reader = sqlitecommand.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        cardpack = new CardPack(id)
-                        {
-                            pack_id = reader.GetString(1),
-                            pack_name = reader.GetString(2),
-                            rarity = reader.GetString(3),
-                            date = reader.GetString(4)
-                        };
-                    }
-                    reader.Close();
-                }
-                sqliteconn.Close();
+                    pack_id = reader.GetString(1),
+                    pack_name = reader.GetString(2),
+                    rarity = reader.GetString(3),
+                    date = reader.GetString(4)
+                };
             }
             return cardpack;
         }
