@@ -345,10 +345,8 @@ namespace DataEditorX.Core
         /// <summary>
         /// 密码字符串
         /// </summary>
-        public string IdString
-        {
-            get { return id.ToString("00000000"); }
-        }
+        public string IdString => id.ToString("00000000");
+        string LevelString => $"[★{GetLevel()}]";
         /// <summary>
         /// 字符串化
         /// </summary>
@@ -363,7 +361,7 @@ namespace DataEditorX.Core
             {
                 str = $"{name} [{IdString}]\n"
                     + $"[{YGOUtil.GetTypeString(type)}] {YGOUtil.GetRace(race)}/{YGOUtil.GetAttribute(attribute)}\n"
-                    + $"{LevelString()} {atk}/{def}\n"
+                    + $"{LevelString} {atk}/{def}\n"
                     + desc;
             }
             else
@@ -371,11 +369,6 @@ namespace DataEditorX.Core
                 str = $"{name} [{IdString}]\n[{YGOUtil.GetTypeString(type)}]\n{desc}";
             }
             return str;
-        }
-
-        string LevelString()
-        {
-            return $"[★{GetLevel()}]";
         }
         #endregion
     }
