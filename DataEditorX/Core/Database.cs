@@ -184,8 +184,9 @@ namespace DataEditorX.Core
                 sqliteconn.Open();
                 using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
                 {
-                    using (SQLiteCommand sqlitecommand = new(sqliteconn))
+                    using (SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans))
                     {
+                        cmd.ExecuteNonQuery();
                         string stmt1;
                         if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                         {
@@ -196,8 +197,8 @@ namespace DataEditorX.Core
                             stmt1 = DefaultSQL;
                         }
 
-                        sqlitecommand.CommandText = stmt1;
-                        using SQLiteDataReader reader = sqlitecommand.ExecuteReader();
+                        cmd.CommandText = stmt1;
+                        using SQLiteDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
                             list.Add(ReadCard(reader));
