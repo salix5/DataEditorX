@@ -749,8 +749,8 @@ namespace DataEditorX
                     return;
                 }
                 AddListView(p);
+                e.SuppressKeyPress = true;
             }
-            e.SuppressKeyPress = true;
         }
         #endregion
 
@@ -990,8 +990,8 @@ namespace DataEditorX
                 Card c = new(id);
                 codeList.Clear();
                 Search(c, false);
+                e.SuppressKeyPress = true;
             }
-            e.SuppressKeyPress = true;
         }
         //卡片名称搜索、编辑
         void Tb_cardnameKeyDown(object sender, KeyEventArgs e)
@@ -1008,12 +1008,12 @@ namespace DataEditorX
                 };
                 codeList.Clear();
                 Search(c, false);
+                e.SuppressKeyPress = true;
             }
             if (e.KeyCode == Keys.R && e.Control)
             {
                 Reset();
             }
-            e.SuppressKeyPress = true;
         }
 
         //脚本文本
