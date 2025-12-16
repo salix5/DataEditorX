@@ -290,35 +290,32 @@ namespace DataEditorX.Core
         #endregion
 
         #region Delete cards from database
-        public static int DeleteDB(string DB, Card[] cards)
+        public static int DeleteDB(string db, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
             {
                 return 0;
             }
-            if (!File.Exists(DB))
+            if (!File.Exists(db))
             {
                 return 0;
             }
             int result = 0;
-            using SQLiteConnection con = new($"Data Source={DB}");
+            using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using (SQLiteCommand cmd = new(PragmaSQL, con, trans))
+                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = DeleteSQL;
+                var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
+                foreach (Card c in cards)
                 {
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = DeleteSQL;
-                    var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
-                    foreach (Card c in cards)
-                    {
-                        parameter.Value = c.id;
-                        result += cmd.ExecuteNonQuery();
-                    }
+                    parameter.Value = c.id;
+                    result += cmd.ExecuteNonQuery();
                 }
                 trans.Commit();
             }
-            con.Close();
             return result;
         }
         #endregion
