@@ -1114,7 +1114,7 @@ namespace DataEditorX
             dlg.Filter = MyConfig.CDB_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                if (Database.Create(dlg.FileName))
+                if (Database.CreateDatabase(dlg.FileName))
                 {
                     if (MyMsg.Question(LMSG.IfOpenDatabase))
                     {
@@ -1965,7 +1965,7 @@ namespace DataEditorX
                     return;
                 }
 
-                if (Database.Create(dlg.FileName))
+                if (Database.CreateDatabase(dlg.FileName))
                 {
                     for (int i = 0; i < count; i++)
                     {

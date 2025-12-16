@@ -349,7 +349,7 @@ namespace DataEditorX
                 //是否是数据库
                 if (YGOUtil.IsDatabase(file))
                 {
-                    if (Database.Create(file))//是否创建成功
+                    if (Database.CreateDatabase(file))//是否创建成功
                     {
                         if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
                         {

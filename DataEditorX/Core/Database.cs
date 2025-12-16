@@ -51,7 +51,7 @@ namespace DataEditorX.Core
         /// Create new database.
         /// </summary>
         /// <param name="db">New database file path</param>
-        public static bool Create(string db)
+        public static bool CreateDatabase(string db)
         {
             if (File.Exists(db))
             {

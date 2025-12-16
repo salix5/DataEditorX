@@ -380,7 +380,7 @@ namespace DataEditorX.Core
             }
 
             File.Delete(cdbfile);
-            Database.Create(cdbfile);
+            Database.CreateDatabase(cdbfile);
             Database.CopyDB(cdbfile, false, cardlist);
             if (File.Exists(zipname))
             {
