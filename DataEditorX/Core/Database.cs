@@ -261,9 +261,9 @@ namespace DataEditorX.Core
         /// Copy cards to database
         /// </summary>
         /// <param name="DB">Destination database file path</param>
-        /// <param name="cards">Collection of cards</param>
         /// <param name="ignore">Ignore existing entries</param>
-        /// <returns>Number of updates x2</returns>
+        /// <param name="cards">Collection of cards</param>
+        /// <returns>Number of updated cards x2</returns>
         public static int CopyDB(string DB, bool ignore, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
@@ -279,8 +279,9 @@ namespace DataEditorX.Core
             con.Open();
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using (SQLiteCommand cmd = new(con))
+                using (SQLiteCommand cmd = new(PragmaSQL, con, trans))
                 {
+                    cmd.ExecuteNonQuery();
                     cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
                     InitParameters(cmd);
                     foreach (Card c in cards)
