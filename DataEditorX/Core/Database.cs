@@ -71,15 +71,7 @@ namespace DataEditorX.Core
         }
         public static bool CheckTable(string db)
         {
-            try
-            {
-                Command(db, DefaultTableSQL);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
+            return Command(db, DefaultTableSQL) >= 0;
         }
         #endregion
 

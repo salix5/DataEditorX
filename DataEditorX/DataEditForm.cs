@@ -763,12 +763,12 @@ namespace DataEditorX
         //打开数据库
         public bool Open(string file)
         {
-            SetCDBPath(file);
             if (!File.Exists(file))
             {
                 MyMsg.Error(LMSG.FileIsNotExists);
                 return false;
             }
+            SetCDBPath(file);
             //清空
             codeList.Clear();
             cardlist.Clear();
