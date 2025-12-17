@@ -43,6 +43,10 @@ namespace DataEditorX
             //初始化控件
             InitializeComponent();
             this.datapath = datapath;
+            //文件路径
+            conflang = MyConfig.GetLanguageFile(datapath);
+            //游戏数据,MSE数据
+            datacfg = new DataConfig(MyConfig.GetCardInfoFile(datapath));
         }
         public void InitializeData()
         {
@@ -68,10 +72,6 @@ namespace DataEditorX
         }
         void Init()
         {
-            //文件路径
-            conflang = MyConfig.GetLanguageFile(datapath);
-            //游戏数据,MSE数据
-            datacfg = new DataConfig(MyConfig.GetCardInfoFile(datapath));
             //初始化YGOUtil的数据
             YGOUtil.SetConfig(datacfg);
 
