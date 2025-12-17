@@ -50,7 +50,7 @@ DataEditForm.mainMenu.menuitem_language	语言
 DataEditForm.mainMenu.menuitem_checkupdate	检查更新
 DataEditForm.mainMenu.menuitem_autocheckupdate	自动检查更新
 DataEditForm.mainMenu.menuitem_github	源码
-DataEditForm.mainMenu.menuitem_replace	(特殊功能)批量替换文本
+DataEditForm.mainMenu.menuitem_replace	N/A
 #
 MainForm.mainMenu.menuitem_file	文件(&F)
 MainForm.mainMenu.menuitem_open	打开

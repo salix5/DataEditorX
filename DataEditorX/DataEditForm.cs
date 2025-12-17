@@ -1900,39 +1900,6 @@ namespace DataEditorX
                 MyMsg.Show("OK");
             }
         }
-        void Menuitem_replaceClick(object sender, EventArgs e)
-        {
-            if (!IsFileExists())
-            {
-                return;
-            }
-
-            using SaveFileDialog dlg = new();
-            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
-            dlg.Filter = MyConfig.CDB_TYPE;
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                Card[] cards = Database.Read(nowCdbFile, "");
-                int count = cards.Length;
-                if (cards == null || cards.Length == 0)
-                {
-                    return;
-                }
-
-                if (Database.CreateDatabase(dlg.FileName))
-                {
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (cards[i].desc != null)
-                        {
-                            cards[i].desc = tasker.MseHelper.ReplaceText(cards[i].desc, cards[i].name);
-                        }
-                    }
-                    Database.CopyDB(dlg.FileName, false, cards);
-                    MyMsg.Show(LMSG.CopyCardsToDBIsOK);
-                }
-            }
-        }
 
         private void text2LinkMarks(string text)
         {
