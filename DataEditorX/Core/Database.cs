@@ -241,12 +241,12 @@ namespace DataEditorX.Core
 
         #region Write database
         /// <summary>
-        /// Copy cards to database
+        /// Insert cards into database
         /// </summary>
-        /// <param name="db">Destination database file path</param>
+        /// <param name="db">Database file path</param>
         /// <param name="ignore">Ignore existing entries</param>
         /// <param name="cards">Collection of cards</param>
-        /// <returns>Number of updated cards x2</returns>
+        /// <returns>Number of updated cards * 2</returns>
         public static int InsertCards(string db, bool ignore, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
@@ -275,6 +275,7 @@ namespace DataEditorX.Core
             }
             return result;
         }
+
         public static int DeleteCards(string db, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
@@ -302,6 +303,11 @@ namespace DataEditorX.Core
                 trans.Commit();
             }
             return result;
+        }
+
+        public static bool AddCard(string db, Card c)
+        {
+            return InsertCards(db, true, new Card[] { c }) == 2;
         }
         #endregion
 
