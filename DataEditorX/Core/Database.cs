@@ -123,7 +123,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region Read from database
+        #region Read database
         static Card ReadCard(SQLiteDataReader reader)
         {
             Card c = new(0)
@@ -238,7 +238,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region Copy cards to database
+        #region Write database
         /// <summary>
         /// Copy cards to database
         /// </summary>
@@ -274,9 +274,6 @@ namespace DataEditorX.Core
             }
             return result;
         }
-        #endregion
-
-        #region Delete cards from database
         public static int DeleteCards(string db, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
@@ -307,7 +304,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region Vacuum
+        #region VACUUM
         public static void Vacuum(string db)
         {
             if (!File.Exists(db))
@@ -321,7 +318,6 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region Generate SQL statements
         #region SELECT
         public static string GetSelectSQL(Card c)
         {
@@ -502,7 +498,6 @@ namespace DataEditorX.Core
             string id = c.id.ToString();
             return $"DELETE FROM datas WHERE id={id};\nDELETE FROM texts WHERE id={id};\n";
         }
-        #endregion
         #endregion
 
 
