@@ -12,7 +12,6 @@ CodeEditForm.mainMenu.menuitem_replace	Replace
 CodeEditForm.mainMenu.menuitem_setcard	Set Database
 CodeEditForm.mainMenu.menuitem_help	Help(&H)
 CodeEditForm.mainMenu.menuitem_about	About
-DataEditForm.mainMenu.menuitem_replace	N/A
 CodeEditForm.mainMenu.menuitem_tools	Tools(&T)
 CodeEditForm.mainMenu.menuitem_effectcreator	Effect Creator
 #
