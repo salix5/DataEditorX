@@ -301,11 +301,6 @@ namespace DataEditorX
         //初始化控件
         public void InitControl(DataConfig datacfg)
         {
-            if (datacfg == null)
-            {
-                return;
-            }
-
             try
             {
                 InitComboBox(cb_cardrace, datacfg.dicCardRaces);
