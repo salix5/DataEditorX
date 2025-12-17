@@ -1303,57 +1303,11 @@ namespace DataEditorX
             }
             return cards.ToArray();
         }
-        void Menuitem_copytoClick(object sender, EventArgs e)
-        {
-            if (!IsFileExists())
-            {
-                return;
-            }
-
-            CopyTo(GetCardList(false));
-        }
-
-        void Menuitem_copyselecttoClick(object sender, EventArgs e)
-        {
-            if (!IsFileExists())
-            {
-                return;
-            }
-
-            CopyTo(GetCardList(true));
-        }
         //保存卡片到当前数据库
         public void SaveCards(Card[] cards)
         {
             cmdManager.ExcuteCommand(cardedit.copyCard, cards);
             Search(srcCard, true);
-        }
-        //卡片另存为
-        void CopyTo(Card[] cards)
-        {
-            if (cards == null || cards.Length == 0)
-            {
-                return;
-            }
-            //select file
-            bool replace = false;
-            string filename = null;
-            using (OpenFileDialog dlg = new())
-            {
-                dlg.Title = LanguageHelper.GetMsg(LMSG.SelectDatabasePath);
-                dlg.Filter = MyConfig.CDB_TYPE;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    filename = dlg.FileName;
-                    replace = MyMsg.Question(LMSG.IfReplaceExistingCard);
-                }
-            }
-            if (!string.IsNullOrEmpty(filename))
-            {
-                Database.CopyDB(filename, !replace, cards);
-                MyMsg.Show(LMSG.CopyCardsToDBIsOK);
-            }
-
         }
         #endregion
 
