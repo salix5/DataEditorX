@@ -67,11 +67,8 @@ namespace DataEditorX
         string title;
         string nowCdbFile = "";
         int maxRow = 20;
-        int page = 1, pageNum = 1;
-        /// <summary>
-        /// 卡片总数
-        /// </summary>
-        int cardcount;
+        int page = 1;
+        int pageNum = 1;
 
         /// <summary>
         /// 搜索结果
@@ -503,9 +500,9 @@ namespace DataEditorX
 
             istart = (p - 1) * maxRow;
             iend = p * maxRow;
-            if (iend > cardcount)
+            if (iend > cardlist.Count)
             {
-                iend = cardcount;
+                iend = cardlist.Count;
             }
 
             page = p;
@@ -543,7 +540,6 @@ namespace DataEditorX
             }
             lv_cardlist.EndUpdate();
             tb_page.Text = page.ToString();
-
         }
         #endregion
 
@@ -793,29 +789,18 @@ namespace DataEditorX
         //设置卡片列表的结果
         public void SetCards(Card[] cards, bool isfresh)
         {
-            if (cards != null)
+            cardlist.Clear();
+            foreach (Card c in cards)
             {
-                cardlist.Clear();
-                foreach (Card c in cards)
+                if (CardFilter(c, srcCard))
                 {
-                    if (CardFilter(c, srcCard))
-                    {
-                        cardlist.Add(c);
-                    }
+                    cardlist.Add(c);
                 }
-                cardcount = cardlist.Count;
-                pageNum = cardcount / maxRow;
-                if (cardcount % maxRow > 0)
-                {
-                    pageNum++;
-                }
-                else if (cardcount == 0)
-                {
-                    pageNum = 1;
-                }
-
+            }
+            if (cardlist.Count > 0)
+            {
+                pageNum = (int)Math.Ceiling((double)cardlist.Count / maxRow);
                 tb_pagenum.Text = pageNum.ToString();
-
                 if (isfresh)//是否跳到之前页数
                 {
                     AddListView(page);
@@ -826,14 +811,11 @@ namespace DataEditorX
                 }
             }
             else
-            {//结果为空
-                cardcount = 0;
-                page = 1;
+            {
                 pageNum = 1;
-                tb_page.Text = page.ToString();
+                page = 1;
                 tb_pagenum.Text = pageNum.ToString();
-                cardlist.Clear();
-                lv_cardlist.Items.Clear();
+                AddListView(1);
             }
         }
         //搜索卡片
