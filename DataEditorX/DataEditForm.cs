@@ -1228,7 +1228,7 @@ namespace DataEditorX
         {
             if (!IsFileExists())
             {
-                return null;
+                return Array.Empty<Card>();
             }
 
             List<Card> cards = new();
@@ -1255,11 +1255,6 @@ namespace DataEditorX
             else
             {
                 cards.AddRange(cardlist.ToArray());
-            }
-
-            if (cards.Count == 0)
-            {
-                //MyMsg.Show(LMSG.NoSelectCard);
             }
             return cards.ToArray();
         }
@@ -1313,7 +1308,7 @@ namespace DataEditorX
             }
 
             Card[] cards = GetCardList(onlyselect);
-            if (cards == null)
+            if (cards.Length == 0)
             {
                 return;
             }

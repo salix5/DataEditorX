@@ -380,30 +380,34 @@ namespace DataEditorX
         //复制选中
         void Menuitem_copyselecttoClick(object sender, EventArgs e)
         {
-            DataEditForm df = GetActive();//获取当前的数据库编辑
-            if (df != null)
+            DataEditForm df = GetActive();
+            if (df is null)
             {
-                tCards = df.GetCardList(true); //获取选中的卡片
-                if (tCards != null)
-                {
-                    SetCopyNumber(tCards.Length);//显示复制卡片的数量
-                    MyMsg.Show(LMSG.CopyCards);
-                }
+                return;
             }
+            tCards = df.GetCardList(true);
+            if (tCards.Length == 0)
+            {
+                return;
+            }
+            SetCopyNumber(tCards.Length);
+            MyMsg.Show(LMSG.CopyCards);
         }
         //复制当前结果
         void Menuitem_copyallClick(object sender, EventArgs e)
         {
-            DataEditForm df = GetActive();//获取当前的数据库编辑
-            if (df != null)
+            DataEditForm df = GetActive();
+            if (df is null)
             {
-                tCards = df.GetCardList(false);//获取结果的所有卡片
-                if (tCards != null)
-                {
-                    SetCopyNumber(tCards.Length);//显示复制卡片的数量
-                    MyMsg.Show(LMSG.CopyCards);
-                }
+                return;
             }
+            tCards = df.GetCardList(false);
+            if (tCards.Length == 0)
+            {
+                return;
+            }
+            SetCopyNumber(tCards.Length);
+            MyMsg.Show(LMSG.CopyCards);
         }
         //显示复制卡片的数量
         void SetCopyNumber(int c)
