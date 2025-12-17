@@ -277,7 +277,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region Delete cards from database
-        public static int DeleteDB(string db, Card[] cards)
+        public static int DeleteCards(string db, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
             {

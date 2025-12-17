@@ -327,7 +327,7 @@ namespace DataEditorX.Core
             }
             public void Undo()
             {
-                Database.DeleteDB(dataform.GetOpenFile(), newCards);
+                Database.DeleteCards(dataform.GetOpenFile(), newCards);
                 Database.InsertCards(dataform.GetOpenFile(), !replace, oldCards);
             }
 
