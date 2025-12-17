@@ -1550,12 +1550,11 @@ namespace DataEditorX
         {
             if (codeList.Count == 0)
             {
-                return null;
+                return Array.Empty<Card>();
             }
-
             if (!IsFileExists())
             {
-                return null;
+                return Array.Empty<Card>();
             }
 
             return Database.ReadFromId(nowCdbFile, codeList.ToArray());
@@ -1577,11 +1576,6 @@ namespace DataEditorX
                 {
                     codeList.Add(card.id);
                 }
-            }
-            if (codeList.Count == 0)
-            {
-                SetCards(null, false);
-                return;
             }
             SetCards(getCompCards(), false);
         }
