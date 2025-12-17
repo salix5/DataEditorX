@@ -147,7 +147,6 @@ namespace DataEditorX
         //窗体第一次加载
         void DataEditForm_Load(object sender, EventArgs e)
         {
-            //InitListRows();//调整卡片列表的函数
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
             oldCard.Clear();
@@ -160,10 +159,6 @@ namespace DataEditorX
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
             //default script name
             DefaultScriptName = MyConfig.ReadString(MyConfig.TAG_DEFAULT_SCRIPT_NAME);
-            if (!string.IsNullOrEmpty(nowCdbFile) && File.Exists(nowCdbFile))
-            {
-                Open(nowCdbFile);
-            }
             //获取MSE配菜单
             AddMenuItemFormMSE();
             //
@@ -200,9 +195,10 @@ namespace DataEditorX
             BeginInvoke((Action)(() =>
             {
                 InitListRows();
-                AddListView(page);
-                codeList.Clear();
-                Search(true);
+                if (File.Exists(nowCdbFile))
+                {
+                    Open(nowCdbFile);
+                }
             }));
         }
         #endregion
