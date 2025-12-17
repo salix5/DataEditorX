@@ -246,7 +246,7 @@ namespace DataEditorX.Core
         /// <param name="ignore">Ignore existing entries</param>
         /// <param name="cards">Collection of cards</param>
         /// <returns>Number of updated cards x2</returns>
-        public static int CopyDB(string db, bool ignore, Card[] cards)
+        public static int InsertCards(string db, bool ignore, Card[] cards)
         {
             if (cards == null || cards.Length == 0)
             {

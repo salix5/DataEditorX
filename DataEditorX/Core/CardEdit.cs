@@ -318,7 +318,7 @@ namespace DataEditorX.Core
                         }
                     }
                 }
-                Database.CopyDB(dataform.GetOpenFile(), !replace, cards);
+                Database.InsertCards(dataform.GetOpenFile(), !replace, cards);
                 copied = true;
                 newCards = cards;
                 this.replace = replace;
@@ -328,7 +328,7 @@ namespace DataEditorX.Core
             public void Undo()
             {
                 Database.DeleteDB(dataform.GetOpenFile(), newCards);
-                Database.CopyDB(dataform.GetOpenFile(), !replace, oldCards);
+                Database.InsertCards(dataform.GetOpenFile(), !replace, oldCards);
             }
 
             public object Clone()
