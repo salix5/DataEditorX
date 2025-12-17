@@ -168,7 +168,7 @@ namespace DataEditorX
         void DataEditForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //当前有任务执行，是否结束
-            if (tasker != null && tasker.IsRuning())
+            if (tasker.IsRuning())
             {
                 if (!CancelTask())
                 {
@@ -253,7 +253,7 @@ namespace DataEditorX
             if (MdiParent != null) //父容器不为空
             {
                 Text = str2;
-                if (tasker != null && tasker.IsRuning())
+                if (tasker.IsRuning())
                 {
                     if (DockPanel.ActiveContent == this)
                     {
@@ -861,18 +861,12 @@ namespace DataEditorX
         //添加
         void Btn_addClick(object sender, EventArgs e)
         {
-            if (cardedit != null)
-            {
-                cmdManager.ExcuteCommand(cardedit.addCard);
-            }
+            cmdManager.ExcuteCommand(cardedit.addCard);
         }
         //修改
         void Btn_modClick(object sender, EventArgs e)
         {
-            if (cardedit != null)
-            {
-                cmdManager.ExcuteCommand(cardedit.modCard, menuitem_operacardsfile.Checked);
-            }
+            cmdManager.ExcuteCommand(cardedit.modCard, menuitem_operacardsfile.Checked);
         }
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
@@ -930,10 +924,7 @@ namespace DataEditorX
         //删除
         void Btn_delClick(object sender, EventArgs e)
         {
-            if (cardedit != null)
-            {
-                cmdManager.ExcuteCommand(cardedit.delCard, menuitem_operacardsfile.Checked);
-            }
+            cmdManager.ExcuteCommand(cardedit.delCard, menuitem_operacardsfile.Checked);
         }
         //撤销
         void Btn_undoClick(object sender, EventArgs e)
@@ -942,11 +933,8 @@ namespace DataEditorX
             {
                 return;
             }
-            if (cardedit != null)
-            {
-                cmdManager.Undo();
-                Search(true);
-            }
+            cmdManager.Undo();
+            Search(true);
         }
         //导入卡图
         void Btn_imgClick(object sender, EventArgs e)
@@ -1044,15 +1032,12 @@ namespace DataEditorX
         bool CancelTask()
         {
             bool bl = false;
-            if (tasker != null && tasker.IsRuning())
+            if (tasker.IsRuning())
             {
                 bl = MyMsg.Question(LMSG.IfCancelTask);
                 if (bl)
                 {
-                    if (tasker != null)
-                    {
-                        tasker.Cancel();
-                    }
+                    tasker.Cancel();
 
                     if (bgWorker1.IsBusy)
                     {
@@ -1149,7 +1134,7 @@ namespace DataEditorX
         //是否在执行
         bool isRun()
         {
-            if (tasker != null && tasker.IsRuning())
+            if (tasker.IsRuning())
             {
                 MyMsg.Warning(LMSG.RunError);
                 return true;
@@ -1193,12 +1178,9 @@ namespace DataEditorX
                 title = title.Substring(0, t);
                 SetTitle();
             }
-            if (e.Error != null)
-            {//出错
-                if (tasker != null)
-                {
-                    tasker.Cancel();
-                }
+            if (e.Error is not null)
+            {
+                tasker.Cancel();
 
                 if (bgWorker1.IsBusy)
                 {
@@ -1849,10 +1831,7 @@ namespace DataEditorX
         void Menuitem_testPendulumTextClick(object sender, EventArgs e)
         {
             Card c = GetCard();
-            if (c != null)
-            {
-                tasker.TestPendulumText(c.desc);
-            }
+            tasker.TestPendulumText(c.desc);
         }
         void Menuitem_export_select_sqlClick(object sender, EventArgs e)
         {
