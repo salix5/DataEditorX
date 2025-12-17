@@ -119,8 +119,8 @@ namespace FastColoredTextBoxNS
 
         private void InitializeComponent()
         {
-            lbTooltip = new System.Windows.Forms.Label();
-            lbSizeController = new System.Windows.Forms.Label();
+            lbTooltip = new Label();
+            lbSizeController = new Label();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             SuspendLayout();
             // 
@@ -128,37 +128,37 @@ namespace FastColoredTextBoxNS
             // 
             lbTooltip.AutoSize = true;
             lbTooltip.BackColor = System.Drawing.SystemColors.Desktop;
-            lbTooltip.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lbTooltip.Font = new Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lbTooltip.ForeColor = System.Drawing.SystemColors.Control;
-            lbTooltip.Location = new System.Drawing.Point(221, 117);
-            lbTooltip.MaximumSize = new System.Drawing.Size(480, 0);
+            lbTooltip.Location = new Point(221, 117);
+            lbTooltip.MaximumSize = new Size(480, 0);
             lbTooltip.Name = "lbTooltip";
-            lbTooltip.Size = new System.Drawing.Size(0, 28);
+            lbTooltip.Size = new Size(0, 28);
             lbTooltip.TabIndex = 1;
-            lbTooltip.MouseMove += new System.Windows.Forms.MouseEventHandler(lbTooltip_MouseMove);
+            lbTooltip.MouseMove += new MouseEventHandler(lbTooltip_MouseMove);
             // 
             // lbSizeController
             // 
             lbSizeController.AutoSize = true;
             lbSizeController.BackColor = System.Drawing.Color.Transparent;
             lbSizeController.ForeColor = System.Drawing.Color.Transparent;
-            lbSizeController.Location = new System.Drawing.Point(179, 293);
+            lbSizeController.Location = new Point(179, 293);
             lbSizeController.Name = "lbSizeController";
-            lbSizeController.Size = new System.Drawing.Size(136, 16);
+            lbSizeController.Size = new Size(136, 16);
             lbSizeController.TabIndex = 2;
             lbSizeController.Text = "lbSizeController";
             // 
             // FastColoredTextBoxEx
             // 
-            AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            AutoScrollMinSize = new Size(27, 14);
             BackColor = System.Drawing.SystemColors.Control;
             Controls.Add(lbSizeController);
             Controls.Add(lbTooltip);
             Name = "FastColoredTextBoxEx";
-            Size = new System.Drawing.Size(584, 327);
-            Load += new System.EventHandler(FastColoredTextBoxEx_Load);
-            Scroll += new System.Windows.Forms.ScrollEventHandler(FastColoredTextBoxEx_Scroll);
-            SizeChanged += new System.EventHandler(FastColoredTextBoxEx_SizeChanged);
+            Size = new Size(584, 327);
+            Load += new EventHandler(FastColoredTextBoxEx_Load);
+            Scroll += new ScrollEventHandler(FastColoredTextBoxEx_Scroll);
+            SizeChanged += new EventHandler(FastColoredTextBoxEx_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             ResumeLayout(false);
             PerformLayout();

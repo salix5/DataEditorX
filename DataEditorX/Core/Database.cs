@@ -106,13 +106,13 @@ namespace DataEditorX.Core
                     }
                     trans.Commit();
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     try
                     {
                         trans.Rollback();
                     }
-                    catch (System.Exception rbEx)
+                    catch (Exception rbEx)
                     {
                         Trace.TraceError($"Database.Command rollback failed on '{db}': {rbEx}");
                     }
