@@ -165,7 +165,7 @@ namespace DataEditorX.Core
 
         public static Card[] Read(string db, string SQL)
         {
-            if (SQL == null || !File.Exists(db))
+            if (!File.Exists(db))
             {
                 return Array.Empty<Card>();
             }
@@ -176,7 +176,7 @@ namespace DataEditorX.Core
             {
                 using SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans);
                 cmd.ExecuteNonQuery();
-                if (SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrEmpty(SQL) && SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
                 {
                     cmd.CommandText = SQL;
                 }
