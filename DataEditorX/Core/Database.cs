@@ -164,11 +164,11 @@ namespace DataEditorX.Core
 
         public static Card[] Read(string db, string SQL)
         {
-            List<Card> list = new();
             if (SQL == null || !File.Exists(db))
             {
-                return list.ToArray();
+                return Array.Empty<Card>();
             }
+            List<Card> list = new();
             using SQLiteConnection sqliteconn = new($"Data Source={db}");
             sqliteconn.Open();
             using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
