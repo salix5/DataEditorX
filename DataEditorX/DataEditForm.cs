@@ -833,7 +833,7 @@ namespace DataEditorX
         //更新临时卡片
         public void Reset()
         {
-            oldCard= new Card(0);
+            oldCard = new Card(0);
             LoadCard(oldCard);
         }
         #endregion
