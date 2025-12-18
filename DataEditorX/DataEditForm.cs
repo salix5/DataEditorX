@@ -24,7 +24,7 @@ namespace DataEditorX
 {
     public partial class DataEditForm : DockContent, IDataForm
     {
-        private string default_script_name;
+        string default_script_name;
 
         public string DefaultScriptName
         {
@@ -51,18 +51,18 @@ namespace DataEditorX
         TaskHelper tasker;
         string taskname = "";
         //目录
-        YgoPath ygopath;
+        readonly YgoPath ygopath = new(Application.StartupPath);
         /// <summary>当前卡片</summary>
         Card oldCard = new(0);
         /// <summary>搜索条件</summary>
         Card srcCard = new(0);
         //卡片编辑
-        CardEdit cardedit;
-        string[] strs = new string[Card.STR_SIZE];
+        readonly CardEdit cardedit;
+        readonly string[] strs = new string[Card.STR_SIZE];
         /// <summary>
         /// 对比的id集合
         /// </summary>
-        List<long> codeList = new();
+        readonly List<long> codeList = new();
         //初始标题
         string title;
         string nowCdbFile = "";
@@ -80,34 +80,27 @@ namespace DataEditorX
         readonly CommandManager cmdManager = new();
 
         Image cover;
-        MSEConfig msecfg;
+        readonly MSEConfig msecfg;
 
-        string datapath;
+        readonly string datapath;
         string confcover;
 
-        public DataEditForm(string datapath, string cdbfile)
+        public DataEditForm(string datapath, string cdbfile) : this(datapath)
         {
-            this.datapath = datapath;
-            Initialize();
             nowCdbFile = cdbfile;
         }
         public DataEditForm(string datapath)
         {
-            if (string.IsNullOrEmpty(datapath))
-            {
-                Application.Exit();
-            }
             this.datapath = datapath;
+            cardedit = new CardEdit(this);
+            msecfg = new MSEConfig(datapath);
             Initialize();
         }
         void Initialize()
         {
-            cardedit = new CardEdit(this);
-            ygopath = new YgoPath(Application.StartupPath);
             InitPath();
             InitializeComponent();
             title = Text;
-            msecfg = new MSEConfig(datapath);
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
             cmdManager.UndoStateChanged += delegate (bool val)
             {
