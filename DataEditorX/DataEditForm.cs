@@ -1256,7 +1256,7 @@ namespace DataEditorX
         public void SaveCards(Card[] cards)
         {
             cmdManager.ExcuteCommand(cardedit.copyCard, cards);
-            Search(srcCard, true);
+            Refresh(true);
         }
         #endregion
 
