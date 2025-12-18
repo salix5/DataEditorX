@@ -35,12 +35,12 @@ namespace DataEditorX.Core.Mse
         public const string TAG_MAXCOUNT = "maxcount";
         public const string TAG_RACE = "race";
         public const string TAG_TYPE = "type";
-        public const string TAG_WIDTH="width";
-        public const string TAG_HEIGHT="height";
+        public const string TAG_WIDTH = "width";
+        public const string TAG_HEIGHT = "height";
 
-        public const string TAG_REIMAGE="reimage";
-        public const string TAG_PEND_WIDTH="pwidth";
-        public const string TAG_PEND_HEIGHT="pheight";
+        public const string TAG_REIMAGE = "reimage";
+        public const string TAG_PEND_WIDTH = "pwidth";
+        public const string TAG_PEND_HEIGHT = "pheight";
 
         public const string TAG_IMAGE = "imagepath";
         public const string TAG_REPALCE = "replace";
@@ -48,7 +48,7 @@ namespace DataEditorX.Core.Mse
 
         public const string TAG_NO_TEN = "no10";
 
-        public const string TAG_NO_START_CARDS="no_star_cards";
+        public const string TAG_NO_START_CARDS = "no_star_cards";
 
         public const string TAG_REP = "%%";
         public const string SEP_LINE = " ";
@@ -146,7 +146,7 @@ namespace DataEditorX.Core.Mse
                     string val = ConfHelper.GetValue(line);
                     string[] cs = val.Split(',');
                     noStartCards = new long[cs.Length];
-                    int i=0;
+                    int i = 0;
                     foreach (string str in cs)
                     {
                         long.TryParse(str, out long l);
