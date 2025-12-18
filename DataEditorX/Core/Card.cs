@@ -142,7 +142,7 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region 比较、哈希值、操作符
+        #region Equals
         /// <summary>
         /// 比较
         /// </summary>
@@ -246,13 +246,6 @@ namespace DataEditorX.Core
             return true;
         }
         /// <summary>
-        /// 得到哈希值
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return id.GetHashCode();
-        }
-        /// <summary>
         /// 比较卡片是否相等
         /// </summary>
         public static bool operator ==(Card left, Card right)
@@ -263,6 +256,23 @@ namespace DataEditorX.Core
             }
             return left.Equals(right);
         }
+        /// <summary>
+        /// 卡片是否不相等
+        /// </summary>
+        public static bool operator !=(Card left, Card right)
+        {
+            return !(left == right);
+        }
+        /// <summary>
+        /// 得到哈希值
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return id.GetHashCode();
+        }
+        #endregion
+
+        #region Compare
         /// <summary>
         /// 是否是某类型
         /// </summary>
@@ -295,13 +305,6 @@ namespace DataEditorX.Core
                 }
             }
             return false;
-        }
-        /// <summary>
-        /// 卡片是否不相等
-        /// </summary>
-        public static bool operator !=(Card left, Card right)
-        {
-            return !(left == right);
         }
         #endregion
 
