@@ -823,8 +823,7 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (codeList.Count > 0)
             {
-                _ = Database.ReadFromId(nowCdbFile, codeList.ToArray());
-                SetCards(getCompCards(), true);
+                SetCards(Database.ReadFromId(nowCdbFile, codeList.ToArray()), true);
             }
             else
             {
@@ -1498,10 +1497,6 @@ namespace DataEditorX
         //读取将要对比的数据
         Card[] getCompCards()
         {
-            if (codeList.Count == 0)
-            {
-                return Array.Empty<Card>();
-            }
             if (!IsFileExists())
             {
                 return Array.Empty<Card>();

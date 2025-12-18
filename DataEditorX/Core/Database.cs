@@ -203,6 +203,10 @@ namespace DataEditorX.Core
         /// <param name="ids">Collection of IDs</param>
         public static Card[] ReadFromId(string db, long[] ids)
         {
+            if (ids == null || ids.Length == 0)
+            {
+                return Array.Empty<Card>();
+            }
             string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
             return Read(db, stmt1);
         }
