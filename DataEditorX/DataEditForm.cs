@@ -76,7 +76,7 @@ namespace DataEditorX
         readonly List<Card> cardlist = new();
 
         //setcode正在输入
-        readonly bool[] setcodeIsedit = new bool[5];
+        readonly bool[] isSetcodeEditing = new bool[5];
         readonly CommandManager cmdManager = new();
 
         Image? cover;
@@ -1577,17 +1577,17 @@ namespace DataEditorX
         //系列名输入时
         void setCode_InputText(int index, ComboBox cb, TextBox tb)
         {
-            if (index >= 0 && index < setcodeIsedit.Length)
+            if (index >= 0 && index < isSetcodeEditing.Length)
             {
-                if (setcodeIsedit[index])//如果正在编辑
+                if (isSetcodeEditing[index])//如果正在编辑
                 {
                     return;
                 }
 
-                setcodeIsedit[index] = true;
+                isSetcodeEditing[index] = true;
                 long.TryParse(tb.Text, NumberStyles.HexNumber, null, out long temp);
                 SetSelect(cb, temp);
-                setcodeIsedit[index] = false;
+                isSetcodeEditing[index] = false;
             }
         }
         private void tb_setcode1_TextChanged(object sender, EventArgs e)
@@ -1615,17 +1615,17 @@ namespace DataEditorX
         //系列选择框 选择时
         void setCode_Selected(int index, ComboBox cb, TextBox tb)
         {
-            if (index >= 0 && index < setcodeIsedit.Length)
+            if (index >= 0 && index < isSetcodeEditing.Length)
             {
-                if (setcodeIsedit[index])//如果正在编辑
+                if (isSetcodeEditing[index])//如果正在编辑
                 {
                     return;
                 }
 
-                setcodeIsedit[index] = true;
+                isSetcodeEditing[index] = true;
                 long tmp = GetSelect(cb);
                 tb.Text = tmp.ToString("x");
-                setcodeIsedit[index] = false;
+                isSetcodeEditing[index] = false;
             }
         }
         private void cb_setname1_SelectedIndexChanged(object sender, EventArgs e)
