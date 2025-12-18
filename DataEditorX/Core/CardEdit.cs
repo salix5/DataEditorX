@@ -286,7 +286,7 @@ namespace DataEditorX.Core
                     return false;
                 }
 
-                Card[] cards = (Card[])args[0];
+                Card[] cards = (Card[])args;
 
                 if (cards == null || cards.Length == 0)
                 {
