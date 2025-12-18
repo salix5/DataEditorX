@@ -159,26 +159,6 @@ namespace DataEditorX.Core
         {
             return level & 0xffffL;
         }
-        public void Clear()
-        {
-            id = 0;
-            ot = 0;
-            alias = 0;
-            setcode = 0;
-            type = 0;
-            atk = 0;
-            def = 0;
-            level = 0;
-            race = 0;
-            attribute = 0;
-            category = 0;
-            name = "";
-            desc = "";
-            for (int i = 0; i < str.Length; i++)
-            {
-                str[i] = "";
-            }
-        }
         #endregion
 
         #region 比较、哈希值、操作符

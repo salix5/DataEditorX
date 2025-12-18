@@ -757,7 +757,7 @@ namespace DataEditorX
             //清空
             codeList.Clear();
             cardlist.Clear();
-            srcCard.Clear();
+            srcCard = new Card(0);
             //检查表是否存在
             Database.CheckTable(file);
             SetCards(Database.Read(file, ""), false);
@@ -1500,7 +1500,7 @@ namespace DataEditorX
             }
 
             codeList.Clear();
-            srcCard.Clear();
+            srcCard = new Card(0);
             Card[] mcards = Database.Read(nowCdbFile, "");
             Card[] cards = Database.Read(cdbfile, "");
             foreach (Card card in mcards)
