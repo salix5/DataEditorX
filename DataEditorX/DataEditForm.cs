@@ -149,8 +149,6 @@ namespace DataEditorX
         {
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
-            oldCard.Clear();
-            LoadCard(oldCard);
             //删除资源
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
             //用CodeEditor打开脚本
@@ -835,7 +833,7 @@ namespace DataEditorX
         //更新临时卡片
         public void Reset()
         {
-            oldCard.Clear();
+            oldCard= new Card(0);
             LoadCard(oldCard);
         }
         #endregion
