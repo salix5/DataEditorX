@@ -143,14 +143,11 @@ namespace DataEditorX
         {
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
-            //删除资源
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
-            //用CodeEditor打开脚本
             menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
-            //自动检查更新
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
-            //获取MSE配菜单
-            AddMenuItemFormMSE();
+            //Add MSE language items
+            //AddMenuItemFormMSE();
             //
             GetLanguageItem();
         }
@@ -1515,7 +1512,7 @@ namespace DataEditorX
 
         #region MSE配置菜单
         //把文件添加到菜单
-        void AddMenuItemFormMSE()
+        /*void AddMenuItemFormMSE()
         {
             if (!Directory.Exists(datapath))
             {
@@ -1562,7 +1559,7 @@ namespace DataEditorX
                 //保存配置
                 ConfigManager.Save(MyConfig.TAG_MSE_LANGUAGE, tsmi.Text);
             }
-        }
+        }*/
         #endregion
 
         #region 查找lua函数
