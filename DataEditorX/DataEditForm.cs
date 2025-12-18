@@ -810,7 +810,7 @@ namespace DataEditorX
             }
         }
         //搜索卡片
-        public void Search(bool preservePage)
+        public void Refresh(bool preservePage)
         {
             Search(srcCard, preservePage);
         }
@@ -928,7 +928,7 @@ namespace DataEditorX
                 return;
             }
             cmdManager.Undo();
-            Search(true);
+            Refresh(true);
         }
         //导入卡图
         void Btn_imgClick(object sender, EventArgs e)

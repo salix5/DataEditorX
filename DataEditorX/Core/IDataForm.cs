@@ -8,10 +8,10 @@ namespace DataEditorX.Core
         YgoPath GetPath();
         Card[] GetCardList(bool onlyselect);
         bool IsFileExists();
+        void Refresh(bool preservePage);
         void Reset();
         void SetImage(long id);
         void SetImage(string id);
-        void Search(bool preservePage);
         Card GetOldCard();
         Card GetCard();
         void LoadCard(Card c);

@@ -57,7 +57,7 @@ namespace DataEditorX.Core
                 {
                     MyMsg.Show(LMSG.AddSucceed);
                     undoSQL = Database.GetDeleteSQL(c);
-                    dataform.Search(true);
+                    dataform.Refresh(true);
                     dataform.LoadCard(c);
                     return true;
                 }
@@ -160,7 +160,7 @@ namespace DataEditorX.Core
                 if (Database.Command(dataform.GetOpenFile(), sql) > 0)
                 {
                     MyMsg.Show(LMSG.ModifySucceed);
-                    dataform.Search(true);
+                    dataform.Refresh(true);
                     dataform.LoadCard(c);
                     return true;
                 }
@@ -241,14 +241,14 @@ namespace DataEditorX.Core
                 if (Database.Command(dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
                 {
                     MyMsg.Show(LMSG.DeleteSucceed);
-                    dataform.Search(true);
+                    dataform.Refresh(true);
                     undoSQL = undo;
                     return true;
                 }
                 else
                 {
                     MyMsg.Error(LMSG.DeleteFail);
-                    dataform.Search(true);
+                    dataform.Refresh(true);
                 }
                 return false;
             }
