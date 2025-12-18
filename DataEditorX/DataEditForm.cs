@@ -686,15 +686,15 @@ namespace DataEditorX
                     cmdManager.ExcuteCommand(cardedit.delCard, menuitem_operacardsfile.Checked);
                     break;
                 case Keys.Right:
-                    Btn_PageDownClick(null, null);
+                    NextPage();
                     break;
                 case Keys.Left:
-                    Btn_PageUpClick(null, null);
+                    PrevPage();
                     break;
             }
         }
         //上一页
-        void Btn_PageUpClick(object sender, EventArgs e)
+        void PrevPage()
         {
             if (!IsFileExists())
             {
@@ -704,8 +704,12 @@ namespace DataEditorX
             page--;
             AddListView(page);
         }
+        void Btn_PageUpClick(object sender, EventArgs e)
+        {
+            PrevPage();
+        }
         //下一页
-        void Btn_PageDownClick(object sender, EventArgs e)
+        void NextPage()
         {
             if (!IsFileExists())
             {
@@ -714,6 +718,10 @@ namespace DataEditorX
 
             page++;
             AddListView(page);
+        }
+        void Btn_PageDownClick(object sender, EventArgs e)
+        {
+            NextPage();
         }
         private void tb_page_KeyDown(object sender, KeyEventArgs e)
         {
