@@ -83,7 +83,7 @@ namespace DataEditorX
         readonly MSEConfig msecfg;
 
         readonly string datapath;
-        string confcover;
+        readonly string confcover = "";
 
         public DataEditForm(string datapath, string cdbfile) : this(datapath)
         {
@@ -94,14 +94,15 @@ namespace DataEditorX
             this.datapath = datapath;
             cardedit = new CardEdit(this);
             msecfg = new MSEConfig(datapath);
-            Initialize();
-        }
-        void Initialize()
-        {
+            confcover = MyPath.Combine(datapath, "cover.jpg");
             InitPath();
             InitializeComponent();
             title = Text;
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
+            Initialize();
+        }
+        void Initialize()
+        {
             cmdManager.UndoStateChanged += delegate (bool val)
             {
                 if (val)
@@ -274,7 +275,6 @@ namespace DataEditorX
         //初始化文件路径
         void InitPath()
         {
-            confcover = MyPath.Combine(datapath, "cover.jpg");
             if (File.Exists(confcover))
             {
                 cover = MyBitmap.ReadImage(confcover);
@@ -1335,8 +1335,8 @@ namespace DataEditorX
         }
         void Pl_imageDragDrop(object sender, DragEventArgs e)
         {
-            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
-            if (File.Exists(files[0]))
+            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[] ?? Array.Empty<string>();
+            if (files.Length > 0 && File.Exists(files[0]))
             {
                 ImportImage(files[0], tb_cardcode.Text);
             }
