@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace DataEditorX.Core
 {
-    public struct Card : IEquatable<Card>
+    public sealed class Card : IEquatable<Card>
     {
         public const int STR_SIZE = 16;
         public const int SETCODE_SIZE = 4;
@@ -35,11 +35,8 @@ namespace DataEditorX.Core
             attribute = 0;
             category = 0;
             desc = "";
-            str = new string[STR_SIZE];
-            for (int i = 0; i < str.Length; i++)
-            {
-                str[i] = "";
-            }
+            Str = new string[STR_SIZE];
+            Array.Fill(Str, "");
         }
         #endregion
 
@@ -71,24 +68,8 @@ namespace DataEditorX.Core
         /// <summary>描述文本</summary>
         public string desc;
         public string NormalizedDesc => desc.Replace("\n", Environment.NewLine);
-        string[] str;
         /// <summary>脚本文件文字</summary>
-        public string[] Str
-        {
-            get
-            {
-                if (str == null)
-                {
-                    str = new string[STR_SIZE];
-                    for (int i = 0; i < str.Length; i++)
-                    {
-                        str[i] = "";
-                    }
-                }
-                return str;
-            }
-            set { str = value; }
-        }
+        public string[] Str { get; private set; }
         public long[] GetSetcode()
         {
             long[] list = new long[SETCODE_SIZE];
@@ -169,14 +150,7 @@ namespace DataEditorX.Core
         /// <returns>结果</returns>
         public override bool Equals(object obj)
         {
-            if (obj is Card card)
-            {
-                return Equals(card); // use Equals method below
-            }
-            else
-            {
-                return false;
-            }
+            return obj is Card card && Equals(card);
         }
         /// <summary>
         /// 比较卡片，除脚本提示文本
@@ -246,17 +220,25 @@ namespace DataEditorX.Core
         /// <returns>结果</returns>
         public bool Equals(Card other)
         {
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            if (other is null)
+            {
+                return false;
+            }
             if (!EqualsData(other))
             {
                 return false;
             }
-            if (str.Length != other.str.Length)
+            if (Str.Length != other.Str.Length)
             {
                 return false;
             }
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < Str.Length; i++)
             {
-                if (!str[i].Equals(other.str[i]))
+                if (!Str[i].Equals(other.Str[i]))
                 {
                     return false;
                 }
@@ -268,15 +250,17 @@ namespace DataEditorX.Core
         /// </summary>
         public override int GetHashCode()
         {
-            // combine the hash codes of all members here (e.g. with XOR operator ^)
-            int hashCode = id.GetHashCode() + name.GetHashCode();
-            return hashCode;//member.GetHashCode();
+            return id.GetHashCode();
         }
         /// <summary>
         /// 比较卡片是否相等
         /// </summary>
         public static bool operator ==(Card left, Card right)
         {
+            if (left is null)
+            {
+                return right is null;
+            }
             return left.Equals(right);
         }
         /// <summary>
@@ -317,7 +301,7 @@ namespace DataEditorX.Core
         /// </summary>
         public static bool operator !=(Card left, Card right)
         {
-            return !left.Equals(right);
+            return !(left == right);
         }
         #endregion
 
