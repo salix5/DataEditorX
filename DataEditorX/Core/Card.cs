@@ -336,19 +336,19 @@ namespace DataEditorX.Core
         }
         public string ToDisplayString()
         {
-            string str;
+            string result;
             if (IsType(CardType.TYPE_MONSTER))
             {
-                str = $"{name} [{IdString}]\n"
+                result = $"{name} [{IdString}]\n"
                     + $"[{YGOUtil.GetTypeString(type)}] {YGOUtil.GetRace(race)}/{YGOUtil.GetAttribute(attribute)}\n"
                     + $"{LevelString} {atk}/{def}\n"
                     + desc;
             }
             else
             {
-                str = $"{name} [{IdString}]\n[{YGOUtil.GetTypeString(type)}]\n{desc}";
+                result = $"{name} [{IdString}]\n[{YGOUtil.GetTypeString(type)}]\n{desc}";
             }
-            return str;
+            return result;
         }
         #endregion
     }
