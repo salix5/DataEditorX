@@ -11,7 +11,7 @@ namespace DataEditorX.Core
         void Reset();
         void SetImage(long id);
         void SetImage(string id);
-        void Search(bool isfresh);
+        void Search(bool preservePage);
         Card GetOldCard();
         Card GetCard();
         void LoadCard(Card c);

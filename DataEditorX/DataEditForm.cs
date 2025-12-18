@@ -778,7 +778,7 @@ namespace DataEditorX
             return res;
         }
         //设置卡片列表的结果
-        public void SetCards(Card[] cards, bool isfresh)
+        public void SetCards(Card[] cards, bool preservePage)
         {
             cardlist.Clear();
             foreach (Card c in cards)
@@ -792,7 +792,7 @@ namespace DataEditorX
             {
                 pageNum = (int)Math.Ceiling((double)cardlist.Count / maxRow);
                 tb_pagenum.Text = pageNum.ToString();
-                if (isfresh)//是否跳到之前页数
+                if (preservePage)//是否跳到之前页数
                 {
                     AddListView(page);
                 }
@@ -810,11 +810,11 @@ namespace DataEditorX
             }
         }
         //搜索卡片
-        public void Search(bool isfresh)
+        public void Search(bool preservePage)
         {
-            Search(srcCard, isfresh);
+            Search(srcCard, preservePage);
         }
-        void Search(Card c, bool isfresh)
+        void Search(Card c, bool preservePage)
         {
             if (!IsFileExists())
             {
@@ -829,7 +829,7 @@ namespace DataEditorX
             {
                 srcCard = c;
                 string sql = Database.GetSelectSQL(c);
-                SetCards(Database.Read(nowCdbFile, sql), isfresh);
+                SetCards(Database.Read(nowCdbFile, sql), preservePage);
             }
         }
         //更新临时卡片
