@@ -36,7 +36,10 @@ namespace DataEditorX.Core
             category = 0;
             desc = "";
             Str = new string[STR_SIZE];
-            Array.Fill(Str, "");
+            for (int i = 0; i < Str.Length; i++)
+            {
+                Str[i] = "";
+            }
         }
         #endregion
 
