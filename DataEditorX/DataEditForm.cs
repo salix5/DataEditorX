@@ -1494,16 +1494,6 @@ namespace DataEditorX
             }
             return false;
         }
-        //读取将要对比的数据
-        Card[] getCompCards()
-        {
-            if (!IsFileExists())
-            {
-                return Array.Empty<Card>();
-            }
-
-            return Database.ReadFromId(nowCdbFile, codeList.ToArray());
-        }
         public void CompareCards(string cdbfile, bool checktext)
         {
             if (!IsFileExists())
@@ -1522,7 +1512,7 @@ namespace DataEditorX
                     codeList.Add(card.id);
                 }
             }
-            SetCards(getCompCards(), false);
+            SetCards(Database.ReadFromId(nowCdbFile, codeList.ToArray()), false);
         }
         #endregion
 
