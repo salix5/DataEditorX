@@ -10,6 +10,7 @@ using DataEditorX.Config;
 using DataEditorX.Core.Info;
 using DataEditorX.Core.Mse;
 using DataEditorX.Language;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -36,7 +37,7 @@ namespace DataEditorX.Core
         /// <summary>
         /// 当前卡片列表
         /// </summary>
-        private Card[] cardlist;
+        private Card[] cardlist = Array.Empty<Card>();
         /// <summary>
         /// 当前卡片列表
         /// </summary>
@@ -47,7 +48,7 @@ namespace DataEditorX.Core
         /// <summary>
         /// 任务参数
         /// </summary>
-        private string[] mArgs;
+        private string[] mArgs = Array.Empty<string>();
         /// <summary>
         /// 图片设置
         /// </summary>
@@ -508,10 +509,10 @@ namespace DataEditorX.Core
             nowTask = MyTask.NONE;
             if (lastTask != MyTask.ReadMSE)
             {
-                cardlist = null;
+                cardlist = Array.Empty<Card>();
             }
 
-            mArgs = null;
+            mArgs = Array.Empty<string>();
         }
         #endregion
     }

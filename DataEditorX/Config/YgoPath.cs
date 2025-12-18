@@ -18,17 +18,17 @@ namespace DataEditorX.Config
             replaypath = MyPath.Combine(gamepath, "replay");
         }
         /// <summary>游戏目录</summary>
-        public string gamepath;
+        public string gamepath = "";
         /// <summary>大图目录</summary>
-        public string picpath;
+        public string picpath = "";
         /// <summary>场地图目录</summary>
-        public string fieldpath;
+        public string fieldpath = "";
         /// <summary>脚本目录</summary>
-        public string luapath;
+        public string luapath = "";
         /// <summary>卡组目录</summary>
-        public string ydkpath;
+        public string ydkpath = "";
         /// <summary>录像目录</summary>
-        public string replaypath;
+        public string replaypath = "";
 
         public string GetImage<T>(T id) => MyPath.Combine(picpath, $"{id}.jpg");
         public string GetImageField<T>(T id) => MyPath.Combine(fieldpath, $"{id}.png");

@@ -12,7 +12,7 @@ namespace DataEditorX.Controls
     public class History
     {
         readonly IMainForm mainForm;
-        string historyFile;
+        string historyFile = "";
         readonly List<string> cdbhistory;
         readonly List<string> luahistory;
         public string[] GetcdbHistory()

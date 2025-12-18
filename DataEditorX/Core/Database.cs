@@ -333,7 +333,7 @@ namespace DataEditorX.Core
         public static string GetSelectSQL(Card c)
         {
             StringBuilder sb = new(DefaultSQL);
-            if (c == null)
+            if (c is null)
             {
                 return sb.ToString();
             }
@@ -527,10 +527,10 @@ namespace DataEditorX.Core
         {
             if (id < 0 || !File.Exists(db))
             {
-                return null;
+                return new CardPack(0);
             }
 
-            CardPack cardpack = null;
+            CardPack cardpack = new(0);
             using SQLiteConnection sqliteconn = new($"Data Source={db}");
             sqliteconn.Open();
             using SQLiteCommand cmd = new(PragmaSQL, sqliteconn);

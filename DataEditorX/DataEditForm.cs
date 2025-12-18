@@ -24,7 +24,7 @@ namespace DataEditorX
 {
     public partial class DataEditForm : DockContent, IDataForm
     {
-        string default_script_name;
+        string default_script_name = MyConfig.ReadString(MyConfig.TAG_DEFAULT_SCRIPT_NAME);
 
         public string DefaultScriptName
         {
@@ -79,7 +79,7 @@ namespace DataEditorX
         readonly bool[] setcodeIsedit = new bool[5];
         readonly CommandManager cmdManager = new();
 
-        Image cover;
+        Image? cover;
         readonly MSEConfig msecfg;
 
         readonly string datapath;
@@ -148,8 +148,6 @@ namespace DataEditorX
             menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
             //自动检查更新
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
-            //default script name
-            DefaultScriptName = MyConfig.ReadString(MyConfig.TAG_DEFAULT_SCRIPT_NAME);
             //获取MSE配菜单
             AddMenuItemFormMSE();
             //
@@ -1010,7 +1008,7 @@ namespace DataEditorX
         {
             if (!isRun())
             {
-                tasker.SetTask(MyTask.CheckUpdate, null, showNew.ToString());
+                tasker.SetTask(MyTask.CheckUpdate, Array.Empty<Card>(), showNew.ToString());
                 Run(LanguageHelper.GetMsg(LMSG.checkUpdate));
             }
         }
@@ -1430,7 +1428,7 @@ namespace DataEditorX
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                tasker.SetTask(MyTask.ConvertImages, null, fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
+                tasker.SetTask(MyTask.ConvertImages, Array.Empty<Card>(), fdlg.SelectedPath, ygopath.gamepath, isreplace.ToString());
                 Run(LanguageHelper.GetMsg(LMSG.ConvertImage));
             }
         }
@@ -1670,7 +1668,7 @@ namespace DataEditorX
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                tasker.SetTask(MyTask.ReadMSE, null, dlg.FileName, isUpdate.ToString());
+                tasker.SetTask(MyTask.ReadMSE, Array.Empty<Card>(), dlg.FileName, isUpdate.ToString());
                 Run(LanguageHelper.GetMsg(LMSG.ReadMSE));
             }
         }

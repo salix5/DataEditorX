@@ -209,7 +209,7 @@ namespace DataEditorX.Config
         {
             string temp = ReadString(key);
             int[] ints = new int[length];
-            string[] ws = string.IsNullOrEmpty(temp) ? null : temp.Split(',');
+            string[] ws = temp?.Split(',') ?? Array.Empty<string>();
 
             if (ws != null && ws.Length > 0 && ws.Length <= length)
             {
