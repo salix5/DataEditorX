@@ -30,7 +30,6 @@ namespace DataEditorX.Core
                 return false;
             }
             MyMsg.Show(LMSG.AddSucceed);
-            undoSQL = Database.GetDeleteSQL(c);
             dataform.Refresh(true);
             dataform.LoadCard(c);
             return true;
@@ -63,7 +62,7 @@ namespace DataEditorX.Core
                     YGOUtil.CardRename(c.id, oldCard.id, dataform.GetPath());
                 }
             }
-            if (!Database.UpdateCard(dataform.GetOpenFile(), c, oldCard))
+            if (!Database.UpdateCard(dataform.GetOpenFile(), c, oldId))
             {
                 MyMsg.Error(LMSG.ModifyFail);
                 return false;
