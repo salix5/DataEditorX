@@ -38,10 +38,13 @@ namespace DataEditorX.Core
             + "VALUES(@id, @name, @desc, @str1, @str2, @str3, @str4, @str5, @str6, @str7, @str8, @str9, @str10, @str11, @str12, @str13, @str14, @str15, @str16);";
         static readonly string InsertReplaceSQL = $"INSERT OR REPLACE{InsertDatas}INSERT OR REPLACE{InsertTexts}";
         static readonly string InsertIgnoreSQL = $"INSERT OR IGNORE{InsertDatas}INSERT OR IGNORE{InsertTexts}";
-        static readonly string UpdateSQL =
-            "UPDATE datas SET ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category WHERE id=@id;"
-            + "UPDATE texts SET name=@name, desc=@desc, str1=@str1, str2=@str2, str3=@str3, str4=@str4, str5=@str5, str6=@str6, str7=@str7, str8=@str8, str9=@str9, str10=@str10,"
-            + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16 WHERE id=@id;";
+        static readonly string UpdateDatas =
+            "ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category";
+        static readonly string UpdateTexts =
+            "name=@name, desc=@desc, str1=@str1, str2=@str2, str3=@str3, str4=@str4, str5=@str5, str6=@str6, str7=@str7, str8=@str8, str9=@str9, str10=@str10,"
+            + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16";
+        static readonly string UpdateSQL = $"UPDATE OR IGNORE datas SET {UpdateDatas} WHERE id=@id; UPDATE OR IGNORE texts SET {UpdateTexts} WHERE id=@id;";
+        static readonly string MoveSQL = $"UPDATE OR IGNORE datas SET id=@id, {UpdateDatas} WHERE id=@old_id; UPDATE OR IGNORE texts SET id=@id, {UpdateTexts} WHERE id=@old_id;";
         static readonly string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
         static readonly string PragmaSQL = "PRAGMA trusted_schema=OFF;";
@@ -309,10 +312,38 @@ namespace DataEditorX.Core
             return result;
         }
 
-        public static bool AddCard(string db, Card c)
+        public static bool UpdateCard(string db, Card c, long oldId)
         {
-            return InsertCards(db, true, new Card[] { c }) == 2;
+            if (c is null || oldId < 0)
+            {
+                return false;
+            }
+            if (!File.Exists(db))
+            {
+                return false;
+            }
+            int result = 0;
+            using SQLiteConnection con = new($"Data Source={db}");
+            con.Open();
+            using (SQLiteTransaction trans = con.BeginTransaction())
+            {
+                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = oldId == 0 ? UpdateSQL : MoveSQL;
+                InitParameters(cmd);
+                AddParameters(cmd, c);
+                if (oldId != 0)
+                {
+                    cmd.Parameters.Add("@old_id", System.Data.DbType.Int64).Value = oldId;
+                }
+                result += cmd.ExecuteNonQuery();
+                trans.Commit();
+            }
+            return result > 0;
         }
+
+        public static bool AddCard(string db, Card c) => InsertCards(db, true, new Card[] { c }) == 2;
+        public static bool RemoveCard(string db, Card c) => DeleteCards(db, new Card[] { c }) == 2;
         #endregion
 
         #region VACUUM
