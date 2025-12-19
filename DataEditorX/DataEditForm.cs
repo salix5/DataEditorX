@@ -898,10 +898,6 @@ namespace DataEditorX
         {
             cardedit.DeleteCommand(menuitem_operacardsfile.Checked);
         }
-        //撤销
-        void Btn_undoClick(object sender, EventArgs e)
-        {
-        }
         //导入卡图
         void Btn_imgClick(object sender, EventArgs e)
         {
