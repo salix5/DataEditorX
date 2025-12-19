@@ -1405,16 +1405,10 @@ namespace DataEditorX
                 if (File.Exists(msepic))
                 {
                     pl_image.BackgroundImage = MyBitmap.ReadImage(msepic);
+                    return;
                 }
             }
-            else if (File.Exists(pic))
-            {
-                pl_image.BackgroundImage = MyBitmap.ReadImage(pic);
-            }
-            else
-            {
-                pl_image.BackgroundImage = cover;
-            }
+            pl_image.BackgroundImage = MyBitmap.ReadImage(pic) ?? cover;
         }
         void Menuitem_convertimageClick(object sender, EventArgs e)
         {

@@ -22,7 +22,7 @@ namespace DataEditorX.Common
             }
 
             MemoryStream ms = new(File.ReadAllBytes(file));
-            return (Bitmap)Image.FromStream(ms);
+            return new Bitmap(ms);
         }
 
         #region 缩放
