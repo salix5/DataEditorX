@@ -1,5 +1,4 @@
 using DataEditorX.Language;
-using System.Collections.Generic;
 
 namespace DataEditorX.Core
 {
