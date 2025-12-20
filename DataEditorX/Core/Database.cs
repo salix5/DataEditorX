@@ -361,7 +361,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region SELECT
-        public static string GetSelectSQL(Card c)
+        public static string GetSelectCondition(Card c)
         {
             StringBuilder sb = new();
             if (c is null)
