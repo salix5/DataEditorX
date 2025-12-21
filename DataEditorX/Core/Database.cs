@@ -227,14 +227,9 @@ namespace DataEditorX.Core
             {
                 using SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans);
                 cmd.ExecuteNonQuery();
-                if (!string.IsNullOrEmpty(queryCondition))
-                {
-                    cmd.CommandText = $"{DefaultSQL}{queryCondition} ORDER BY id;";
-                }
-                else
-                {
-                    cmd.CommandText = $"{DefaultSQL} ORDER BY id;";
-                }
+                cmd.CommandText = string.IsNullOrEmpty(queryCondition) ?
+                    $"{DefaultSQL} ORDER BY id;" :
+                    $"{DefaultSQL}{queryCondition} ORDER BY id;";
                 using SQLiteDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
