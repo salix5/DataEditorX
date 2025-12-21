@@ -210,11 +210,11 @@ namespace DataEditorX.Core
             {
                 return Array.Empty<Card>();
             }
-            string stmt1 = $"{DefaultSQL} AND id IN ({string.Join(",", ids)}) ORDER BY id";
-            return Read(db, stmt1);
+            string idCondition = $" AND id IN ({string.Join(",", ids)})";
+            return Read(db, idCondition);
         }
 
-        public static Card[] Read(string db, string SQL)
+        public static Card[] Read(string db, string queryCondition)
         {
             if (!File.Exists(db))
             {
@@ -227,14 +227,9 @@ namespace DataEditorX.Core
             {
                 using SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans);
                 cmd.ExecuteNonQuery();
-                if (!string.IsNullOrEmpty(SQL) && SQL.StartsWith("SELECT", System.StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = SQL;
-                }
-                else
-                {
-                    cmd.CommandText = DefaultSQL;
-                }
+                cmd.CommandText = string.IsNullOrEmpty(queryCondition) ?
+                    $"{DefaultSQL} ORDER BY id;" :
+                    $"{DefaultSQL}{queryCondition} ORDER BY id;";
                 using SQLiteDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -361,9 +356,9 @@ namespace DataEditorX.Core
         #endregion
 
         #region SELECT
-        public static string GetSelectSQL(Card c)
+        public static string GetSelectCondition(Card c)
         {
-            StringBuilder sb = new(DefaultSQL);
+            StringBuilder sb = new();
             if (c is null)
             {
                 return sb.ToString();
@@ -456,7 +451,6 @@ namespace DataEditorX.Core
             {
                 sb.Append($" AND datas.alias={c.alias}");
             }
-            sb.Append(" ORDER BY id;");
             return sb.ToString();
         }
         #endregion

@@ -1,352 +1,136 @@
-using DataEditorX.Language;
 using System.Collections.Generic;
+using System.Linq;
+using DataEditorX.Language;
 
 namespace DataEditorX.Core
 {
     public class CardEdit
     {
         readonly IDataForm dataform;
-        public AddCommand addCard;
-        public ModCommand modCard;
-        public DelCommand delCard;
-        public CopyCommand copyCard;
 
         public CardEdit(IDataForm dataform)
         {
             this.dataform = dataform;
-            addCard = new AddCommand(this);
-            modCard = new ModCommand(this);
-            delCard = new DelCommand(this);
-            copyCard = new CopyCommand(this);
         }
 
-        #region 添加
-        //添加
-        public class AddCommand : IBackableCommand
+        public bool AddCommand()
         {
-            private string undoSQL;
-            readonly IDataForm dataform;
-            public AddCommand(CardEdit cardedit)
+            if (!dataform.IsFileExists())
             {
-                dataform = cardedit.dataform;
-            }
-
-            public bool Execute(params object[] args)
-            {
-                if (!dataform.IsFileExists())
-                {
-                    return false;
-                }
-
-                Card c = dataform.GetCard();
-                if (c.id <= 0)//卡片密码不能小于等于0
-                {
-                    MyMsg.Error(LMSG.InvalidCode);
-                    return false;
-                }
-                Card[] cards = dataform.GetCardList(false);
-                foreach (Card ckey in cards)//卡片id存在
-                {
-                    if (c.id == ckey.id)
-                    {
-                        MyMsg.Warning(LMSG.ItIsExists);
-                        return false;
-                    }
-                }
-                if (Database.Command(dataform.GetOpenFile(), Database.GetInsertSQL(c, true)) >= 2)
-                {
-                    MyMsg.Show(LMSG.AddSucceed);
-                    undoSQL = Database.GetDeleteSQL(c);
-                    dataform.Refresh(true);
-                    dataform.LoadCard(c);
-                    return true;
-                }
-                MyMsg.Error(LMSG.AddFail);
                 return false;
             }
-            public void Undo()
+            Card c = dataform.GetCard();
+            if (c.id <= 0)
             {
-                Database.Command(dataform.GetOpenFile(), undoSQL);
-            }
-
-            public object Clone()
-            {
-                return MemberwiseClone();
-            }
-        }
-        #endregion
-
-        #region 修改
-        //修改
-        public class ModCommand : IBackableCommand
-        {
-            private string undoSQL;
-            private bool modifiled = false;
-            private long oldid;
-            private long newid;
-            private bool delold;
-            readonly IDataForm dataform;
-            public ModCommand(CardEdit cardedit)
-            {
-                dataform = cardedit.dataform;
-            }
-
-            public bool Execute(params object[] args)
-            {
-                if (!dataform.IsFileExists())
-                {
-                    return false;
-                }
-
-                bool modfiles = (bool)args[0];
-
-                Card c = dataform.GetCard();
-                Card oldCard = dataform.GetOldCard();
-                if (c.Equals(oldCard))//没有修改
-                {
-                    MyMsg.Show(LMSG.ItIsNotChanged);
-                    return false;
-                }
-                if (c.id <= 0)
-                {
-                    MyMsg.Error(LMSG.InvalidCode);
-                    return false;
-                }
-                string sql;
-                if (c.id != oldCard.id)//修改了id
-                {
-                    sql = Database.GetInsertSQL(c, false);//插入
-                    bool delold = MyMsg.Question(LMSG.IfDeleteCard);
-                    if (delold)//是否删除旧卡片
-                    {
-                        if (Database.Command(dataform.GetOpenFile(), Database.GetDeleteSQL(oldCard)) < 2)
-                        {
-                            //删除失败
-                            MyMsg.Error(LMSG.DeleteFail);
-                            delold = false;
-                        }
-                        else
-                        {//删除成功，添加还原sql
-                            undoSQL = Database.GetDeleteSQL(c) + Database.GetInsertSQL(oldCard, false);
-                        }
-                    }
-                    else
-                    {
-                        undoSQL = Database.GetDeleteSQL(c);//还原就是删除
-                    }
-                    //如果删除旧卡片，则把资源修改名字,否则复制资源
-                    if (modfiles)
-                    {
-                        if (delold)
-                        {
-                            YGOUtil.CardRename(c.id, oldCard.id, dataform.GetPath());
-                        }
-                        else
-                        {
-                            YGOUtil.CardCopy(c.id, oldCard.id, dataform.GetPath());
-                        }
-
-                        modifiled = true;
-                        oldid = oldCard.id;
-                        newid = c.id;
-                        this.delold = delold;
-                    }
-                }
-                else
-                {//更新数据
-                    sql = Database.GetUpdateSQL(c);
-                    undoSQL = Database.GetUpdateSQL(oldCard);
-                }
-                if (Database.Command(dataform.GetOpenFile(), sql) > 0)
-                {
-                    MyMsg.Show(LMSG.ModifySucceed);
-                    dataform.Refresh(true);
-                    dataform.LoadCard(c);
-                    return true;
-                }
-                else
-                {
-                    MyMsg.Error(LMSG.ModifyFail);
-                }
-
+                MyMsg.Error(LMSG.InvalidCode);
                 return false;
             }
-
-            public void Undo()
+            if (!Database.AddCard(dataform.GetOpenFile(), c))
             {
-                Database.Command(dataform.GetOpenFile(), undoSQL);
-                if (modifiled)
-                {
-                    if (delold)
-                    {
-                        YGOUtil.CardRename(oldid, newid, dataform.GetPath());
-                    }
-                    else
-                    {
-                        YGOUtil.CardDelete(newid, dataform.GetPath());
-                    }
-                }
+                MyMsg.Warning(LMSG.ItIsExists);
+                return false;
             }
-
-            public object Clone()
-            {
-                return MemberwiseClone();
-            }
+            MyMsg.Show(LMSG.AddSucceed);
+            dataform.Refresh(true);
+            dataform.LoadCard(c);
+            return true;
         }
-        #endregion
 
-        #region 删除
-        //删除
-        public class DelCommand : IBackableCommand
+        public bool UpdateCommand(bool sync)
         {
-            private string undoSQL;
-            readonly IDataForm dataform;
-            public DelCommand(CardEdit cardedit)
+            if (!dataform.IsFileExists())
             {
-                dataform = cardedit.dataform;
+                return false;
             }
-
-            public bool Execute(params object[] args)
+            Card c = dataform.GetCard();
+            Card oldCard = dataform.GetOldCard();
+            if (c.Equals(oldCard))
             {
-                if (!dataform.IsFileExists())
+                MyMsg.Show(LMSG.ItIsNotChanged);
+                return false;
+            }
+            if (c.id <= 0)
+            {
+                MyMsg.Error(LMSG.InvalidCode);
+                return false;
+            }
+            long oldId = 0;
+            if (c.id != oldCard.id)
+            {
+                oldId = oldCard.id;
+                if (sync)
                 {
-                    return false;
+                    YGOUtil.CardRename(c.id, oldCard.id, dataform.GetPath());
                 }
+            }
+            if (!Database.UpdateCard(dataform.GetOpenFile(), c, oldId))
+            {
+                MyMsg.Error(LMSG.ModifyFail);
+                return false;
+            }
+            MyMsg.Show(LMSG.ModifySucceed);
+            dataform.Refresh(true);
+            dataform.LoadCard(c);
+            return true;
+        }
 
-                bool deletefiles = (bool)args[0];
-
-                Card[] cards = dataform.GetCardList(true);
-                if (cards == null || cards.Length == 0)
-                {
-                    return false;
-                }
-
-                string undo = "";
-                if (!MyMsg.Question(LMSG.IfDeleteCard))
-                {
-                    return false;
-                }
-
-                List<string> sql = new();
+        public bool DeleteCommand(bool sync)
+        {
+            if (!dataform.IsFileExists())
+            {
+                return false;
+            }
+            Card[] cards = dataform.GetCardList(true);
+            if (cards.Length == 0)
+            {
+                return false;
+            }
+            if (!MyMsg.Question(LMSG.IfDeleteCard))
+            {
+                return false;
+            }
+            if (sync)
+            {
                 foreach (Card c in cards)
                 {
-                    sql.Add(Database.GetDeleteSQL(c));//删除
-                    undo += Database.GetInsertSQL(c, true);
-                    //删除资源
-                    if (deletefiles)
-                    {
-                        YGOUtil.CardDelete(c.id, dataform.GetPath());
-                    }
+                    YGOUtil.CardDelete(c.id, dataform.GetPath());
                 }
-                if (Database.Command(dataform.GetOpenFile(), sql.ToArray()) >= (sql.Count * 2))
-                {
-                    MyMsg.Show(LMSG.DeleteSucceed);
-                    dataform.Refresh(true);
-                    undoSQL = undo;
-                    return true;
-                }
-                else
-                {
-                    MyMsg.Error(LMSG.DeleteFail);
-                    dataform.Refresh(true);
-                }
+            }
+            if (Database.DeleteCards(dataform.GetOpenFile(), cards) < cards.Length * 2)
+            {
+                MyMsg.Error(LMSG.DeleteFail);
+                dataform.Refresh(true);
                 return false;
             }
-            public void Undo()
-            {
-                Database.Command(dataform.GetOpenFile(), undoSQL);
-            }
-
-            public object Clone()
-            {
-                return MemberwiseClone();
-            }
+            MyMsg.Show(LMSG.DeleteSucceed);
+            dataform.Refresh(true);
+            return true;
         }
-        #endregion
 
-        #region 复制卡片
-        public class CopyCommand : IBackableCommand
+        public bool CopyCommand(Card[] cards)
         {
-            bool copied = false;
-            Card[] newCards;
-            bool replace;
-            Card[] oldCards;
-            readonly CardEdit cardedit;
-            readonly IDataForm dataform;
-            public CopyCommand(CardEdit cardedit)
+            if (!dataform.IsFileExists())
             {
-                this.cardedit = cardedit;
-                dataform = cardedit.dataform;
+                return false;
             }
-
-            public bool Execute(params object[] args)
+            if (cards is null || cards.Length == 0)
             {
-                if (!dataform.IsFileExists())
-                {
-                    return false;
-                }
-
-                Card[] cards = (Card[])args;
-
-                if (cards == null || cards.Length == 0)
-                {
-                    return false;
-                }
-
-                bool replace = false;
-                Card[] oldcards = Database.Read(dataform.GetOpenFile(), "");
-                if (oldcards != null && oldcards.Length != 0)
-                {
-                    int i = 0;
-                    foreach (Card oc in oldcards)
-                    {
-                        foreach (Card c in cards)
-                        {
-                            if (c.id == oc.id)
-                            {
-                                i += 1;
-                                if (i == 1)
-                                {
-                                    replace = MyMsg.Question(LMSG.IfReplaceExistingCard);
-                                    break;
-                                }
-                            }
-                        }
-                        if (i > 0)
-                        {
-                            break;
-                        }
-                    }
-                }
-                Database.InsertCards(dataform.GetOpenFile(), !replace, cards);
-                copied = true;
-                newCards = cards;
-                this.replace = replace;
-                oldCards = oldcards;
-                return true;
+                return false;
             }
-            public void Undo()
+            bool replace = false;
+            Card[] oldcards = Database.Read(dataform.GetOpenFile(), "");
+            if (oldcards.Length > 0)
             {
-                Database.DeleteCards(dataform.GetOpenFile(), newCards);
-                Database.InsertCards(dataform.GetOpenFile(), !replace, oldCards);
-            }
-
-            public object Clone()
-            {
-                CopyCommand replica = new(cardedit)
+                HashSet<long> newCardIds = new(cards.Select(c => c.id));
+                bool hasDuplicate = oldcards.Any(oc => newCardIds.Contains(oc.id));
+                if (hasDuplicate)
                 {
-                    copied = copied,
-                    newCards = (Card[])newCards.Clone(),
-                    replace = replace
-                };
-                if (oldCards != null)
-                {
-                    replica.oldCards = (Card[])oldCards.Clone();
+                    replace = MyMsg.Question(LMSG.IfReplaceExistingCard);
                 }
-
-                return replica;
             }
+            Database.InsertCards(dataform.GetOpenFile(), !replace, cards);
+            dataform.Refresh(true);
+            return true;
         }
-        #endregion
     }
 }

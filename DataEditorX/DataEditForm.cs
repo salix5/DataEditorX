@@ -77,7 +77,6 @@ namespace DataEditorX
 
         //setcode正在输入
         readonly bool[] isSetcodeEditing = new bool[5];
-        readonly CommandManager cmdManager = new();
 
         Image? cover;
         readonly MSEConfig msecfg;
@@ -99,21 +98,6 @@ namespace DataEditorX
             InitializeComponent();
             title = Text;
             tasker = new TaskHelper(datapath, bgWorker1, msecfg);
-            Initialize();
-        }
-        void Initialize()
-        {
-            cmdManager.UndoStateChanged += delegate (bool val)
-            {
-                if (val)
-                {
-                    btn_undo.Enabled = true;
-                }
-                else
-                {
-                    btn_undo.Enabled = false;
-                }
-            };
         }
 
         #endregion
@@ -680,7 +664,7 @@ namespace DataEditorX
             switch (e.KeyCode)
             {
                 case Keys.Delete:
-                    cmdManager.ExcuteCommand(cardedit.delCard, menuitem_operacardsfile.Checked);
+                    cardedit.DeleteCommand(menuitem_operacardsfile.Checked);
                     break;
                 case Keys.Right:
                     NextPage();
@@ -822,8 +806,8 @@ namespace DataEditorX
             else
             {
                 srcCard = c;
-                string sql = Database.GetSelectSQL(c);
-                SetCards(Database.Read(nowCdbFile, sql), preservePage);
+                string condition = Database.GetSelectCondition(c);
+                SetCards(Database.Read(nowCdbFile, condition), preservePage);
             }
         }
         //更新临时卡片
@@ -849,12 +833,12 @@ namespace DataEditorX
         //添加
         void Btn_addClick(object sender, EventArgs e)
         {
-            cmdManager.ExcuteCommand(cardedit.addCard);
+            cardedit.AddCommand();
         }
         //修改
         void Btn_modClick(object sender, EventArgs e)
         {
-            cmdManager.ExcuteCommand(cardedit.modCard, menuitem_operacardsfile.Checked);
+            cardedit.UpdateCommand(menuitem_operacardsfile.Checked);
         }
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
@@ -912,17 +896,7 @@ namespace DataEditorX
         //删除
         void Btn_delClick(object sender, EventArgs e)
         {
-            cmdManager.ExcuteCommand(cardedit.delCard, menuitem_operacardsfile.Checked);
-        }
-        //撤销
-        void Btn_undoClick(object sender, EventArgs e)
-        {
-            if (!MyMsg.Question(LMSG.UndoConfirm))
-            {
-                return;
-            }
-            cmdManager.Undo();
-            Refresh(true);
+            cardedit.DeleteCommand(menuitem_operacardsfile.Checked);
         }
         //导入卡图
         void Btn_imgClick(object sender, EventArgs e)
@@ -1249,8 +1223,7 @@ namespace DataEditorX
         //保存卡片到当前数据库
         public void SaveCards(Card[] cards)
         {
-            cmdManager.ExcuteCommand(cardedit.copyCard, cards);
-            Refresh(true);
+            cardedit.CopyCommand(cards);
         }
         #endregion
 

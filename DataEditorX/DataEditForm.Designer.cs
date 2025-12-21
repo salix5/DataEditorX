@@ -940,7 +940,6 @@ namespace DataEditorX
             this.btn_undo.TabIndex = 5;
             this.btn_undo.Text = "&Undo";
             this.btn_undo.UseVisualStyleBackColor = true;
-            this.btn_undo.Click += new System.EventHandler(this.Btn_undoClick);
             // 
             // btn_img
             // 
