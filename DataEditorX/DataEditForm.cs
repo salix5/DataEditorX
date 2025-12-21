@@ -48,7 +48,7 @@ namespace DataEditorX
         }
 
         #region 成员变量/构造
-        TaskHelper tasker;
+        readonly TaskHelper tasker;
         string taskname = "";
         //目录
         readonly YgoPath ygopath = new(Application.StartupPath);

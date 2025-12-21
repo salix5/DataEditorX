@@ -23,15 +23,15 @@ namespace DataEditorX
         //历史
         History history;
         //数据目录
-        string datapath;
+        readonly string datapath;
         //语言配置
-        string conflang;
+        readonly string conflang;
         //数据库对比
         DataEditForm compare1, compare2;
         //临时卡片
         Card[] tCards;
         //编辑器配置
-        DataConfig datacfg = null;
+        readonly DataConfig datacfg;
         CodeConfig codecfg = null;
         //将要打开的文件
         string openfile;
