@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using DataEditorX.Language;
 
 namespace DataEditorX.Core
@@ -119,25 +121,11 @@ namespace DataEditorX.Core
             Card[] oldcards = Database.Read(dataform.GetOpenFile(), "");
             if (oldcards.Length > 0)
             {
-                int count = 0;
-                foreach (Card oc in oldcards)
+                HashSet<long> newCardIds = new(cards.Select(c => c.id));
+                bool hasDuplicate = oldcards.Any(oc => newCardIds.Contains(oc.id));
+                if (hasDuplicate)
                 {
-                    foreach (Card c in cards)
-                    {
-                        if (c.id == oc.id)
-                        {
-                            count += 1;
-                            if (count >= 1)
-                            {
-                                replace = MyMsg.Question(LMSG.IfReplaceExistingCard);
-                                break;
-                            }
-                        }
-                    }
-                    if (count >= 1)
-                    {
-                        break;
-                    }
+                    replace = MyMsg.Question(LMSG.IfReplaceExistingCard);
                 }
             }
             Database.InsertCards(dataform.GetOpenFile(), !replace, cards);
