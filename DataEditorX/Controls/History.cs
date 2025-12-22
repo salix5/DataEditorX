@@ -15,11 +15,11 @@ namespace DataEditorX.Controls
         string historyFile = "";
         readonly List<string> cdbHistory = new();
         readonly List<string> luaHistory = new();
-        public string[] GetcdbHistory()
+        public string[] GetCdbHistory()
         {
             return cdbHistory.ToArray();
         }
-        public string[] GetluaHistory()
+        public string[] GetLuaHistory()
         {
             return luaHistory.ToArray();
         }

@@ -154,7 +154,7 @@ namespace DataEditorX
             //设置界面语言
             LanguageHelper.SetFormLabel(cf);
             //设置cdb列表
-            cf.SetCDBList(history.GetcdbHistory());
+            cf.SetCDBList(history.GetCdbHistory());
             //初始化函数提示
             cf.InitTooltip(codecfg);
             //打开文件
