@@ -677,7 +677,7 @@ namespace DataEditorX
         //上一页
         void PrevPage()
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -692,7 +692,7 @@ namespace DataEditorX
         //下一页
         void NextPage()
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -721,7 +721,7 @@ namespace DataEditorX
 
         #region 卡片搜索，打开
         //检查是否打开数据库
-        public bool IsFileExists()
+        public bool IsOpened()
         {
             return File.Exists(nowCdbFile);
         }
@@ -794,7 +794,7 @@ namespace DataEditorX
         }
         void Search(Card c, bool preservePage)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -843,7 +843,7 @@ namespace DataEditorX
         //打开脚本
         void Btn_luaClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1051,7 +1051,7 @@ namespace DataEditorX
         //读取ydk
         void Menuitem_readydkClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1070,7 +1070,7 @@ namespace DataEditorX
         //从图片文件夹读取
         void Menuitem_readimagesClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1188,7 +1188,7 @@ namespace DataEditorX
         //得到卡片列表，是否是选中的
         public Card[] GetCardList(bool onlyselect)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return Array.Empty<Card>();
             }
@@ -1231,7 +1231,7 @@ namespace DataEditorX
         //裁剪图片
         void Menuitem_cutimagesClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1258,7 +1258,7 @@ namespace DataEditorX
         }
         void SaveAsMSE(bool onlyselect)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1385,7 +1385,7 @@ namespace DataEditorX
         }
         void Menuitem_convertimageClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1409,7 +1409,7 @@ namespace DataEditorX
         #region 导出数据包
         void Menuitem_exportdataClick(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1457,7 +1457,7 @@ namespace DataEditorX
         }
         public void CompareCards(string cdbfile, bool checktext)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }
@@ -1624,7 +1624,7 @@ namespace DataEditorX
         #region 读取MSE存档
         private void menuitem_readmse_Click(object sender, EventArgs e)
         {
-            if (!IsFileExists())
+            if (!IsOpened())
             {
                 return;
             }

@@ -15,7 +15,7 @@ namespace DataEditorX.Core
 
         public bool AddCommand()
         {
-            if (!dataform.IsFileExists())
+            if (!dataform.IsOpened())
             {
                 return false;
             }
@@ -38,7 +38,7 @@ namespace DataEditorX.Core
 
         public bool UpdateCommand(bool sync)
         {
-            if (!dataform.IsFileExists())
+            if (!dataform.IsOpened())
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace DataEditorX.Core
 
         public bool DeleteCommand(bool sync)
         {
-            if (!dataform.IsFileExists())
+            if (!dataform.IsOpened())
             {
                 return false;
             }
@@ -109,7 +109,7 @@ namespace DataEditorX.Core
 
         public bool CopyCommand(Card[] cards)
         {
-            if (!dataform.IsFileExists())
+            if (!dataform.IsOpened())
             {
                 return false;
             }
