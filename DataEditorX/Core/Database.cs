@@ -202,6 +202,11 @@ namespace DataEditorX.Core
             return c;
         }
 
+        public static Card[] ReadAll(string db)
+        {
+            return Read(db, "");
+        }
+
         /// <summary>
         /// Read cards from database by IDs.
         /// </summary>

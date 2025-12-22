@@ -118,7 +118,7 @@ namespace DataEditorX.Core
                 return false;
             }
             bool replace = false;
-            Card[] oldcards = Database.Read(dataform.GetOpenFile(), "");
+            Card[] oldcards = Database.ReadAll(dataform.GetOpenFile());
             if (oldcards.Length > 0)
             {
                 HashSet<long> newCardIds = new(cards.Select(c => c.id));

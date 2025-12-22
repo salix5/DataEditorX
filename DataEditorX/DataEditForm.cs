@@ -740,7 +740,7 @@ namespace DataEditorX
             srcCard = new Card(0);
             //检查表是否存在
             Database.CheckTable(file);
-            SetCards(Database.Read(file, ""), false);
+            SetCards(Database.ReadAll(file), false);
 
             return true;
         }
@@ -1464,8 +1464,8 @@ namespace DataEditorX
 
             codeList.Clear();
             srcCard = new Card(0);
-            Card[] mcards = Database.Read(nowCdbFile, "");
-            Card[] cards = Database.Read(cdbfile, "");
+            Card[] mcards = Database.ReadAll(nowCdbFile);
+            Card[] cards = Database.ReadAll(cdbfile);
             foreach (Card card in mcards)
             {
                 if (!CheckCard(cards, card, checktext))
