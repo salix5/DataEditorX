@@ -191,13 +191,13 @@ namespace DataEditorX
                 return;
             }
 
-            if (YGOUtil.IsScript(file))
-            {
-                OpenScript(file);
-            }
-            else if (YGOUtil.IsDatabase(file))
+            if (YGOUtil.IsDatabase(file))
             {
                 OpenDatabase(file);
+            }
+            else if (YGOUtil.IsScript(file))
+            {
+                OpenScript(file);
             }
         }
         //检查是否打开
