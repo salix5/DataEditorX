@@ -18,7 +18,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 最大历史数量
         /// </summary>
-        public const int MAX_HISTORY = 16;
+        public const int MAX_HISTORY = 10;
         /// <summary>
         /// 数据目录
         /// </summary>
