@@ -72,44 +72,45 @@ namespace DataEditorX.Controls
         }
         public void AddHistory(string file)
         {
-            List<string> tmplist = new()
+            if (string.IsNullOrEmpty(file) || !File.Exists(file))
             {
-                //添加到开始
-                file
-            };
-            //添加旧记录
-            tmplist.AddRange(cdbHistory.ToArray());
-            tmplist.AddRange(luaHistory.ToArray());
-            //
-            AddHistorys(tmplist.ToArray());
+                return;
+            }
+            var target = YGOUtil.IsDatabase(file) ? cdbHistory : luaHistory;
+            target.Remove(file);
+            target.Insert(0, file);
+            if (target.Count > MyConfig.MAX_HISTORY)
+            {
+                target.RemoveAt(target.Count - 1);
+            }
             SaveHistory();
             MenuHistory();
         }
         //保存历史
         void SaveHistory()
         {
-            string texts = "# database history";
+            if (string.IsNullOrEmpty(historyFile))
+            {
+                return;
+            }
+            var lines = new List<string>();
+            lines.Add("# database history");
             foreach (string str in cdbHistory)
             {
                 if (File.Exists(str))
                 {
-                    texts += Environment.NewLine + str;
+                    lines.Add(str);
                 }
             }
-            texts += Environment.NewLine + "# script history";
+            lines.Add("# script history");
             foreach (string str in luaHistory)
             {
                 if (File.Exists(str))
                 {
-                    texts += Environment.NewLine + str;
+                    lines.Add(str);
                 }
             }
-            if (File.Exists(historyFile))
-            {
-                File.Delete(historyFile);
-            }
-
-            File.WriteAllText(historyFile, texts);
+            File.WriteAllLines(historyFile, lines);
         }
         //添加历史记录菜单
         public void MenuHistory()
