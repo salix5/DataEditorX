@@ -49,7 +49,8 @@ namespace DataEditorX.Core
             "UPDATE OR IGNORE datas SET id=@id, " + UpdateDatas + " WHERE id=@old_id; UPDATE OR IGNORE texts SET id=@id, " + UpdateTexts + " WHERE id=@old_id;";
         const string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
-        const string PragmaSQL = "PRAGMA trusted_schema=OFF;";
+        const string PragmaSQL = "PRAGMA trusted_schema = OFF;";
+        public static readonly Card EmptyCard = new(0);
         #endregion
 
         #region Create table
@@ -360,12 +361,12 @@ namespace DataEditorX.Core
         #region SELECT
         public static string GetSelectCondition(Card c)
         {
-            StringBuilder sb = new();
-            if (c is null)
+            if (c is null || EmptyCard.Equals(c))
             {
-                return sb.ToString();
+                return "";
             }
 
+            StringBuilder sb = new();
             if (!string.IsNullOrEmpty(c.name))
             {
                 string escapedName = c.name.Replace("%", "$%").Replace("_", "$_");
