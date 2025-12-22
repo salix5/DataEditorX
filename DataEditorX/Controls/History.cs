@@ -53,20 +53,18 @@ namespace DataEditorX.Controls
 
                 if (File.Exists(line))
                 {
-                    if (YGOUtil.IsScript(line))
+                    if (YGOUtil.IsDatabase(line))
                     {
-                        if (luaHistory.Count < MyConfig.MAX_HISTORY
-                            && luaHistory.IndexOf(line) < 0)
+                        if (cdbHistory.Count < MyConfig.MAX_HISTORY)
                         {
-                            luaHistory.Add(line);
+                            cdbHistory.Add(line);
                         }
                     }
                     else
                     {
-                        if (cdbHistory.Count < MyConfig.MAX_HISTORY
-                            && cdbHistory.IndexOf(line) < 0)
+                        if (luaHistory.Count < MyConfig.MAX_HISTORY)
                         {
-                            cdbHistory.Add(line);
+                            luaHistory.Add(line);
                         }
                     }
                 }
