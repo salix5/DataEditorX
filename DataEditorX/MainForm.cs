@@ -27,7 +27,8 @@ namespace DataEditorX
         //语言配置
         readonly string conflang;
         //数据库对比
-        DataEditForm compare1, compare2;
+        DataEditForm? compare1;
+        DataEditForm? compare2;
         //临时卡片
         Card[] tCards = Array.Empty<Card>();
         //编辑器配置
@@ -202,6 +203,10 @@ namespace DataEditorX
         //检查是否打开
         bool FindEditForm(string file, bool isOpen)
         {
+            if (file is null)
+            {
+                return false;
+            }
             DockContentCollection contents = dockPanel.Contents;
             //遍历所有标签
             foreach (DockContent dc in contents)
@@ -214,7 +219,7 @@ namespace DataEditorX
 
                 if (isOpen)//是否检查打开
                 {
-                    if (file != null && file.Equals(edform.GetOpenFile()))
+                    if (file.Equals(edform.GetOpenFile()))
                     {
                         edform.Activate();
                         return true;
@@ -246,7 +251,7 @@ namespace DataEditorX
         //打开脚本编辑
         void Menuitem_codeeditorClick(object sender, EventArgs e)
         {
-            OpenScript(null);
+            OpenScript("");
         }
 
         //新建DataEditorX
@@ -293,9 +298,9 @@ namespace DataEditorX
 
         #region 文件菜单
         //得到当前的数据编辑
-        DataEditForm GetActive()
+        DataEditForm? GetActive()
         {
-            DataEditForm df = dockPanel.ActiveContent as DataEditForm;
+            var df = dockPanel.ActiveContent as DataEditForm;
             return df;
         }
         //打开文件
@@ -303,7 +308,7 @@ namespace DataEditorX
         {
             using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
-            if (GetActive() != null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
+            if (GetActive() is not null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
             {
                 dlg.Filter = MyConfig.CDB_TYPE;
             }
@@ -379,7 +384,7 @@ namespace DataEditorX
         //复制选中
         void Menuitem_copyselecttoClick(object sender, EventArgs e)
         {
-            DataEditForm df = GetActive();
+            var df = GetActive();
             if (df is null)
             {
                 return;
@@ -395,7 +400,7 @@ namespace DataEditorX
         //复制当前结果
         void Menuitem_copyallClick(object sender, EventArgs e)
         {
-            DataEditForm df = GetActive();
+            var df = GetActive();
             if (df is null)
             {
                 return;
@@ -429,8 +434,8 @@ namespace DataEditorX
                 return;
             }
 
-            DataEditForm df = GetActive();
-            if (df == null)
+            var df = GetActive();
+            if (df is null)
             {
                 return;
             }
@@ -446,7 +451,7 @@ namespace DataEditorX
         void Menuitem_comp1Click(object sender, EventArgs e)
         {
             compare1 = GetActive();
-            if (compare1 != null && !string.IsNullOrEmpty(compare1.GetOpenFile()))
+            if (compare1 is not null && !string.IsNullOrEmpty(compare1.GetOpenFile()))
             {
                 menuitem_comp2.Enabled = true;
                 CompareDB();
@@ -456,7 +461,7 @@ namespace DataEditorX
         void Menuitem_comp2Click(object sender, EventArgs e)
         {
             compare2 = GetActive();
-            if (compare2 != null && !string.IsNullOrEmpty(compare2.GetOpenFile()))
+            if (compare2 is not null && !string.IsNullOrEmpty(compare2.GetOpenFile()))
             {
                 CompareDB();
             }
@@ -464,7 +469,7 @@ namespace DataEditorX
         //对比数据库
         void CompareDB()
         {
-            if (compare1 == null || compare2 == null)
+            if (compare1 is null || compare2 is null)
             {
                 return;
             }
