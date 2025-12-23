@@ -34,17 +34,11 @@ namespace DataEditorX.Core
         /// 上一次任务
         /// </summary>
         private MyTask lastTask = MyTask.NONE;
+
         /// <summary>
         /// 当前卡片列表
         /// </summary>
-        private Card[] cardlist = Array.Empty<Card>();
-        /// <summary>
-        /// 当前卡片列表
-        /// </summary>
-        public Card[] CardList
-        {
-            get { return cardlist; }
-        }
+        public Card[] CardList { get; private set; } = Array.Empty<Card>();
         /// <summary>
         /// 任务参数
         /// </summary>
@@ -110,7 +104,7 @@ namespace DataEditorX.Core
         public void SetTask(MyTask myTask, Card[] cards, params string[] args)
         {
             nowTask = myTask;
-            cardlist = cards;
+            CardList = cards;
             mArgs = args;
         }
         //转换图片
@@ -174,9 +168,9 @@ namespace DataEditorX.Core
         #region 裁剪图片
         public void CutImages(string imgpath, bool isreplace)
         {
-            int count = cardlist.Length;
+            int count = CardList.Length;
             int i = 0;
-            foreach (Card c in cardlist)
+            foreach (Card c in CardList)
             {
                 if (isCancel)
                 {
@@ -358,7 +352,7 @@ namespace DataEditorX.Core
         public void ExportData(string path, string zipname, string _cdbfile, string modulescript)
         {
             int i = 0;
-            Card[] cards = cardlist;
+            Card[] cards = CardList;
             if (cards == null || cards.Length == 0)
             {
                 return;
@@ -382,7 +376,7 @@ namespace DataEditorX.Core
 
             File.Delete(cdbfile);
             Database.CreateDatabase(cdbfile);
-            Database.InsertCards(cdbfile, false, cardlist);
+            Database.InsertCards(cdbfile, false, CardList);
             if (File.Exists(zipname))
             {
                 File.Delete(zipname);
@@ -472,7 +466,7 @@ namespace DataEditorX.Core
                                 replace = true;
                             }
                         }
-                        SaveMSEs(mArgs[0], cardlist, replace);
+                        SaveMSEs(mArgs[0], CardList, replace);
                     }
                     break;
                 case MyTask.ReadMSE:
@@ -486,7 +480,7 @@ namespace DataEditorX.Core
                                 replace = true;
                             }
                         }
-                        cardlist = ReadMSE(mArgs[0], replace);
+                        CardList = ReadMSE(mArgs[0], replace);
                     }
                     break;
                 case MyTask.ConvertImages:
@@ -509,7 +503,7 @@ namespace DataEditorX.Core
             nowTask = MyTask.NONE;
             if (lastTask != MyTask.ReadMSE)
             {
-                cardlist = Array.Empty<Card>();
+                CardList = Array.Empty<Card>();
             }
 
             mArgs = Array.Empty<string>();
