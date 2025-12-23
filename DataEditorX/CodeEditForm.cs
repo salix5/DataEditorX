@@ -180,28 +180,28 @@ namespace DataEditorX
         }
         public bool Open(string file)
         {
-            if (!string.IsNullOrEmpty(file))
+            if (string.IsNullOrEmpty(file))
             {
-                if (!File.Exists(file))
-                {
-                    FileStream fs = new(file, FileMode.Create);
-                    fs.Close();
-                }
-                nowFile = file;
-                FileInfo fi = new(file);
-                if (fi.Name.ToUpper().EndsWith(".LUA"))
-                {
-                    (fctb.SyntaxHighlighter as MySyntaxHighlighter).cCode
-                        = fi.Name.Substring(0, fi.Name.Length - 4);
-                }
-                string cdb = MyPath.Combine(Path.GetDirectoryName(file), "../cards.cdb");
-                SetCardDB(cdb);//后台加载卡片数据
-                fctb.OpenFile(nowFile, new UTF8Encoding(false));
-                oldtext = fctb.Text;
-                SetTitle();
-                return true;
+                return false;
             }
-            return false;
+            if (!File.Exists(file))
+            {
+                FileStream fs = new(file, FileMode.Create);
+                fs.Close();
+            }
+            nowFile = file;
+            FileInfo fi = new(file);
+            if (fi.Name.ToUpper().EndsWith(".LUA"))
+            {
+                (fctb.SyntaxHighlighter as MySyntaxHighlighter).cCode
+                    = fi.Name.Substring(0, fi.Name.Length - 4);
+            }
+            string cdb = MyPath.Combine(Path.GetDirectoryName(file), "../cards.cdb");
+            SetCardDB(cdb);//后台加载卡片数据
+            fctb.OpenFile(nowFile, new UTF8Encoding(false));
+            oldtext = fctb.Text;
+            SetTitle();
+            return true;
         }
 
         #endregion
