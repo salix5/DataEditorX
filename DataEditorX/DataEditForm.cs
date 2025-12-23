@@ -806,8 +806,7 @@ namespace DataEditorX
             else
             {
                 srcCard = c;
-                string condition = Database.GetSelectCondition(c);
-                SetCards(Database.Read(nowCdbFile, condition), preservePage);
+                SetCards(Database.ReadByCondition(nowCdbFile, c), preservePage);
             }
         }
         //更新临时卡片

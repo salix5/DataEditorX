@@ -208,9 +208,33 @@ namespace DataEditorX.Core
             return c;
         }
 
+        public static Card[] ReadByCondition(string db, Card c)
+        {
+            if (!File.Exists(db))
+            {
+                return Array.Empty<Card>();
+            }
+            List<Card> list = new();
+            using SQLiteConnection conn = new($"Data Source={db}");
+            conn.Open();
+            SetupConnection(conn);
+            using (SQLiteTransaction trans = conn.BeginTransaction())
+            {
+                using SQLiteCommand cmd = new("", conn, trans);
+                cmd.CommandText = $"{DefaultSQL}{GetSelectCondition(c, cmd.Parameters)} ORDER BY id;";
+                using SQLiteDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(ReadCard(reader));
+                }
+                trans.Commit();
+            }
+            return list.ToArray();
+        }
+
         public static Card[] ReadAll(string db)
         {
-            return Read(db, "");
+            return ReadByCondition(db, EmptyCard);
         }
 
         /// <summary>
@@ -368,7 +392,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region SELECT
-        public static string GetSelectCondition(Card c)
+        public static string GetSelectCondition(Card c, SQLiteParameterCollection parameters)
         {
             if (c is null || EmptyCard.Equals(c))
             {
@@ -378,90 +402,110 @@ namespace DataEditorX.Core
             StringBuilder sb = new();
             if (!string.IsNullOrEmpty(c.name))
             {
-                string escapedName = c.name.Replace("%", "$%").Replace("_", "$_");
-                sb.Append($" AND texts.name LIKE '%{escapedName.Replace("'", "''")}%' ESCAPE '$'");
+                sb.Append(@" AND texts.name LIKE @name ESCAPE '$'");
+                string safePattern = c.name
+                    .Replace("$", "$$")
+                    .Replace("%", "$%")
+                    .Replace("_", "$_");
+                parameters.Add("@name", System.Data.DbType.String).Value = $"%{safePattern}%";
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
-                sb.Append($" AND texts.desc LIKE '%{c.desc.Replace("'", "''")}%'");
+                sb.Append(@" AND texts.desc LIKE @desc ESCAPE '$'");
+                parameters.Add("@desc", System.Data.DbType.String).Value = $"%{c.desc}%";
             }
 
             if (c.ot > 0)
             {
-                sb.Append($" AND datas.ot = {c.ot}");
+                sb.Append(@" AND datas.ot = @ot");
+                parameters.Add("@ot", System.Data.DbType.Int64).Value = c.ot;
             }
 
             if (c.attribute > 0)
             {
-                sb.Append($" AND datas.attribute = {c.attribute}");
+                sb.Append(@" AND datas.attribute = @attribute");
+                parameters.Add("@attribute", System.Data.DbType.Int64).Value = c.attribute;
             }
 
             if (c.GetLevel() > 0)
             {
-                sb.Append($" AND (datas.level & 0xffff) = {c.GetLevel()}");
+                sb.Append(@" AND (datas.level & 0xffff) = @level");
+                parameters.Add("@level", System.Data.DbType.Int64).Value = c.GetLevel();
             }
 
             if (c.GetLeftScale() > 0)
             {
-                sb.Append($" AND (datas.level >> 24 & 0xff) = {c.GetLeftScale()}");
+                sb.Append(@" AND (datas.level >> 24 & 0xff) = @left_scale");
+                parameters.Add("@left_scale", System.Data.DbType.Int64).Value = c.GetLeftScale();
             }
 
             if (c.GetRightScale() > 0)
             {
-                sb.Append($" AND (datas.level >> 16 & 0xff) = {c.GetRightScale()}");
+                sb.Append(@" AND (datas.level >> 16 & 0xff) = @right_scale");
+                parameters.Add("@right_scale", System.Data.DbType.Int64).Value = c.GetRightScale();
             }
 
             if (c.race > 0)
             {
-                sb.Append($" AND datas.race = {c.race}");
+                sb.Append(@" AND datas.race = @race");
+                parameters.Add("@race", System.Data.DbType.Int64).Value = c.race;
             }
 
             if (c.type > 0)
             {
-                sb.Append($" AND datas.type & {c.type} = {c.type}");
+                sb.Append(@" AND datas.type & @type = @type");
+                parameters.Add("@type", System.Data.DbType.Int64).Value = c.type;
             }
 
             if (c.category > 0)
             {
-                sb.Append($" AND datas.category & {c.category} = {c.category}");
+                sb.Append(@" AND datas.category & @category = @category");
+                parameters.Add("@category", System.Data.DbType.Int64).Value = c.category;
             }
 
             if (c.atk == -1)
             {
-                sb.Append($" AND datas.type & 0x1 = 0x1 AND datas.atk = 0");
+                sb.Append(@" AND datas.type & 0x1 = 0x1 AND datas.atk = 0");
             }
             else if (c.atk < 0 || c.atk > 0)
             {
-                sb.Append($" AND datas.atk = {c.atk}");
+                sb.Append(@" AND datas.atk = @atk");
+                parameters.Add("@atk", System.Data.DbType.Int64).Value = c.atk;
             }
 
             if (c.IsType(Info.CardType.TYPE_LINK))
             {
-                sb.Append($" AND datas.def & {c.def} = {c.def}");
+                sb.Append(@" AND datas.def & @def = @def");
+                parameters.Add("@def", System.Data.DbType.Int64).Value = c.def;
             }
             else
             {
                 if (c.def == -1)
                 {
-                    sb.Append(" AND datas.type & 0x1 = 0x1 AND datas.def = 0");
+                    sb.Append(@" AND datas.type & 0x1 = 0x1 AND datas.def = 0");
                 }
                 else if (c.def < 0 || c.def > 0)
                 {
-                    sb.Append($" AND datas.def = {c.def}");
+                    sb.Append(@" AND datas.def = @def");
+                    parameters.Add("@def", System.Data.DbType.Int64).Value = c.def;
                 }
             }
 
             if (c.id > 0 && c.alias > 0)
             {
-                sb.Append($" AND datas.id BETWEEN {c.alias} AND {c.id}");
+                sb.Append(@" AND id BETWEEN @alias AND @id");
+                parameters.Add("@alias", System.Data.DbType.Int64).Value = c.alias;
+                parameters.Add("@id", System.Data.DbType.Int64).Value = c.id;
             }
             else if (c.id > 0)
             {
-                sb.Append($" AND (datas.id={c.id} OR datas.alias={c.id}) ");
+                sb.Append(@" AND (id=@id OR datas.alias=@id)");
+                parameters.Add("@id", System.Data.DbType.Int64).Value = c.id;
             }
             else if (c.alias > 0)
             {
-                sb.Append($" AND datas.alias={c.alias}");
+                sb.Append(@" AND datas.alias=@alias");
+                parameters.Add("@alias", System.Data.DbType.Int64).Value = c.alias;
             }
             return sb.ToString();
         }
