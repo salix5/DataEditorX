@@ -296,123 +296,16 @@ namespace DataEditorX.Core
         }
         public void SaveMSE(int num, string file, Card[] cards, string pack_db, bool rarity, bool isUpdate)
         {
-            string setFile = file + ".txt";
-            Dictionary<Card, string> images = mseHelper.WriteSet(setFile, cards, pack_db, rarity);
-            if (isUpdate)//仅更新文字
-            {
-                return;
-            }
-
-            int i = 0;
-            int count = images.Count;
-            using (ZipStorer zips = ZipStorer.Create(file, ""))
-            {
-                zips.EncodeUTF8 = true;//zip里面的文件名为utf8
-                zips.AddFile(setFile, "set", "");
-                foreach (Card c in images.Keys)
-                {
-                    string img = images[c];
-                    if (isCancel)
-                    {
-                        break;
-                    }
-
-                    i++;
-                    worker.ReportProgress(i / count, string.Format("{0}/{1}-{2}", i, count, num));
-                    //TODO 先裁剪图片
-                    zips.AddFile(mseHelper.GetImageCache(img, c), Path.GetFileName(img), "");
-                }
-            }
-            File.Delete(setFile);
         }
         public Card[] ReadMSE(string mseset, bool repalceOld)
         {
-            //解压所有文件
-            using (ZipStorer zips = ZipStorer.Open(mseset, FileAccess.Read))
-            {
-                zips.EncodeUTF8 = true;
-                List<ZipStorer.ZipFileEntry> files = zips.ReadCentralDir();
-                int count = files.Count;
-                int i = 0;
-                foreach (ZipStorer.ZipFileEntry file in files)
-                {
-                    worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
-                    string savefilename = MyPath.Combine(mseHelper.ImagePath, file.FilenameInZip);
-                    zips.ExtractFile(file, savefilename);
-                }
-            }
-            string setfile = MyPath.Combine(mseHelper.ImagePath, "set");
-            return mseHelper.ReadCards(setfile, repalceOld);
+            return Array.Empty<Card>();
         }
         #endregion
 
         #region 导出数据
         public void ExportData(string path, string zipname, string _cdbfile, string modulescript)
         {
-            int i = 0;
-            Card[] cards = CardList;
-            if (cards == null || cards.Length == 0)
-            {
-                return;
-            }
-
-            int count = cards.Length;
-            YgoPath ygopath = new(path);
-            string name = Path.GetFileNameWithoutExtension(zipname);
-            //数据库
-            string cdbfile = zipname + ".cdb";
-            //说明
-            string readme = MyPath.Combine(path, name + ".txt");
-            //新卡ydk
-            string deckydk = ygopath.GetYdk(name);
-            //module scripts
-            string extra_script = "";
-            if (modulescript.Length > 0)
-            {
-                extra_script = ygopath.GetModuleScript(modulescript);
-            }
-
-            File.Delete(cdbfile);
-            Database.CreateDatabase(cdbfile);
-            Database.InsertCards(cdbfile, false, CardList);
-            if (File.Exists(zipname))
-            {
-                File.Delete(zipname);
-            }
-
-            using (ZipStorer zips = ZipStorer.Create(zipname, ""))
-            {
-                zips.AddFile(cdbfile, Path.GetFileNameWithoutExtension(_cdbfile) + ".cdb", "");
-                if (File.Exists(readme))
-                {
-                    zips.AddFile(readme, "readme_" + name + ".txt", "");
-                }
-
-                if (File.Exists(deckydk))
-                {
-                    zips.AddFile(deckydk, "deck/" + name + ".ydk", "");
-                }
-
-                if (modulescript.Length > 0 && File.Exists(extra_script))
-                {
-                    zips.AddFile(extra_script, extra_script.Replace(path, ""), "");
-                }
-
-                foreach (Card c in cards)
-                {
-                    i++;
-                    worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
-                    string[] files = ygopath.GetCardfiles(c.id);
-                    foreach (string file in files)
-                    {
-                        if (!string.Equals(file, extra_script) && File.Exists(file))
-                        {
-                            zips.AddFile(file, file.Replace(path, ""), "");
-                        }
-                    }
-                }
-            }
-            File.Delete(cdbfile);
         }
         #endregion
 
