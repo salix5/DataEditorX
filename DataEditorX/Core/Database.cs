@@ -549,50 +549,6 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region UPDATE
-        /// <summary>
-        /// Generate UPDATE statements.
-        /// </summary>
-        /// <param name="c">Card data</param>
-        /// <returns>SQL statements</returns>
-        public static string GetUpdateSQL(Card c)
-        {
-            string[] strEscaped = new string[c.Str.Length];
-            for (int i = 0; i < c.Str.Length; i++)
-            {
-                strEscaped[i] = c.Str[i].Replace("'", "''");
-            }
-
-            string stmt_datas =
-                $"UPDATE datas SET ot={c.ot},alias={c.alias},setcode={c.setcode},type={c.type},atk={c.atk},def={c.def},level={c.level},race={c.race},attribute={c.attribute},category={c.category} WHERE id={c.id};\n";
-
-            string name = c.name.Replace("'", "''");
-            string desc = c.desc.Replace("'", "''");
-            string[] strAssignments = new string[c.Str.Length];
-            for (int i = 0; i < c.Str.Length; i++)
-            {
-                strAssignments[i] = $"str{i + 1}='{strEscaped[i]}'";
-            }
-            string stmt_texts = $"UPDATE texts SET name='{name}',desc='{desc}', {string.Join(",", strAssignments)} WHERE id={c.id};\n";
-
-            return $"{stmt_datas}{stmt_texts}";
-        }
-        #endregion
-
-        #region DELETE
-        /// <summary>
-        /// Generate DELETE statements.
-        /// </summary>
-        /// <param name="c">Card ID</param>
-        /// <returns>SQL statements</returns>
-        public static string GetDeleteSQL(Card c)
-        {
-            string id = c.id.ToString();
-            return $"DELETE FROM datas WHERE id={id};\nDELETE FROM texts WHERE id={id};\n";
-        }
-        #endregion
-
-
         public static void ExportSQL(string file, Card[] cards)
         {
             using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
