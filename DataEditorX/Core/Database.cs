@@ -79,6 +79,12 @@ namespace DataEditorX.Core
         #endregion
 
         #region Execute SQL
+        public static void SetupConnection(SQLiteConnection conn)
+        {
+            using SQLiteCommand cmd = new(PragmaSQL, conn);
+            cmd.ExecuteNonQuery();
+        }
+
         /// <summary>
         /// Execute SQL statements.
         /// </summary>
@@ -99,12 +105,12 @@ namespace DataEditorX.Core
             int result = 0;
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
+            SetupConnection(con);
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
                 try
                 {
-                    using SQLiteCommand cmd = new(PragmaSQL, con, trans);
-                    cmd.ExecuteNonQuery();
+                    using SQLiteCommand cmd = new("", con, trans);
                     foreach (string SQLstr in SQLs)
                     {
                         cmd.CommandText = SQLstr;
@@ -231,13 +237,11 @@ namespace DataEditorX.Core
             List<Card> list = new();
             using SQLiteConnection sqliteconn = new($"Data Source={db}");
             sqliteconn.Open();
+            SetupConnection(sqliteconn);
             using (SQLiteTransaction trans = sqliteconn.BeginTransaction())
             {
-                using SQLiteCommand cmd = new(PragmaSQL, sqliteconn, trans);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = string.IsNullOrEmpty(queryCondition) ?
-                    $"{DefaultSQL} ORDER BY id;" :
-                    $"{DefaultSQL}{queryCondition} ORDER BY id;";
+                string commandText = $"{DefaultSQL}{queryCondition} ORDER BY id;";
+                using SQLiteCommand cmd = new(commandText, sqliteconn, trans);
                 using SQLiteDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -270,11 +274,11 @@ namespace DataEditorX.Core
             int result = 0;
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
+            SetupConnection(con);
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                string commandText = ignore ? InsertIgnoreSQL : InsertReplaceSQL;
+                using SQLiteCommand cmd = new(commandText, con, trans);
                 InitParameters(cmd);
                 foreach (Card c in cards)
                 {
@@ -299,11 +303,10 @@ namespace DataEditorX.Core
             int result = 0;
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
+            SetupConnection(con);
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = DeleteSQL;
+                using SQLiteCommand cmd = new(DeleteSQL, con, trans);
                 var parameter = cmd.Parameters.Add("@id", System.Data.DbType.Int64);
                 foreach (Card c in cards)
                 {
@@ -328,11 +331,11 @@ namespace DataEditorX.Core
             int result = 0;
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
+            SetupConnection(con);
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                using SQLiteCommand cmd = new(PragmaSQL, con, trans);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = oldId == 0 ? UpdateSQL : MoveSQL;
+                string commandText = oldId == 0 ? UpdateSQL : MoveSQL;
+                using SQLiteCommand cmd = new(commandText, con, trans);
                 InitParameters(cmd);
                 AddParameters(cmd, c);
                 if (oldId != 0)
@@ -358,6 +361,7 @@ namespace DataEditorX.Core
             }
             using SQLiteConnection con = new($"Data Source={db}");
             con.Open();
+            SetupConnection(con);
             using SQLiteCommand cmd = new("VACUUM;", con);
             cmd.ExecuteNonQuery();
         }
