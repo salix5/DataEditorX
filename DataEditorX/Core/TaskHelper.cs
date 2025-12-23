@@ -46,11 +46,11 @@ namespace DataEditorX.Core
         /// <summary>
         /// 图片设置
         /// </summary>
-        private readonly ImageSet imgSet;
+        private readonly ImageSet imgSet = new();
         /// <summary>
         /// MSE转换
         /// </summary>
-        private readonly MseMaker mseHelper;
+        private readonly MseMaker mseHelper = new();
         /// <summary>
         /// 是否取消
         /// </summary>
@@ -64,12 +64,10 @@ namespace DataEditorX.Core
         /// </summary>
         private readonly BackgroundWorker worker;
 
-        public TaskHelper(string datapath, BackgroundWorker worker, MSEConfig mcfg)
+        public TaskHelper(string datapath, BackgroundWorker worker)
         {
             Datapath = datapath;
             this.worker = worker;
-            mseHelper = new MseMaker(mcfg);
-            imgSet = new ImageSet();
         }
         public MseMaker MseHelper
         {

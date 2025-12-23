@@ -79,7 +79,6 @@ namespace DataEditorX
         readonly bool[] isSetcodeEditing = new bool[5];
 
         Image? cover;
-        readonly MSEConfig msecfg;
 
         readonly string datapath;
         readonly string confcover = "";
@@ -92,12 +91,11 @@ namespace DataEditorX
         {
             this.datapath = datapath;
             cardedit = new CardEdit(this);
-            msecfg = new MSEConfig(datapath);
             confcover = MyPath.Combine(datapath, "cover.jpg");
             InitPath();
             InitializeComponent();
             title = Text;
-            tasker = new TaskHelper(datapath, bgWorker1, msecfg);
+            tasker = new TaskHelper(datapath, bgWorker1);
         }
 
         #endregion

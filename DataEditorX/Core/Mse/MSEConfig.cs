@@ -10,6 +10,7 @@ using DataEditorX.Config;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DataEditorX.Core.Mse
 {
@@ -56,10 +57,11 @@ namespace DataEditorX.Core.Mse
         public const string FILE_CONFIG_NAME = "Chinese-Simplified";
         public const string PATH_IMAGE = "Images";
         public string configName = FILE_CONFIG_NAME;
+        readonly string datapath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA);
         #endregion
-        public MSEConfig(string path)
+        public MSEConfig()
         {
-            Init(path);
+            Init(datapath);
         }
         public void SetConfig(string config, string path)
         {

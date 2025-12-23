@@ -68,7 +68,7 @@ namespace DataEditorX.Core.Mse
         #endregion
 
         #region 成员，初始化
-        MSEConfig cfg;
+        readonly MSEConfig cfg = new();
         public int MaxNum
         {
             get { return cfg.maxcount; }
@@ -79,13 +79,8 @@ namespace DataEditorX.Core.Mse
             get { return cfg.imagepath; }
         }
 
-        public MseMaker(MSEConfig mcfg)
+        public MseMaker()
         {
-            SetConfig(mcfg);
-        }
-        public void SetConfig(MSEConfig mcfg)
-        {
-            cfg = mcfg;
         }
         public MSEConfig GetConfig()
         {
