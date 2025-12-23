@@ -547,7 +547,6 @@ namespace DataEditorX.Core
 
             return $"{stmt_datas}{stmt_texts}";
         }
-        #endregion
 
         public static void ExportSQL(string file, Card[] cards)
         {
@@ -559,6 +558,7 @@ namespace DataEditorX.Core
             }
             sw.Close();
         }
+        #endregion
 
         public static CardPack FindPack(string db, long id)
         {
