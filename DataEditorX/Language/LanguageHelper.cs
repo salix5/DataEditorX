@@ -55,12 +55,11 @@ namespace DataEditorX.Language
 
         static bool GetLabel(string key, out string title)
         {
-            if (_gWordsList.TryGetValue(key, out string v))
+            if (_gWordsList.TryGetValue(key, out title))
             {
-                title = v;
                 return true;
             }
-            title = null;
+            title = "";
             return false;
         }
 

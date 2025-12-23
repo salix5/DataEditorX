@@ -21,7 +21,7 @@ namespace DataEditorX
     {
         #region member
         //历史
-        History history;
+        readonly History history;
         //数据目录
         readonly string datapath;
         //语言配置
@@ -29,12 +29,12 @@ namespace DataEditorX
         //数据库对比
         DataEditForm compare1, compare2;
         //临时卡片
-        Card[] tCards;
+        Card[] tCards = Array.Empty<Card>();
         //编辑器配置
         readonly DataConfig datacfg;
-        CodeConfig codecfg = null;
+        readonly CodeConfig codecfg = new();
         //将要打开的文件
-        string openfile;
+        string openfile = "";
         #endregion
 
         #region 设置界面，消息语言
@@ -47,6 +47,7 @@ namespace DataEditorX
             conflang = MyConfig.GetLanguageFile(datapath);
             //游戏数据,MSE数据
             datacfg = new DataConfig(MyConfig.GetCardInfoFile(datapath));
+            history = new History(this);
         }
         public void InitializeData()
         {
@@ -79,7 +80,6 @@ namespace DataEditorX
             string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
             string conlua = MyPath.Combine(datapath, MyConfig.FILE_CONSTANT);
             string confstring = MyPath.Combine(datapath, MyConfig.FILE_STRINGS);
-            codecfg = new CodeConfig();
             //添加函数
             codecfg.AddFunction(funtxt);
             //添加指示物
@@ -89,7 +89,6 @@ namespace DataEditorX
             codecfg.SetNames(datacfg.dicSetnames);
             //生成菜单
             codecfg.InitAutoMenus();
-            history = new History(this);
             //读取历史记录
             history.ReadHistory(MyPath.Combine(datapath, MyConfig.FILE_HISTORY));
             //加载多语言

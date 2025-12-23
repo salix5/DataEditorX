@@ -18,7 +18,7 @@ namespace DataEditorX
         {
             public string Key;
             public string Value;
-            public string Hint;
+            public string Hint = "";
             public bool IsSelected;
 
             public EffectCreatorItem(string key, string value)
