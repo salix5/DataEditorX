@@ -72,7 +72,7 @@ namespace DataEditorX.Core
         public string desc;
         public string NormalizedDesc => desc.Replace("\n", Environment.NewLine);
         /// <summary>脚本文件文字</summary>
-        public string[] Str { get; private set; }
+        public string[] Str { get; }
         public long[] GetSetcode()
         {
             long[] list = new long[SETCODE_SIZE];
