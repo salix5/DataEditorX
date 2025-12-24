@@ -21,28 +21,66 @@ namespace DataEditorX.Core
     public static class Database
     {
         #region SQL statements
-        const string DefaultSQL =
-            "SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,"
-            + "texts.name,texts.desc,texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,"
-            + "texts.str11,texts.str12,texts.str13,texts.str14,texts.str15,texts.str16 FROM datas JOIN texts USING(id) WHERE 1 = 1";
-        const string DefaultTableSQL =
-            "CREATE TABLE datas(id INTEGER PRIMARY KEY, ot INTEGER, alias INTEGER, setcode INTEGER, type INTEGER, atk INTEGER, def INTEGER, level INTEGER, race INTEGER, attribute INTEGER, category INTEGER);\n"
-            + "CREATE TABLE texts(id INTEGER PRIMARY KEY, name TEXT, desc TEXT, str1 TEXT, str2 TEXT, str3 TEXT, str4 TEXT, str5 TEXT, str6 TEXT, str7 TEXT, str8 TEXT, str9 TEXT, str10 TEXT,"
-            + " str11 TEXT, str12 TEXT, str13 TEXT, str14 TEXT, str15 TEXT, str16 TEXT);";
+        const string DefaultSQL = """
+            SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,
+            texts.name,texts."desc",texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,
+            texts.str11,texts.str12,texts.str13,texts.str14,texts.str15,texts.str16 FROM datas JOIN texts USING(id) WHERE 1 = 1
+            """;
+        const string DefaultTableSQL = """
+            CREATE TABLE datas(
+                "id" INTEGER PRIMARY KEY,
+                "ot" INTEGER,
+                "alias" INTEGER,
+                "setcode" INTEGER,
+                "type" INTEGER,
+                "atk" INTEGER,
+                "def" INTEGER,
+                "level" INTEGER,
+                "race" INTEGER,
+                "attribute" INTEGER,
+                "category" INTEGER
+            );
+            CREATE TABLE texts(
+                "id" INTEGER PRIMARY KEY,
+                "name" TEXT,
+                "desc" TEXT,
+                "str1" TEXT,
+                "str2" TEXT,
+                "str3" TEXT,
+                "str4" TEXT,
+                "str5" TEXT,
+                "str6" TEXT,
+                "str7" TEXT,
+                "str8" TEXT,
+                "str9" TEXT,
+                "str10" TEXT,
+                "str11" TEXT,
+                "str12" TEXT,
+                "str13" TEXT,
+                "str14" TEXT,
+                "str15" TEXT,
+                "str16" TEXT,
+                FOREIGN KEY("id") REFERENCES datas("id") DEFERRABLE INITIALLY DEFERRED
+            );
+            """;
 
-        const string InsertDatas =
-            " INTO datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category) "
-            + "VALUES (@id, @ot, @alias, @setcode, @type, @atk, @def, @level, @race, @attribute, @category);";
-        const string InsertTexts =
-            " INTO texts (id, name, desc, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16) "
-            + "VALUES (@id, @name, @desc, @str1, @str2, @str3, @str4, @str5, @str6, @str7, @str8, @str9, @str10, @str11, @str12, @str13, @str14, @str15, @str16);";
+        const string InsertDatas = """
+            INTO datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category)
+            VALUES (@id, @ot, @alias, @setcode, @type, @atk, @def, @level, @race, @attribute, @category);
+            """;
+        const string InsertTexts = """
+            INTO texts (id, name, "desc", str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16)
+            VALUES (@id, @name, @desc, @str1, @str2, @str3, @str4, @str5, @str6, @str7, @str8, @str9, @str10, @str11, @str12, @str13, @str14, @str15, @str16);
+            """;
         const string InsertReplaceSQL = "INSERT OR REPLACE" + InsertDatas + "INSERT OR REPLACE" + InsertTexts;
         const string InsertIgnoreSQL = "INSERT OR IGNORE" + InsertDatas + "INSERT OR IGNORE" + InsertTexts;
-        const string UpdateDatas =
-            "ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category";
-        const string UpdateTexts =
-            "name=@name, desc=@desc, str1=@str1, str2=@str2, str3=@str3, str4=@str4, str5=@str5, str6=@str6, str7=@str7, str8=@str8, str9=@str9, str10=@str10,"
-            + " str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16";
+        const string UpdateDatas = """
+            ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category
+            """;
+        const string UpdateTexts = """
+            name=@name, "desc"=@desc, str1=@str1, str2=@str2, str3=@str3, str4=@str4, str5=@str5, str6=@str6, str7=@str7, str8=@str8, str9=@str9, str10=@str10,
+            str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16
+            """;
         const string UpdateSQL =
             "UPDATE OR IGNORE datas SET " + UpdateDatas + " WHERE id=@id; UPDATE OR IGNORE texts SET " + UpdateTexts + " WHERE id=@id;";
         const string MoveSQL =
@@ -411,7 +449,7 @@ namespace DataEditorX.Core
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
-                sb.Append(@" AND texts.desc LIKE @desc ESCAPE '$'");
+                sb.Append(@" AND texts.""desc"" LIKE @desc ESCAPE '$'");
                 parameters.Add("@desc", System.Data.DbType.String).Value = $"%{c.desc}%";
             }
 
@@ -542,7 +580,7 @@ namespace DataEditorX.Core
                 + $"VALUES({c.id},{c.ot},{c.alias},{setcode},{type},{c.atk},{c.def},{level},{race},{attribute},{category});\n";
 
             string stmt_texts =
-                $"{insertMode} INTO texts (id, name, desc, str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16) "
+                $"{insertMode} INTO texts (id, name, \"desc\", str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16) "
                 + $"VALUES({c.id},'{name}','{desc}','{string.Join("','", strs)}');\n";
 
             return $"{stmt_datas}{stmt_texts}";
