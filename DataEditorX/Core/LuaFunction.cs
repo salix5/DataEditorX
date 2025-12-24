@@ -17,7 +17,7 @@ namespace DataEditorX
     /// <summary>
     /// Lua 函数查找
     /// </summary>
-    public class LuaFunction
+    public static class LuaFunction
     {
         #region 日志log
         static void ResetLog()
