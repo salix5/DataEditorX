@@ -130,7 +130,6 @@ namespace DataEditorX
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
             //Add MSE language items
             //AddMenuItemFormMSE();
-            //
             GetLanguageItem();
         }
         //窗体关闭
@@ -181,10 +180,10 @@ namespace DataEditorX
                 return;
             }
 
+            SuspendLayout();
             mainMenu.Visible = false;
             menuitem_file.Visible = false;
             menuitem_file.Enabled = false;
-            //this.SuspendLayout();
             ResumeLayout(true);
             foreach (Control c in Controls)
             {
@@ -196,8 +195,7 @@ namespace DataEditorX
                 Point p = c.Location;
                 c.Location = new Point(p.X, p.Y - 25);
             }
-            ResumeLayout(false);
-            //this.PerformLayout();
+            ResumeLayout();
         }
         //移除Tag
         string RemoveTag(string text)
@@ -321,8 +319,7 @@ namespace DataEditorX
                     fpanel.Controls.Add(_cbox);
                 }
             }
-            fpanel.ResumeLayout(false);
-            fpanel.PerformLayout();
+            fpanel.ResumeLayout();
         }
 
         //初始化ComboBox
@@ -1679,7 +1676,7 @@ namespace DataEditorX
             }
 
             menuitem_language.DropDownItems.Clear();
-            string[] files = Directory.GetFiles(datapath);
+            string[] files = Directory.GetFiles(datapath, MyConfig.TAG_LANGUAGE);
             foreach (string file in files)
             {
                 string name = MyPath.GetFullFileName(MyConfig.TAG_LANGUAGE, file);
@@ -1698,7 +1695,6 @@ namespace DataEditorX
                 {
                     tsmi.Checked = true;
                 }
-
                 menuitem_language.DropDownItems.Add(tsmi);
             }
         }
