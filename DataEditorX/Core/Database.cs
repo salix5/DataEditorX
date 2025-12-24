@@ -50,7 +50,7 @@ namespace DataEditorX.Core
         const string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
         const string PragmaSQL = "PRAGMA trusted_schema = OFF;";
-        public static readonly Card EmptyCard = new(0);
+        static readonly Card EmptyCard = new(0);
         #endregion
 
         #region Create table
