@@ -21,6 +21,23 @@ namespace DataEditorX.Core
     public static class Database
     {
         #region SQL statements
+        readonly struct ColumnIndex
+        {
+            public const int id = 0;
+            public const int ot = 1;
+            public const int alias = 2;
+            public const int setcode = 3;
+            public const int type = 4;
+            public const int atk = 5;
+            public const int def = 6;
+            public const int level = 7;
+            public const int race = 8;
+            public const int attribute = 9;
+            public const int category = 10;
+            public const int name = 11;
+            public const int desc = 12;
+            public const int str1 = 13;
+        };
         const string DefaultSQL = """
             SELECT id,datas.ot,datas.alias,datas.setcode,datas.type,datas.atk,datas.def,datas.level,datas.race,datas.attribute,datas.category,
             texts.name,texts."desc",texts.str1,texts.str2,texts.str3,texts.str4,texts.str5,texts.str6,texts.str7,texts.str8,texts.str9,texts.str10,
@@ -223,25 +240,25 @@ namespace DataEditorX.Core
         {
             Card c = new(0)
             {
-                id = reader.GetInt64(reader.GetOrdinal("id")),
-                ot = reader.GetInt64(reader.GetOrdinal("ot")),
-                alias = reader.GetInt64(reader.GetOrdinal("alias")),
-                setcode = reader.GetInt64(reader.GetOrdinal("setcode")),
-                type = reader.GetInt64(reader.GetOrdinal("type")),
-                atk = reader.GetInt64(reader.GetOrdinal("atk")),
-                def = reader.GetInt64(reader.GetOrdinal("def")),
-                level = reader.GetInt64(reader.GetOrdinal("level")),
-                race = reader.GetInt64(reader.GetOrdinal("race")),
-                attribute = reader.GetInt64(reader.GetOrdinal("attribute")),
-                category = reader.GetInt64(reader.GetOrdinal("category")),
+                id = reader.GetInt64(ColumnIndex.id),
+                ot = reader.GetInt64(ColumnIndex.ot),
+                alias = reader.GetInt64(ColumnIndex.alias),
+                setcode = reader.GetInt64(ColumnIndex.setcode),
+                type = reader.GetInt64(ColumnIndex.type),
+                atk = reader.GetInt64(ColumnIndex.atk),
+                def = reader.GetInt64(ColumnIndex.def),
+                level = reader.GetInt64(ColumnIndex.level),
+                race = reader.GetInt64(ColumnIndex.race),
+                attribute = reader.GetInt64(ColumnIndex.attribute),
+                category = reader.GetInt64(ColumnIndex.category),
 
-                name = (string)reader["name"],
-                desc = MyUtils.ConvertNewline((string)reader["desc"], false),
+                name = reader.GetString(ColumnIndex.name),
+                desc = MyUtils.ConvertNewline(reader.GetString(ColumnIndex.desc), false),
             };
 
             for (int i = 0; i < c.Str.Length; i++)
             {
-                c.Str[i] = (string)reader[$"str{i + 1}"] ?? "";
+                c.Str[i] = reader.GetString(ColumnIndex.str1 + i) ?? "";
             }
             return c;
         }
