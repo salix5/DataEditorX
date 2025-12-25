@@ -82,15 +82,15 @@ namespace DataEditorX.Core
             """;
 
         const string InsertDatas = """
-            INTO datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category)
+            datas (id, ot, alias, setcode, type, atk, def, level, race, attribute, category)
             VALUES (@id, @ot, @alias, @setcode, @type, @atk, @def, @level, @race, @attribute, @category);
             """;
         const string InsertTexts = """
-            INTO texts (id, name, "desc", str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16)
+            texts (id, name, "desc", str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, str16)
             VALUES (@id, @name, @desc, @str1, @str2, @str3, @str4, @str5, @str6, @str7, @str8, @str9, @str10, @str11, @str12, @str13, @str14, @str15, @str16);
             """;
-        const string InsertReplaceSQL = "INSERT OR REPLACE" + InsertDatas + "INSERT OR REPLACE" + InsertTexts;
-        const string InsertIgnoreSQL = "INSERT OR IGNORE" + InsertDatas + "INSERT OR IGNORE" + InsertTexts;
+        const string InsertReplaceSQL = "INSERT OR REPLACE INTO " + InsertDatas + "\nINSERT OR REPLACE INTO " + InsertTexts;
+        const string InsertIgnoreSQL = "INSERT OR IGNORE INTO " + InsertDatas + "\nINSERT OR IGNORE INTO " + InsertTexts;
         const string UpdateDatas = """
             ot=@ot, alias=@alias, setcode=@setcode, type=@type, atk=@atk, def=@def, level=@level, race=@race, attribute=@attribute, category=@category
             """;
@@ -99,9 +99,9 @@ namespace DataEditorX.Core
             str11=@str11, str12=@str12, str13=@str13, str14=@str14, str15=@str15, str16=@str16
             """;
         const string UpdateSQL =
-            "UPDATE OR IGNORE datas SET " + UpdateDatas + " WHERE id=@id; UPDATE OR IGNORE texts SET " + UpdateTexts + " WHERE id=@id;";
+            "UPDATE OR IGNORE datas SET " + UpdateDatas + " WHERE id=@id;\nUPDATE OR IGNORE texts SET " + UpdateTexts + " WHERE id=@id;";
         const string MoveSQL =
-            "UPDATE OR IGNORE datas SET id=@id, " + UpdateDatas + " WHERE id=@old_id; UPDATE OR IGNORE texts SET id=@id, " + UpdateTexts + " WHERE id=@old_id;";
+            "UPDATE OR IGNORE datas SET id=@id, " + UpdateDatas + " WHERE id=@old_id;\nUPDATE OR IGNORE texts SET id=@id, " + UpdateTexts + " WHERE id=@old_id;";
         const string DeleteSQL =
             "DELETE FROM datas WHERE id=@id;DELETE FROM texts WHERE id=@id;";
         const string PragmaSQL = "PRAGMA trusted_schema = OFF;";
