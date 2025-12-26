@@ -23,9 +23,9 @@ namespace DataEditorX
         //历史
         readonly History history;
         //数据目录
-        readonly string datapath;
+        readonly string datapath = "";
         //语言配置
-        readonly string conflang;
+        readonly string conflang = "";
         //数据库对比
         DataEditForm? compare1;
         DataEditForm? compare2;

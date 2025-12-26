@@ -64,7 +64,7 @@ namespace DataEditorX
         /// </summary>
         readonly List<long> codeList = new();
         //初始标题
-        string title;
+        string title = "";
         string nowCdbFile = "";
         int maxRow = 20;
         int page = 1;
@@ -80,7 +80,7 @@ namespace DataEditorX
 
         Image? cover;
 
-        readonly string datapath;
+        readonly string datapath = "";
         readonly string confcover = "";
 
         public DataEditForm(string datapath, string cdbfile) : this(datapath)
