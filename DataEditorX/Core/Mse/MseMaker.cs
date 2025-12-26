@@ -245,8 +245,8 @@ namespace DataEditorX.Core.Mse
             Match mc = regex.Match(desc);
             if (mc.Success)
             {
-                return ((mc.Groups.Count > 1) ?
-                        mc.Groups[1].Value : mc.Groups[0].Value);
+                return (mc.Groups.Count > 1) ?
+                        mc.Groups[1].Value : mc.Groups[0].Value;
             }
 
             return "";
@@ -811,9 +811,9 @@ namespace DataEditorX.Core.Mse
             }
             //摇摆刻度
             int.TryParse(GetValue(content, TAG_PSCALE1), out int itmp);
-            c.level += (itmp << 0x18);
+            c.level += itmp << 0x18;
             int.TryParse(GetValue(content, TAG_PSCALE2), out itmp);
-            c.level += (itmp << 0x10);
+            c.level += itmp << 0x10;
             return c;
         }
         //读取所有卡片

@@ -176,7 +176,7 @@ namespace DataEditorX.Core
                 }
 
                 i++;
-                worker.ReportProgress((i / count), string.Format("{0}/{1}", i, count));
+                worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
                 string jpg = MyPath.Combine(imgpath, c.id + ".jpg");
                 string savejpg = MyPath.Combine(mseHelper.ImagePath, c.id + ".jpg");
                 if (File.Exists(jpg) && (isreplace || !File.Exists(savejpg)))
@@ -328,7 +328,7 @@ namespace DataEditorX.Core
                     showNew = false;
                     if (mArgs != null && mArgs.Length >= 1)
                     {
-                        showNew = (mArgs[0] == bool.TrueString);
+                        showNew = mArgs[0] == bool.TrueString;
                     }
                     OnCheckUpdate(showNew);
                     break;
