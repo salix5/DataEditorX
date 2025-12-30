@@ -230,7 +230,7 @@ namespace DataEditorX.Core
             cmd.Parameters["@desc"].Value = c.desc;
             for (int i = 0; i < c.Str.Length; i++)
             {
-                cmd.Parameters[$"@str{i + 1}"].Value = c.Str[i];
+                cmd.Parameters[$"@str{i + 1}"].Value = c.Str[i] ?? "";
             }
         }
         #endregion
@@ -258,7 +258,7 @@ namespace DataEditorX.Core
 
             for (int i = 0; i < c.Str.Length; i++)
             {
-                c.Str[i] = reader.GetString(ColumnIndex.str1 + i) ?? "";
+                c.Str[i] = reader.GetString(ColumnIndex.str1 + i);
             }
             return c;
         }

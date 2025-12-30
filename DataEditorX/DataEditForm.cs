@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -58,7 +59,7 @@ namespace DataEditorX
         Card srcCard = new(0);
         //卡片编辑
         readonly CardEdit cardedit;
-        readonly string[] strs = new string[Card.STR_SIZE];
+        readonly string[] strs = Enumerable.Repeat("", Card.STR_SIZE).ToArray();
         /// <summary>
         /// 对比的id集合
         /// </summary>
@@ -958,9 +959,10 @@ namespace DataEditorX
                 return;
             }
             strs[index] = tb_edittext.Text;
-            lb_scripttext.Items.Clear();
-            lb_scripttext.Items.AddRange(strs);
-            lb_scripttext.SelectedIndex = index;
+            if ((string)lb_scripttext.Items[index] != tb_edittext.Text)
+            {
+                lb_scripttext.Items[index] = tb_edittext.Text;
+            }
         }
         #endregion
 
