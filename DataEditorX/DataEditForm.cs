@@ -126,6 +126,7 @@ namespace DataEditorX
         {
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
+            LoadCard(oldCard);
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
             menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
