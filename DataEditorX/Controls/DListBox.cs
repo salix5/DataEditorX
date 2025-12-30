@@ -6,9 +6,7 @@ namespace DataEditorX
     {
         public DListBox()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer |
-         ControlStyles.AllPaintingInWmPaint,
-         true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
         }
     }
