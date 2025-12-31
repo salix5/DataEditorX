@@ -801,7 +801,7 @@ namespace DataEditorX
             //如果临时卡片不为空，则更新，这个在搜索的时候清空
             if (codeList.Count > 0)
             {
-                SetCards(Database.ReadFromId(nowCdbFile, codeList.ToArray()), true);
+                SetCards(Database.ReadFromId(nowCdbFile, codeList), true);
             }
             else
             {
@@ -1478,7 +1478,7 @@ namespace DataEditorX
                     codeList.Add(card.id);
                 }
             }
-            SetCards(Database.ReadFromId(nowCdbFile, codeList.ToArray()), false);
+            SetCards(Database.ReadFromId(nowCdbFile, codeList), false);
         }
         #endregion
 

@@ -107,13 +107,13 @@ namespace DataEditorX.Core
             return true;
         }
 
-        public bool CopyCommand(Card[] cards)
+        public bool CopyCommand(IReadOnlyList<Card> cards)
         {
             if (!dataform.IsOpened())
             {
                 return false;
             }
-            if (cards is null || cards.Length == 0)
+            if (cards is null || cards.Count == 0)
             {
                 return false;
             }

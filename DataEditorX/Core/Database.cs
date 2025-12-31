@@ -297,9 +297,9 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="db">Database file path</param>
         /// <param name="ids">Collection of IDs</param>
-        public static Card[] ReadFromId(string db, long[] ids)
+        public static Card[] ReadFromId(string db, IReadOnlyList<long> ids)
         {
-            if (ids == null || ids.Length == 0)
+            if (ids == null || ids.Count == 0)
             {
                 return Array.Empty<Card>();
             }
@@ -340,9 +340,9 @@ namespace DataEditorX.Core
         /// <param name="ignore">Ignore existing entries</param>
         /// <param name="cards">Collection of cards</param>
         /// <returns>Number of updated cards * 2</returns>
-        public static int InsertCards(string db, bool ignore, Card[] cards)
+        public static int InsertCards(string db, bool ignore, IReadOnlyList<Card> cards)
         {
-            if (cards == null || cards.Length == 0)
+            if (cards == null || cards.Count == 0)
             {
                 return 0;
             }
@@ -369,9 +369,9 @@ namespace DataEditorX.Core
             return result;
         }
 
-        public static int DeleteCards(string db, Card[] cards)
+        public static int DeleteCards(string db, IReadOnlyList<Card> cards)
         {
-            if (cards == null || cards.Length == 0)
+            if (cards == null || cards.Count == 0)
             {
                 return 0;
             }
