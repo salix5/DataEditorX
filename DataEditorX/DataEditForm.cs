@@ -1474,58 +1474,6 @@ namespace DataEditorX
         }
         #endregion
 
-        #region MSE配置菜单
-        //把文件添加到菜单
-        /*void AddMenuItemFormMSE()
-        {
-            if (!Directory.Exists(datapath))
-            {
-                return;
-            }
-
-            menuitem_mseconfig.DropDownItems.Clear();//清空
-            string[] files = Directory.GetFiles(datapath);
-            foreach (string file in files)
-            {
-                string name = MyPath.GetFullFileName(MSEConfig.TAG, file);
-                //是否是MSE配置文件
-                if (string.IsNullOrEmpty(name))
-                {
-                    continue;
-                }
-                //菜单文字是语言
-                ToolStripMenuItem tsmi = new(name)
-                {
-                    ToolTipText = file//提示文字为真实路径
-                };
-                tsmi.Click += SetMseConfig_Click;
-                if (msecfg.configName.Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    tsmi.Checked = true;//如果是当前，则打勾
-                }
-
-                menuitem_mseconfig.DropDownItems.Add(tsmi);
-            }
-        }
-        void SetMseConfig_Click(object sender, EventArgs e)
-        {
-            if (isRun())//正在执行任务
-            {
-                return;
-            }
-
-            if (sender is ToolStripMenuItem tsmi)
-            {
-                //读取新的配置
-                msecfg.SetConfig(tsmi.ToolTipText, datapath);
-                //刷新菜单
-                AddMenuItemFormMSE();
-                //保存配置
-                ConfigManager.Save(MyConfig.TAG_MSE_LANGUAGE, tsmi.Text);
-            }
-        }*/
-        #endregion
-
         #region 查找lua函数
         private void menuitem_findluafunc_Click(object sender, EventArgs e)
         {
