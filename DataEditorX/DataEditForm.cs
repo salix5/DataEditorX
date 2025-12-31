@@ -944,11 +944,11 @@ namespace DataEditorX
         void Lb_scripttextSelectedIndexChanged(object sender, EventArgs e)
         {
             int index = lb_scripttext.SelectedIndex;
-            if (index < 0)
+            string newText = (index < 0) ? "" : strs[index];
+            if (tb_edittext.Text != newText)
             {
-                tb_edittext.Text = "";
+                tb_edittext.Text = newText;
             }
-            tb_edittext.Text = strs[index];
         }
 
         //脚本文本
@@ -960,9 +960,9 @@ namespace DataEditorX
                 return;
             }
             strs[index] = tb_edittext.Text;
-            if ((string)lb_scripttext.Items[index] != tb_edittext.Text)
+            if ((string)lb_scripttext.Items[index] != strs[index])
             {
-                lb_scripttext.Items[index] = tb_edittext.Text;
+                lb_scripttext.Items[index] = strs[index];
             }
         }
         #endregion
