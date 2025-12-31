@@ -77,7 +77,7 @@ namespace DataEditorX
         readonly List<Card> cardlist = new();
 
         //setcode正在输入
-        readonly bool[] isSetcodeEditing = new bool[5];
+        readonly bool[] isSetcodeEditing = new bool[4];
 
         Image? cover;
 
@@ -1544,77 +1544,77 @@ namespace DataEditorX
 
         #region 系列名textbox
         //系列名输入时
-        void setCode_InputText(int index, ComboBox cb, TextBox tb)
+        void SetcodeInputText(int index, ComboBox cb, TextBox tb)
         {
-            if (index >= 0 && index < isSetcodeEditing.Length)
+            if (index < 0 || index >= isSetcodeEditing.Length)
             {
-                if (isSetcodeEditing[index])//如果正在编辑
-                {
-                    return;
-                }
-
-                isSetcodeEditing[index] = true;
-                long.TryParse(tb.Text, NumberStyles.HexNumber, null, out long temp);
-                SetSelect(cb, temp);
-                isSetcodeEditing[index] = false;
+                return;
             }
+            if (isSetcodeEditing[index])
+            {
+                return;
+            }
+            isSetcodeEditing[index] = true;
+            long.TryParse(tb.Text, NumberStyles.HexNumber, null, out long temp);
+            SetSelect(cb, temp);
+            isSetcodeEditing[index] = false;
         }
         private void tb_setcode1_TextChanged(object sender, EventArgs e)
         {
-            setCode_InputText(1, cb_setname1, tb_setcode1);
+            SetcodeInputText(0, cb_setname1, tb_setcode1);
         }
 
         private void tb_setcode2_TextChanged(object sender, EventArgs e)
         {
-            setCode_InputText(2, cb_setname2, tb_setcode2);
+            SetcodeInputText(1, cb_setname2, tb_setcode2);
         }
 
         private void tb_setcode3_TextChanged(object sender, EventArgs e)
         {
-            setCode_InputText(3, cb_setname3, tb_setcode3);
+            SetcodeInputText(2, cb_setname3, tb_setcode3);
         }
 
         private void tb_setcode4_TextChanged(object sender, EventArgs e)
         {
-            setCode_InputText(4, cb_setname4, tb_setcode4);
+            SetcodeInputText(3, cb_setname4, tb_setcode4);
         }
         #endregion
 
         #region 系列名comobox
         //系列选择框 选择时
-        void setCode_Selected(int index, ComboBox cb, TextBox tb)
+        void SetcodeIndexChanged(int index, ComboBox cb, TextBox tb)
         {
-            if (index >= 0 && index < isSetcodeEditing.Length)
+            if (index < 0 || index >= isSetcodeEditing.Length)
             {
-                if (isSetcodeEditing[index])//如果正在编辑
-                {
-                    return;
-                }
-
-                isSetcodeEditing[index] = true;
-                long tmp = GetSelect(cb);
-                tb.Text = tmp.ToString("x");
-                isSetcodeEditing[index] = false;
+                return;
             }
+            if (isSetcodeEditing[index])
+            {
+                return;
+            }
+            isSetcodeEditing[index] = true;
+            long tmp = GetSelect(cb);
+            tb.Text = tmp.ToString("x");
+            isSetcodeEditing[index] = false;
         }
         private void cb_setname1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setCode_Selected(1, cb_setname1, tb_setcode1);
+            SetcodeIndexChanged(0, cb_setname1, tb_setcode1);
         }
 
         private void cb_setname2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setCode_Selected(2, cb_setname2, tb_setcode2);
+            SetcodeIndexChanged(1, cb_setname2, tb_setcode2);
         }
 
         private void cb_setname3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setCode_Selected(3, cb_setname3, tb_setcode3);
+            SetcodeIndexChanged(2, cb_setname3, tb_setcode3);
         }
 
         private void cb_setname4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setCode_Selected(4, cb_setname4, tb_setcode4);
+            SetcodeIndexChanged(3, cb_setname4, tb_setcode4);
         }
         #endregion
 
