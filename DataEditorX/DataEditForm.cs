@@ -13,6 +13,7 @@ using DataEditorX.Language;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -59,7 +60,7 @@ namespace DataEditorX
         Card srcCard = new(0);
         //卡片编辑
         readonly CardEdit cardedit;
-        readonly string[] strs = Enumerable.Repeat("", Card.STR_SIZE).ToArray();
+        readonly BindingList<string> strs = new(Enumerable.Repeat("", Card.STR_SIZE).ToList());
         /// <summary>
         /// 对比的id集合
         /// </summary>
@@ -78,6 +79,7 @@ namespace DataEditorX
 
         //setcode正在输入
         readonly bool[] isSetcodeEditing = new bool[4];
+        bool isStrEditing = false;
 
         Image? cover;
 
@@ -97,6 +99,7 @@ namespace DataEditorX
             InitializeComponent();
             title = Text;
             tasker = new TaskHelper(datapath, bgWorker1);
+            lb_scripttext.DataSource = strs;
         }
 
         #endregion
@@ -527,10 +530,11 @@ namespace DataEditorX
             tb_cardname.Text = c.name;
             tb_cardtext.Text = c.NormalizedDesc;
 
-            Array.Copy(c.Str, strs, c.Str.Length);
-            lb_scripttext.Items.Clear();
-            lb_scripttext.Items.AddRange(c.Str);
-            tb_edittext.Text = "";
+            for(int i = 0; i < strs.Count; i++)
+            {
+                strs[i] = c.Str[i];
+            }
+            lb_scripttext.ClearSelected();
             //data
             SetSelect(cb_cardrule, c.ot);
             SetSelect(cb_cardattribute, c.attribute);
@@ -584,8 +588,7 @@ namespace DataEditorX
                 name = tb_cardname.Text,
                 desc = MyUtils.ConvertNewline(tb_cardtext.Text, false)
             };
-
-            Array.Copy(strs, c.Str, c.Str.Length);
+            strs.CopyTo(c.Str, 0);
 
             long.TryParse(tb_cardcode.Text, out c.id);
             long.TryParse(tb_cardalias.Text, out c.alias);
@@ -943,12 +946,15 @@ namespace DataEditorX
         //脚本文本
         void Lb_scripttextSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isStrEditing)
+            {
+                return;
+            }
             int index = lb_scripttext.SelectedIndex;
             string newText = (index < 0) ? "" : strs[index];
-            if (tb_edittext.Text != newText)
-            {
-                tb_edittext.Text = newText;
-            }
+            isStrEditing = true;
+            tb_edittext.Text = newText;
+            isStrEditing = false;
         }
 
         //脚本文本
@@ -959,11 +965,13 @@ namespace DataEditorX
             {
                 return;
             }
-            strs[index] = tb_edittext.Text;
-            if ((string)lb_scripttext.Items[index] != strs[index])
+            if (isStrEditing)
             {
-                lb_scripttext.Items[index] = strs[index];
+                return;
             }
+            isStrEditing = true;
+            strs[index] = tb_edittext.Text;
+            isStrEditing = false;
         }
         #endregion
 
