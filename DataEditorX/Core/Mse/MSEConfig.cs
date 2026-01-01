@@ -20,7 +20,7 @@ namespace DataEditorX.Core.Mse
     /// </summary>
     public class MSEConfig
     {
-        #region  常量
+        #region  constants
         public const string TAG = "mse";
         /// <summary>存档头部</summary>
         public const string TAG_HEAD = "head";
@@ -62,9 +62,9 @@ namespace DataEditorX.Core.Mse
         #endregion
         public MSEConfig()
         {
-            Init(datapath);
+            Init();
         }
-        public void SetConfig(string config, string path)
+        public void SetConfig(string config)
         {
             if (!File.Exists(config))
             {
@@ -159,7 +159,7 @@ namespace DataEditorX.Core.Mse
                 else if (line.StartsWith(TAG_IMAGE))
                 {
                     //如果路径不合法，则为后面的路径
-                    imagepath = MyPath.CheckDir(ConfHelper.GetValue(line), MyPath.Combine(path, PATH_IMAGE));
+                    imagepath = MyPath.CheckDir(ConfHelper.GetValue(line), MyPath.Combine(datapath, PATH_IMAGE));
                     //图片缓存目录
                     imagecache = MyPath.Combine(imagepath, "cache");
                     MyPath.CreateDir(imagecache);
@@ -188,22 +188,18 @@ namespace DataEditorX.Core.Mse
                 }
             }
         }
-        public void Init(string path)
+        public void Init()
         {
-            Iscn2tw = false;
-
-            //读取配置
-            string tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, MyConfig.ReadString(MyConfig.TAG_MSE_LANGUAGE)));
-
-            if (!File.Exists(tmp))
+            string config = MyPath.Combine(datapath, MyPath.GetFileName(TAG, MyConfig.ReadString(MyConfig.TAG_MSE_LANGUAGE)));
+            if (!File.Exists(config))
             {
-                tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, DEFAULT_LANGUAGE));
-                if (!File.Exists(tmp))
+                config = MyPath.Combine(datapath, MyPath.GetFileName(TAG, DEFAULT_LANGUAGE));
+                if (!File.Exists(config))
                 {
-                    return;//如果默认的也不存在
+                    return;
                 }
             }
-            SetConfig(tmp, path);
+            SetConfig(config);
         }
 
         #region members
@@ -242,7 +238,7 @@ namespace DataEditorX.Core.Mse
         //效果格式
         public string temp_text = "";
         //简体转繁体？
-        public bool Iscn2tw;
+        public bool Iscn2tw = false;
         //特殊字替换
         public SortedList<string, string> replaces = new();
         //效果文正则提取
