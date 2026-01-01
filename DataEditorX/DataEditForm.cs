@@ -1345,9 +1345,8 @@ namespace DataEditorX
         void ImportImage(string file, string tid)
         {
             string f;
-            if (pl_image.BackgroundImage != null
-                && pl_image.BackgroundImage != cover)
-            {//释放图片资源
+            if (pl_image.BackgroundImage != null && pl_image.BackgroundImage != cover)
+            {
                 pl_image.BackgroundImage.Dispose();
                 pl_image.BackgroundImage = cover;
             }
@@ -1363,8 +1362,6 @@ namespace DataEditorX
             }
             else
             {
-                //	tasker.ToImg(file, ygopath.GetImage(tid),
-                //				 ygopath.GetImageThum(tid));
                 tasker.ToImg(file, ygopath.GetImage(tid));
             }
             SetImage(tid);

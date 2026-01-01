@@ -34,12 +34,12 @@ namespace DataEditorX.Config
             W = ints[2];
             H = ints[3];
 
-            quilty = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUALITY, 95);
+            quality = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUALITY, 95);
         }
         /// <summary>
         /// jpeg质量
         /// </summary>
-        public int quilty;
+        public int quality;
         /// <summary>
         /// 小图的宽
         /// </summary>
