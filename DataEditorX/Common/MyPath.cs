@@ -23,7 +23,7 @@ namespace System.IO
         public static string GetRealPath(string dir)
         {
             string path = Application.StartupPath;
-            if (dir.StartsWith("."))
+            if (dir.StartsWith("./"))
             {
                 dir = Combine(path, dir.Substring(2));
             }
