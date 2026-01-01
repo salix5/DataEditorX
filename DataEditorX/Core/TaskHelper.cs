@@ -297,7 +297,7 @@ namespace DataEditorX.Core
                 return;
             }
 
-            int i = 0;
+            /*int i = 0;
             int count = images.Count;
             using (ZipStorer zips = ZipStorer.Create(file, ""))
             {
@@ -317,12 +317,12 @@ namespace DataEditorX.Core
                     zips.AddFile(mseHelper.GetImageCache(img, c), Path.GetFileName(img), "");
                 }
             }
-            File.Delete(setFile);
+            File.Delete(setFile);*/
         }
         public Card[] ReadMSE(string mseset, bool repalceOld)
         {
             //解压所有文件
-            using (ZipStorer zips = ZipStorer.Open(mseset, FileAccess.Read))
+            /*using (ZipStorer zips = ZipStorer.Open(mseset, FileAccess.Read))
             {
                 zips.EncodeUTF8 = true;
                 List<ZipStorer.ZipFileEntry> files = zips.ReadCentralDir();
@@ -336,14 +336,14 @@ namespace DataEditorX.Core
                 }
             }
             string setfile = MyPath.Combine(mseHelper.ImagePath, "set");
-            return mseHelper.ReadCards(setfile, repalceOld);
+            return mseHelper.ReadCards(setfile, repalceOld);*/
+            return Array.Empty<Card>();
         }
         #endregion
 
         #region 导出数据
         public void ExportData(string path, string zipname, string _cdbfile, string modulescript)
         {
-            int i = 0;
             Card[] cards = CardList;
             if (cards == null || cards.Length == 0)
             {
@@ -374,7 +374,7 @@ namespace DataEditorX.Core
                 File.Delete(zipname);
             }
 
-            using (ZipStorer zips = ZipStorer.Create(zipname, ""))
+            /*using (ZipStorer zips = ZipStorer.Create(zipname, ""))
             {
                 zips.AddFile(cdbfile, Path.GetFileNameWithoutExtension(_cdbfile) + ".cdb", "");
                 if (File.Exists(readme))
@@ -392,6 +392,7 @@ namespace DataEditorX.Core
                     zips.AddFile(extra_script, extra_script.Replace(path, ""), "");
                 }
 
+                int i = 0;
                 foreach (Card c in cards)
                 {
                     i++;
@@ -405,7 +406,7 @@ namespace DataEditorX.Core
                         }
                     }
                 }
-            }
+            }*/
             File.Delete(cdbfile);
         }
         #endregion
