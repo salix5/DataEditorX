@@ -1635,7 +1635,7 @@ namespace DataEditorX
             }
 
             menuitem_language.DropDownItems.Clear();
-            string[] files = Directory.GetFiles(datapath, MyConfig.TAG_LANGUAGE);
+            string[] files = Directory.GetFiles(datapath, MyConfig.TAG_LANGUAGE + "_*");
             foreach (string file in files)
             {
                 string name = MyPath.GetFullFileName(MyConfig.TAG_LANGUAGE, file);
@@ -1768,11 +1768,6 @@ namespace DataEditorX
             {
                 tb_cardname.Focus();
             }
-        }
-
-        private void menuitem_language_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void OnDragDrop(object sender, DragEventArgs e)

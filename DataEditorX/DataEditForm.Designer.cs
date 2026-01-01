@@ -455,7 +455,6 @@ namespace DataEditorX
             this.menuitem_language.Name = "menuitem_language";
             this.menuitem_language.Size = new System.Drawing.Size(184, 22);
             this.menuitem_language.Text = "Language";
-            this.menuitem_language.Click += new System.EventHandler(this.menuitem_language_Click);
             // 
             // menuitem_checkupdate
             // 
