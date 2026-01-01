@@ -94,7 +94,6 @@ DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
 DataEditForm.mainMenu.menuitem_readmse	读取MSE存档
 DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
 DataEditForm.mainMenu.menuitem_saveasmse	把结果导为MSE存档
-DataEditForm.mainMenu.menuitem_exportMSEimage	从MSE存档导出图片(再次点击停止)
 DataEditForm.mainMenu.menuitem_testpendulumtext	测试灵摆效果文本
 #
 0x0	提示

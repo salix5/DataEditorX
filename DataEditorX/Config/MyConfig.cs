@@ -13,8 +13,6 @@ namespace DataEditorX.Config
         #region 常量
         public const string TAG_SAVE_LANG = "-savelanguage";
         public const string TAG_SAVE_LANG2 = "-sl";
-        public const string TAG_MSE_PATH = "mse_path";
-        public const string TAG_MSE_EXPORT = "mse_exportpath";
         /// <summary>
         /// 最大历史数量
         /// </summary>

@@ -60,7 +60,6 @@ DataEditForm.mainMenu.menuitem_importmseimg	Set MSE'Image
 DataEditForm.mainMenu.menuitem_export_all_sql	Export all to sql
 DataEditForm.mainMenu.menuitem_export_select_sql	Export select to sql
 DataEditForm.mainMenu.menuitem_cancelTask	Cancel Task
-DataEditForm.mainMenu.menuitem_exportMSEimage	export mse-set to images(Click stop)
 DataEditForm.mainMenu.menuitem_help	Help(&H)
 DataEditForm.mainMenu.menuitem_about	About
 DataEditForm.mainMenu.menuitem_language	Language

@@ -54,7 +54,6 @@ namespace DataEditorX
             this.menuitem_readmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_exportMSEimage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_testpendulumtext = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep7 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_importmseimg = new System.Windows.Forms.ToolStripMenuItem();
@@ -237,7 +236,6 @@ namespace DataEditorX
             this.menuitem_readmse,
             this.menuitem_saveasmse_select,
             this.menuitem_saveasmse,
-            this.menuitem_exportMSEimage,
             this.menuitem_testpendulumtext,
             this.tsep7,
             this.menuitem_importmseimg});
@@ -248,58 +246,51 @@ namespace DataEditorX
             // menuitem_mseconfig
             // 
             this.menuitem_mseconfig.Name = "menuitem_mseconfig";
-            this.menuitem_mseconfig.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_mseconfig.Size = new System.Drawing.Size(193, 22);
             this.menuitem_mseconfig.Text = "MSE config";
             // 
             // tsep3
             // 
             this.tsep3.Name = "tsep3";
-            this.tsep3.Size = new System.Drawing.Size(219, 6);
+            this.tsep3.Size = new System.Drawing.Size(190, 6);
             // 
             // menuitem_readmse
             // 
             this.menuitem_readmse.Name = "menuitem_readmse";
-            this.menuitem_readmse.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_readmse.Size = new System.Drawing.Size(193, 22);
             this.menuitem_readmse.Text = "Read from MSE";
             this.menuitem_readmse.Click += new System.EventHandler(this.menuitem_readmse_Click);
             // 
             // menuitem_saveasmse_select
             // 
             this.menuitem_saveasmse_select.Name = "menuitem_saveasmse_select";
-            this.menuitem_saveasmse_select.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_saveasmse_select.Size = new System.Drawing.Size(193, 22);
             this.menuitem_saveasmse_select.Text = "Select Save As MSE";
             this.menuitem_saveasmse_select.Click += new System.EventHandler(this.Menuitem_saveasmse_selectClick);
             // 
             // menuitem_saveasmse
             // 
             this.menuitem_saveasmse.Name = "menuitem_saveasmse";
-            this.menuitem_saveasmse.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_saveasmse.Size = new System.Drawing.Size(193, 22);
             this.menuitem_saveasmse.Text = "All Now Save As MSE";
             this.menuitem_saveasmse.Click += new System.EventHandler(this.Menuitem_saveasmseClick);
-            // 
-            // menuitem_exportMSEimage
-            // 
-            this.menuitem_exportMSEimage.Name = "menuitem_exportMSEimage";
-            this.menuitem_exportMSEimage.Size = new System.Drawing.Size(222, 22);
-            this.menuitem_exportMSEimage.Text = "Export MSE-Set to Images";
-            this.menuitem_exportMSEimage.Click += new System.EventHandler(this.Menuitem_exportMSEimageClick);
             // 
             // menuitem_testpendulumtext
             // 
             this.menuitem_testpendulumtext.Name = "menuitem_testpendulumtext";
-            this.menuitem_testpendulumtext.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_testpendulumtext.Size = new System.Drawing.Size(193, 22);
             this.menuitem_testpendulumtext.Text = "Test Pendulum Text";
             this.menuitem_testpendulumtext.Click += new System.EventHandler(this.Menuitem_testPendulumTextClick);
             // 
             // tsep7
             // 
             this.tsep7.Name = "tsep7";
-            this.tsep7.Size = new System.Drawing.Size(219, 6);
+            this.tsep7.Size = new System.Drawing.Size(190, 6);
             // 
             // menuitem_importmseimg
             // 
             this.menuitem_importmseimg.Name = "menuitem_importmseimg";
-            this.menuitem_importmseimg.Size = new System.Drawing.Size(222, 22);
+            this.menuitem_importmseimg.Size = new System.Drawing.Size(193, 22);
             this.menuitem_importmseimg.Text = "Drop Image to MSE";
             this.menuitem_importmseimg.Click += new System.EventHandler(this.menuitem_importmseimg_Click);
             // 
@@ -1242,7 +1233,6 @@ namespace DataEditorX
 
         }
         private System.Windows.Forms.ToolStripMenuItem menuitem_testpendulumtext;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_exportMSEimage;
         private System.Windows.Forms.ToolStripMenuItem menuitem_exportdata;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

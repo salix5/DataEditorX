@@ -1670,49 +1670,6 @@ namespace DataEditorX
         }
         #endregion
 
-        //把mse存档导出为图片
-        void Menuitem_exportMSEimageClick(object sender, EventArgs e)
-        {
-            if (isRun())
-            {
-                return;
-            }
-
-            string msepath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_PATH));
-            if (!File.Exists(msepath))
-            {
-                MyMsg.Error(LMSG.ExportMseImagesErr);
-                menuitem_exportMSEimage.Checked = false;
-                return;
-            }
-            else
-            {
-                if (MseMaker.MseIsRunning())
-                {
-                    MseMaker.MseStop();
-                    menuitem_exportMSEimage.Checked = false;
-                    return;
-                }
-            }
-            //select open mse-set
-            using OpenFileDialog dlg = new();
-            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-            dlg.Filter = MyConfig.MSE_TYPE;
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                string mseset = dlg.FileName;
-                string exportpath = MyPath.GetRealPath(MyConfig.ReadString(MyConfig.TAG_MSE_EXPORT));
-                MseMaker.ExportSet(msepath, mseset, exportpath, delegate
-                {
-                    menuitem_exportMSEimage.Checked = false;
-                });
-                menuitem_exportMSEimage.Checked = true;
-            }
-            else
-            {
-                menuitem_exportMSEimage.Checked = false;
-            }
-        }
         void Menuitem_testPendulumTextClick(object sender, EventArgs e)
         {
             Card c = GetCard();

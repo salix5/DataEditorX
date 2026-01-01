@@ -927,76 +927,9 @@ namespace DataEditorX.Core.Mse
         #endregion
 
         #region export
-        static System.Diagnostics.Process _mseProcess;
-        static EventHandler _exitHandler;
-        private static void exportSetThread(object obj)
-        {
-            string[] args = (string[])obj;
-            if (args == null || args.Length < 3)
-            {
-                MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
-                return;
-            }
-            string mse_path = args[0];
-            string setfile = args[1];
-            string path = args[2];
-            if (string.IsNullOrEmpty(mse_path) || string.IsNullOrEmpty(setfile))
-            {
-                MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImagesErr));
-                return;
-            }
-            else
-            {
-                string cmd = " --export " + setfile.Replace("\\\\", "\\").Replace("\\", "/") + " {card.gamecode}.png";
-                _mseProcess = new System.Diagnostics.Process();
-                _mseProcess.StartInfo.FileName = mse_path;
-                _mseProcess.StartInfo.Arguments = cmd;
-                _mseProcess.StartInfo.WorkingDirectory = path;
-                _mseProcess.EnableRaisingEvents = true;
-                MyPath.CreateDir(path);
-                try
-                {
-                    _mseProcess.Start();
-                    //等待结束，需要把当前方法放到线程里面
-                    _mseProcess.WaitForExit();
-                    _mseProcess.Exited += new EventHandler(_exitHandler);
-                    _mseProcess.Close();
-                    _mseProcess = null;
-                    MessageBox.Show(LanguageHelper.GetMsg(LMSG.ExportMseImages));
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        public static bool MseIsRunning()
-        {
-            return _mseProcess != null;
-        }
-        public static void MseStop()
-        {
-            try
-            {
-                _mseProcess.Kill();
-                _mseProcess.Close();
-            }
-            catch { }
-        }
         public static void ExportSet(string mse_path, string setfile, string path, EventHandler handler)
         {
-            if (string.IsNullOrEmpty(mse_path) || setfile == null || setfile.Length == 0)
-            {
-                return;
-            }
-            ParameterizedThreadStart ParStart = new(exportSetThread);
-            Thread myThread = new(ParStart)
-            {
-                IsBackground = true
-            };
-            myThread.Start(new string[] { mse_path, setfile, path });
-            _exitHandler = handler;
+            // --export  ${setfile}  {card.gamecode}.png
         }
         #endregion
 
