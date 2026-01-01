@@ -66,7 +66,12 @@ namespace DataEditorX.Core
 
         public TaskHelper(string datapath, BackgroundWorker worker)
         {
+            Datapath = datapath;
             this.worker = worker;
+        }
+        public MseMaker MseHelper
+        {
+            get { return mseHelper; }
         }
         public bool IsRuning()
         {
@@ -101,6 +106,7 @@ namespace DataEditorX.Core
             mArgs = args;
         }
         //转换图片
+        //public void ToImg(string img, string saveimg1, string saveimg2)
         public void ToImg(string img, string saveimg1)
         {
             if (!File.Exists(img))
@@ -108,8 +114,12 @@ namespace DataEditorX.Core
                 return;
             }
 
-            using Bitmap bmp = new(img);
-            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H), saveimg1, imgSet.quality);
+            Bitmap bmp = new(img);
+            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
+                                saveimg1, imgSet.quilty);
+            //MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.w, imgSet.h),
+            //					saveimg2, imgSet.quilty);
+            bmp.Dispose();
         }
         #endregion
 
@@ -166,7 +176,7 @@ namespace DataEditorX.Core
                 }
 
                 i++;
-                worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
+                worker.ReportProgress((i / count), string.Format("{0}/{1}", i, count));
                 string jpg = MyPath.Combine(imgpath, c.id + ".jpg");
                 string savejpg = MyPath.Combine(mseHelper.ImagePath, c.id + ".jpg");
                 if (File.Exists(jpg) && (isreplace || !File.Exists(savejpg)))
@@ -186,7 +196,7 @@ namespace DataEditorX.Core
                         bmp = MyBitmap.Cut(bp, imgSet.normalArea);
                     }
                     bp.Dispose();
-                    MyBitmap.SaveAsJPEG(bmp, savejpg, imgSet.quality);
+                    MyBitmap.SaveAsJPEG(bmp, savejpg, imgSet.quilty);
                     //bmp.Save(savejpg, ImageFormat.Png);
                 }
             }
@@ -221,7 +231,9 @@ namespace DataEditorX.Core
                         //大图，如果替换，或者不存在
                         if (isreplace || !File.Exists(jpg_b))
                         {
-                            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H), jpg_b, imgSet.quality);
+
+                            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
+                                                jpg_b, imgSet.quilty);
                         }
                     }
                 }
@@ -234,11 +246,173 @@ namespace DataEditorX.Core
         {
             get { return mseHelper.ImagePath; }
         }
+
+        public string Datapath { get; }
+
+        public void SaveMSEs(string file, Card[] cards, bool isUpdate)
+        {
+            if (cards == null)
+            {
+                return;
+            }
+
+            string pack_db = MyPath.GetRealPath(MyConfig.ReadString("pack_db"));
+            bool rarity = MyConfig.ReadBoolean("mse_auto_rarity", false);
+#if DEBUG
+            MessageBox.Show("db = " + pack_db + ",auto rarity=" + rarity);
+#endif
+            int c = cards.Length;
+            //不分开，或者卡片数小于单个存档的最大值
+            if (mseHelper.MaxNum == 0 || c < mseHelper.MaxNum)
+            {
+                SaveMSE(1, file, cards, pack_db, rarity, isUpdate);
+            }
+            else
+            {
+                int nums = c / mseHelper.MaxNum;
+                if (nums * mseHelper.MaxNum < c)//计算需要分多少个存档
+                {
+                    nums++;
+                }
+
+                List<Card> clist = new();
+                for (int i = 0; i < nums; i++)//分别生成存档
+                {
+                    clist.Clear();
+                    for (int j = 0; j < mseHelper.MaxNum; j++)
+                    {
+                        int index = i * mseHelper.MaxNum + j;
+                        if (index < c)
+                        {
+                            clist.Add(cards[index]);
+                        }
+                    }
+                    int t = file.LastIndexOf(".mse-set");
+                    string fname = (t > 0) ? file.Substring(0, t) : file;
+                    fname += string.Format("_{0}.mse-set", i + 1);
+                    SaveMSE(i + 1, fname, clist.ToArray(), pack_db, rarity, isUpdate);
+                }
+            }
+        }
+        public void SaveMSE(int num, string file, Card[] cards, string pack_db, bool rarity, bool isUpdate)
+        {
+            string setFile = file + ".txt";
+            Dictionary<Card, string> images = mseHelper.WriteSet(setFile, cards, pack_db, rarity);
+            if (isUpdate)//仅更新文字
+            {
+                return;
+            }
+
+            int i = 0;
+            int count = images.Count;
+            using (ZipStorer zips = ZipStorer.Create(file, ""))
+            {
+                zips.EncodeUTF8 = true;//zip里面的文件名为utf8
+                zips.AddFile(setFile, "set", "");
+                foreach (Card c in images.Keys)
+                {
+                    string img = images[c];
+                    if (isCancel)
+                    {
+                        break;
+                    }
+
+                    i++;
+                    worker.ReportProgress(i / count, string.Format("{0}/{1}-{2}", i, count, num));
+                    //TODO 先裁剪图片
+                    zips.AddFile(mseHelper.GetImageCache(img, c), Path.GetFileName(img), "");
+                }
+            }
+            File.Delete(setFile);
+        }
+        public Card[] ReadMSE(string mseset, bool repalceOld)
+        {
+            //解压所有文件
+            using (ZipStorer zips = ZipStorer.Open(mseset, FileAccess.Read))
+            {
+                zips.EncodeUTF8 = true;
+                List<ZipStorer.ZipFileEntry> files = zips.ReadCentralDir();
+                int count = files.Count;
+                int i = 0;
+                foreach (ZipStorer.ZipFileEntry file in files)
+                {
+                    worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
+                    string savefilename = MyPath.Combine(mseHelper.ImagePath, file.FilenameInZip);
+                    zips.ExtractFile(file, savefilename);
+                }
+            }
+            string setfile = MyPath.Combine(mseHelper.ImagePath, "set");
+            return mseHelper.ReadCards(setfile, repalceOld);
+        }
         #endregion
 
         #region 导出数据
         public void ExportData(string path, string zipname, string _cdbfile, string modulescript)
         {
+            int i = 0;
+            Card[] cards = CardList;
+            if (cards == null || cards.Length == 0)
+            {
+                return;
+            }
+
+            int count = cards.Length;
+            YgoPath ygopath = new(path);
+            string name = Path.GetFileNameWithoutExtension(zipname);
+            //数据库
+            string cdbfile = zipname + ".cdb";
+            //说明
+            string readme = MyPath.Combine(path, name + ".txt");
+            //新卡ydk
+            string deckydk = ygopath.GetYdk(name);
+            //module scripts
+            string extra_script = "";
+            if (modulescript.Length > 0)
+            {
+                extra_script = ygopath.GetModuleScript(modulescript);
+            }
+
+            File.Delete(cdbfile);
+            Database.CreateDatabase(cdbfile);
+            Database.InsertCards(cdbfile, false, CardList);
+            if (File.Exists(zipname))
+            {
+                File.Delete(zipname);
+            }
+
+            using (ZipStorer zips = ZipStorer.Create(zipname, ""))
+            {
+                zips.AddFile(cdbfile, Path.GetFileNameWithoutExtension(_cdbfile) + ".cdb", "");
+                if (File.Exists(readme))
+                {
+                    zips.AddFile(readme, "readme_" + name + ".txt", "");
+                }
+
+                if (File.Exists(deckydk))
+                {
+                    zips.AddFile(deckydk, "deck/" + name + ".ydk", "");
+                }
+
+                if (modulescript.Length > 0 && File.Exists(extra_script))
+                {
+                    zips.AddFile(extra_script, extra_script.Replace(path, ""), "");
+                }
+
+                foreach (Card c in cards)
+                {
+                    i++;
+                    worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
+                    string[] files = ygopath.GetCardfiles(c.id);
+                    foreach (string file in files)
+                    {
+                        if (!string.Equals(file, extra_script) && File.Exists(file))
+                        {
+                            zips.AddFile(file, file.Replace(path, ""), "");
+                        }
+                    }
+                }
+            }
+            File.Delete(cdbfile);
         }
         #endregion
 
@@ -261,7 +435,7 @@ namespace DataEditorX.Core
                     showNew = false;
                     if (mArgs != null && mArgs.Length >= 1)
                     {
-                        showNew = mArgs[0] == bool.TrueString;
+                        showNew = (mArgs[0] == bool.TrueString);
                     }
                     OnCheckUpdate(showNew);
                     break;
@@ -280,8 +454,32 @@ namespace DataEditorX.Core
                     }
                     break;
                 case MyTask.SaveAsMSE:
+                    if (mArgs != null && mArgs.Length >= 2)
+                    {
+                        replace = false;
+                        if (mArgs.Length >= 2)
+                        {
+                            if (mArgs[1] == bool.TrueString)
+                            {
+                                replace = true;
+                            }
+                        }
+                        SaveMSEs(mArgs[0], CardList, replace);
+                    }
                     break;
                 case MyTask.ReadMSE:
+                    if (mArgs != null && mArgs.Length >= 2)
+                    {
+                        replace = false;
+                        if (mArgs.Length >= 2)
+                        {
+                            if (mArgs[1] == bool.TrueString)
+                            {
+                                replace = true;
+                            }
+                        }
+                        CardList = ReadMSE(mArgs[0], replace);
+                    }
                     break;
                 case MyTask.ConvertImages:
                     if (mArgs != null && mArgs.Length >= 2)
@@ -301,7 +499,11 @@ namespace DataEditorX.Core
             isRun = false;
             lastTask = nowTask;
             nowTask = MyTask.NONE;
-            CardList = Array.Empty<Card>();
+            if (lastTask != MyTask.ReadMSE)
+            {
+                CardList = Array.Empty<Card>();
+            }
+
             mArgs = Array.Empty<string>();
         }
         #endregion
