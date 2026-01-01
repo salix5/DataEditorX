@@ -207,7 +207,7 @@ namespace DataEditorX.Core
         #endregion
 
         #region 图像
-        public static long[] ReadImage(string path)
+        public static List<long> GetImageIds(string path)
         {
             List<long> list = new();
             string[] files = Directory.GetFiles(path, "*.*");
@@ -225,7 +225,7 @@ namespace DataEditorX.Core
                 }
                 list.Add(id);
             }
-            return list.ToArray();
+            return list;
         }
         #endregion
 

@@ -1085,7 +1085,7 @@ namespace DataEditorX
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 codeList.Clear();
-                long[] ids = YGOUtil.ReadImage(fdlg.SelectedPath);
+                var ids = YGOUtil.GetImageIds(fdlg.SelectedPath);
                 codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
