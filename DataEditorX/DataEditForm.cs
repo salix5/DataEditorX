@@ -530,7 +530,7 @@ namespace DataEditorX
             tb_cardname.Text = c.name;
             tb_cardtext.Text = c.NormalizedDesc;
 
-            for(int i = 0; i < strs.Count; i++)
+            for (int i = 0; i < strs.Count; i++)
             {
                 strs[i] = c.Str[i];
             }
