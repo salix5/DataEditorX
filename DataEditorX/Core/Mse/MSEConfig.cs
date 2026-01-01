@@ -54,9 +54,9 @@ namespace DataEditorX.Core.Mse
         public const string TAG_REP = "%%";
         public const string SEP_LINE = " ";
         //默认的配置
-        public const string FILE_CONFIG_NAME = "Chinese-Simplified";
+        public const string DEFAULT_LANGUAGE = "Chinese-Simplified";
         public const string PATH_IMAGE = "Images";
-        public string configName = FILE_CONFIG_NAME;
+        public string configName = DEFAULT_LANGUAGE;
         readonly string datapath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA);
         #endregion
         public MSEConfig()
@@ -164,7 +164,7 @@ namespace DataEditorX.Core.Mse
                     MyPath.CreateDir(imagecache);
                 }
                 else if (line.StartsWith(TAG_REPALCE))
-                {//特数字替换
+                {
                     string word = ConfHelper.GetValue(line);
                     string p = ConfHelper.GetRegex(ConfHelper.GetValue1(word));
                     string r = ConfHelper.GetRegex(ConfHelper.GetValue2(word));
@@ -196,7 +196,7 @@ namespace DataEditorX.Core.Mse
 
             if (!File.Exists(tmp))
             {
-                tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, FILE_CONFIG_NAME));
+                tmp = MyPath.Combine(path, MyPath.GetFileName(TAG, DEFAULT_LANGUAGE));
                 if (!File.Exists(tmp))
                 {
                     return;//如果默认的也不存在
@@ -240,7 +240,7 @@ namespace DataEditorX.Core.Mse
         public string temp_text;
         //简体转繁体？
         public bool Iscn2tw;
-        //特数字替换
+        //特殊字替换
         public SortedList<string, string> replaces;
         //效果文正则提取
         public string regx_pendulum;
