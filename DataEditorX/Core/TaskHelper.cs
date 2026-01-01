@@ -115,10 +115,7 @@ namespace DataEditorX.Core
             }
 
             Bitmap bmp = new(img);
-            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
-                                saveimg1, imgSet.quilty);
-            //MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.w, imgSet.h),
-            //					saveimg2, imgSet.quilty);
+            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H), saveimg1, imgSet.quality);
             bmp.Dispose();
         }
         #endregion
@@ -196,8 +193,7 @@ namespace DataEditorX.Core
                         bmp = MyBitmap.Cut(bp, imgSet.normalArea);
                     }
                     bp.Dispose();
-                    MyBitmap.SaveAsJPEG(bmp, savejpg, imgSet.quilty);
-                    //bmp.Save(savejpg, ImageFormat.Png);
+                    MyBitmap.SaveAsJPEG(bmp, savejpg, imgSet.quality);
                 }
             }
         }
@@ -231,9 +227,7 @@ namespace DataEditorX.Core
                         //大图，如果替换，或者不存在
                         if (isreplace || !File.Exists(jpg_b))
                         {
-
-                            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H),
-                                                jpg_b, imgSet.quilty);
+                            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H), jpg_b, imgSet.quality);
                         }
                     }
                 }
