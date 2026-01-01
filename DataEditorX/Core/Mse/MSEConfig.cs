@@ -7,6 +7,7 @@
  */
 using DataEditorX.Common;
 using DataEditorX.Config;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -204,6 +205,8 @@ namespace DataEditorX.Core.Mse
             }
             SetConfig(tmp, path);
         }
+
+        #region members
         /// <summary>
         /// 是否调整图片
         /// </summary>
@@ -221,35 +224,36 @@ namespace DataEditorX.Core.Mse
         public int pheight;
 
         //没星星的卡
-        public long[] noStartCards;
+        public long[] noStartCards = Array.Empty<long>();
         //第10期
         public bool no10;
         //每个存档最大数
         public int maxcount;
         //图片路径
-        public string imagepath;
+        public string imagepath = "";
         /// <summary>
         /// 图片缓存路径
         /// </summary>
-        public string imagecache;
+        public string imagecache = "";
         //魔法标志
-        public string str_spell;
+        public string str_spell = "";
         //陷阱标志
-        public string str_trap;
+        public string str_trap = "";
         //效果格式
-        public string temp_text;
+        public string temp_text = "";
         //简体转繁体？
         public bool Iscn2tw;
         //特殊字替换
-        public SortedList<string, string> replaces;
+        public SortedList<string, string> replaces = new();
         //效果文正则提取
-        public string regx_pendulum;
-        public string regx_monster;
+        public string regx_pendulum = "";
+        public string regx_monster = "";
         //存档头部
-        public string head;
+        public string head = "";
         //存档结尾
-        public string end;
-        public SortedList<long, string> typeDic;
-        public SortedList<long, string> raceDic;
+        public string end = "";
+        public SortedList<long, string> typeDic = new();
+        public SortedList<long, string> raceDic = new();
+        #endregion
     }
 }
