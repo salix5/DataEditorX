@@ -67,7 +67,7 @@ namespace DataEditorX.Core.Mse
         public const string TAG_Link_Number = "link number";
         #endregion
 
-        #region 成员，初始化
+        #region 成员
         readonly MSEConfig cfg = new();
         public int MaxNum
         {
@@ -92,7 +92,7 @@ namespace DataEditorX.Core.Mse
         //合并
         public string GetLine(string key, string word)
         {
-            return "	" + key + ": " + word;
+            return $"\t{key}: {word}";
         }
         //特殊字
         public string ReItalic(string str)
