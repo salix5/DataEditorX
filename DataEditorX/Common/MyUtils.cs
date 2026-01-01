@@ -23,25 +23,23 @@ namespace DataEditorX.Common
         /// <returns></returns>
         public static string GetMD5HashFromFile(string fileName)
         {
+            StringBuilder sb = new();
             try
             {
                 FileStream file = new(fileName, FileMode.Open);
                 System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                 byte[] retVal = md5.ComputeHash(file);
                 file.Close();
-
-                StringBuilder sb = new();
                 for (int i = 0; i < retVal.Length; i++)
                 {
                     sb.Append(retVal[i].ToString("x2"));
                 }
-                return sb.ToString();
             }
             catch
             {
-
+                return "";
             }
-            return "";
+            return sb.ToString();
         }
 
         public static bool Md5isEmpty(string md5)
