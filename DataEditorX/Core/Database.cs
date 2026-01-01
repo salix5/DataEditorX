@@ -619,10 +619,10 @@ namespace DataEditorX.Core
         {
             if (id < 0 || !File.Exists(db))
             {
-                return new CardPack(0);
+                return null;
             }
 
-            CardPack cardpack = new(0);
+            CardPack cardpack = null;
             using SQLiteConnection sqliteconn = new($"Data Source={db}");
             sqliteconn.Open();
             using SQLiteCommand cmd = new(PragmaSQL, sqliteconn);
