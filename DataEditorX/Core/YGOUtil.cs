@@ -181,7 +181,7 @@ namespace DataEditorX.Core
         /// </summary>
         /// <param name="file">ydk文件</param>
         /// <returns>密码数组</returns>
-        public static long[] ReadYDK(string ydkfile)
+        public static List<long> ReadYDK(string ydkfile)
         {
             HashSet<long> IDs = new();
             if (File.Exists(ydkfile))
@@ -202,7 +202,7 @@ namespace DataEditorX.Core
                     IDs.Add(id);
                 }
             }
-            return IDs.ToArray();
+            return IDs.ToList();
         }
         #endregion
 

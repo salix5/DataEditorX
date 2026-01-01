@@ -1067,7 +1067,7 @@ namespace DataEditorX
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 codeList.Clear();
-                long[] ids = YGOUtil.ReadYDK(dlg.FileName);
+                var ids = YGOUtil.ReadYDK(dlg.FileName);
                 codeList.AddRange(ids);
                 SetCards(Database.ReadFromId(nowCdbFile, ids), false);
             }
