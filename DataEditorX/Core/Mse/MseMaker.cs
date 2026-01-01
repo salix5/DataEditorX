@@ -370,36 +370,31 @@ namespace DataEditorX.Core.Mse
         //写存档
         public Dictionary<Card, string> WriteSet(string file, Card[] cards, string cardpack_db, bool rarity = true)
         {
-            //			MessageBox.Show(""+cfg.replaces.Keys[0]+"/"+cfg.replaces[cfg.replaces.Keys[0]]);
+            //MessageBox.Show(""+cfg.replaces.Keys[0]+"/"+cfg.replaces[cfg.replaces.Keys[0]]);
             Dictionary<Card, string> list = new();
             string pic = cfg.imagepath;
-            using (FileStream fs = new(file,
-                                                  FileMode.Create, FileAccess.Write))
+            using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
+            using StreamWriter sw = new(fs, Encoding.UTF8);
+            sw.WriteLine(cfg.head);
+            foreach (Card c in cards)
             {
-                StreamWriter sw = new(fs, Encoding.UTF8);
-                sw.WriteLine(cfg.head);
-                foreach (Card c in cards)
+                string jpg = GetCardImagePath(pic, c);
+                if (!string.IsNullOrEmpty(jpg))
                 {
-                    string jpg = GetCardImagePath(pic, c);
-                    if (!string.IsNullOrEmpty(jpg))
-                    {
-                        list.Add(c, jpg);
-                        jpg = Path.GetFileName(jpg);
-                    }
-                    CardPack cardpack = Database.FindPack(cardpack_db, c.id);
-                    if (c.IsType(CardType.TYPE_SPELL) || c.IsType(CardType.TYPE_TRAP))
-                    {
-                        sw.WriteLine(getSpellTrap(c, jpg, c.IsType(CardType.TYPE_SPELL), cardpack, rarity));
-                    }
-                    else
-                    {
-                        sw.WriteLine(getMonster(c, jpg, cardpack, rarity));
-                    }
+                    list.Add(c, jpg);
+                    jpg = Path.GetFileName(jpg);
                 }
-                sw.WriteLine(cfg.end);
-                sw.Close();
+                CardPack cardpack = Database.FindPack(cardpack_db, c.id);
+                if (c.IsType(CardType.TYPE_SPELL) || c.IsType(CardType.TYPE_TRAP))
+                {
+                    sw.WriteLine(getSpellTrap(c, jpg, c.IsType(CardType.TYPE_SPELL), cardpack, rarity));
+                }
+                else
+                {
+                    sw.WriteLine(getMonster(c, jpg, cardpack, rarity));
+                }
             }
-
+            sw.WriteLine(cfg.end);
             return list;
         }
         int getLinkNumber(long link)
