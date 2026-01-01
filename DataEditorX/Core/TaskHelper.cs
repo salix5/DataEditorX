@@ -297,27 +297,38 @@ namespace DataEditorX.Core
                 return;
             }
 
-            /*int i = 0;
-            int count = images.Count;
-            using (ZipStorer zips = ZipStorer.Create(file, ""))
+            try
             {
-                zips.EncodeUTF8 = true;//zip里面的文件名为utf8
-                zips.AddFile(setFile, "set", "");
-                foreach (Card c in images.Keys)
+                using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
+                using ZipArchive archive = new(fs, ZipArchiveMode.Create, false);
+                // 添加文字到压缩包，内部文件名固定为 "set"
+                archive.CreateEntryFromFile(setFile, "set");
+
+                int i = 0;
+                foreach (var kvp in images)
                 {
-                    string img = images[c];
+                    Card c = kvp.Key;
+                    string img = kvp.Value;
                     if (isCancel)
                     {
                         break;
                     }
 
                     i++;
-                    worker.ReportProgress(i / count, string.Format("{0}/{1}-{2}", i, count, num));
-                    //TODO 先裁剪图片
-                    zips.AddFile(mseHelper.GetImageCache(img, c), Path.GetFileName(img), "");
+                    worker.ReportProgress(i * 100 / images.Count, string.Format("{0}/{1}-{2}", i, images.Count, num));
+
+                    // 获取需要写入的最终图片（可包含裁剪/缓存逻辑）
+                    string cachePath = mseHelper.GetImageCache(img, c);
+                    string entryName = Path.GetFileName(img);
+                    if (File.Exists(cachePath))
+                    {
+                        archive.CreateEntryFromFile(cachePath, entryName);
+                    }
                 }
             }
-            File.Delete(setFile);*/
+            catch (Exception)
+            {
+            }
         }
         public Card[] ReadMSE(string mseset, bool repalceOld)
         {
