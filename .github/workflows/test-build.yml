@@ -35,11 +35,11 @@ jobs:
       run: nuget restore $env:Solution_Name
 
     - name: Build
-      run: msbuild $env:Solution_Name /t:Build /p:Configuration=Release
+      run: msbuild $env:Solution_Name /t:Build /p:Configuration=Release /p:Platform=x64
 
     - name: Pack
       run: |
-        tar -cf $env:Release_Name --format=zip release
+        tar -cf $env:Release_Name --format=zip release/x64
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
