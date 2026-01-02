@@ -1,4 +1,45 @@
 ★更新歷史
+3.2.0
+語言升級：
+- 升級至 C# 11
+- 廣泛使用原始字串、目標類型 new、using 宣告
+
+資料庫重構：
+- desc 的換行字元改成使用 LF
+- 移除撤銷功能以簡化流程
+- 全面改用 SQL 參數
+- 修正 SQLiteCommand 初始化與錯誤處理
+- 加入 PRAGMA trusted_schema = OFF;
+- 不再計算 column index 而是改成查表
+
+類別與API調整：
+- Card 改成sealed class
+- 多處介面與方法重命名提升一致性，例如：IsDatabase, Activate, LoadCard
+
+表單與UI：
+- 重寫 MainForm, DataEditForm 的建構與事件綁定
+- 分頁與初始化流程優化
+- 歷史記錄上限從 16 降至 10
+- 修正多處鍵盤與輸入處理
+
+MSE清理：
+- 移除 ZipStorer 與舊 MSE 相關代碼
+- 移除在背景執行緒執行 MSE 的功能
+
+效能與穩定性：
+- 改用Mutex控制只能啟動1個實體
+- 大量命名規範、常量與空值處理優化
+- 移除冗餘 try-catch, using
+
+修正與維護：
+- 修正多處拼寫與語言檔錯誤
+- 修復陣列初始化、輸入驗證、SQL 指令與檔案篩選
+- 新增 CI test-build.yml。
+
+Code Editor：
+- 停止更新，建議改用Visual Studio Code
+
+
 3.1.0.0
 DataEditorX.exe.config選項
 auto_check_update(啟動時自動檢查更新)
@@ -15,6 +56,7 @@ https://github.com/salix5/DataEditorX
 移除下載檔案功能
 移除已不再使用的套件
 System.Data.SQLite更新至1.0.119
+
 
 3.0.0.8
 对于 YGOPro 的更新，增加了「简体中文」卡片允许类型。
