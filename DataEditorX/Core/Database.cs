@@ -457,12 +457,18 @@ namespace DataEditorX.Core
             StringBuilder sb = new();
             if (!string.IsNullOrEmpty(c.name))
             {
+                string pattern = "";
+                if (c.name.Contains("%%"))
+                {
+                    pattern = c.name.Replace("%%", "%");
+                }
+                else
+                {
+                    string escapedName = c.name.Replace("$", "$$").Replace("%", "$%").Replace("_", "$_");
+                    pattern = $"%{escapedName}%";
+                }
                 sb.Append(@" AND texts.name LIKE @name ESCAPE '$'");
-                string safePattern = c.name
-                    .Replace("$", "$$")
-                    .Replace("%", "$%")
-                    .Replace("_", "$_");
-                parameters.Add("@name", System.Data.DbType.String).Value = $"%{safePattern}%";
+                parameters.Add("@name", System.Data.DbType.String).Value = pattern;
             }
             if (!string.IsNullOrEmpty(c.desc))
             {
