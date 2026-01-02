@@ -1,6 +1,6 @@
 
 ★Environment
-This program is based on .Net Framework 4.8
+This program is based on .NET Framework 4.8
 
 ★File association
 DataEditorX can open files with specified extension:
@@ -11,7 +11,7 @@ DataEditorX can open files with specified extension:
 Please send bug report to https://github.com/salix5/DataEditorX/issues with the format below.
 
 Version:
-DataEditorX X.X.X.X
+DataEditorX X.X.X
 Error message:
 The error message text
 (If there is a error message box, You can press Ctrl+C to copy the message to clipboard)
@@ -25,40 +25,31 @@ data/cardinfo_xxx.txt types/series
 
 ★Language setting
 DataEditorX.exe.config
-<add key="language" value="chinese" />Simplified Chinese 
-chinese => english
+<add key="language" value="english" />
 If you want to add a language，you will need two file(xxx is a type of language):
 data/language_xxx.txt
 data/cardinfo_xxx.txt
 
 ★Image settings
-	image_quality	        1-100
-	image			Width/height of image, four number
-	image_other		pendulum of other cards
-	image_xyz		pendulum of Xyz monsters
-	image_pendulum	        Pendulum
+image_quality	1-100
+image			Width/height of image, four number
+image_other		pendulum of other cards
+image_xyz		pendulum of Xyz monsters
+image_pendulum	Pendulum
 
 ★CodeEditor Settings
-    use_IME			Editors Input Method
-    wordwrap	 
-    tabisspace	tab→space
-	fontname     
-	fontsize	 
+use_IME			Editors Input Method
+wordwrap	 
+tabisspace	tab→space
+fontname     
+fontsize	 
 
 ★DataEditor：
-If you need to input Attack "?", you can use anyone of ？/?/-2 instead. 
-The folder of pics, script and cdb should be in a same folder consistent.
+If you need to input Attack "?", you can use any of ？/?/-2 instead. 
+The folders of pics, script and cdb should be in the same folder.
 
 ★Read cardlist from ydk and folder pics
-Support：png,jpg pics with card number/card number with 0
-
-★Output data
-Example：mydiy.cdb
-New card：deck/mydiy.ydk
-Instruction：mydiy.txt
-script
-pics
-↑ all of them are in mydiy.zip，you can use it in expansions of ygopro with sound effect or release it.
+Support：png, jpg files with card number
 
 ★Database comparison
 
@@ -71,25 +62,25 @@ Copy and Replace: If there's a card with same name, replace it.
 Copy without Replace: If there's a card with same name, ignore it.
 
 ★Card search
-1.Now it can not support search by Pendulum Scale 
-2.You can search card with card name/effect/Attribute/Types/Level（racnk）/effect type/card number
-3.Search by ATK,DEF：
+1. Now it can not support search by Pendulum Scale 
+2. You can search card with card name/effect/Attribute/Types/Level（racnk）/effect type/card number
+3. Search by ATK,DEF：
 	If there is a "0", input"-1"or"."
 	If there is a "?", input"-2"or"?"
-4.Search by card name：
+4. Search by card name：
 	AOJ%%		start with AOJ
 	Shooting%%Dragon		start with “Shooting” and end with “Dragon”
 	%%Warrior		end with “Warrior”
 
-5.Search by card number
---A card(or a card with same name) with card number of 10000000，
-  card number： 10000000  card with same name: 0
+5.Search by card id
+id or alias = 10000000
+id: 10000000, alias: 0
 
---The same name card with card number:10000000
-  card number：  0        card with same name: 10000000 .
+alias = 10000000
+id: 0, alias: 10000000
 
---Card number over 10000000,less than 20000000
-  card with same name: 10000000  card number: 10000000
+id between 10000000 and 20000000
+id: 10000000, alias: 20000000
 
 ★CodeEditor：
 Input keyword in the under text box，press Enter

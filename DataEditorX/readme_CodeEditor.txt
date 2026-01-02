@@ -8,11 +8,11 @@ Ctrl+T			常量列表
 Ctrl+鼠标滑轮 	缩放文字
 
 ★CodeEditor设置
-	use_IME			使用输入法
-    wordwrap	自动换行
-    tabisspace	tab转换为space
-	fontname    字体名
-	fontsize	字体大小
+use_IME		使用输入法
+wordwrap	自动换行
+tabisspace	tab转换为space
+fontname    字体名
+fontsize	字体大小
 
 ★Lua函数查找
 从C++源码获取Lua函数
