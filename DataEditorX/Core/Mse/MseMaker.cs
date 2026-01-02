@@ -7,7 +7,6 @@
  */
 using DataEditorX.Common;
 using DataEditorX.Core.Info;
-using DataEditorX.Language;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,6 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace DataEditorX.Core.Mse

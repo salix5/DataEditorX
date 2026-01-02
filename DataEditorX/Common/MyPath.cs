@@ -5,7 +5,6 @@
  * 时间: 10:26
  * 
  */
-using System.Text;
 using System.Windows.Forms;
 
 namespace System.IO
