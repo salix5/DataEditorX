@@ -32,7 +32,7 @@
     <LangVersion>11.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\release\</OutputPath>
+    <OutputPath>..\release\x64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>None</DebugType>
@@ -282,4 +282,7 @@
   </Target>
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="AfterBuild" Condition="'$(PlatformTarget)' == 'x64'">
+    <Exec Command="if exist &quot;$(TargetDir)x86&quot; rmdir /S /Q &quot;$(TargetDir)x86&quot;" />
+  </Target>
 </Project>
