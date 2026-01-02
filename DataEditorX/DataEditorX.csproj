@@ -32,7 +32,7 @@
     <LangVersion>11.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\release\</OutputPath>
+    <OutputPath>..\release\x64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>None</DebugType>
@@ -271,6 +271,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup />
+  <Target Name="AfterBuild" Condition="'$(PlatformTarget)' == 'x64'">
+    <Exec Command="if exist &quot;$(TargetDir)x86&quot; rmdir /S /Q &quot;$(TargetDir)x86&quot;" />
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
