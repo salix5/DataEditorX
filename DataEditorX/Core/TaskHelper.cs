@@ -245,7 +245,7 @@ namespace DataEditorX.Core
 
         public void SaveMSEs(string file, Card[] cards, bool isUpdate)
         {
-            if (cards == null)
+            if (cards is null || cards.Length == 0)
             {
                 return;
             }
