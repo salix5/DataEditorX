@@ -150,6 +150,7 @@ namespace DataEditorX.Config
         /// 连接标志
         /// </summary>
         public const string TAG_MARKER = "link marker";
+        // file types
         public const string CDB_TYPE = "Database(*.cdb)|*.cdb|All files(*.*)|*.*";
         public const string YDK_TYPE = "Deck(*.ydk)|*.ydk|All files(*.*)|*.*";
         public const string IMAGE_TYPE = "JPEG(*.jpg)|*.jpg|BMP(*.bmp)|*.bmp|PNG(*.png)|*.png|All files(*.*)|*.*";

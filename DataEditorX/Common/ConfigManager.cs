@@ -28,7 +28,6 @@ namespace DataEditorX.Common
             }
             catch
             {
-                // ignore failures to save configuration
             }
         }
         /// <summary>
@@ -41,11 +40,11 @@ namespace DataEditorX.Common
             try
             {
                 string val = ConfigurationManager.AppSettings[appKey];
-                return val ?? string.Empty;
+                return val ?? "";
             }
             catch
             {
-                return string.Empty;
+                return "";
             }
         }
     }
