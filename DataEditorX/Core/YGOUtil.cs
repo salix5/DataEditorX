@@ -12,10 +12,6 @@ namespace DataEditorX.Core
     static class YGOUtil
     {
         static DataConfig _datacfg;
-        static YGOUtil()
-        {
-            _datacfg = new DataConfig();
-        }
         public static void SetConfig(DataConfig dcfg)
         {
             _datacfg = dcfg;

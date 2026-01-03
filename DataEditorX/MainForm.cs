@@ -33,12 +33,12 @@ namespace DataEditorX
         Card[] tCards = Array.Empty<Card>();
         //编辑器配置
         readonly DataConfig datacfg;
-        readonly CodeConfig codecfg = new();
+        CodeConfig codecfg;
         //将要打开的文件
         string openfile = "";
         #endregion
 
-        #region 设置界面，消息语言
+        #region Initialize
         public MainForm(string datapath)
         {
             //初始化控件
@@ -49,6 +49,7 @@ namespace DataEditorX
             //游戏数据,MSE数据
             datacfg = new DataConfig(MyConfig.GetCardInfoFile(datapath));
             history = new History(this);
+            YGOUtil.SetConfig(datacfg);
         }
         public void InitializeData()
         {
@@ -74,22 +75,6 @@ namespace DataEditorX
         }
         void Init()
         {
-            //初始化YGOUtil的数据
-            YGOUtil.SetConfig(datacfg);
-
-            //代码提示
-            string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-            string conlua = MyPath.Combine(datapath, MyConfig.FILE_CONSTANT);
-            string confstring = MyPath.Combine(datapath, MyConfig.FILE_STRINGS);
-            //添加函数
-            codecfg.AddFunction(funtxt);
-            //添加指示物
-            codecfg.AddStrings(confstring);
-            //添加常量
-            codecfg.AddConstant(conlua);
-            codecfg.SetNames(datacfg.dicSetnames);
-            //生成菜单
-            codecfg.InitAutoMenus();
             //读取历史记录
             history.ReadHistory(MyPath.Combine(datapath, MyConfig.FILE_HISTORY));
             //加载多语言
@@ -150,6 +135,23 @@ namespace DataEditorX
         //打开脚本
         void OpenScript(string file)
         {
+            if (codecfg is null)
+            {
+                codecfg = new CodeConfig();
+                //代码提示
+                string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
+                string conlua = MyPath.Combine(datapath, MyConfig.FILE_CONSTANT);
+                string confstring = MyPath.Combine(datapath, MyConfig.FILE_STRINGS);
+                //添加函数
+                codecfg.AddFunction(funtxt);
+                //添加指示物
+                codecfg.AddStrings(confstring);
+                //添加常量
+                codecfg.AddConstant(conlua);
+                codecfg.SetNames(datacfg.dicSetnames);
+                //生成菜单
+                codecfg.InitAutoMenus();
+            }
             CodeEditForm cf = new();
             //设置界面语言
             LanguageHelper.SetFormLabel(cf);

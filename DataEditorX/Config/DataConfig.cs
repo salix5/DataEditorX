@@ -18,7 +18,6 @@ namespace DataEditorX.Config
     {
         public DataConfig()
         {
-            InitMember(MyPath.Combine(Application.StartupPath, MyConfig.TAG_CARDINFO + ".txt"));
         }
         public DataConfig(string conf)
         {
