@@ -18,7 +18,7 @@ namespace DataEditorX
     internal sealed class Program
     {
         [STAThread]
-        private static void Main(string[] args)
+        static int Main(string[] args)
         {
             string arg = (args.Length > 0) ? args[0] : "";
             if (arg == MyConfig.TAG_SAVE_LANG || arg == MyConfig.TAG_SAVE_LANG2)
@@ -26,12 +26,12 @@ namespace DataEditorX
                 //保存语言
                 SaveLanguage();
                 MessageBox.Show("Save Language OK.");
-                Environment.Exit(1);
+                return 0;
             }
             using var mutex = new Mutex(true, "DataEditorX_SingleInstance", out bool createdNew);
             if (!createdNew)
             {
-                return;
+                return 1;
             }
             string datapath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_DATA);
             Application.EnableVisualStyles();
@@ -42,6 +42,7 @@ namespace DataEditorX
             //数据目录
             mainForm.InitializeData();
             Application.Run(mainForm);
+            return 0;
         }
         static void SaveLanguage()
         {
