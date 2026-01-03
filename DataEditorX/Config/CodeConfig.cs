@@ -12,17 +12,10 @@ namespace DataEditorX.Config
     {
 
         #region 成员
-        public CodeConfig()
-        {
-            tooltipDic = new SortedList<string, string>();
-            longTooltipDic = new SortedList<string, string>();
-            items = new List<AutocompleteItem>();
-        }
-
         //函数提示
-        readonly SortedList<string, string> tooltipDic;
-        readonly SortedList<string, string> longTooltipDic;
-        readonly List<AutocompleteItem> items;
+        readonly SortedList<string, string> tooltipDic = new();
+        readonly SortedList<string, string> longTooltipDic = new();
+        readonly List<AutocompleteItem> items = new();
         /// <summary>
         /// 输入提示
         /// </summary>
@@ -131,7 +124,6 @@ namespace DataEditorX.Config
         #region 常量
         public void AddConstant(string conlua)
         {
-            //conList.Add("con");
             if (!File.Exists(conlua))
             {
                 return;

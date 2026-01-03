@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace DataEditorX.Common
 {
-    public class ConfigManager
+    public static class ConfigManager
     {
         /// <summary>
         /// 保存值

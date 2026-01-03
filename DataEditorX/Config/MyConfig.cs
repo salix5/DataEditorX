@@ -8,7 +8,7 @@ namespace DataEditorX.Config
     /// <summary>
     /// 配置
     /// </summary>
-    public class MyConfig : ConfigManager
+    public static class MyConfig
     {
         #region 常量
         public const string TAG_SAVE_LANG = "-savelanguage";
@@ -166,7 +166,7 @@ namespace DataEditorX.Config
         /// <returns></returns>
         public static string ReadString(string key)
         {
-            return GetAppConfig(key);
+            return ConfigManager.GetAppConfig(key);
         }
         /// <summary>
         /// 读取int值
@@ -245,11 +245,11 @@ namespace DataEditorX.Config
         public static bool ReadBoolean(string key, bool def = false)
         {
             string val = ReadString(key);
-            if ("true".Equals(val, StringComparison.OrdinalIgnoreCase))
+            if (val.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
-            if ("false".Equals(val, StringComparison.OrdinalIgnoreCase))
+            if (val.Equals("false", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -265,7 +265,7 @@ namespace DataEditorX.Config
         /// <returns></returns>
         public static string GetLanguageFile(string path)
         {
-            return MyPath.Combine(path, MyPath.GetFileName(TAG_LANGUAGE, GetAppConfig(TAG_LANGUAGE)));
+            return MyPath.Combine(path, MyPath.GetFileName(TAG_LANGUAGE, ConfigManager.GetAppConfig(TAG_LANGUAGE)));
         }
         /// <summary>
         /// 卡片信息配置文件名
@@ -274,7 +274,7 @@ namespace DataEditorX.Config
         /// <returns></returns>
         public static string GetCardInfoFile(string path)
         {
-            return MyPath.Combine(path, MyPath.GetFileName(TAG_CARDINFO, GetAppConfig(TAG_LANGUAGE)));
+            return MyPath.Combine(path, MyPath.GetFileName(TAG_CARDINFO, ConfigManager.GetAppConfig(TAG_LANGUAGE)));
         }
         public static Process GetRunningInstance(string filename)
         {
