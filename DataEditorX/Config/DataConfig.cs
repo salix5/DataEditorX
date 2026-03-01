@@ -5,9 +5,8 @@
  * 时间: 7:54
  * 
  */
-using System.IO;
-using System.Windows.Forms;
 using DataEditorX.Common;
+using System.IO;
 
 namespace DataEditorX.Config
 {

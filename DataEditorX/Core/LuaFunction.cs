@@ -5,12 +5,12 @@
  * 时间: 8:12
  * 
  */
+using DataEditorX.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using DataEditorX.Common;
 
 namespace DataEditorX
 {
