@@ -131,7 +131,6 @@ namespace DataEditorX
             SetTitle();//设置标题
             LoadCard(oldCard);
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
-            menuitem_openfileinthis.Checked = MyConfig.ReadBoolean(MyConfig.TAG_OPEN_IN_THIS);
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
             //Add MSE language items
             //AddMenuItemFormMSE();
@@ -878,18 +877,7 @@ namespace DataEditorX
             }
             if (File.Exists(lua))
             {
-                if (menuitem_openfileinthis.Checked)
-                {
-                    if (DockPanel.Parent is not MainForm main)
-                    {
-                        return;
-                    }
-                    main.Open(lua);
-                }
-                else
-                {
-                    System.Diagnostics.Process.Start(lua);
-                }
+                System.Diagnostics.Process.Start(lua);
             }
         }
         //删除
@@ -1586,12 +1574,6 @@ namespace DataEditorX
         {
             menuitem_operacardsfile.Checked = !menuitem_operacardsfile.Checked;
             ConfigManager.Save(MyConfig.TAG_SYNC_WITH_CARD, menuitem_operacardsfile.Checked.ToString().ToLower());
-        }
-        //用CodeEditor打开lua
-        private void menuitem_openfileinthis_Click(object sender, EventArgs e)
-        {
-            menuitem_openfileinthis.Checked = !menuitem_openfileinthis.Checked;
-            ConfigManager.Save(MyConfig.TAG_OPEN_IN_THIS, menuitem_openfileinthis.Checked.ToString().ToLower());
         }
         //自动检查更新
         private void menuitem_autocheckupdate_Click(object sender, EventArgs e)

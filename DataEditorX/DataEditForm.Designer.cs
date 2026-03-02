@@ -59,7 +59,6 @@ namespace DataEditorX
             this.menuitem_importmseimg = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_data = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_operacardsfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_openfileinthis = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_default_script = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_readydk = new System.Windows.Forms.ToolStripMenuItem();
@@ -297,7 +296,6 @@ namespace DataEditorX
             // 
             this.menu_data.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitem_operacardsfile,
-            this.menuitem_openfileinthis,
             this.menuitem_default_script,
             this.tsep2,
             this.menuitem_readydk,
@@ -321,13 +319,6 @@ namespace DataEditorX
             this.menuitem_operacardsfile.Size = new System.Drawing.Size(203, 22);
             this.menuitem_operacardsfile.Text = "Opera Card\'s Files";
             this.menuitem_operacardsfile.Click += new System.EventHandler(this.menuitem_deletecardsfile_Click);
-            // 
-            // menuitem_openfileinthis
-            // 
-            this.menuitem_openfileinthis.Name = "menuitem_openfileinthis";
-            this.menuitem_openfileinthis.Size = new System.Drawing.Size(203, 22);
-            this.menuitem_openfileinthis.Text = "Open File in This";
-            this.menuitem_openfileinthis.Click += new System.EventHandler(this.menuitem_openfileinthis_Click);
             // 
             // menuitem_default_script
             // 
@@ -1310,7 +1301,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_cutimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_operacardsfile;
         private System.Windows.Forms.ToolStripSeparator tsep2;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_openfileinthis;
         private System.Windows.Forms.ToolStripMenuItem menuitem_autocheckupdate;
         private System.Windows.Forms.ToolStripMenuItem menuitem_language;
         private System.Windows.Forms.ToolStripMenuItem menuitem_export_select_sql;
