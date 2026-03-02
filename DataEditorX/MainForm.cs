@@ -33,7 +33,6 @@ namespace DataEditorX
         Card[] tCards = Array.Empty<Card>();
         //编辑器配置
         readonly DataConfig datacfg;
-        CodeConfig codecfg;
         //将要打开的文件
         string openfile = "";
         #endregion

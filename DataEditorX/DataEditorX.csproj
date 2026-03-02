@@ -78,15 +78,11 @@
     <Compile Include="Controls\DListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\FastColoredTextBoxEx.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Common\MyPath.cs" />
     <Compile Include="Controls\History.cs" />
     <Compile Include="Core\IDataForm.cs" />
     <Compile Include="Controls\IEditForm.cs" />
     <Compile Include="Controls\IMainForm.cs" />
-    <Compile Include="Controls\MySyntaxHighlighter.cs" />
     <Compile Include="Common\MyBitmap.cs" />
     <Compile Include="Common\Area.cs" />
     <Compile Include="Config\MyConfig.cs" />
@@ -97,12 +93,10 @@
     <Compile Include="Core\Info\CardRace.cs" />
     <Compile Include="Core\Info\CardRule.cs" />
     <Compile Include="Core\Info\CardType.cs" />
-    <Compile Include="Config\CodeConfig.cs" />
     <Compile Include="Core\Database.cs" />
     <Compile Include="Config\DataConfig.cs" />
     <Compile Include="Config\InfoDictionary.cs" />
     <Compile Include="Config\ImageSet.cs" />
-    <Compile Include="Core\LuaFunction.cs" />
     <Compile Include="Core\Mse\CardPack.cs" />
     <Compile Include="Core\Mse\MSECons.cs" />
     <Compile Include="Core\Mse\MseMaker.cs" />
@@ -171,9 +165,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\FastColoredTextBoxEx.resx">
-      <DependentUpon>FastColoredTextBoxEx.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DataEditForm.resx">
       <DependentUpon>DataEditForm.cs</DependentUpon>
     </EmbeddedResource>
