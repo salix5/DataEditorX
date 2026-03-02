@@ -67,7 +67,6 @@ namespace DataEditorX
             this.tsep6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_export_select_sql = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_export_all_sql = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_findluafunc = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_exportdata = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_cutimages = new System.Windows.Forms.ToolStripMenuItem();
@@ -306,7 +305,6 @@ namespace DataEditorX
             this.tsep6,
             this.menuitem_export_select_sql,
             this.menuitem_export_all_sql,
-            this.menuitem_findluafunc,
             this.menuitem_exportdata,
             this.tsep5,
             this.menuitem_cutimages,
@@ -375,13 +373,6 @@ namespace DataEditorX
             this.menuitem_export_all_sql.Size = new System.Drawing.Size(203, 22);
             this.menuitem_export_all_sql.Text = "Export all to Sql";
             this.menuitem_export_all_sql.Click += new System.EventHandler(this.Menuitem_export_all_sqlClick);
-            // 
-            // menuitem_findluafunc
-            // 
-            this.menuitem_findluafunc.Name = "menuitem_findluafunc";
-            this.menuitem_findluafunc.Size = new System.Drawing.Size(203, 22);
-            this.menuitem_findluafunc.Text = "Find Lua Function";
-            this.menuitem_findluafunc.Click += new System.EventHandler(this.menuitem_findluafunc_Click);
             // 
             // menuitem_exportdata
             // 
@@ -1310,7 +1301,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripMenuItem menuitem_mseconfig;
         private System.Windows.Forms.ToolStripMenuItem menuitem_importmseimg;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_findluafunc;
         private System.Windows.Forms.ToolStripSeparator tsep6;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;

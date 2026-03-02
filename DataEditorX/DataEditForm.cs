@@ -1479,22 +1479,6 @@ namespace DataEditorX
         }
         #endregion
 
-        #region 查找lua函数
-        private void menuitem_findluafunc_Click(object sender, EventArgs e)
-        {
-            string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-            using FolderBrowserDialog fd = new();
-            fd.Description = "Folder Name: ocgcore";
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                LuaFunction.Read(funtxt);//先读取旧函数列表
-                LuaFunction.Find(fd.SelectedPath);//查找新函数，并保存
-                MessageBox.Show("OK");
-            }
-        }
-
-        #endregion
-
         #region 系列名textbox
         //系列名输入时
         void SetcodeInputText(int index, ComboBox cb, TextBox tb)

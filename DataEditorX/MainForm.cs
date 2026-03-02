@@ -214,10 +214,6 @@ namespace DataEditorX
                 dockPanel.ActiveContent.DockHandler.Close();
             }
         }
-        //打开脚本编辑
-        void Menuitem_codeeditorClick(object sender, EventArgs e)
-        {
-        }
 
         //新建DataEditorX
         void DataEditorToolStripMenuItemClick(object sender, EventArgs e)
