@@ -50,7 +50,6 @@ namespace DataEditorX
             this.menuitem_comp2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_history = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_shistory = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_quit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_windows = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,7 +101,6 @@ namespace DataEditorX
             this.menuitem_comp2,
             this.toolStripSeparator1,
             this.menuitem_history,
-            this.menuitem_shistory,
             this.toolStripSeparator5,
             this.menuitem_quit});
             this.menuitem_file.Name = "menuitem_file";
@@ -194,12 +192,6 @@ namespace DataEditorX
             this.menuitem_history.Size = new System.Drawing.Size(253, 22);
             this.menuitem_history.Text = "History(&H)";
             // 
-            // menuitem_shistory
-            // 
-            this.menuitem_shistory.Name = "menuitem_shistory";
-            this.menuitem_shistory.Size = new System.Drawing.Size(253, 22);
-            this.menuitem_shistory.Text = "Script History";
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -227,34 +219,34 @@ namespace DataEditorX
             // menuitem_dataeditor
             // 
             this.menuitem_dataeditor.Name = "menuitem_dataeditor";
-            this.menuitem_dataeditor.Size = new System.Drawing.Size(180, 22);
+            this.menuitem_dataeditor.Size = new System.Drawing.Size(152, 22);
             this.menuitem_dataeditor.Text = "DataEditor";
             this.menuitem_dataeditor.Click += new System.EventHandler(this.DataEditorToolStripMenuItemClick);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // menuitem_close
             // 
             this.menuitem_close.Name = "menuitem_close";
             this.menuitem_close.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.menuitem_close.Size = new System.Drawing.Size(180, 22);
+            this.menuitem_close.Size = new System.Drawing.Size(152, 22);
             this.menuitem_close.Text = "Close";
             this.menuitem_close.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
             // 
             // menuitem_closeother
             // 
             this.menuitem_closeother.Name = "menuitem_closeother";
-            this.menuitem_closeother.Size = new System.Drawing.Size(180, 22);
+            this.menuitem_closeother.Size = new System.Drawing.Size(152, 22);
             this.menuitem_closeother.Text = "Close Other";
             this.menuitem_closeother.Click += new System.EventHandler(this.CloseOtherToolStripMenuItemClick);
             // 
             // menuitem_closeall
             // 
             this.menuitem_closeall.Name = "menuitem_closeall";
-            this.menuitem_closeall.Size = new System.Drawing.Size(180, 22);
+            this.menuitem_closeall.Size = new System.Drawing.Size(152, 22);
             this.menuitem_closeall.Text = "Close All";
             this.menuitem_closeall.Click += new System.EventHandler(this.CloseAllToolStripMenuItemClick);
             // 
@@ -306,7 +298,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_file;
         private System.Windows.Forms.MenuStrip mainMenu;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_shistory;
         private System.ComponentModel.BackgroundWorker bgWorker1;
     }
 }

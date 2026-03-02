@@ -116,7 +116,6 @@ namespace DataEditorX
         //清除lua历史
         public void LuaMenuClear()
         {
-            menuitem_shistory.DropDownItems.Clear();
         }
         //添加cdb历史
         public void AddCdbMenu(ToolStripItem item)
@@ -126,7 +125,6 @@ namespace DataEditorX
         //添加lua历史
         public void AddLuaMenu(ToolStripItem item)
         {
-            menuitem_shistory.DropDownItems.Add(item);
         }
         #endregion
 
