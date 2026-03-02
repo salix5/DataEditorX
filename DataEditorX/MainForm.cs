@@ -152,16 +152,6 @@ namespace DataEditorX
                 //生成菜单
                 codecfg.InitAutoMenus();
             }
-            CodeEditForm cf = new();
-            //设置界面语言
-            LanguageHelper.SetFormLabel(cf);
-            //设置cdb列表
-            cf.SetCDBList(history.GetCdbHistory());
-            //初始化函数提示
-            cf.InitTooltip(codecfg);
-            //打开文件
-            cf.Open(file);
-            cf.Show(dockPanel, DockState.Document);
         }
         //打开数据库
         void OpenDatabase(string file)
