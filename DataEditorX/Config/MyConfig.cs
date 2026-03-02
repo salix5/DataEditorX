@@ -91,26 +91,6 @@ namespace DataEditorX.Config
         public const string TAG_IMAGE_QUALITY = "image_quality";
         //CodeEditor
         /// <summary>
-        /// 字体名
-        /// </summary>
-        public const string TAG_FONT_NAME = "fontname";
-        /// <summary>
-        /// 字体大小
-        /// </summary>
-        public const string TAG_FONT_SIZE = "fontsize";
-        /// <summary>
-        /// 支持中文
-        /// </summary>
-        public const string TAG_USE_IME = "use_IME";
-        /// <summary>
-        /// 自动换行
-        /// </summary>
-        public const string TAG_WORDWRAP = "wordwrap";
-        /// <summary>
-        /// tab替换为空格
-        /// </summary>
-        public const string TAG_TAB2SPACES = "tabisspace";
-        /// <summary>
         /// 规则
         /// </summary>
         public const string TAG_RULE = "rule";
