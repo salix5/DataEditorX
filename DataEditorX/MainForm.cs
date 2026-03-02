@@ -132,27 +132,6 @@ namespace DataEditorX
         #endregion
 
         #region 打开文件
-        //打开脚本
-        void OpenScript(string file)
-        {
-            if (codecfg is null)
-            {
-                codecfg = new CodeConfig();
-                //代码提示
-                string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-                string conlua = MyPath.Combine(datapath, MyConfig.FILE_CONSTANT);
-                string confstring = MyPath.Combine(datapath, MyConfig.FILE_STRINGS);
-                //添加函数
-                codecfg.AddFunction(funtxt);
-                //添加指示物
-                codecfg.AddStrings(confstring);
-                //添加常量
-                codecfg.AddConstant(conlua);
-                codecfg.SetNames(datacfg.dicSetnames);
-                //生成菜单
-                codecfg.InitAutoMenus();
-            }
-        }
         //打开数据库
         void OpenDatabase(string file)
         {
@@ -186,10 +165,6 @@ namespace DataEditorX
             if (YGOUtil.IsDatabase(file))
             {
                 OpenDatabase(file);
-            }
-            else if (YGOUtil.IsScript(file))
-            {
-                OpenScript(file);
             }
         }
         //检查是否打开
@@ -243,7 +218,6 @@ namespace DataEditorX
         //打开脚本编辑
         void Menuitem_codeeditorClick(object sender, EventArgs e)
         {
-            OpenScript("");
         }
 
         //新建DataEditorX
@@ -300,14 +274,7 @@ namespace DataEditorX
         {
             using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
-            if (GetActive() is not null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
-            {
-                dlg.Filter = MyConfig.CDB_TYPE;
-            }
-            else
-            {
-                dlg.Filter = MyConfig.SCRIPT_TYPE;
-            }
+            dlg.Filter = MyConfig.CDB_TYPE;
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -326,14 +293,7 @@ namespace DataEditorX
         {
             using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
-            if (GetActive() != null)//判断当前窗口是不是DataEditor
-            {
-                dlg.Filter = MyConfig.CDB_TYPE;
-            }
-            else
-            {
-                dlg.Filter = MyConfig.SCRIPT_TYPE;
-            }
+            dlg.Filter = MyConfig.CDB_TYPE;
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {

@@ -42,10 +42,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string FILE_FUNCTION = "_functions.txt";
         /// <summary>
-        /// 常量
-        /// </summary>
-        public const string FILE_CONSTANT = "constant.lua";
-        /// <summary>
         /// 指示物，胜利提示
         /// </summary>
         public const string FILE_STRINGS = "strings.conf";
@@ -154,7 +150,6 @@ namespace DataEditorX.Config
         public const string CDB_TYPE = "Database(*.cdb)|*.cdb|All files(*.*)|*.*";
         public const string YDK_TYPE = "Deck(*.ydk)|*.ydk|All files(*.*)|*.*";
         public const string IMAGE_TYPE = "JPEG(*.jpg)|*.jpg|BMP(*.bmp)|*.bmp|PNG(*.png)|*.png|All files(*.*)|*.*";
-        public const string SCRIPT_TYPE = "Lua(*.lua)|*.lua|All files(*.*)|*.*";
         public const string MSE_TYPE = "MSE Set(*.mse-set)|*.mse-set|All files(*.*)|*.*";
         #endregion
 

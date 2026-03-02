@@ -12,7 +12,6 @@ A: Please install `.NET Framework`.
 * Create and edit card databases.   
 * Compare, copy and paste card records across databases easily.   
 * Read card records from ygopro decks(.ydk file) or card picture folders(eg. pics folder of ygooro).  
-* Create and edit card scripts(.lua file).  
 * Export and import [MSE](https://github.com/247321453/MagicSetEditor2) sets.   
 ...
 
