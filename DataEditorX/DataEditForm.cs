@@ -1703,7 +1703,6 @@ namespace DataEditorX
                 if (Directory.Exists(file))
                 {
                     files.AddRange(Directory.EnumerateFiles(file, "*.cdb", SearchOption.AllDirectories));
-                    files.AddRange(Directory.EnumerateFiles(file, "*.lua", SearchOption.AllDirectories));
                 }
                 files.Add(file);
             }
