@@ -1,20 +1,4 @@
 #
-CodeEditForm.mainMenu.menuitem_file	File(&F)
-CodeEditForm.mainMenu.menuitem_open	Open
-CodeEditForm.mainMenu.menuitem_save	Save
-CodeEditForm.mainMenu.menuitem_saveas	Save As
-CodeEditForm.mainMenu.menuitem_quit	Quit
-CodeEditForm.mainMenu.menuitem_setting	Tools(&S)
-CodeEditForm.mainMenu.menuitem_showmap	Display/Hide Document Maps
-CodeEditForm.mainMenu.menuitem_showinput	Display/Hide TextBox
-CodeEditForm.mainMenu.menuitem_find	Find String
-CodeEditForm.mainMenu.menuitem_replace	Replace
-CodeEditForm.mainMenu.menuitem_setcard	Set Database
-CodeEditForm.mainMenu.menuitem_help	Help(&H)
-CodeEditForm.mainMenu.menuitem_about	About
-CodeEditForm.mainMenu.menuitem_tools	Tools(&T)
-CodeEditForm.mainMenu.menuitem_effectcreator	Effect Creator
-#
 DataEditForm.pl_bottom.btn_img	Import Img
 DataEditForm.pl_main.lb_types	Card type
 DataEditForm.pl_main.lb_tiptexts	Script texts
@@ -44,7 +28,6 @@ DataEditForm.mainMenu.menuitem_quit	Quit
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menu_data	Data(&D)
 DataEditForm.mainMenu.menuitem_operacardsfile	Opera with Card's files
-DataEditForm.mainMenu.menuitem_openfileinthis	Open Script With CodeEditor
 DataEditForm.mainMenu.menuitem_default_script	Set default script name
 DataEditForm.mainMenu.menuitem_readydk	Read From ydk File(&Y)
 DataEditForm.mainMenu.menuitem_readimages	Read From Images Path(&I)
@@ -77,11 +60,9 @@ MainForm.mainMenu.menuitem_pastecards	Paste Cards
 MainForm.mainMenu.menuitem_comp1Set Compare Database 1
 MainForm.mainMenu.menuitem_comp2Set Compare Database 2
 MainForm.mainMenu.menuitem_history	Database Histroy
-MainForm.mainMenu.menuitem_shistory	Script History
 MainForm.mainMenu.menuitem_quit	Quit
 MainForm.mainMenu.menuitem_windows	Windows(&W)
 MainForm.mainMenu.menuitem_dataeditor	DataEditor
-MainForm.mainMenu.menuitem_codeeditor	CodeEditor
 MainForm.mainMenu.menuitem_close	Close
 MainForm.mainMenu.menuitem_closeother	Close Others
 MainForm.mainMenu.menuitem_closeall	Close All

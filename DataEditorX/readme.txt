@@ -10,7 +10,7 @@
 
 
 ★设置
-DataEditorX.exe.config 语言设置，图片设置，CodeEditor设置
+DataEditorX.exe.config 语言设置，图片设置
 data/language_xxx.txt 界面和消息提示文字
 data/cardinfo_xxx.txt 种族，类型，系列名
 
