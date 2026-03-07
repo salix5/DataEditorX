@@ -33,7 +33,6 @@ namespace DataEditorX
         Card[] tCards = Array.Empty<Card>();
         //编辑器配置
         readonly DataConfig datacfg;
-        CodeConfig codecfg;
         //将要打开的文件
         string openfile = "";
         #endregion
@@ -117,7 +116,6 @@ namespace DataEditorX
         //清除lua历史
         public void LuaMenuClear()
         {
-            menuitem_shistory.DropDownItems.Clear();
         }
         //添加cdb历史
         public void AddCdbMenu(ToolStripItem item)
@@ -127,42 +125,10 @@ namespace DataEditorX
         //添加lua历史
         public void AddLuaMenu(ToolStripItem item)
         {
-            menuitem_shistory.DropDownItems.Add(item);
         }
         #endregion
 
         #region 打开文件
-        //打开脚本
-        void OpenScript(string file)
-        {
-            if (codecfg is null)
-            {
-                codecfg = new CodeConfig();
-                //代码提示
-                string funtxt = MyPath.Combine(datapath, MyConfig.FILE_FUNCTION);
-                string conlua = MyPath.Combine(datapath, MyConfig.FILE_CONSTANT);
-                string confstring = MyPath.Combine(datapath, MyConfig.FILE_STRINGS);
-                //添加函数
-                codecfg.AddFunction(funtxt);
-                //添加指示物
-                codecfg.AddStrings(confstring);
-                //添加常量
-                codecfg.AddConstant(conlua);
-                codecfg.SetNames(datacfg.dicSetnames);
-                //生成菜单
-                codecfg.InitAutoMenus();
-            }
-            CodeEditForm cf = new();
-            //设置界面语言
-            LanguageHelper.SetFormLabel(cf);
-            //设置cdb列表
-            cf.SetCDBList(history.GetCdbHistory());
-            //初始化函数提示
-            cf.InitTooltip(codecfg);
-            //打开文件
-            cf.Open(file);
-            cf.Show(dockPanel, DockState.Document);
-        }
         //打开数据库
         void OpenDatabase(string file)
         {
@@ -180,6 +146,10 @@ namespace DataEditorX
             {
                 return;
             }
+            if (!YGOUtil.IsDatabase(file))
+            {
+                return;
+            }
             //添加历史
             history.AddHistory(file);
             //检查是否已经打开
@@ -192,15 +162,7 @@ namespace DataEditorX
             {
                 return;
             }
-
-            if (YGOUtil.IsDatabase(file))
-            {
-                OpenDatabase(file);
-            }
-            else if (YGOUtil.IsScript(file))
-            {
-                OpenScript(file);
-            }
+            OpenDatabase(file);
         }
         //检查是否打开
         bool FindEditForm(string file, bool isOpen)
@@ -249,11 +211,6 @@ namespace DataEditorX
             {
                 dockPanel.ActiveContent.DockHandler.Close();
             }
-        }
-        //打开脚本编辑
-        void Menuitem_codeeditorClick(object sender, EventArgs e)
-        {
-            OpenScript("");
         }
 
         //新建DataEditorX
@@ -310,14 +267,7 @@ namespace DataEditorX
         {
             using OpenFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.OpenFile);
-            if (GetActive() is not null || dockPanel.Contents.Count == 0)//判断当前窗口是不是DataEditor
-            {
-                dlg.Filter = MyConfig.CDB_TYPE;
-            }
-            else
-            {
-                dlg.Filter = MyConfig.SCRIPT_TYPE;
-            }
+            dlg.Filter = MyConfig.CDB_TYPE;
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -336,36 +286,25 @@ namespace DataEditorX
         {
             using SaveFileDialog dlg = new();
             dlg.Title = LanguageHelper.GetMsg(LMSG.NewFile);
-            if (GetActive() != null)//判断当前窗口是不是DataEditor
-            {
-                dlg.Filter = MyConfig.CDB_TYPE;
-            }
-            else
-            {
-                dlg.Filter = MyConfig.SCRIPT_TYPE;
-            }
+            dlg.Filter = MyConfig.CDB_TYPE;
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 string file = dlg.FileName;
+                if (!YGOUtil.IsDatabase(file))
+                {
+                    return;
+                }
                 if (File.Exists(file))
                 {
                     File.Delete(file);
                 }
-                //是否是数据库
-                if (YGOUtil.IsDatabase(file))
+                if (Database.CreateDatabase(file))//是否创建成功
                 {
-                    if (Database.CreateDatabase(file))//是否创建成功
+                    if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
                     {
-                        if (MyMsg.Question(LMSG.IfOpenDatabase))//是否打开新建的数据库
-                        {
-                            Open(file);
-                        }
+                        Open(file);
                     }
-                }
-                else
-                {
-                    Open(file);
                 }
             }
         }

@@ -14,14 +14,9 @@ namespace DataEditorX.Controls
         readonly IMainForm mainForm;
         string historyFile = "";
         readonly List<string> cdbHistory = new();
-        readonly List<string> luaHistory = new();
         public string[] GetCdbHistory()
         {
             return cdbHistory.ToArray();
-        }
-        public string[] GetLuaHistory()
-        {
-            return luaHistory.ToArray();
         }
         public History(IMainForm mainForm)
         {
@@ -42,7 +37,6 @@ namespace DataEditorX.Controls
         //添加历史记录
         void AddHistorys(string[] lines)
         {
-            luaHistory.Clear();
             cdbHistory.Clear();
             foreach (string line in lines)
             {
@@ -50,33 +44,24 @@ namespace DataEditorX.Controls
                 {
                     continue;
                 }
-
-                if (File.Exists(line))
+                if (!YGOUtil.IsDatabase(line) || !File.Exists(line))
                 {
-                    if (YGOUtil.IsDatabase(line))
-                    {
-                        if (cdbHistory.Count < MyConfig.MAX_HISTORY)
-                        {
-                            cdbHistory.Add(line);
-                        }
-                    }
-                    else
-                    {
-                        if (luaHistory.Count < MyConfig.MAX_HISTORY)
-                        {
-                            luaHistory.Add(line);
-                        }
-                    }
+                    continue;
+                }
+                cdbHistory.Add(line);
+                if (cdbHistory.Count >= MyConfig.MAX_HISTORY)
+                {
+                    break;
                 }
             }
         }
         public void AddHistory(string file)
         {
-            if (string.IsNullOrEmpty(file) || !File.Exists(file))
+            if (string.IsNullOrEmpty(file) || !YGOUtil.IsDatabase(file) || !File.Exists(file))
             {
                 return;
             }
-            var target = YGOUtil.IsDatabase(file) ? cdbHistory : luaHistory;
+            var target = cdbHistory;
             target.Remove(file);
             target.Insert(0, file);
             if (target.Count > MyConfig.MAX_HISTORY)
@@ -102,14 +87,6 @@ namespace DataEditorX.Controls
                     lines.Add(str);
                 }
             }
-            lines.Add("# script history");
-            foreach (string str in luaHistory)
-            {
-                if (File.Exists(str))
-                {
-                    lines.Add(str);
-                }
-            }
             File.WriteAllLines(historyFile, lines);
         }
         //添加历史记录菜单
@@ -127,26 +104,8 @@ namespace DataEditorX.Controls
             ToolStripMenuItem tsmiclear = new(LanguageHelper.GetMsg(LMSG.ClearHistory));
             tsmiclear.Click += MenuHistoryClear_Click;
             mainForm.AddCdbMenu(tsmiclear);
-            //lua历史
-            mainForm.LuaMenuClear();
-            foreach (string str in luaHistory)
-            {
-                ToolStripMenuItem tsmi = new(str);
-                tsmi.Click += MenuHistoryItem_Click;
-                mainForm.AddLuaMenu(tsmi);
-            }
-            mainForm.AddLuaMenu(new ToolStripSeparator());
-            ToolStripMenuItem tsmiclear2 = new(LanguageHelper.GetMsg(LMSG.ClearHistory));
-            tsmiclear2.Click += MenuHistoryClear2_Click;
-            mainForm.AddLuaMenu(tsmiclear2);
         }
 
-        void MenuHistoryClear2_Click(object sender, EventArgs e)
-        {
-            luaHistory.Clear();
-            MenuHistory();
-            SaveHistory();
-        }
         void MenuHistoryClear_Click(object sender, EventArgs e)
         {
             cdbHistory.Clear();

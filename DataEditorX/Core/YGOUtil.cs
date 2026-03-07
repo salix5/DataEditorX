@@ -18,10 +18,6 @@ namespace DataEditorX.Core
         }
 
         #region 判断文件类型
-        public static bool IsScript(string file)
-        {
-            return file?.EndsWith(".lua", StringComparison.OrdinalIgnoreCase) ?? false;
-        }
         public static bool IsDatabase(string file)
         {
             return file?.EndsWith(".cdb", StringComparison.OrdinalIgnoreCase) ?? false;

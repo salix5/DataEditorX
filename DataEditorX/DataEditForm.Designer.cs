@@ -59,7 +59,6 @@ namespace DataEditorX
             this.menuitem_importmseimg = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_data = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_operacardsfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_openfileinthis = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_default_script = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_readydk = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +66,6 @@ namespace DataEditorX
             this.tsep6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_export_select_sql = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_export_all_sql = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_findluafunc = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_exportdata = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_cutimages = new System.Windows.Forms.ToolStripMenuItem();
@@ -298,7 +296,6 @@ namespace DataEditorX
             // 
             this.menu_data.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitem_operacardsfile,
-            this.menuitem_openfileinthis,
             this.menuitem_default_script,
             this.tsep2,
             this.menuitem_readydk,
@@ -306,7 +303,6 @@ namespace DataEditorX
             this.tsep6,
             this.menuitem_export_select_sql,
             this.menuitem_export_all_sql,
-            this.menuitem_findluafunc,
             this.menuitem_exportdata,
             this.tsep5,
             this.menuitem_cutimages,
@@ -323,13 +319,6 @@ namespace DataEditorX
             this.menuitem_operacardsfile.Size = new System.Drawing.Size(203, 22);
             this.menuitem_operacardsfile.Text = "Opera Card\'s Files";
             this.menuitem_operacardsfile.Click += new System.EventHandler(this.menuitem_deletecardsfile_Click);
-            // 
-            // menuitem_openfileinthis
-            // 
-            this.menuitem_openfileinthis.Name = "menuitem_openfileinthis";
-            this.menuitem_openfileinthis.Size = new System.Drawing.Size(203, 22);
-            this.menuitem_openfileinthis.Text = "Open File in This";
-            this.menuitem_openfileinthis.Click += new System.EventHandler(this.menuitem_openfileinthis_Click);
             // 
             // menuitem_default_script
             // 
@@ -375,13 +364,6 @@ namespace DataEditorX
             this.menuitem_export_all_sql.Size = new System.Drawing.Size(203, 22);
             this.menuitem_export_all_sql.Text = "Export all to Sql";
             this.menuitem_export_all_sql.Click += new System.EventHandler(this.Menuitem_export_all_sqlClick);
-            // 
-            // menuitem_findluafunc
-            // 
-            this.menuitem_findluafunc.Name = "menuitem_findluafunc";
-            this.menuitem_findluafunc.Size = new System.Drawing.Size(203, 22);
-            this.menuitem_findluafunc.Text = "Find Lua Function";
-            this.menuitem_findluafunc.Click += new System.EventHandler(this.menuitem_findluafunc_Click);
             // 
             // menuitem_exportdata
             // 
@@ -1310,7 +1292,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripMenuItem menuitem_mseconfig;
         private System.Windows.Forms.ToolStripMenuItem menuitem_importmseimg;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_findluafunc;
         private System.Windows.Forms.ToolStripSeparator tsep6;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;
@@ -1320,7 +1301,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_cutimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_operacardsfile;
         private System.Windows.Forms.ToolStripSeparator tsep2;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_openfileinthis;
         private System.Windows.Forms.ToolStripMenuItem menuitem_autocheckupdate;
         private System.Windows.Forms.ToolStripMenuItem menuitem_language;
         private System.Windows.Forms.ToolStripMenuItem menuitem_export_select_sql;

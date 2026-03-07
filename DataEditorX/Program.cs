@@ -56,10 +56,6 @@ namespace DataEditorX
             DataEditForm form2 = new(datapath);
             LanguageHelper.SetFormLabel(form2);
             langhelper.GetFormLabel(form2);
-            CodeEditForm form3 = new();
-            LanguageHelper.SetFormLabel(form3);
-            langhelper.GetFormLabel(form3);
-            // LANG.GetFormLabel(this);
             //获取窗体文字
             langhelper.SaveLanguage(conflang + ".bak");
         }

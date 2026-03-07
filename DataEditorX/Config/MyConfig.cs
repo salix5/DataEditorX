@@ -42,10 +42,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string FILE_FUNCTION = "_functions.txt";
         /// <summary>
-        /// 常量
-        /// </summary>
-        public const string FILE_CONSTANT = "constant.lua";
-        /// <summary>
         /// 指示物，胜利提示
         /// </summary>
         public const string FILE_STRINGS = "strings.conf";
@@ -65,10 +61,6 @@ namespace DataEditorX.Config
         /// 异步加载数据
         /// </summary>
         public const string TAG_ASYNC = "async";
-        /// <summary>
-        /// 用本程序打开文件
-        /// </summary>
-        public const string TAG_OPEN_IN_THIS = "open_file_in_this";
         /// <summary>
         /// 自动检查更新
         /// </summary>
@@ -98,26 +90,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string TAG_IMAGE_QUALITY = "image_quality";
         //CodeEditor
-        /// <summary>
-        /// 字体名
-        /// </summary>
-        public const string TAG_FONT_NAME = "fontname";
-        /// <summary>
-        /// 字体大小
-        /// </summary>
-        public const string TAG_FONT_SIZE = "fontsize";
-        /// <summary>
-        /// 支持中文
-        /// </summary>
-        public const string TAG_USE_IME = "use_IME";
-        /// <summary>
-        /// 自动换行
-        /// </summary>
-        public const string TAG_WORDWRAP = "wordwrap";
-        /// <summary>
-        /// tab替换为空格
-        /// </summary>
-        public const string TAG_TAB2SPACES = "tabisspace";
         /// <summary>
         /// 规则
         /// </summary>
@@ -154,7 +126,6 @@ namespace DataEditorX.Config
         public const string CDB_TYPE = "Database(*.cdb)|*.cdb|All files(*.*)|*.*";
         public const string YDK_TYPE = "Deck(*.ydk)|*.ydk|All files(*.*)|*.*";
         public const string IMAGE_TYPE = "JPEG(*.jpg)|*.jpg|BMP(*.bmp)|*.bmp|PNG(*.png)|*.png|All files(*.*)|*.*";
-        public const string SCRIPT_TYPE = "Lua(*.lua)|*.lua|All files(*.*)|*.*";
         public const string MSE_TYPE = "MSE Set(*.mse-set)|*.mse-set|All files(*.*)|*.*";
         #endregion
 
