@@ -146,6 +146,10 @@ namespace DataEditorX
             {
                 return;
             }
+            if (!YGOUtil.IsDatabase(file))
+            {
+                return;
+            }
             //添加历史
             history.AddHistory(file);
             //检查是否已经打开
@@ -158,11 +162,7 @@ namespace DataEditorX
             {
                 return;
             }
-
-            if (YGOUtil.IsDatabase(file))
-            {
-                OpenDatabase(file);
-            }
+            OpenDatabase(file);
         }
         //检查是否打开
         bool FindEditForm(string file, bool isOpen)

@@ -57,7 +57,7 @@ namespace DataEditorX.Controls
         }
         public void AddHistory(string file)
         {
-            if (string.IsNullOrEmpty(file) || !File.Exists(file))
+            if (string.IsNullOrEmpty(file) || !YGOUtil.IsDatabase(file) || !File.Exists(file))
             {
                 return;
             }
