@@ -44,16 +44,14 @@ namespace DataEditorX.Controls
                 {
                     continue;
                 }
-
-                if (File.Exists(line))
+                if (!YGOUtil.IsDatabase(line) || !File.Exists(line))
                 {
-                    if (YGOUtil.IsDatabase(line))
-                    {
-                        if (cdbHistory.Count < MyConfig.MAX_HISTORY)
-                        {
-                            cdbHistory.Add(line);
-                        }
-                    }
+                    continue;
+                }
+                cdbHistory.Add(line);
+                if (cdbHistory.Count >= MyConfig.MAX_HISTORY)
+                {
+                    break;
                 }
             }
         }
