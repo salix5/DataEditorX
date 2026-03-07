@@ -132,8 +132,6 @@ namespace DataEditorX
             LoadCard(oldCard);
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
-            //Add MSE language items
-            //AddMenuItemFormMSE();
             GetLanguageItem();
         }
         //窗体关闭
