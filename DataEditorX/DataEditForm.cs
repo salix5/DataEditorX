@@ -177,24 +177,25 @@ namespace DataEditorX
         //隐藏菜单
         void HideMenu()
         {
-            if (MdiParent == null)
+            if (this.DockPanel == null)
             {
                 return;
             }
 
             SuspendLayout();
+            int menuHeight = mainMenu.Height;
             mainMenu.Visible = false;
             menuitem_file.Visible = false;
             menuitem_file.Enabled = false;
             foreach (Control c in Controls)
             {
-                if (c.GetType() == typeof(MenuStrip))
+                if (c is MenuStrip || c == mainMenu)
                 {
                     continue;
                 }
 
                 Point p = c.Location;
-                c.Location = new Point(p.X, p.Y - 25);
+                c.Location = new Point(p.X, p.Y - menuHeight);
             }
             ResumeLayout(true);
         }
