@@ -186,7 +186,6 @@ namespace DataEditorX
             mainMenu.Visible = false;
             menuitem_file.Visible = false;
             menuitem_file.Enabled = false;
-            ResumeLayout(true);
             foreach (Control c in Controls)
             {
                 if (c.GetType() == typeof(MenuStrip))
@@ -197,7 +196,7 @@ namespace DataEditorX
                 Point p = c.Location;
                 c.Location = new Point(p.X, p.Y - 25);
             }
-            ResumeLayout();
+            ResumeLayout(true);
         }
         //移除Tag
         string RemoveTag(string text)
