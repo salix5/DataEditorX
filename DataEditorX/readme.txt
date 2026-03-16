@@ -17,7 +17,6 @@ data/cardinfo_xxx.txt 种族，类型，系列名
 ★其他设置
 async				后台加载数据为true，直接加载数据为false
 sync_with_card		修改卡片同时也修改卡图和脚本。
-open_file_in_this	用自带的脚本编辑器打开lua
 
 ★语言设置
 DataEditorX.exe.config
@@ -27,8 +26,8 @@ data/language_xxx.txt
 data/cardinfo_xxx.txt
 
 ★DataEditor：
-攻击力为？，可以输入？，?，-2任意一个。
-文件夹pics和script和cdb所在文件夹一致。
+攻击力？：？, ?, -2
+pics/, script/：cdb所在文件夹
 
 ★从ydk和图片文件夹读取卡片列表
 支持：密码的png/jpg图片
