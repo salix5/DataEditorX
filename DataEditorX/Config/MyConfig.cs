@@ -40,7 +40,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 源码链接
         /// </summary>
-        public const string sourceURL = "https://github.com/salix5/DataEditorX";
+        public const string sourceURL = "https://github.com/salix5/DataEditorX/releases/latest";
         /// <summary>
         /// 升级链接
         /// </summary>
