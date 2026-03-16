@@ -122,48 +122,5 @@ namespace DataEditorX.Common
             return "";
         }
         #endregion
-
-        #region 下载文件
-        /// <summary>
-        /// 下载文件
-        /// </summary>
-        /// <param name="filename">保存文件路径</param>
-        /// <returns>是否下载成功</returns>
-        public static bool DownLoad(string filename)
-        {
-            try
-            {
-                if (File.Exists(filename))
-                {
-                    File.Delete(filename);
-                }
-
-                HttpWebRequest Myrq = (HttpWebRequest)WebRequest.Create("null");
-                HttpWebResponse myrp = (HttpWebResponse)Myrq.GetResponse();
-                long totalBytes = myrp.ContentLength;
-
-                Stream st = myrp.GetResponseStream();
-                Stream so = new FileStream(filename + ".tmp", FileMode.Create);
-                long totalDownloadedByte = 0;
-                byte[] by = new byte[1024 * 512];
-                int osize = st.Read(by, 0, by.Length);
-                while (osize > 0)
-                {
-                    totalDownloadedByte = osize + totalDownloadedByte;
-                    System.Windows.Forms.Application.DoEvents();
-                    so.Write(by, 0, osize);
-                    osize = st.Read(by, 0, by.Length);
-                }
-                so.Close();
-                st.Close();
-                File.Move(filename + ".tmp", filename);
-            }
-            catch (System.Exception)
-            {
-                return false;
-            }
-            return true;
-        }
-        #endregion
     }
 }
