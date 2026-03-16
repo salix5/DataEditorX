@@ -128,7 +128,15 @@ namespace DataEditorX.Core
         }
         public static bool CheckTable(string db)
         {
-            return Command(db, DefaultTableSQL) >= 0;
+            if (!File.Exists(db))
+            {
+                return false;
+            }
+            using SQLiteConnection con = new($"Data Source={db}");
+            con.Open();
+            SetupConnection(con);
+            using SQLiteCommand cmd = new("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name IN ('datas','texts');", con);
+            return (long)cmd.ExecuteScalar() == 2;
         }
         #endregion
 
