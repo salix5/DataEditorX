@@ -38,14 +38,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string FILE_HISTORY = "history.txt";
         /// <summary>
-        /// 函数
-        /// </summary>
-        public const string FILE_FUNCTION = "_functions.txt";
-        /// <summary>
-        /// 指示物，胜利提示
-        /// </summary>
-        public const string FILE_STRINGS = "strings.conf";
-        /// <summary>
         /// 源码链接
         /// </summary>
         public const string sourceURL = "https://github.com/salix5/DataEditorX";
