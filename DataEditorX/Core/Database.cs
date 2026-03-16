@@ -9,7 +9,6 @@ using DataEditorX.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -163,29 +162,13 @@ namespace DataEditorX.Core
             SetupConnection(con);
             using (SQLiteTransaction trans = con.BeginTransaction())
             {
-                try
+                using SQLiteCommand cmd = new("", con, trans);
+                foreach (string SQLstr in SQLs)
                 {
-                    using SQLiteCommand cmd = new("", con, trans);
-                    foreach (string SQLstr in SQLs)
-                    {
-                        cmd.CommandText = SQLstr;
-                        result += cmd.ExecuteNonQuery();
-                    }
-                    trans.Commit();
+                    cmd.CommandText = SQLstr;
+                    result += cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    try
-                    {
-                        trans.Rollback();
-                    }
-                    catch (Exception rbEx)
-                    {
-                        Trace.TraceError($"Database.Command rollback failed on '{db}': {rbEx}");
-                    }
-                    Trace.TraceError($"Database.Command failed on '{db}': {ex}");
-                    result = -1;
-                }
+                trans.Commit();
             }
             return result;
         }
