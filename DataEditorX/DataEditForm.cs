@@ -1324,7 +1324,6 @@ namespace DataEditorX
         }
         void ImportImage(string file, string tid)
         {
-            string f;
             if (pl_image.BackgroundImage != null && pl_image.BackgroundImage != cover)
             {
                 pl_image.BackgroundImage.Dispose();
