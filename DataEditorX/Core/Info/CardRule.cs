@@ -1,21 +1,19 @@
+using System;
 
 namespace DataEditorX.Core.Info
 {
-    public enum CardRule : int
+    [Flags]
+    public enum CardRule : long
     {
         /// <summary>无</summary>
-        NONE = 0,
+        None = 0,
         /// <summary>OCG</summary>
-        OCG = 1,
+        OCG = 0x1,
         /// <summary>TCG</summary>
-        TCG = 2,
-        /// <summary>OT</summary>
-        OCGTCG = 3,
+        TCG = 0x2,
         /// <summary>DIY,原创卡</summary>
-        DIY = 4,
+        DIY = 0x4,
         /// <summary>简体中文</summary>
-        CCG = 9,
-        /// <summary>简体中文/TCG</summary>
-        CCGTCG = 0xb,
+        CCG = 0x8,
     }
 }

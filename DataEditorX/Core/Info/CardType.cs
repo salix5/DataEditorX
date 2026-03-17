@@ -5,6 +5,7 @@
  * 时间: 9:08
  * 
  */
+using System;
 using System.Collections.Generic;
 
 namespace DataEditorX.Core.Info
@@ -12,8 +13,10 @@ namespace DataEditorX.Core.Info
     /// <summary>
     /// 卡片类型
     /// </summary>
+    [Flags]
     public enum CardType : long
     {
+        None=0,
         ///<summary>怪兽卡</summary>
         TYPE_MONSTER = 0x1,
         ///<summary>魔法卡</summary>

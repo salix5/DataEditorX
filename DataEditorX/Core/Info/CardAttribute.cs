@@ -11,8 +11,10 @@ namespace DataEditorX.Core.Info
     /// <summary>
     /// 卡片属性
     /// </summary>
-    public enum CardAttribute : int
+    [Flags]
+    public enum CardAttribute : long
     {
+        None = 0,
         /// <summary>
         /// 地
         /// </summary>

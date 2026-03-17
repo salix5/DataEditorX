@@ -5,15 +5,17 @@
  * 时间: 9:44
  * 
  */
+ using System;
 
 namespace DataEditorX.Core.Info
 {
     /// <summary>
     /// 卡片种族
     /// </summary>
+    [Flags]
     public enum CardRace : long
     {
-        RACE_NONE = 0,
+        None = 0,
         ///<summary>战士</summary>
         RACE_WARRIOR = 0x1,
         ///<summary>魔法师</summary>

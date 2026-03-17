@@ -585,7 +585,7 @@ namespace DataEditorX.Core.Mse
                     }
                 }
             }
-            return (long)CardRace.RACE_NONE;
+            return (long)CardRace.None;
         }
         long GetTypeInt(string type)
         {
@@ -599,7 +599,7 @@ namespace DataEditorX.Core.Mse
                     }
                 }
             }
-            return 0;
+            return (long)CardType.None;
         }
         static string GetValue(string content, string tag)
         {
@@ -742,7 +742,7 @@ namespace DataEditorX.Core.Mse
             string tmp;
             Card c = new(0)
             {
-                ot = (int)CardRule.OCGTCG,
+                ot = (long)(CardRule.OCG | CardRule.TCG),
                 //卡名
                 name = GetValue(content, TAG_NAME)
             };
