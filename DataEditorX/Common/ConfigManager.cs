@@ -11,24 +11,18 @@ namespace DataEditorX.Common
         /// <param name="appValue"></param>
         public static void Save(string appKey, string appValue)
         {
-            try
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = config.AppSettings.Settings;
+            if (settings[appKey] == null)
             {
-                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = config.AppSettings.Settings;
-                if (settings[appKey] == null)
-                {
-                    settings.Add(appKey, appValue);
-                }
-                else
-                {
-                    settings[appKey].Value = appValue;
-                }
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
+                settings.Add(appKey, appValue);
             }
-            catch
+            else
             {
+                settings[appKey].Value = appValue;
             }
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
         /// <summary>
         /// 获取值
@@ -37,15 +31,8 @@ namespace DataEditorX.Common
         /// <returns></returns>
         public static string GetAppConfig(string appKey)
         {
-            try
-            {
-                string val = ConfigurationManager.AppSettings[appKey];
-                return val ?? "";
-            }
-            catch
-            {
-                return "";
-            }
+            string val = ConfigurationManager.AppSettings[appKey];
+            return val ?? "";
         }
     }
 }
