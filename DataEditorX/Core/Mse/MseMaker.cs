@@ -451,35 +451,36 @@ namespace DataEditorX.Core.Mse
             }
             if (c.IsType(CardType.TYPE_LINK))
             {
-                if (CardLink.IsLink(c.def, CardLink.DownLeft))
+                CardLink marker = (CardLink)c.def;
+                if (marker.HasFlag(CardLink.DownLeft))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_DL, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.Down))
+                if (marker.HasFlag(CardLink.Down))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_Down, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.DownRight))
+                if (marker.HasFlag(CardLink.DownRight))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_DR, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.UpLeft))
+                if (marker.HasFlag(CardLink.UpLeft))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_UL, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.Up))
+                if (marker.HasFlag(CardLink.Up))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_Up, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.UpRight))
+                if (marker.HasFlag(CardLink.UpRight))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_UR, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.Left))
+                if (marker.HasFlag(CardLink.Left))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_Left, "yes"));
                 }
-                if (CardLink.IsLink(c.def, CardLink.Right))
+                if (marker.HasFlag(CardLink.Right))
                 {
                     sb.AppendLine(GetLine(TAG_Link_Marker_Right, "yes"));
                 }
