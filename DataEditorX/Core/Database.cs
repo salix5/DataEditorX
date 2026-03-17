@@ -295,10 +295,10 @@ namespace DataEditorX.Core
                 return Array.Empty<Card>();
             }
             string idCondition = $" AND id IN ({string.Join(",", ids)})";
-            return Read(db, idCondition);
+            return Query(db, idCondition);
         }
 
-        public static Card[] Read(string db, string queryCondition)
+        static Card[] Query(string db, string queryCondition)
         {
             if (!File.Exists(db))
             {
