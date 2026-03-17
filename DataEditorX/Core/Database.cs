@@ -273,7 +273,6 @@ namespace DataEditorX.Core
                 {
                     list.Add(ReadCard(reader));
                 }
-                trans.Commit();
             }
             return list.ToArray();
         }
@@ -317,7 +316,6 @@ namespace DataEditorX.Core
                 {
                     list.Add(ReadCard(reader));
                 }
-                trans.Commit();
             }
             return list.ToArray();
         }
