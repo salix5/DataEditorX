@@ -444,6 +444,7 @@ namespace DataEditorX.Core
             }
 
             StringBuilder sb = new();
+            parameters.Add("@monster", System.Data.DbType.Int64).Value = Info.CardType.TYPE_MONSTER;
             if (!string.IsNullOrEmpty(c.name))
             {
                 string pattern = "";
@@ -515,7 +516,7 @@ namespace DataEditorX.Core
 
             if (c.atk == -1)
             {
-                sb.Append(@" AND datas.type & 0x1 = 0x1 AND datas.atk = 0");
+                sb.Append(@" AND datas.type & @monster AND datas.atk = 0");
             }
             else if (c.atk < 0 || c.atk > 0)
             {
@@ -532,7 +533,7 @@ namespace DataEditorX.Core
             {
                 if (c.def == -1)
                 {
-                    sb.Append(@" AND datas.type & 0x1 = 0x1 AND datas.def = 0");
+                    sb.Append(@" AND datas.type & @monster AND datas.def = 0");
                 }
                 else if (c.def < 0 || c.def > 0)
                 {
