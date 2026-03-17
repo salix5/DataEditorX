@@ -92,34 +92,20 @@ namespace DataEditorX.Common
         /// <returns>内容</returns>
         public static string GetHtmlContentByUrl(string url)
         {
-            string htmlContent = string.Empty;
             try
             {
-                HttpWebRequest httpWebRequest =
-                    (HttpWebRequest)WebRequest.Create(url);
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Timeout = 15000;
-                using (HttpWebResponse httpWebResponse =
-                       (HttpWebResponse)httpWebRequest.GetResponse())
-                {
-                    using (Stream stream = httpWebResponse.GetResponseStream())
-                    {
-                        using (StreamReader streamReader =
-                               new(stream, Encoding.UTF8))
-                        {
-                            htmlContent = streamReader.ReadToEnd();
-                            streamReader.Close();
-                        }
-                        stream.Close();
-                    }
-                    httpWebResponse.Close();
-                }
+                using HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using Stream stream = httpWebResponse.GetResponseStream();
+                using StreamReader streamReader = new(stream, Encoding.UTF8);
+                string htmlContent = streamReader.ReadToEnd();
                 return htmlContent;
             }
             catch
             {
-
+                return "";
             }
-            return "";
         }
         #endregion
     }
