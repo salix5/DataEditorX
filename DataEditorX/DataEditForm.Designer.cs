@@ -56,7 +56,6 @@ namespace DataEditorX
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_testpendulumtext = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep7 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_importmseimg = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_data = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_operacardsfile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_default_script = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,8 +234,7 @@ namespace DataEditorX
             this.menuitem_saveasmse_select,
             this.menuitem_saveasmse,
             this.menuitem_testpendulumtext,
-            this.tsep7,
-            this.menuitem_importmseimg});
+            this.tsep7});
             this.menu_image.Name = "menu_image";
             this.menu_image.Size = new System.Drawing.Size(66, 20);
             this.menu_image.Text = "Image(&I)";
@@ -284,13 +282,6 @@ namespace DataEditorX
             // 
             this.tsep7.Name = "tsep7";
             this.tsep7.Size = new System.Drawing.Size(190, 6);
-            // 
-            // menuitem_importmseimg
-            // 
-            this.menuitem_importmseimg.Name = "menuitem_importmseimg";
-            this.menuitem_importmseimg.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_importmseimg.Text = "Drop Image to MSE";
-            this.menuitem_importmseimg.Click += new System.EventHandler(this.menuitem_importmseimg_Click);
             // 
             // menu_data
             // 
@@ -1291,7 +1282,6 @@ namespace DataEditorX
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripMenuItem menuitem_mseconfig;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_importmseimg;
         private System.Windows.Forms.ToolStripSeparator tsep6;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;

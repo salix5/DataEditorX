@@ -1322,12 +1322,6 @@ namespace DataEditorX
                 e.Effect = DragDropEffects.None;
             }
         }
-        private void menuitem_importmseimg_Click(object sender, EventArgs e)
-        {
-            string tid = tb_cardcode.Text;
-            menuitem_importmseimg.Checked = !menuitem_importmseimg.Checked;
-            SetImage(tid);
-        }
         void ImportImage(string file, string tid)
         {
             string f;
@@ -1336,20 +1330,7 @@ namespace DataEditorX
                 pl_image.BackgroundImage.Dispose();
                 pl_image.BackgroundImage = cover;
             }
-            if (menuitem_importmseimg.Checked)
-            {
-                if (!Directory.Exists(tasker.MSEImagePath))
-                {
-                    Directory.CreateDirectory(tasker.MSEImagePath);
-                }
-
-                f = MyPath.Combine(tasker.MSEImagePath, tid + ".jpg");
-                File.Copy(file, f, true);
-            }
-            else
-            {
-                tasker.ToImg(file, ygopath.GetImage(tid));
-            }
+            tasker.ToImg(file, ygopath.GetImage(tid));
             SetImage(tid);
         }
         public void SetImage(string id)
@@ -1360,15 +1341,6 @@ namespace DataEditorX
         public void SetImage(long id)
         {
             string pic = ygopath.GetImage(id);
-            if (menuitem_importmseimg.Checked)//显示MSE图片
-            {
-                string msepic = MseMaker.GetCardImagePath(tasker.MSEImagePath, oldCard);
-                if (File.Exists(msepic))
-                {
-                    pl_image.BackgroundImage = MyBitmap.ReadImage(msepic);
-                    return;
-                }
-            }
             pl_image.BackgroundImage = MyBitmap.ReadImage(pic) ?? cover;
         }
         void Menuitem_convertimageClick(object sender, EventArgs e)

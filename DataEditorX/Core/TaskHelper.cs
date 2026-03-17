@@ -236,11 +236,6 @@ namespace DataEditorX.Core
         #endregion
 
         #region MSE存档
-        public string MSEImagePath
-        {
-            get { return mseHelper.ImagePath; }
-        }
-
         public string Datapath { get; }
 
         public void SaveMSEs(string file, Card[] cards, bool isUpdate)
