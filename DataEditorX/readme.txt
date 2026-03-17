@@ -1,4 +1,4 @@
-[DataEditorX]3.6.1[DataEditorX]
+[DataEditorX]3.7.0[DataEditorX]
 
 ★运行环境(Environment)
 本程序基于.NET Framework 4.8开发
