@@ -570,7 +570,7 @@ namespace DataEditorX.Core
         /// <param name="c">Card data</param>
         /// <param name="ignore">Ignore existing entries</param>
         /// <returns>SQL statements</returns>
-        public static string GetInsertSQL(Card c, bool ignore, bool hex = false)
+        public static string GetInsertSQL(Card c, bool ignore, bool hex)
         {
             string insertMode = ignore ? "INSERT OR IGNORE" : "INSERT OR REPLACE";
             string setcode = c.setcode.ToString();
@@ -603,12 +603,11 @@ namespace DataEditorX.Core
         public static void ExportSQL(string file, Card[] cards)
         {
             using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new(fs, Encoding.UTF8);
+            using StreamWriter sw = new(fs, Encoding.UTF8);
             foreach (Card c in cards)
             {
                 sw.WriteLine(GetInsertSQL(c, false, true));
             }
-            sw.Close();
         }
         #endregion
 
