@@ -102,13 +102,10 @@ namespace DataEditorX.Common
         /// <returns></returns>
         public static int GetIntegerValue(string line, int defalut)
         {
-            int i;
-            try
+            if (int.TryParse(GetValue(line), out int result))
             {
-                i = int.Parse(GetValue(line));
-                return i;
+                return result;
             }
-            catch { }
             return defalut;
         }
         /// <summary>
