@@ -504,12 +504,12 @@ namespace DataEditorX.Core
 
             if (c.type > 0)
             {
-                if (c.type == (Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_SPELL))
+                if (c.type == (long)(Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_SPELL))
                 {
                     sb.Append(@" AND datas.type = @type");
                     parameters.Add("@type", System.Data.DbType.Int64).Value = Info.CardType.TYPE_SPELL;
                 }
-                else if (c.type == (Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_TRAP))
+                else if (c.type == (long)(Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_TRAP))
                 {
                     sb.Append(@" AND datas.type = @type");
                     parameters.Add("@type", System.Data.DbType.Int64).Value = Info.CardType.TYPE_TRAP;
