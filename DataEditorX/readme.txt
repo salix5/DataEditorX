@@ -1,7 +1,7 @@
 [DataEditorX]3.7.0[DataEditorX]
 
 ★运行环境(Environment)
-本程序基于.NET Framework 4.8开发
+.NET Framework 4.8
 
 
 ★文件关联(File association)
@@ -10,12 +10,12 @@
 
 
 ★设置
-DataEditorX.exe.config 语言设置，图片设置
-data/language_xxx.txt 界面和消息提示文字
-data/cardinfo_xxx.txt 种族，类型，系列名
+DataEditorX.exe.config	语言设置，图片设置
+data/language_xxx.txt	界面和消息提示文字
+data/cardinfo_xxx.txt	种族，类型，系列名
 
 ★其他设置
-async				后台加载数据为true，直接加载数据为false
+async				true：后台加载数据，false：直接加载数据
 sync_with_card		修改卡片同时也修改卡图和脚本。
 
 ★语言设置
@@ -26,9 +26,6 @@ data/language_xxx.txt
 data/cardinfo_xxx.txt
 
 ★DataEditor：
-攻击力？：？, ?, -2
-pics/, script/：cdb所在文件夹
-
 ★从ydk和图片文件夹读取卡片列表
 支持：密码的png/jpg图片
 
@@ -39,14 +36,15 @@ pics/, script/：cdb所在文件夹
 ★卡片搜索
 1.仅支持一个系列名搜索
 2.ATK,DEF搜索：
-	如果是0，则输入-1或.
-	如果是?，则输入-2或?
-3.卡片名称搜索：
-	AOJ%%		以“AOJ”开头
-	流%%天		以“流”开头，“天”结尾
-	%%战士		以“战士”结尾
+0: 输入-1或.
+?: 输入-2或?
 
-5.id范围搜索示例：
+3.卡片名称搜索：
+AOJ%%		以“AOJ”开头
+流%%天		以“流”开头，“天”结尾
+%%战士		以“战士”结尾
+
+4.id范围搜索：
 id or alias = 10000000
 id: 10000000, alias: 0
 
@@ -76,7 +74,6 @@ card:
 
 ★MSE图片
 支持：密码，带0密码，卡名的png，jpg图片
-在“设置为MSE图片库”（“Set MSE'Image ”）打勾，导入卡图都是放到MSE的图片文件夹
 
 ★Magic Set Editor 2
 https://github.com/247321453/MagicSetEditor2
