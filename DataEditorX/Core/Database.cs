@@ -6,6 +6,7 @@
  * 
  */
 using DataEditorX.Common;
+using DataEditorX.Core.Info;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -444,7 +445,7 @@ namespace DataEditorX.Core
             }
 
             StringBuilder sb = new();
-            parameters.Add("@monster", System.Data.DbType.Int64).Value = Info.CardType.TYPE_MONSTER;
+            parameters.Add("@monster", System.Data.DbType.Int64).Value = CardType.TYPE_MONSTER;
             if (!string.IsNullOrEmpty(c.name))
             {
                 string pattern = "";
@@ -504,15 +505,15 @@ namespace DataEditorX.Core
 
             if (c.type > 0)
             {
-                if (c.type == (long)(Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_SPELL))
+                if (c.type == (long)(CardType.TYPE_NORMAL | CardType.TYPE_SPELL))
                 {
                     sb.Append(@" AND datas.type = @type");
-                    parameters.Add("@type", System.Data.DbType.Int64).Value = Info.CardType.TYPE_SPELL;
+                    parameters.Add("@type", System.Data.DbType.Int64).Value = CardType.TYPE_SPELL;
                 }
-                else if (c.type == (long)(Info.CardType.TYPE_NORMAL | Info.CardType.TYPE_TRAP))
+                else if (c.type == (long)(CardType.TYPE_NORMAL | CardType.TYPE_TRAP))
                 {
                     sb.Append(@" AND datas.type = @type");
-                    parameters.Add("@type", System.Data.DbType.Int64).Value = Info.CardType.TYPE_TRAP;
+                    parameters.Add("@type", System.Data.DbType.Int64).Value = CardType.TYPE_TRAP;
                 }
                 else {
                     sb.Append(@" AND datas.type & @type = @type");
@@ -536,7 +537,7 @@ namespace DataEditorX.Core
                 parameters.Add("@atk", System.Data.DbType.Int64).Value = c.atk;
             }
 
-            if (c.IsType(Info.CardType.TYPE_LINK))
+            if (c.IsType(CardType.TYPE_LINK))
             {
                 sb.Append(@" AND datas.def & @def = @def");
                 parameters.Add("@def", System.Data.DbType.Int64).Value = c.def;
