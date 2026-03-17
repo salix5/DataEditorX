@@ -81,7 +81,6 @@ namespace DataEditorX.Config
         /// 图片质量
         /// </summary>
         public const string TAG_IMAGE_QUALITY = "image_quality";
-        //CodeEditor
         /// <summary>
         /// 规则
         /// </summary>
