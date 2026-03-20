@@ -40,7 +40,7 @@ jobs:
         tar -cf $env:Release_Name --format=zip release
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@v6
       with:
         path: ${{ env.Release_Name }}
   
