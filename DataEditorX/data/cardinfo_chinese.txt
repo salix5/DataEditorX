@@ -1,6 +1,6 @@
 ################ 用 tab 分隔，跳過value=N/A的項目
 ##rule
-0x0	ot N/A
+0x0	OT N/A
 0x1	OCG
 0x2	TCG
 0x3	OCG & TCG
@@ -723,4 +723,5 @@
 0x1db	妖精傳姬	妖精伝姫
 0x1dc	小丑戲幫	道化の一座
 0x1dd	GMX
+0x1de	黑暗協調	DT
 #end
