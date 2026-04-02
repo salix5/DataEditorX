@@ -582,8 +582,7 @@ namespace DataEditorX
             this.tb_edittext.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.tb_edittext.HideSelection = false;
             this.tb_edittext.Location = new System.Drawing.Point(348, 493);
-            this.tb_edittext.MaxLength = 2000;
-            this.tb_edittext.Multiline = true;
+            this.tb_edittext.MaxLength = 1000;
             this.tb_edittext.Name = "tb_edittext";
             this.tb_edittext.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tb_edittext.Size = new System.Drawing.Size(301, 57);
