@@ -21,6 +21,9 @@ env:
 jobs:
   build:
     runs-on: windows-2022
+    permissions:
+      contents: read
+      actions: write
 
     steps:
     - name: Checkout
