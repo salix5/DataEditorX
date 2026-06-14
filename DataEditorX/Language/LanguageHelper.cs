@@ -163,6 +163,10 @@ namespace DataEditorX.Language
 
         void GetControlLabel(Control c, string pName, string formName)
         {
+            if (c is TextBox)
+            {
+                return;
+            }
             string fullPath = pName;
             if (!string.IsNullOrEmpty(c.Name))
             {
