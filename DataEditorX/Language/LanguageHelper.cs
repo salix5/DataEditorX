@@ -163,23 +163,25 @@ namespace DataEditorX.Language
 
         void GetControlLabel(Control c, string pName, string formName)
         {
-            if (!string.IsNullOrEmpty(pName))
+            string fullPath = pName;
+            if (!string.IsNullOrEmpty(c.Name))
             {
-                pName += SEP_CONTROL;
+                if (string.IsNullOrEmpty(fullPath))
+                {
+                    fullPath = c.Name;
+                }
+                else
+                {
+                    fullPath += $"{SEP_CONTROL}{c.Name}";
+                }
             }
 
-            if (string.IsNullOrEmpty(c.Name))
-            {
-                return;
-            }
-
-            pName += c.Name;
             if (c is ListView lv)
             {
                 int i, count = lv.Columns.Count;
                 for (i = 0; i < count; i++)
                 {
-                    AddLabel($"{pName}{SEP_CONTROL}{i}", lv.Columns[i].Text);
+                    AddLabel($"{fullPath}{SEP_CONTROL}{i}", lv.Columns[i].Text);
                 }
             }
             else if (c is ToolStrip ms)
@@ -189,17 +191,14 @@ namespace DataEditorX.Language
                     GetMenuItem($"{formName}{SEP_CONTROL}{ms.Name}", tsi);
                 }
             }
-            else
+            else if (!string.IsNullOrEmpty(c.Name) && !string.IsNullOrEmpty(c.Text))
             {
-                AddLabel(pName, c.Text);
+                AddLabel(fullPath, c.Text);
             }
 
-            if (c.Controls.Count > 0)
+            foreach (Control sc in c.Controls)
             {
-                foreach (Control sc in c.Controls)
-                {
-                    GetControlLabel(sc, pName, formName);
-                }
+                GetControlLabel(sc, fullPath, formName);
             }
             ContextMenuStrip conms = c.ContextMenuStrip;
             if (conms != null)
