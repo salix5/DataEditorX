@@ -18,7 +18,5 @@ namespace DataEditorX.Core
         CutImages,
         ///<summary>转换图片</summary>
         ConvertImages,
-        ///<summary>读取MSE存档</summary>
-        ReadMSE,
     }
 }

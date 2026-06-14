@@ -51,7 +51,6 @@ namespace DataEditorX
             this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_mseconfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsep3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_readmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_testpendulumtext = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,7 +228,6 @@ namespace DataEditorX
             this.menu_image.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitem_mseconfig,
             this.tsep3,
-            this.menuitem_readmse,
             this.menuitem_saveasmse_select,
             this.menuitem_saveasmse,
             this.menuitem_testpendulumtext});
@@ -247,13 +245,6 @@ namespace DataEditorX
             // 
             this.tsep3.Name = "tsep3";
             this.tsep3.Size = new System.Drawing.Size(190, 6);
-            // 
-            // menuitem_readmse
-            // 
-            this.menuitem_readmse.Name = "menuitem_readmse";
-            this.menuitem_readmse.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_readmse.Text = "Read from MSE";
-            this.menuitem_readmse.Click += new System.EventHandler(this.menuitem_readmse_Click);
             // 
             // menuitem_saveasmse_select
             // 
@@ -585,7 +576,7 @@ namespace DataEditorX
             this.tb_edittext.MaxLength = 1000;
             this.tb_edittext.Name = "tb_edittext";
             this.tb_edittext.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_edittext.Size = new System.Drawing.Size(301, 57);
+            this.tb_edittext.Size = new System.Drawing.Size(301, 23);
             this.tb_edittext.TabIndex = 4;
             this.tb_edittext.WordWrap = false;
             this.tb_edittext.TextChanged += new System.EventHandler(this.Tb_edittextTextChanged);
@@ -1275,7 +1266,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripMenuItem menuitem_mseconfig;
         private System.Windows.Forms.ToolStripSeparator tsep6;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_readmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse;
         private System.Windows.Forms.ToolStripSeparator tsep3;

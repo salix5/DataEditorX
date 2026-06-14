@@ -1165,11 +1165,6 @@ namespace DataEditorX
                     case MyTask.ConvertImages:
                         MyMsg.Show(LMSG.ConvertImageOK);
                         break;
-                    case MyTask.ReadMSE:
-                        //保存读取的卡片
-                        SaveCards(tasker.CardList);
-                        MyMsg.Show(LMSG.ReadMSEisOK);
-                        break;
                 }
             }
         }
@@ -1509,31 +1504,6 @@ namespace DataEditorX
         private void cb_setname4_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetcodeIndexChanged(3, cb_setname4, tb_setcode4);
-        }
-        #endregion
-
-        #region 读取MSE存档
-        private void menuitem_readmse_Click(object sender, EventArgs e)
-        {
-            if (!IsOpened())
-            {
-                return;
-            }
-
-            if (isRun())
-            {
-                return;
-            }
-            //select open mse-set
-            using OpenFileDialog dlg = new();
-            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-            dlg.Filter = MyConfig.MSE_TYPE;
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                bool isUpdate = MyMsg.Question(LMSG.IfReplaceExistingImage);
-                tasker.SetTask(MyTask.ReadMSE, Array.Empty<Card>(), dlg.FileName, isUpdate.ToString());
-                Run(LanguageHelper.GetMsg(LMSG.ReadMSE));
-            }
         }
         #endregion
 

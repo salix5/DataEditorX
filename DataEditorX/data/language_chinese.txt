@@ -30,7 +30,6 @@ DataEditForm.mainMenu.menuitem_quit	退出
 #
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
-DataEditForm.mainMenu.menuitem_readmse	读取MSE存档
 DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
 DataEditForm.mainMenu.menuitem_saveasmse	把结果导为MSE存档
 DataEditForm.mainMenu.menuitem_testpendulumtext	测试灵摆效果文本
