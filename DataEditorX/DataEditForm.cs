@@ -1675,13 +1675,6 @@ namespace DataEditorX
                 }
                 files.Add(file);
             }
-            if (files.Count > 5)
-            {
-                if (!MyMsg.Question(LMSG.ManyFilesWarning))
-                {
-                    return;
-                }
-            }
             if (DockPanel.Parent is not MainForm main)
             {
                 return;

@@ -91,11 +91,6 @@ namespace DataEditorX.Language
         ReadMSEisOK = 0x48,
 
         PlzRestart = 0x49,
-        ExportMseImages = 0x4a,
-        ExportMseImagesErr = 0x4b,
-        SyntaxCheckPassed = 0x4c,
-        ManyFilesWarning = 0x4d,
-        UndoConfirm = 0x4e,
         COUNT,
     }
 }
