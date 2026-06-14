@@ -49,8 +49,6 @@ namespace DataEditorX
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_quit = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_mseconfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsep3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_testpendulumtext = new System.Windows.Forms.ToolStripMenuItem();
@@ -226,25 +224,12 @@ namespace DataEditorX
             // menu_image
             // 
             this.menu_image.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuitem_mseconfig,
-            this.tsep3,
             this.menuitem_saveasmse_select,
             this.menuitem_saveasmse,
             this.menuitem_testpendulumtext});
             this.menu_image.Name = "menu_image";
             this.menu_image.Size = new System.Drawing.Size(66, 20);
             this.menu_image.Text = "Image(&I)";
-            // 
-            // menuitem_mseconfig
-            // 
-            this.menuitem_mseconfig.Name = "menuitem_mseconfig";
-            this.menuitem_mseconfig.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_mseconfig.Text = "MSE config";
-            // 
-            // tsep3
-            // 
-            this.tsep3.Name = "tsep3";
-            this.tsep3.Size = new System.Drawing.Size(190, 6);
             // 
             // menuitem_saveasmse_select
             // 
@@ -1264,11 +1249,9 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_copyto;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem menu_image;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_mseconfig;
         private System.Windows.Forms.ToolStripSeparator tsep6;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;
         private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse;
-        private System.Windows.Forms.ToolStripSeparator tsep3;
         private System.Windows.Forms.ToolStripMenuItem menuitem_cutimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_operacardsfile;
         private System.Windows.Forms.ToolStripSeparator tsep2;
