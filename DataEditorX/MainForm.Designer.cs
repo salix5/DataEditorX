@@ -64,11 +64,10 @@ namespace DataEditorX
             // 
             // dockPanel
             // 
-            this.dockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
-            this.dockPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingMdi;
             this.dockPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockPanel.DockBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
+            this.dockPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingMdi;
             this.dockPanel.Location = new System.Drawing.Point(0, 24);
             this.dockPanel.Margin = new System.Windows.Forms.Padding(0);
             this.dockPanel.Name = "dockPanel";

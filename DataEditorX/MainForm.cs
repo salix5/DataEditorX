@@ -42,6 +42,7 @@ namespace DataEditorX
         {
             //初始化控件
             InitializeComponent();
+            this.dockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.datapath = datapath;
             //文件路径
             conflang = MyConfig.GetLanguageFile(datapath);
