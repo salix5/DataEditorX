@@ -53,32 +53,32 @@ namespace DataEditorX.Language
             fm.ResumeLayout();
         }
 
-        static bool GetLabel(string key, out string title)
+        static bool GetLabel(string key, out string value)
         {
-            if (_gWordsList.TryGetValue(key, out title))
-            {
-                return true;
-            }
-            title = "";
-            return false;
+            return _gWordsList.TryGetValue(key, out value);
         }
 
         static void SetControlLabel(Control c, string pName, string formName)
         {
-            if (!string.IsNullOrEmpty(pName))
+            string fullPath = pName;
+            if (!string.IsNullOrEmpty(c.Name))
             {
-                pName += SEP_CONTROL;
+                if (string.IsNullOrEmpty(fullPath))
+                {
+                    fullPath = c.Name;
+                }
+                else
+                {
+                    fullPath += $"{SEP_CONTROL}{c.Name}";
+                }
             }
-
-            pName += c.Name;
-            string title;
             if (c is ListView lv)
             {
                 int i, count = lv.Columns.Count;
                 for (i = 0; i < count; i++)
                 {
                     ColumnHeader ch = lv.Columns[i];
-                    if (GetLabel($"{pName}{SEP_CONTROL}{i}", out title))
+                    if (GetLabel($"{fullPath}{SEP_CONTROL}{i}", out string title))
                     {
                         ch.Text = title;
                     }
@@ -93,18 +93,15 @@ namespace DataEditorX.Language
             }
             else
             {
-                if (GetLabel(pName, out title))
+                if (GetLabel(fullPath, out string title))
                 {
                     c.Text = title;
                 }
             }
 
-            if (c.Controls.Count > 0)
+            foreach (Control sc in c.Controls)
             {
-                foreach (Control sc in c.Controls)
-                {
-                    SetControlLabel(sc, pName, formName);
-                }
+                SetControlLabel(sc, fullPath, formName);
             }
             ContextMenuStrip conms = c.ContextMenuStrip;
             if (conms != null)
@@ -156,33 +153,39 @@ namespace DataEditorX.Language
             GetControlLabel(fm, "", fm.Name);
         }
 
-        void AddLabel(string key, string title)
+        void AddLabel(string key, string value)
         {
             if (!mWordslist.ContainsKey(key))
             {
-                mWordslist.Add(key, title);
+                mWordslist.Add(key, value);
             }
         }
 
         void GetControlLabel(Control c, string pName, string formName)
         {
-            if (!string.IsNullOrEmpty(pName))
-            {
-                pName += SEP_CONTROL;
-            }
-
-            if (string.IsNullOrEmpty(c.Name))
+            if (c is TextBox)
             {
                 return;
             }
+            string fullPath = pName;
+            if (!string.IsNullOrEmpty(c.Name))
+            {
+                if (string.IsNullOrEmpty(fullPath))
+                {
+                    fullPath = c.Name;
+                }
+                else
+                {
+                    fullPath += $"{SEP_CONTROL}{c.Name}";
+                }
+            }
 
-            pName += c.Name;
             if (c is ListView lv)
             {
                 int i, count = lv.Columns.Count;
                 for (i = 0; i < count; i++)
                 {
-                    AddLabel($"{pName}{SEP_CONTROL}{i}", lv.Columns[i].Text);
+                    AddLabel($"{fullPath}{SEP_CONTROL}{i}", lv.Columns[i].Text);
                 }
             }
             else if (c is ToolStrip ms)
@@ -192,17 +195,14 @@ namespace DataEditorX.Language
                     GetMenuItem($"{formName}{SEP_CONTROL}{ms.Name}", tsi);
                 }
             }
-            else
+            else if (!string.IsNullOrEmpty(c.Name) && !string.IsNullOrEmpty(c.Text))
             {
-                AddLabel(pName, c.Text);
+                AddLabel(fullPath, c.Text);
             }
 
-            if (c.Controls.Count > 0)
+            foreach (Control sc in c.Controls)
             {
-                foreach (Control sc in c.Controls)
-                {
-                    GetControlLabel(sc, pName, formName);
-                }
+                GetControlLabel(sc, fullPath, formName);
             }
             ContextMenuStrip conms = c.ContextMenuStrip;
             if (conms != null)
@@ -244,26 +244,27 @@ namespace DataEditorX.Language
         public bool SaveLanguage(string conf)
         {
             using FileStream fs = new(conf, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new(fs, Encoding.UTF8);
-            foreach (string k in mWordslist.Keys)
+            using StreamWriter sw = new(fs, Encoding.UTF8);
+            foreach (var entry in mWordslist)
             {
-                sw.WriteLine(k + SEP_LINE + mWordslist[k]);
+                sw.WriteLine($"{entry.Key}{SEP_LINE}{entry.Value}");
             }
             sw.WriteLine("#");
-            foreach (LMSG k in _gMsgList.Keys)
+            foreach (var entry in _gMsgList)
             {
-                //记得替换换行符
-                sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + _gMsgList[k].Replace("\n", "\\n"));
+                string key = $"0x{((uint)entry.Key).ToString("x")}";
+                string value = entry.Value.Replace("\n", "\\n");
+                sw.WriteLine($"{key}{SEP_LINE}{value}");
             }
             foreach (LMSG k in Enum.GetValues(typeof(LMSG)))
             {
                 if (!_gMsgList.ContainsKey(k))
                 {
-                    sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + k.ToString());
+                    string key = $"0x{((uint)k).ToString("x")}";
+                    string value = k.ToString();
+                    sw.WriteLine($"{key}{SEP_LINE}{value}");
                 }
             }
-            sw.Close();
-            fs.Close();
             return true;
         }
         #endregion
@@ -279,7 +280,7 @@ namespace DataEditorX.Language
             _gWordsList.Clear();
             _gMsgList.Clear();
             using FileStream fs = new(f, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new(fs, Encoding.UTF8);
+            using StreamReader sr = new(fs, Encoding.UTF8);
             string line;
             LMSG ltemp;
             while ((line = sr.ReadLine()) != null)
@@ -293,26 +294,28 @@ namespace DataEditorX.Language
                     continue;
                 }
 
-                string[] words = line.Split(new[] { SEP_LINE }, 2);
-                if (words.Length < 2)
+                int sepIndex = line.IndexOf(SEP_LINE);
+                if (sepIndex < 0)
                 {
                     continue;
                 }
+                string key = line.Substring(0, sepIndex);
+                string value = line.Substring(sepIndex + 1);
 
                 if (line.StartsWith("0x"))//加载消息文字
                 {
-                    uint.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out uint utemp);
+                    uint.TryParse(key.Substring(2), NumberStyles.HexNumber, null, out uint utemp);
                     ltemp = (LMSG)utemp;
-                    if (!_gMsgList.ContainsKey(ltemp))//记得替换换行符
+                    if (!_gMsgList.ContainsKey(ltemp))
                     {
-                        _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
+                        _gMsgList.Add(ltemp, value.Replace("\\n", "\n"));
                     }
                 }
                 else //加载界面语言
                 {
-                    if (!_gWordsList.ContainsKey(words[0]))
+                    if (!_gWordsList.ContainsKey(key))
                     {
-                        _gWordsList.Add(words[0], words[1]);
+                        _gWordsList.Add(key, value);
                     }
                 }
             }
