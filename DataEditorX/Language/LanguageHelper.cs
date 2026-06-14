@@ -275,7 +275,7 @@ namespace DataEditorX.Language
             _gWordsList.Clear();
             _gMsgList.Clear();
             using FileStream fs = new(f, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new(fs, Encoding.UTF8);
+            using StreamReader sr = new(fs, Encoding.UTF8);
             string line;
             LMSG ltemp;
             while ((line = sr.ReadLine()) != null)
@@ -289,26 +289,28 @@ namespace DataEditorX.Language
                     continue;
                 }
 
-                string[] words = line.Split(new[] { SEP_LINE }, 2);
-                if (words.Length < 2)
+                int sepIndex = line.IndexOf(SEP_LINE);
+                if (sepIndex < 0)
                 {
                     continue;
                 }
+                string key = line.Substring(0, sepIndex);
+                string value = line.Substring(sepIndex + 1);
 
                 if (line.StartsWith("0x"))//加载消息文字
                 {
-                    uint.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out uint utemp);
+                    uint.TryParse(key.Substring(2), NumberStyles.HexNumber, null, out uint utemp);
                     ltemp = (LMSG)utemp;
-                    if (!_gMsgList.ContainsKey(ltemp))//记得替换换行符
+                    if (!_gMsgList.ContainsKey(ltemp))
                     {
-                        _gMsgList.Add(ltemp, words[1].Replace("\\n", "\n"));
+                        _gMsgList.Add(ltemp, value.Replace("\\n", "\n"));
                     }
                 }
                 else //加载界面语言
                 {
-                    if (!_gWordsList.ContainsKey(words[0]))
+                    if (!_gWordsList.ContainsKey(key))
                     {
-                        _gWordsList.Add(words[0], words[1]);
+                        _gWordsList.Add(key, value);
                     }
                 }
             }
