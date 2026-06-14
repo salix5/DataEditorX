@@ -135,7 +135,4 @@ MainForm.mainMenu.menuitem_closeall	Close All
 0x43	N/A
 0x44	New File
 0x45	Saved Successfully.
-0x46	Save Script?
-0x47	Read MSE-set
-0x48	Successfully reading MSE-set.
-0x49	Please restart program to apply changes.
+0x46	Please restart program to apply changes.
