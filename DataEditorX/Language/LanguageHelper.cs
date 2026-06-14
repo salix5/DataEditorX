@@ -53,32 +53,32 @@ namespace DataEditorX.Language
             fm.ResumeLayout();
         }
 
-        static bool GetLabel(string key, out string title)
+        static bool GetLabel(string key, out string value)
         {
-            if (_gWordsList.TryGetValue(key, out title))
-            {
-                return true;
-            }
-            title = "";
-            return false;
+            return _gWordsList.TryGetValue(key, out value);
         }
 
         static void SetControlLabel(Control c, string pName, string formName)
         {
-            if (!string.IsNullOrEmpty(pName))
+            string fullPath = pName;
+            if (!string.IsNullOrEmpty(c.Name))
             {
-                pName += SEP_CONTROL;
+                if (string.IsNullOrEmpty(fullPath))
+                {
+                    fullPath = c.Name;
+                }
+                else
+                {
+                    fullPath += $"{SEP_CONTROL}{c.Name}";
+                }
             }
-
-            pName += c.Name;
-            string title;
             if (c is ListView lv)
             {
                 int i, count = lv.Columns.Count;
                 for (i = 0; i < count; i++)
                 {
                     ColumnHeader ch = lv.Columns[i];
-                    if (GetLabel($"{pName}{SEP_CONTROL}{i}", out title))
+                    if (GetLabel($"{fullPath}{SEP_CONTROL}{i}", out string title))
                     {
                         ch.Text = title;
                     }
@@ -93,18 +93,15 @@ namespace DataEditorX.Language
             }
             else
             {
-                if (GetLabel(pName, out title))
+                if (GetLabel(fullPath, out string title))
                 {
                     c.Text = title;
                 }
             }
 
-            if (c.Controls.Count > 0)
+            foreach (Control sc in c.Controls)
             {
-                foreach (Control sc in c.Controls)
-                {
-                    SetControlLabel(sc, pName, formName);
-                }
+                SetControlLabel(sc, fullPath, formName);
             }
             ContextMenuStrip conms = c.ContextMenuStrip;
             if (conms != null)
@@ -156,11 +153,11 @@ namespace DataEditorX.Language
             GetControlLabel(fm, "", fm.Name);
         }
 
-        void AddLabel(string key, string title)
+        void AddLabel(string key, string value)
         {
             if (!mWordslist.ContainsKey(key))
             {
-                mWordslist.Add(key, title);
+                mWordslist.Add(key, value);
             }
         }
 
