@@ -1,24 +1,25 @@
 #
-DataEditForm.pl_bottom.btn_img	导入图片
-DataEditForm.pl_main.splitContainer.lb_types	卡片类型
-DataEditForm.pl_main.splitContainer.lb_markers	连接标记
-DataEditForm.pl_main.splitContainer.lb_tiptexts	脚本提示文字
-DataEditForm.pl_main.splitContainer.lb_categorys	效果分类
-DataEditForm.pl_main.splitContainer.lb_cardcode	卡片密码
-DataEditForm.pl_main.splitContainer.lb_cardalias	同名卡
-DataEditForm.pl_main.splitContainer.lb_atkdef	ATK/DEF
-DataEditForm.pl_main.splitContainer.lb_pleft_right	灵摆刻度
 DataEditForm.pl_main.splitContainer.lv_cardlist.0	ID
 DataEditForm.pl_main.splitContainer.lv_cardlist.1	名稱
-DataEditForm.pl_bottom.btn_reset	重置
-DataEditForm.pl_bottom.btn_lua	脚本
-DataEditForm.pl_bottom.btn_serach	搜索
-DataEditForm.pl_bottom.btn_del	删除
-DataEditForm.pl_bottom.btn_undo	撤销
-DataEditForm.pl_bottom.btn_mod	修改
-DataEditForm.pl_bottom.btn_add	添加
+DataEditForm.pl_main.splitContainer.lb_tiptexts	脚本提示文字
+DataEditForm.pl_main.splitContainer.lb_categorys	效果分类
+DataEditForm.pl_main.splitContainer.lb_types	卡片类型
+DataEditForm.pl_main.splitContainer.lb_markers	连接标记
+DataEditForm.pl_main.splitContainer.lb_cardcode	卡片密码
+DataEditForm.pl_main.splitContainer.lb_pleft_right	灵摆刻度
+DataEditForm.pl_main.splitContainer.lb_cardalias	同名卡
+DataEditForm.pl_main.splitContainer.lb_atkdef	ATK/DEF
 DataEditForm.pl_bottom.btn_PageDown	下一页
 DataEditForm.pl_bottom.btn_PageUp	上一页
+DataEditForm.pl_bottom.btn_lua	脚本
+DataEditForm.pl_bottom.btn_serach	搜索
+DataEditForm.pl_bottom.btn_img	导入图片
+DataEditForm.pl_bottom.btn_reset	重置
+DataEditForm.pl_bottom.btn_del	删除
+DataEditForm.pl_bottom.btn_add	添加
+DataEditForm.pl_bottom.btn_mod	修改
+DataEditForm.pl_bottom.btn_undo	撤销
+#
 DataEditForm.mainMenu.menuitem_file	文件(&F)
 DataEditForm.mainMenu.menuitem_open	打开(&O)
 DataEditForm.mainMenu.menuitem_new	新建(&N)
@@ -26,6 +27,13 @@ DataEditForm.mainMenu.menuitem_copyselectto	把选中复制到...
 DataEditForm.mainMenu.menuitem_copyto	把结果复制到...
 DataEditForm.mainMenu.menuitem_openLastDatabase	打开最后的数据库
 DataEditForm.mainMenu.menuitem_quit	退出
+#
+DataEditForm.mainMenu.menu_image	MSE(&M)
+DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
+DataEditForm.mainMenu.menuitem_readmse	读取MSE存档
+DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
+DataEditForm.mainMenu.menuitem_saveasmse	把结果导为MSE存档
+DataEditForm.mainMenu.menuitem_testpendulumtext	测试灵摆效果文本
 #
 DataEditForm.mainMenu.menu_data	数据(&D)
 DataEditForm.mainMenu.menuitem_operacardsfile	同步操作卡片图片和脚本
@@ -64,13 +72,6 @@ MainForm.mainMenu.menuitem_dataeditor	数据编辑
 MainForm.mainMenu.menuitem_close	关闭当前
 MainForm.mainMenu.menuitem_closeother	关闭其他
 MainForm.mainMenu.menuitem_closeall	关闭所有
-#
-DataEditForm.mainMenu.menu_image	MSE(&M)
-DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
-DataEditForm.mainMenu.menuitem_readmse	读取MSE存档
-DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
-DataEditForm.mainMenu.menuitem_saveasmse	把结果导为MSE存档
-DataEditForm.mainMenu.menuitem_testpendulumtext	测试灵摆效果文本
 #
 0x0	提示
 0x1	错误
