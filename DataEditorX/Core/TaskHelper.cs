@@ -325,26 +325,6 @@ namespace DataEditorX.Core
             {
             }
         }
-        public Card[] ReadMSE(string mseset, bool repalceOld)
-        {
-            //解压所有文件
-            /*using (ZipStorer zips = ZipStorer.Open(mseset, FileAccess.Read))
-            {
-                zips.EncodeUTF8 = true;
-                List<ZipStorer.ZipFileEntry> files = zips.ReadCentralDir();
-                int count = files.Count;
-                int i = 0;
-                foreach (ZipStorer.ZipFileEntry file in files)
-                {
-                    worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
-                    string savefilename = MyPath.Combine(mseHelper.ImagePath, file.FilenameInZip);
-                    zips.ExtractFile(file, savefilename);
-                }
-            }
-            string setfile = MyPath.Combine(mseHelper.ImagePath, "set");
-            return mseHelper.ReadCards(setfile, repalceOld);*/
-            return Array.Empty<Card>();
-        }
         #endregion
 
         #region 导出数据
@@ -468,20 +448,6 @@ namespace DataEditorX.Core
                         SaveMSEs(mArgs[0], CardList, replace);
                     }
                     break;
-                case MyTask.ReadMSE:
-                    if (mArgs != null && mArgs.Length >= 2)
-                    {
-                        replace = false;
-                        if (mArgs.Length >= 2)
-                        {
-                            if (mArgs[1] == bool.TrueString)
-                            {
-                                replace = true;
-                            }
-                        }
-                        CardList = ReadMSE(mArgs[0], replace);
-                    }
-                    break;
                 case MyTask.ConvertImages:
                     if (mArgs != null && mArgs.Length >= 2)
                     {
@@ -500,11 +466,7 @@ namespace DataEditorX.Core
             isRun = false;
             lastTask = nowTask;
             nowTask = MyTask.NONE;
-            if (lastTask != MyTask.ReadMSE)
-            {
-                CardList = Array.Empty<Card>();
-            }
-
+            CardList = Array.Empty<Card>();
             mArgs = Array.Empty<string>();
         }
         #endregion
