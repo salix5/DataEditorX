@@ -244,26 +244,27 @@ namespace DataEditorX.Language
         public bool SaveLanguage(string conf)
         {
             using FileStream fs = new(conf, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new(fs, Encoding.UTF8);
-            foreach (string k in mWordslist.Keys)
+            using StreamWriter sw = new(fs, Encoding.UTF8);
+            foreach (var entry in mWordslist)
             {
-                sw.WriteLine(k + SEP_LINE + mWordslist[k]);
+                sw.WriteLine($"{entry.Key}{SEP_LINE}{entry.Value}");
             }
             sw.WriteLine("#");
-            foreach (LMSG k in _gMsgList.Keys)
+            foreach (var entry in _gMsgList)
             {
-                //记得替换换行符
-                sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + _gMsgList[k].Replace("\n", "\\n"));
+                string key = $"0x{((uint)entry.Key).ToString("x")}";
+                string value = entry.Value.Replace("\n", "\\n");
+                sw.WriteLine($"{key}{SEP_LINE}{value}");
             }
             foreach (LMSG k in Enum.GetValues(typeof(LMSG)))
             {
                 if (!_gMsgList.ContainsKey(k))
                 {
-                    sw.WriteLine("0x" + ((uint)k).ToString("x") + SEP_LINE + k.ToString());
+                    string key = $"0x{((uint)k).ToString("x")}";
+                    string value = k.ToString();
+                    sw.WriteLine($"{key}{SEP_LINE}{value}");
                 }
             }
-            sw.Close();
-            fs.Close();
             return true;
         }
         #endregion
