@@ -399,62 +399,52 @@ namespace DataEditorX.Core
         {
             isCancel = false;
             isRun = true;
-            bool replace;
             bool showNew;
             switch (nowTask)
             {
                 case MyTask.ExportData:
-                    if (mArgs != null && mArgs.Length >= 3)
+                    if (mArgs.Length >= 3)
                     {
                         ExportData(mArgs[0], mArgs[1], mArgs[2], mArgs[3]);
                     }
                     break;
                 case MyTask.CheckUpdate:
                     showNew = false;
-                    if (mArgs != null && mArgs.Length >= 1)
+                    if (mArgs.Length >= 1)
                     {
-                        showNew = (mArgs[0] == bool.TrueString);
+                        showNew = mArgs[0] == bool.TrueString;
                     }
                     OnCheckUpdate(showNew);
                     break;
                 case MyTask.CutImages:
-                    if (mArgs != null && mArgs.Length >= 2)
+                    if (mArgs.Length >= 2)
                     {
-                        replace = true;
+                        bool replace = true;
                         if (mArgs.Length >= 2)
                         {
-                            if (mArgs[1] == bool.FalseString)
-                            {
-                                replace = false;
-                            }
+                            replace = mArgs[1] == bool.TrueString;
                         }
                         CutImages(mArgs[0], replace);
                     }
                     break;
                 case MyTask.SaveAsMSE:
-                    if (mArgs != null && mArgs.Length >= 2)
+                    if (mArgs.Length >= 2)
                     {
-                        replace = false;
+                        bool replace = false;
                         if (mArgs.Length >= 2)
                         {
-                            if (mArgs[1] == bool.TrueString)
-                            {
-                                replace = true;
-                            }
+                            replace = mArgs[1] == bool.TrueString;
                         }
                         SaveMSEs(mArgs[0], CardList, replace);
                     }
                     break;
                 case MyTask.ConvertImages:
-                    if (mArgs != null && mArgs.Length >= 2)
+                    if (mArgs.Length >= 2)
                     {
-                        replace = true;
+                        bool replace = true;
                         if (mArgs.Length >= 3)
                         {
-                            if (mArgs[2] == bool.FalseString)
-                            {
-                                replace = false;
-                            }
+                            replace = mArgs[2] == bool.TrueString;
                         }
                         ConvertImages(mArgs[0], mArgs[1], replace);
                     }
