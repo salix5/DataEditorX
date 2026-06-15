@@ -717,11 +717,11 @@ namespace DataEditorX
             // 
             this.lb_cardalias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_cardalias.AutoSize = true;
-            this.lb_cardalias.Location = new System.Drawing.Point(206, 301);
+            this.lb_cardalias.Location = new System.Drawing.Point(231, 301);
             this.lb_cardalias.Name = "lb_cardalias";
-            this.lb_cardalias.Size = new System.Drawing.Size(65, 12);
+            this.lb_cardalias.Size = new System.Drawing.Size(35, 12);
             this.lb_cardalias.TabIndex = 7;
-            this.lb_cardalias.Text = "Alias Card";
+            this.lb_cardalias.Text = "Alias";
             // 
             // tb_cardalias
             // 
@@ -935,11 +935,11 @@ namespace DataEditorX
             // 
             this.lb_cardcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_cardcode.AutoSize = true;
-            this.lb_cardcode.Location = new System.Drawing.Point(206, 325);
+            this.lb_cardcode.Location = new System.Drawing.Point(231, 325);
             this.lb_cardcode.Name = "lb_cardcode";
-            this.lb_cardcode.Size = new System.Drawing.Size(59, 12);
+            this.lb_cardcode.Size = new System.Drawing.Size(29, 12);
             this.lb_cardcode.TabIndex = 7;
-            this.lb_cardcode.Text = "Card Code";
+            this.lb_cardcode.Text = "Code";
             // 
             // lb_markers
             // 
