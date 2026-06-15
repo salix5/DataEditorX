@@ -22,10 +22,6 @@ namespace DataEditorX.Common
             //连接数
             ServicePointManager.DefaultConnectionLimit = 255;
         }
-        /// <summary>
-        /// 从HEAD获取版本号
-        /// </summary>
-        public const string DEFAULT = "0.0.0";
 
         #region 检查版本
         /// <summary>
@@ -45,7 +41,7 @@ namespace DataEditorX.Common
                     return mVer.Groups[1].Value;
                 }
             }
-            return DEFAULT;
+            return "";
         }
         /// <summary>
         /// 检查版本号，格式0.0.0

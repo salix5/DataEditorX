@@ -122,7 +122,7 @@ namespace DataEditorX.Core
         public static void CheckVersion(bool showNew)
         {
             string newver = CheckUpdate.GetNewVersion(MyConfig.updateURL);
-            if (newver == CheckUpdate.DEFAULT)
+            if (string.IsNullOrEmpty(newver))
             {
                 if (!showNew)
                 {
