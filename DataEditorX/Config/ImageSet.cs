@@ -28,8 +28,8 @@ namespace DataEditorX.Config
             pendulumArea = MyConfig.ReadArea(MyConfig.TAG_IMAGE_PENDULUM);
 
             int[] ints = MyConfig.ReadIntegers(MyConfig.TAG_IMAGE_SIZE, 2);
-            W = ints[0];
-            H = ints[1];
+            width = ints[0];
+            height = ints[1];
             quality = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUALITY, 95);
         }
         /// <summary>
@@ -39,11 +39,11 @@ namespace DataEditorX.Config
         /// <summary>
         /// 大图的宽
         /// </summary>
-        public int W;
+        public int width;
         /// <summary>
         /// 大图的高
         /// </summary>
-        public int H;
+        public int height;
         /// <summary>
         /// 怪兽的中间图
         /// </summary>
