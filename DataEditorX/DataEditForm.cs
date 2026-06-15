@@ -1289,7 +1289,6 @@ namespace DataEditorX
             dlg.Filter = MyConfig.IMAGE_TYPE;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                //dlg.FileName;
                 ImportImage(dlg.FileName, tid);
             }
         }

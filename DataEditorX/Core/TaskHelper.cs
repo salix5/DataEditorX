@@ -106,7 +106,6 @@ namespace DataEditorX.Core
             mArgs = args;
         }
         //转换图片
-        //public void ToImg(string img, string saveimg1, string saveimg2)
         public void ToImg(string img, string saveimg1)
         {
             if (!File.Exists(img))
