@@ -218,14 +218,10 @@ namespace DataEditorX.Core
                 string jpg_b = MyPath.Combine(picspath, $"{name}.jpg");
                 if (ex == ".jpg" || ex == ".png" || ex == ".bmp")
                 {
-                    if (File.Exists(file))
+                    using Bitmap bmp = new(file);
+                    if (isreplace || !File.Exists(jpg_b))
                     {
-                        using Bitmap bmp = new(file);
-                        //大图，如果替换，或者不存在
-                        if (isreplace || !File.Exists(jpg_b))
-                        {
-                            MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.width, imgSet.height), jpg_b, imgSet.quality);
-                        }
+                        MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.width, imgSet.height), jpg_b, imgSet.quality);
                     }
                 }
             }
