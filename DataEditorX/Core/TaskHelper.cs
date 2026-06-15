@@ -395,7 +395,6 @@ namespace DataEditorX.Core
         {
             isCancel = false;
             isRun = true;
-            bool showNew;
             switch (nowTask)
             {
                 case MyTask.ExportData:
@@ -405,43 +404,27 @@ namespace DataEditorX.Core
                     }
                     break;
                 case MyTask.CheckUpdate:
-                    showNew = false;
-                    if (mArgs.Length >= 1)
-                    {
-                        showNew = mArgs[0] == bool.TrueString;
-                    }
+                    bool showNew = (mArgs.Length >= 1) ? (mArgs[0] == bool.TrueString) : false;
                     OnCheckUpdate(showNew);
                     break;
                 case MyTask.CutImages:
                     if (mArgs.Length >= 2)
                     {
-                        bool replace = true;
-                        if (mArgs.Length >= 2)
-                        {
-                            replace = mArgs[1] == bool.TrueString;
-                        }
+                        bool replace = (mArgs.Length >= 2) ? (mArgs[1] == bool.TrueString) : true;
                         CutImages(mArgs[0], replace);
                     }
                     break;
                 case MyTask.SaveAsMSE:
                     if (mArgs.Length >= 2)
                     {
-                        bool replace = false;
-                        if (mArgs.Length >= 2)
-                        {
-                            replace = mArgs[1] == bool.TrueString;
-                        }
+                        bool replace = (mArgs.Length >= 2) ? (mArgs[1] == bool.TrueString) : false;
                         SaveMSEs(mArgs[0], CardList, replace);
                     }
                     break;
                 case MyTask.ConvertImages:
                     if (mArgs.Length >= 2)
                     {
-                        bool replace = true;
-                        if (mArgs.Length >= 3)
-                        {
-                            replace = mArgs[2] == bool.TrueString;
-                        }
+                        bool replace = (mArgs.Length >= 3) ? (mArgs[2] == bool.TrueString) : true;
                         ConvertImages(mArgs[0], mArgs[1], replace);
                     }
                     break;
