@@ -27,27 +27,15 @@ namespace DataEditorX.Config
 
             pendulumArea = MyConfig.ReadArea(MyConfig.TAG_IMAGE_PENDULUM);
 
-            int[] ints = MyConfig.ReadIntegers(MyConfig.TAG_IMAGE_SIZE, 4);
-
-            w = ints[0];
-            h = ints[1];
-            W = ints[2];
-            H = ints[3];
-
+            int[] ints = MyConfig.ReadIntegers(MyConfig.TAG_IMAGE_SIZE, 2);
+            W = ints[0];
+            H = ints[1];
             quality = MyConfig.ReadInteger(MyConfig.TAG_IMAGE_QUALITY, 95);
         }
         /// <summary>
         /// jpeg质量
         /// </summary>
         public int quality;
-        /// <summary>
-        /// 小图的宽
-        /// </summary>
-        public int w;
-        /// <summary>
-        /// 小图的高
-        /// </summary>
-        public int h;
         /// <summary>
         /// 大图的宽
         /// </summary>
