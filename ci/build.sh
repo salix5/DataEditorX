@@ -8,10 +8,6 @@ sed -i '/download.mono-project.com/d' /etc/apt/sources.list /etc/apt/sources.lis
 apt update
 apt -y install wget p7zip-full
 
-# data files
-wget -O DataEditorX/data/constant.lua https://github.com/Fluorohydride/ygopro-scripts/raw/refs/heads/master/constant.lua
-wget -O DataEditorX/data/strings.conf https://salix5.github.io/CardEditor/strings.conf
-
 # build
 nuget restore
 msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:OutDir=$PWD/output/ /p:TargetFrameworkVersion=v4.8
