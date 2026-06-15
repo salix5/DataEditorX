@@ -113,9 +113,8 @@ namespace DataEditorX.Core
                 return;
             }
 
-            Bitmap bmp = new(img);
+            using Bitmap bmp = new(img);
             MyBitmap.SaveAsJPEG(MyBitmap.Zoom(bmp, imgSet.W, imgSet.H), saveimg1, imgSet.quality);
-            bmp.Dispose();
         }
         #endregion
 
@@ -177,7 +176,7 @@ namespace DataEditorX.Core
                 string savejpg = MyPath.Combine(mseHelper.ImagePath, c.id + ".jpg");
                 if (File.Exists(jpg) && (isreplace || !File.Exists(savejpg)))
                 {
-                    Bitmap bp = new(jpg);
+                    using Bitmap bp = new(jpg);
                     Bitmap bmp;
                     if (c.IsType(CardType.TYPE_XYZ))//超量
                     {
@@ -191,7 +190,6 @@ namespace DataEditorX.Core
                     {
                         bmp = MyBitmap.Cut(bp, imgSet.normalArea);
                     }
-                    bp.Dispose();
                     MyBitmap.SaveAsJPEG(bmp, savejpg, imgSet.quality);
                 }
             }
@@ -206,7 +204,7 @@ namespace DataEditorX.Core
             int i = 0;
             int count = files.Length;
 
-            foreach (string f in files)
+            foreach (string file in files)
             {
                 if (isCancel)
                 {
@@ -215,14 +213,14 @@ namespace DataEditorX.Core
 
                 i++;
                 worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
-                string ex = Path.GetExtension(f).ToLower();
-                string name = Path.GetFileNameWithoutExtension(f);
-                string jpg_b = MyPath.Combine(picspath, name + ".jpg");
+                string ex = Path.GetExtension(file).ToLower();
+                string name = Path.GetFileNameWithoutExtension(file);
+                string jpg_b = MyPath.Combine(picspath, $"{name}.jpg");
                 if (ex == ".jpg" || ex == ".png" || ex == ".bmp")
                 {
-                    if (File.Exists(f))
+                    if (File.Exists(file))
                     {
-                        Bitmap bmp = new(f);
+                        using Bitmap bmp = new(file);
                         //大图，如果替换，或者不存在
                         if (isreplace || !File.Exists(jpg_b))
                         {

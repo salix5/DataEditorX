@@ -38,7 +38,7 @@ namespace DataEditorX.Common
             if (sourceBitmap != null)
             {
                 Bitmap b = new(newWidth, newHeight);
-                Graphics graphics = Graphics.FromImage(b);
+                using Graphics graphics = Graphics.FromImage(b);
                 //合成：高质量，低速度
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
                 //去除锯齿
@@ -50,7 +50,6 @@ namespace DataEditorX.Common
                 Rectangle newRect = new(0, 0, newWidth, newHeight);
                 Rectangle srcRect = new(0, 0, sourceBitmap.Width, sourceBitmap.Height);
                 graphics.DrawImage(sourceBitmap, newRect, srcRect, GraphicsUnit.Pixel);
-                graphics.Dispose();
                 return b;
             }
             return sourceBitmap;
@@ -94,7 +93,7 @@ namespace DataEditorX.Common
                     cutHeight = h - StartY;
                 }
                 Bitmap bitmap = new(cutWidth, cutHeight);
-                Graphics graphics = Graphics.FromImage(bitmap);
+                using Graphics graphics = Graphics.FromImage(bitmap);
                 //合成：高质量，低速度
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
                 //去除锯齿
@@ -106,7 +105,6 @@ namespace DataEditorX.Common
                 Rectangle cutRect = new(0, 0, cutWidth, cutHeight);
                 Rectangle srcRect = new(StartX, StartY, cutWidth, cutHeight);
                 graphics.DrawImage(sourceBitmap, cutRect, srcRect, GraphicsUnit.Pixel);
-                graphics.Dispose();
                 return bitmap;
             }
             return sourceBitmap;
