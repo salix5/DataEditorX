@@ -98,15 +98,15 @@ namespace DataEditorX.Common
         /// 获取int值
         /// </summary>
         /// <param name="line"></param>
-        /// <param name="defalut">失败的值</param>
+        /// <param name="defaultValue">失败的值</param>
         /// <returns></returns>
-        public static int GetIntegerValue(string line, int defalut)
+        public static int GetIntegerValue(string line, int defaultValue)
         {
             if (int.TryParse(GetValue(line), out int result))
             {
                 return result;
             }
-            return defalut;
+            return defaultValue;
         }
         /// <summary>
         /// 从行获取内容添加到字典
