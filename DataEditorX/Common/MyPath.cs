@@ -41,27 +41,20 @@ namespace System.IO
         /// 检查目录是否合法
         /// </summary>
         /// <param name="dir">目录</param>
-        /// <param name="defalut">不合法时，采取的目录</param>
+        /// <param name="fallbackPath">不合法时，采取的目录</param>
         /// <returns></returns>
-        public static string CheckDir(string dir, string defalut)
+        public static string CheckDir(string dir, string fallbackPath)
         {
-            DirectoryInfo fo;
             try
             {
-                fo = new DirectoryInfo(GetRealPath(dir));
+                DirectoryInfo info = Directory.CreateDirectory(GetRealPath(dir));
+                return info.FullName;
             }
             catch
             {
-                //路径不合法
-                fo = new DirectoryInfo(defalut);
+                DirectoryInfo fallbackInfo = Directory.CreateDirectory(fallbackPath);
+                return fallbackInfo.FullName;
             }
-            if (!fo.Exists)
-            {
-                fo.Create();
-            }
-
-            dir = fo.FullName;
-            return dir;
         }
         /// <summary>
         /// 根据tag获取文件名
