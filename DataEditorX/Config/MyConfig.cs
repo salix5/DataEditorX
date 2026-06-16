@@ -22,6 +22,10 @@ namespace DataEditorX.Config
         /// </summary>
         public const string PATH_DATA = "data";
         /// <summary>
+        /// images directory
+        /// </summary>
+        public const string PATH_IMAGES = "Images";
+        /// <summary>
         /// MSE
         /// </summary>
         public const string TAG_MSE_LANGUAGE = "mse_language";

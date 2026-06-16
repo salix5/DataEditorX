@@ -48,10 +48,6 @@ namespace DataEditorX.Core
         /// </summary>
         private readonly ImageSet imgSet = new();
         /// <summary>
-        /// MSE转换
-        /// </summary>
-        private readonly MseMaker mseHelper = new();
-        /// <summary>
         /// 是否取消
         /// </summary>
         private bool isCancel = false;
@@ -163,9 +159,10 @@ namespace DataEditorX.Core
                 }
 
                 i++;
-                worker.ReportProgress((i / count), string.Format("{0}/{1}", i, count));
+                worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
                 string jpg = MyPath.Combine(imgpath, $"{c.id}.jpg");
-                string savejpg = MyPath.Combine(mseHelper.ImagePath, $"{c.id}.jpg");
+                string outputPath = MyPath.Combine(Application.StartupPath, MyConfig.PATH_IMAGES);
+                string savejpg = MyPath.Combine(outputPath, $"{c.id}.jpg");
                 if (File.Exists(jpg) && (isreplace || !File.Exists(savejpg)))
                 {
                     using Bitmap bp = new(jpg);
