@@ -46,7 +46,7 @@ namespace DataEditorX
             this.datapath = datapath;
             //文件路径
             conflang = MyConfig.GetLanguageFile(datapath);
-            //游戏数据,MSE数据
+            //游戏数据
             datacfg = new DataConfig(MyConfig.GetCardInfoFile(datapath));
             history = new History(this);
             YGOUtil.SetConfig(datacfg);

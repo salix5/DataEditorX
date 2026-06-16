@@ -20,12 +20,6 @@ DataEditForm.pl_bottom.btn_add	新增
 DataEditForm.pl_bottom.btn_mod	修改
 DataEditForm.pl_bottom.btn_undo	N/A
 #
-DataEditForm.mainMenu.menu_image	MSE(&M)
-DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
-DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
-DataEditForm.mainMenu.menuitem_saveasmse	把结果导为MSE存档
-DataEditForm.mainMenu.menuitem_testpendulumtext	测试灵摆效果文本
-#
 DataEditForm.mainMenu.menu_data	数据(&D)
 DataEditForm.mainMenu.menuitem_operacardsfile	同步操作卡片图片和脚本
 DataEditForm.mainMenu.menuitem_default_script	Set default script name
@@ -104,12 +98,12 @@ MainForm.mainMenu.menuitem_closeall	关闭所有
 0x25	N/A
 0x26	当前有其他任务正在进行
 0x27	正在检查更新
-0x28	正在复制卡片
-0x29	卡片复制完成
-0x2a	MSE存档
+0x28	N/A
+0x29	N/A
+0x2a	N/A
 0x2b	N/A
-0x2c	正在导出MSE存档
-0x2d	导出MSE存档完成
+0x2c	N/A
+0x2d	N/A
 0x2e	正在裁剪图片
 0x2f	裁剪图片完成
 0x30	没有选中一张卡片
