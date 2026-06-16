@@ -8,7 +8,6 @@
 using DataEditorX.Common;
 using DataEditorX.Config;
 using DataEditorX.Core;
-using DataEditorX.Core.Mse;
 using DataEditorX.Language;
 using System;
 using System.Collections;

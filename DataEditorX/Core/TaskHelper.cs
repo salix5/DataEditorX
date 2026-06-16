@@ -8,14 +8,11 @@
 using DataEditorX.Common;
 using DataEditorX.Config;
 using DataEditorX.Core.Info;
-using DataEditorX.Core.Mse;
 using DataEditorX.Language;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.IO.Compression;
 using System.Windows.Forms;
 
 namespace DataEditorX.Core
