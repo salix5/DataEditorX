@@ -69,10 +69,7 @@ namespace DataEditorX.Core
             Datapath = datapath;
             this.worker = worker;
         }
-        public MseMaker MseHelper
-        {
-            get { return mseHelper; }
-        }
+        public string Datapath { get; }
         public bool IsRuning()
         {
             return isRun;
@@ -223,98 +220,6 @@ namespace DataEditorX.Core
         }
         #endregion
 
-        #region MSE存档
-        public string Datapath { get; }
-
-        public void SaveMSEs(string file, Card[] cards, bool isUpdate)
-        {
-            if (cards is null || cards.Length == 0)
-            {
-                return;
-            }
-
-            string pack_db = MyPath.GetRealPath(MyConfig.ReadString("pack_db"));
-            bool rarity = MyConfig.ReadBoolean("mse_auto_rarity", false);
-#if DEBUG
-            MessageBox.Show("db = " + pack_db + ",auto rarity=" + rarity);
-#endif
-            int c = cards.Length;
-            //不分开，或者卡片数小于单个存档的最大值
-            if (mseHelper.MaxNum == 0 || c < mseHelper.MaxNum)
-            {
-                SaveMSE(1, file, cards, pack_db, rarity, isUpdate);
-            }
-            else
-            {
-                int nums = c / mseHelper.MaxNum;
-                if (nums * mseHelper.MaxNum < c)//计算需要分多少个存档
-                {
-                    nums++;
-                }
-
-                List<Card> clist = new();
-                for (int i = 0; i < nums; i++)//分别生成存档
-                {
-                    clist.Clear();
-                    for (int j = 0; j < mseHelper.MaxNum; j++)
-                    {
-                        int index = i * mseHelper.MaxNum + j;
-                        if (index < c)
-                        {
-                            clist.Add(cards[index]);
-                        }
-                    }
-                    int t = file.LastIndexOf(".mse-set");
-                    string fname = (t > 0) ? file.Substring(0, t) : file;
-                    fname += string.Format("_{0}.mse-set", i + 1);
-                    SaveMSE(i + 1, fname, clist.ToArray(), pack_db, rarity, isUpdate);
-                }
-            }
-        }
-        public void SaveMSE(int num, string file, Card[] cards, string pack_db, bool rarity, bool isUpdate)
-        {
-            string setFile = file + ".txt";
-            Dictionary<Card, string> images = mseHelper.WriteSet(setFile, cards, pack_db, rarity);
-            if (isUpdate)//仅更新文字
-            {
-                return;
-            }
-
-            try
-            {
-                using FileStream fs = new(file, FileMode.Create, FileAccess.Write);
-                using ZipArchive archive = new(fs, ZipArchiveMode.Create, false);
-                // 添加文字到压缩包，内部文件名固定为 "set"
-                archive.CreateEntryFromFile(setFile, "set");
-
-                int i = 0;
-                foreach (var kvp in images)
-                {
-                    Card c = kvp.Key;
-                    string img = kvp.Value;
-                    if (isCancel)
-                    {
-                        break;
-                    }
-
-                    i++;
-                    worker.ReportProgress(i * 100 / images.Count, string.Format("{0}/{1}-{2}", i, images.Count, num));
-
-                    // 获取需要写入的最终图片（可包含裁剪/缓存逻辑）
-                    string cachePath = mseHelper.GetImageCache(img, c);
-                    string entryName = Path.GetFileName(img);
-                    if (File.Exists(cachePath))
-                    {
-                        archive.CreateEntryFromFile(cachePath, entryName);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-        #endregion
-
         #region 导出数据
         public void ExportData(string path, string zipname, string _cdbfile, string modulescript)
         {
@@ -407,13 +312,6 @@ namespace DataEditorX.Core
                     {
                         bool replace = (mArgs.Length >= 2) ? (mArgs[1] == bool.TrueString) : true;
                         CutImages(mArgs[0], replace);
-                    }
-                    break;
-                case MyTask.SaveAsMSE:
-                    if (mArgs.Length >= 2)
-                    {
-                        bool replace = (mArgs.Length >= 2) ? (mArgs[1] == bool.TrueString) : false;
-                        SaveMSEs(mArgs[0], CardList, replace);
                     }
                     break;
                 case MyTask.ConvertImages:

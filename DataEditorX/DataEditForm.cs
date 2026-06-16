@@ -1143,9 +1143,6 @@ namespace DataEditorX
                     case MyTask.CutImages:
                         MyMsg.Show(LMSG.CutImageOK);
                         break;
-                    case MyTask.SaveAsMSE:
-                        MyMsg.Show(LMSG.SaveMseOK);
-                        break;
                     case MyTask.ConvertImages:
                         MyMsg.Show(LMSG.ConvertImageOK);
                         break;
@@ -1197,7 +1194,7 @@ namespace DataEditorX
         }
         #endregion
 
-        #region MSE存档/裁剪图片
+        #region 裁剪图片
         //裁剪图片
         void Menuitem_cutimagesClick(object sender, EventArgs e)
         {
@@ -1214,48 +1211,6 @@ namespace DataEditorX
             bool isreplace = MyMsg.Question(LMSG.IfReplaceExistingImage);
             tasker.SetTask(MyTask.CutImages, cardlist.ToArray(), ygopath.picpath, isreplace.ToString());
             Run(LanguageHelper.GetMsg(LMSG.CutImage));
-        }
-        void Menuitem_saveasmse_selectClick(object sender, EventArgs e)
-        {
-            //选择
-            SaveAsMSE(true);
-        }
-
-        void Menuitem_saveasmseClick(object sender, EventArgs e)
-        {
-            //全部
-            SaveAsMSE(false);
-        }
-        void SaveAsMSE(bool onlyselect)
-        {
-            if (!IsOpened())
-            {
-                return;
-            }
-
-            if (isRun())
-            {
-                return;
-            }
-
-            Card[] cards = GetCardList(onlyselect);
-            if (cards.Length == 0)
-            {
-                return;
-            }
-            //select save mse-set
-            using SaveFileDialog dlg = new();
-            dlg.Title = LanguageHelper.GetMsg(LMSG.SelectMseSet);
-            dlg.Filter = MyConfig.MSE_TYPE;
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                bool isUpdate = false;
-#if DEBUG
-                isUpdate = MyMsg.Question(LMSG.OnlySet);
-#endif
-                tasker.SetTask(MyTask.SaveAsMSE, cards, dlg.FileName, isUpdate.ToString());
-                Run(LanguageHelper.GetMsg(LMSG.SaveMse));
-            }
         }
         #endregion
 

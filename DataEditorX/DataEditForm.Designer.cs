@@ -38,9 +38,6 @@ namespace DataEditorX
         private void InitializeComponent()
         {
             this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_data = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_operacardsfile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_default_script = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,7 +128,6 @@ namespace DataEditorX
             // mainMenu
             // 
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menu_image,
             this.menu_data,
             this.menuitem_help});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
@@ -139,29 +135,6 @@ namespace DataEditorX
             this.mainMenu.Size = new System.Drawing.Size(991, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "mainMenu";
-            // 
-            // menu_image
-            // 
-            this.menu_image.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuitem_saveasmse_select,
-            this.menuitem_saveasmse});
-            this.menu_image.Name = "menu_image";
-            this.menu_image.Size = new System.Drawing.Size(66, 20);
-            this.menu_image.Text = "Image(&I)";
-            // 
-            // menuitem_saveasmse_select
-            // 
-            this.menuitem_saveasmse_select.Name = "menuitem_saveasmse_select";
-            this.menuitem_saveasmse_select.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_saveasmse_select.Text = "Select Save As MSE";
-            this.menuitem_saveasmse_select.Click += new System.EventHandler(this.Menuitem_saveasmse_selectClick);
-            // 
-            // menuitem_saveasmse
-            // 
-            this.menuitem_saveasmse.Name = "menuitem_saveasmse";
-            this.menuitem_saveasmse.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_saveasmse.Text = "All Now Save As MSE";
-            this.menuitem_saveasmse.Click += new System.EventHandler(this.Menuitem_saveasmseClick);
             // 
             // menu_data
             // 
@@ -1148,10 +1121,7 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_readimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readydk;
         private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripSeparator tsep6;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse_select;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_saveasmse;
         private System.Windows.Forms.ToolStripMenuItem menuitem_cutimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_operacardsfile;
         private System.Windows.Forms.ToolStripSeparator tsep2;
