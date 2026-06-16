@@ -185,8 +185,6 @@ namespace DataEditorX
             SuspendLayout();
             int menuHeight = mainMenu.Height;
             mainMenu.Visible = false;
-            menuitem_file.Visible = false;
-            menuitem_file.Enabled = false;
             foreach (Control c in Controls)
             {
                 if (c is MenuStrip || c == mainMenu)
