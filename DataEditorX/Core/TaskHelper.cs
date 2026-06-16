@@ -198,7 +198,7 @@ namespace DataEditorX.Core
                 }
 
                 i++;
-                worker.ReportProgress(i / count, string.Format("{0}/{1}", i, count));
+                worker.ReportProgress(i * 100 / count, string.Format("{0}/{1}", i, count));
                 string ex = Path.GetExtension(file).ToLower();
                 string name = Path.GetFileNameWithoutExtension(file);
                 string jpg_b = MyPath.Combine(picspath, $"{name}.jpg");
@@ -292,7 +292,7 @@ namespace DataEditorX.Core
             switch (nowTask)
             {
                 case MyTask.ExportData:
-                    if (mArgs.Length >= 3)
+                    if (mArgs.Length >= 4)
                     {
                         ExportData(mArgs[0], mArgs[1], mArgs[2], mArgs[3]);
                     }
