@@ -181,21 +181,7 @@ namespace DataEditorX
             {
                 return;
             }
-
-            SuspendLayout();
-            int menuHeight = mainMenu.Height;
             mainMenu.Visible = false;
-            foreach (Control c in Controls)
-            {
-                if (c is MenuStrip || c == mainMenu)
-                {
-                    continue;
-                }
-
-                Point p = c.Location;
-                c.Location = new Point(p.X, p.Y - menuHeight);
-            }
-            ResumeLayout(true);
         }
         //移除Tag
         string RemoveTag(string text)
