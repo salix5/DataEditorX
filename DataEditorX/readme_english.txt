@@ -53,10 +53,6 @@ Support：png, jpg files with card number
 
 ★Database comparison
 
-★Lua search
-Find lua from C++ Source
-Return in parameter type, C++ implement code
-
 ★Copy a card：
 Copy and Replace: If there's a card with same name, replace it.
 Copy without Replace: If there's a card with same name, ignore it.
@@ -81,55 +77,3 @@ id: 0, alias: 10000000
 
 id between 10000000 and 20000000
 id: 10000000, alias: 20000000
-
-★CodeEditor：
-Input keyword in the under text box，press Enter
-Ctrl+F			Look up
-Ctrl+H			Replace
-Ctrl+left mouse 	skip to function definition
-Ctrl+K			List of function 
-Ctrl+T			List of constant 
-Ctrl+The mouse wheel 	Zoom in/out
-
-★Magic Set Editor 2
-https://github.com/247321453/MagicSetEditor2
-
-★MSE pics
-Support：png,jpg pics with card number/card number with 0
-Tick “Set MSE'Image ”，Import pics will go into pics folder under MSE
-
-★MSE flie making setting
-mse_xxx.txt modify\r\n can be newlines，\t will replace for tab
-
-Turn Simplified into traditional，
-cn2tw = false
-
-The maxcount of every file，0 stands for unlimited
-maxcount = 0
-
-Add image from the folder，pic name:card number(or card name).png/jpg
-imagepath = ./Images
-
-Symbol of spell and traps，turn %% into your sign，If you want to use %% ，put the "ST mark is text: yes"
-spell = [魔法卡%%]
-trap = [陷阱卡%%]
-
-Game name:yugioh，Style:standard，Language:CN，Edition：MSE，pics of pendulum monster don't include the text box in the central
-head = mse version: 0.3.8\r\ngame: yugioh\r\nstylesheet: standard\r\nset info:\r\n\tlanguage: CN\r\n\tedition: MSE\r\n\tST mark is text: no\r\n\tpendulum image is small: yes
-
-Read flie text
-text =【摇摆效果】\n%ptext%\n【怪兽效果】\n%text%\n
-
-Obtain Pendulum-text
-pendulum-text = 】[\s\S]*?\n([\S\s]*?)\n【
-
-Obtain monster-text
-monster-text = [果|介|述|報]】\n([\S\s]*)
-
-Replace speical number
-replace = ([鮟|鱇|?|·]) <i>$1</i>
-
-Replace blank space with^，（takes a third of a word）
-#replace = \s <sym-auto>^</sym-auto>
-Change A-Z into another Typeface
-#replace = ([A-Z]) <i>$1</i>

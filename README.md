@@ -11,7 +11,6 @@ Require:
 * Create and edit card databases.   
 * Compare, copy and paste cards across databases.   
 * Read card records from ygopro decks (.ydk file) or card picture directories (like pics/ of ygooro).  
-* Export and import [MSE](https://github.com/247321453/MagicSetEditor2) sets.   
 
 > **FAQ**   
 Q: How to add a new archetype?  
