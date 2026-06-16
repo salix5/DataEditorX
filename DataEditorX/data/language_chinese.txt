@@ -20,14 +20,6 @@ DataEditForm.pl_bottom.btn_add	新增
 DataEditForm.pl_bottom.btn_mod	修改
 DataEditForm.pl_bottom.btn_undo	N/A
 #
-DataEditForm.mainMenu.menuitem_file	文件(&F)
-DataEditForm.mainMenu.menuitem_open	打开(&O)
-DataEditForm.mainMenu.menuitem_new	新建(&N)
-DataEditForm.mainMenu.menuitem_copyselectto	把选中复制到...
-DataEditForm.mainMenu.menuitem_copyto	把结果复制到...
-DataEditForm.mainMenu.menuitem_openLastDatabase	打开最后的数据库
-DataEditForm.mainMenu.menuitem_quit	退出
-#
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menuitem_mseconfig	设置MSE的配置文件
 DataEditForm.mainMenu.menuitem_saveasmse_select	把选中导为MSE存档
