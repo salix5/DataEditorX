@@ -18,13 +18,6 @@ DataEditForm.pl_bottom.btn_add	Add
 #DataEditForm.pl_bottom.btn_PageUp	Page Up
 DataEditForm.lv_cardlist.0	Card Code
 DataEditForm.lv_cardlist.1	Card Name
-DataEditForm.mainMenu.menuitem_file	File(&F)
-DataEditForm.mainMenu.menuitem_open	Open(&O)
-DataEditForm.mainMenu.menuitem_new	New(&N)
-DataEditForm.mainMenu.menuitem_copyselectto	Copy Selected...
-DataEditForm.mainMenu.menuitem_copyto	Copy All Search...
-DataEditForm.mainMenu.menuitem_openLastDatabase	Open Last Database
-DataEditForm.mainMenu.menuitem_quit	Quit
 DataEditForm.mainMenu.menu_image	MSE(&M)
 DataEditForm.mainMenu.menu_data	Data(&D)
 DataEditForm.mainMenu.menuitem_operacardsfile	Opera with Card's files

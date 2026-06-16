@@ -38,16 +38,6 @@ namespace DataEditorX
         private void InitializeComponent()
         {
             this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.menuitem_file = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_open = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_new = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_copyselectto = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_copyto = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsep4 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_openLastDatabase = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuitem_quit = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,7 +132,6 @@ namespace DataEditorX
             // mainMenu
             // 
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuitem_file,
             this.menu_image,
             this.menu_data,
             this.menuitem_help});
@@ -151,75 +140,6 @@ namespace DataEditorX
             this.mainMenu.Size = new System.Drawing.Size(991, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "mainMenu";
-            // 
-            // menuitem_file
-            // 
-            this.menuitem_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuitem_open,
-            this.menuitem_new,
-            this.toolStripSeparator3,
-            this.menuitem_copyselectto,
-            this.menuitem_copyto,
-            this.tsep4,
-            this.menuitem_openLastDatabase,
-            this.toolStripSeparator2,
-            this.menuitem_quit});
-            this.menuitem_file.Name = "menuitem_file";
-            this.menuitem_file.Size = new System.Drawing.Size(52, 20);
-            this.menuitem_file.Text = "File(&F)";
-            // 
-            // menuitem_open
-            // 
-            this.menuitem_open.Name = "menuitem_open";
-            this.menuitem_open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuitem_open.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_open.Text = "Open Database(&O)";
-            // 
-            // menuitem_new
-            // 
-            this.menuitem_new.Name = "menuitem_new";
-            this.menuitem_new.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuitem_new.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_new.Text = "New Database(&N)";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(223, 6);
-            // 
-            // menuitem_copyselectto
-            // 
-            this.menuitem_copyselectto.Name = "menuitem_copyselectto";
-            this.menuitem_copyselectto.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_copyselectto.Text = "Select Copy To...";
-            // 
-            // menuitem_copyto
-            // 
-            this.menuitem_copyto.Name = "menuitem_copyto";
-            this.menuitem_copyto.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_copyto.Text = "All Now Copy To...";
-            // 
-            // tsep4
-            // 
-            this.tsep4.Name = "tsep4";
-            this.tsep4.Size = new System.Drawing.Size(223, 6);
-            // 
-            // menuitem_openLastDatabase
-            // 
-            this.menuitem_openLastDatabase.Name = "menuitem_openLastDatabase";
-            this.menuitem_openLastDatabase.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_openLastDatabase.Text = "Open Last Database";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(223, 6);
-            // 
-            // menuitem_quit
-            // 
-            this.menuitem_quit.Name = "menuitem_quit";
-            this.menuitem_quit.Size = new System.Drawing.Size(226, 22);
-            this.menuitem_quit.Text = "Quit";
             // 
             // menu_image
             // 
@@ -1175,13 +1095,6 @@ namespace DataEditorX
         }
         private System.Windows.Forms.ToolStripMenuItem menuitem_testpendulumtext;
         private System.Windows.Forms.ToolStripMenuItem menuitem_exportdata;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_quit;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_openLastDatabase;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_open;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_new;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_file;
         private System.Windows.Forms.ToolStripMenuItem menu_data;
         private System.Windows.Forms.ToolStripMenuItem menuitem_cancelTask;
         private System.Windows.Forms.ToolStripSeparator tsep1;
@@ -1191,12 +1104,10 @@ namespace DataEditorX
         private System.Windows.Forms.TextBox tb_setcode1;
         private System.Windows.Forms.ToolStripSeparator tsep5;
         private System.Windows.Forms.ToolStripMenuItem menuitem_convertimage;
-        private System.Windows.Forms.ToolStripSeparator tsep4;
         private System.Windows.Forms.Button btn_img;
         private System.Windows.Forms.Button btn_undo;
         private System.ComponentModel.BackgroundWorker bgWorker1;
         private System.Windows.Forms.Panel pl_image;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_copyselectto;
         private System.Windows.Forms.ToolStripMenuItem menuitem_github;
         private System.Windows.Forms.Label lb_tiptexts;
         private System.Windows.Forms.Label lb_categorys;
@@ -1246,7 +1157,6 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripMenuItem menuitem_help;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readimages;
         private System.Windows.Forms.ToolStripMenuItem menuitem_readydk;
-        private System.Windows.Forms.ToolStripMenuItem menuitem_copyto;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem menu_image;
         private System.Windows.Forms.ToolStripSeparator tsep6;
