@@ -1557,12 +1557,6 @@ namespace DataEditorX
             }
         }
         #endregion
-
-        void Menuitem_testPendulumTextClick(object sender, EventArgs e)
-        {
-            Card c = GetCard();
-            tasker.TestPendulumText(c.desc);
-        }
         void Menuitem_export_select_sqlClick(object sender, EventArgs e)
         {
             using SaveFileDialog dlg = new();

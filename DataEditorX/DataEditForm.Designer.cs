@@ -41,7 +41,6 @@ namespace DataEditorX
             this.menu_image = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse_select = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_saveasmse = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitem_testpendulumtext = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_data = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_operacardsfile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitem_default_script = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,8 +144,7 @@ namespace DataEditorX
             // 
             this.menu_image.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitem_saveasmse_select,
-            this.menuitem_saveasmse,
-            this.menuitem_testpendulumtext});
+            this.menuitem_saveasmse});
             this.menu_image.Name = "menu_image";
             this.menu_image.Size = new System.Drawing.Size(66, 20);
             this.menu_image.Text = "Image(&I)";
@@ -164,13 +162,6 @@ namespace DataEditorX
             this.menuitem_saveasmse.Size = new System.Drawing.Size(193, 22);
             this.menuitem_saveasmse.Text = "All Now Save As MSE";
             this.menuitem_saveasmse.Click += new System.EventHandler(this.Menuitem_saveasmseClick);
-            // 
-            // menuitem_testpendulumtext
-            // 
-            this.menuitem_testpendulumtext.Name = "menuitem_testpendulumtext";
-            this.menuitem_testpendulumtext.Size = new System.Drawing.Size(193, 22);
-            this.menuitem_testpendulumtext.Text = "Test Pendulum Text";
-            this.menuitem_testpendulumtext.Click += new System.EventHandler(this.Menuitem_testPendulumTextClick);
             // 
             // menu_data
             // 
@@ -1093,7 +1084,6 @@ namespace DataEditorX
             this.PerformLayout();
 
         }
-        private System.Windows.Forms.ToolStripMenuItem menuitem_testpendulumtext;
         private System.Windows.Forms.ToolStripMenuItem menuitem_exportdata;
         private System.Windows.Forms.ToolStripMenuItem menu_data;
         private System.Windows.Forms.ToolStripMenuItem menuitem_cancelTask;

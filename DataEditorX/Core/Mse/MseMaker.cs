@@ -932,20 +932,6 @@ namespace DataEditorX.Core.Mse
         }
         #endregion
 
-        public void TestPendulum(string desc)
-        {
-            List<string> table = GetMPText(desc);
-            if (table == null && table.Count != 2)
-            {
-                MessageBox.Show("desc is null", "info");
-            }
-            else
-            {
-                MessageBox.Show(ReItalic(table[0]), "Monster Effect");
-                MessageBox.Show(ReItalic(table[1]), "Pendulum Effect");
-            }
-        }
-
         public List<string> GetMPText(string desc)
         {
             if (string.IsNullOrEmpty(desc))
