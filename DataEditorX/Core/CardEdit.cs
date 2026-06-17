@@ -13,13 +13,12 @@ namespace DataEditorX.Core
             this.dataform = dataform;
         }
 
-        public bool AddCommand()
+        public bool AddCommand(Card c)
         {
             if (!dataform.IsOpened())
             {
                 return false;
             }
-            Card c = dataform.GetCard();
             if (c.id <= 0)
             {
                 MyMsg.Error(LMSG.InvalidCode);
