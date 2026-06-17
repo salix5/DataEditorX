@@ -97,7 +97,7 @@ namespace DataEditorX
             this.lb_types = new System.Windows.Forms.Label();
             this.lb_tiptexts = new System.Windows.Forms.Label();
             this.bgWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btn_undo = new System.Windows.Forms.Button();
+            this.btn_alias = new System.Windows.Forms.Button();
             this.btn_img = new System.Windows.Forms.Button();
             this.tb_setcode1 = new System.Windows.Forms.TextBox();
             this.tb_setcode2 = new System.Windows.Forms.TextBox();
@@ -741,16 +741,16 @@ namespace DataEditorX
             this.bgWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgWorker1ProgressChanged);
             this.bgWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker1RunWorkerCompleted);
             // 
-            // btn_undo
+            // btn_alias
             // 
-            this.btn_undo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_undo.Enabled = false;
-            this.btn_undo.Location = new System.Drawing.Point(836, 3);
-            this.btn_undo.Name = "btn_undo";
-            this.btn_undo.Size = new System.Drawing.Size(75, 28);
-            this.btn_undo.TabIndex = 5;
-            this.btn_undo.Text = "&Undo";
-            this.btn_undo.UseVisualStyleBackColor = true;
+            this.btn_alias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_alias.Location = new System.Drawing.Point(836, 3);
+            this.btn_alias.Name = "btn_alias";
+            this.btn_alias.Size = new System.Drawing.Size(75, 28);
+            this.btn_alias.TabIndex = 5;
+            this.btn_alias.Text = "Alias";
+            this.btn_alias.UseVisualStyleBackColor = true;
+            this.btn_alias.Click += new System.EventHandler(this.Btn_alias_Click);
             // 
             // btn_img
             // 
@@ -861,7 +861,7 @@ namespace DataEditorX
             this.pl_bottom.Controls.Add(this.btn_del);
             this.pl_bottom.Controls.Add(this.btn_add);
             this.pl_bottom.Controls.Add(this.btn_mod);
-            this.pl_bottom.Controls.Add(this.btn_undo);
+            this.pl_bottom.Controls.Add(this.btn_alias);
             this.pl_bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pl_bottom.Location = new System.Drawing.Point(0, 583);
             this.pl_bottom.Name = "pl_bottom";
@@ -1064,7 +1064,7 @@ namespace DataEditorX
         private System.Windows.Forms.ToolStripSeparator tsep5;
         private System.Windows.Forms.ToolStripMenuItem menuitem_convertimage;
         private System.Windows.Forms.Button btn_img;
-        private System.Windows.Forms.Button btn_undo;
+        private System.Windows.Forms.Button btn_alias;
         private System.ComponentModel.BackgroundWorker bgWorker1;
         private System.Windows.Forms.Panel pl_image;
         private System.Windows.Forms.ToolStripMenuItem menuitem_github;

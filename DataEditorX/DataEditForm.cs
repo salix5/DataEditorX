@@ -872,6 +872,11 @@ namespace DataEditorX
         {
             ImportImageFromSelect();
         }
+        // Add alias
+        private void Btn_alias_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region 文本框

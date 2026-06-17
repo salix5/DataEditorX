@@ -11,7 +11,7 @@ DataEditForm.pl_bottom.btn_reset	Reset
 DataEditForm.pl_bottom.btn_lua	Script
 DataEditForm.pl_bottom.btn_serach	Search
 DataEditForm.pl_bottom.btn_del	Delete
-DataEditForm.pl_bottom.btn_undo	Undo
+DataEditForm.pl_bottom.btn_alias	Alias
 DataEditForm.pl_bottom.btn_mod	Modify
 DataEditForm.pl_bottom.btn_add	Add
 #DataEditForm.pl_bottom.btn_PageDown	Page Down

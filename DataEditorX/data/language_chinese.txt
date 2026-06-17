@@ -18,7 +18,7 @@ DataEditForm.pl_bottom.btn_reset	重置
 DataEditForm.pl_bottom.btn_del	刪除
 DataEditForm.pl_bottom.btn_add	新增
 DataEditForm.pl_bottom.btn_mod	修改
-DataEditForm.pl_bottom.btn_undo	N/A
+DataEditForm.pl_bottom.btn_alias	新增異圖
 #
 DataEditForm.mainMenu.menu_data	数据(&D)
 DataEditForm.mainMenu.menuitem_operacardsfile	同步操作卡片图片和脚本
