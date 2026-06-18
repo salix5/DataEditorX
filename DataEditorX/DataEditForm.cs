@@ -54,10 +54,9 @@ namespace DataEditorX
         //目录
         readonly YgoPath ygopath = new(Application.StartupPath);
         /// <summary>当前卡片</summary>
-        Card oldCard = new(0);
+        Card oldCard = Card.Empty;
         /// <summary>搜索条件</summary>
-        Card srcCard = new(0);
-        //卡片编辑
+        Card srcCard = Card.Empty;
         readonly CardEdit cardedit;
         readonly BindingList<string> strs = new(Enumerable.Repeat("", Card.STR_SIZE).ToList());
         /// <summary>
@@ -128,7 +127,7 @@ namespace DataEditorX
         {
             HideMenu();//是否需要隐藏菜单
             SetTitle();//设置标题
-            LoadCard(oldCard);
+            LoadCard(Card.Empty);
             menuitem_operacardsfile.Checked = MyConfig.ReadBoolean(MyConfig.TAG_SYNC_WITH_CARD);
             menuitem_autocheckupdate.Checked = MyConfig.ReadBoolean(MyConfig.TAG_AUTO_CHECK_UPDATE);
             GetLanguageItem();
@@ -510,10 +509,13 @@ namespace DataEditorX
             tb_cardname.Text = c.name;
             tb_cardtext.Text = c.NormalizedDesc;
 
+            strs.RaiseListChangedEvents = false;
             for (int i = 0; i < strs.Count; i++)
             {
                 strs[i] = c.Str[i];
             }
+            strs.RaiseListChangedEvents = true;
+            strs.ResetBindings();
             lb_scripttext.ClearSelected();
             //data
             SetSelect(cb_cardrule, c.ot);
@@ -542,7 +544,7 @@ namespace DataEditorX
             tb_pleft.Text = c.GetLeftScale().ToString();
             tb_pright.Text = c.GetRightScale().ToString();
             //atk，def
-            tb_atk.Text = c.atk.ToString();
+            tb_atk.Text = (c.atk == -1) ? "" : c.atk.ToString();
             if (c.IsType(Core.Info.CardType.TYPE_LINK))
             {
                 tb_def.Text = "0";
@@ -550,12 +552,12 @@ namespace DataEditorX
             }
             else
             {
-                tb_def.Text = c.def.ToString();
+                tb_def.Text = (c.def == -1) ? "" : c.def.ToString();
                 tb_def.Enabled = true;
             }
 
-            tb_cardcode.Text = c.id.ToString();
-            tb_cardalias.Text = c.alias.ToString();
+            tb_cardcode.Text = (c.id == 0) ? "" : c.id.ToString();
+            tb_cardalias.Text = (c.alias == 0) ? "" : c.alias.ToString();
             SetImage(c.id.ToString());
         }
         #endregion
@@ -792,8 +794,7 @@ namespace DataEditorX
         //更新临时卡片
         public void Reset()
         {
-            oldCard = new Card(0);
-            LoadCard(oldCard);
+            LoadCard(Card.Empty);
         }
         #endregion
 
