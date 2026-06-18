@@ -468,7 +468,7 @@ namespace DataEditorX
 
                     if (i % 2 == 0)
                     {
-                        items[j].BackColor = Color.GhostWhite;
+                        items[j].BackColor = Color.AliceBlue;
                     }
                     else
                     {
