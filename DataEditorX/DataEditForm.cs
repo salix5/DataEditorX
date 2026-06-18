@@ -581,18 +581,18 @@ namespace DataEditorX
             c.category = GetCheck(pl_category);
 
             long level = GetSelect(cb_cardlevel) & 0xffffL;
-            uint.TryParse(tb_pleft.Text, out uint temp);
-            level |= (temp & 0xffU) << 24;
-            uint.TryParse(tb_pright.Text, out temp);
-            level |= (temp & 0xffU) << 16;
+            uint.TryParse(tb_pleft.Text, out uint left);
+            level |= (left & 0xffU) << 24;
+            uint.TryParse(tb_pright.Text, out uint right);
+            level |= (right & 0xffU) << 16;
             c.level = level;
-            if (tb_atk.Text == "?" || tb_atk.Text == "？")
-            {
-                c.atk = -2;
-            }
-            else if (tb_atk.Text == ".")
+            if (String.IsNullOrWhiteSpace(tb_atk.Text))
             {
                 c.atk = -1;
+            }
+            else if (tb_atk.Text == "?" || tb_atk.Text == "？")
+            {
+                c.atk = -2;
             }
             else
             {
@@ -605,13 +605,13 @@ namespace DataEditorX
             }
             else
             {
-                if (tb_def.Text == "?" || tb_def.Text == "？")
-                {
-                    c.def = -2;
-                }
-                else if (tb_def.Text == ".")
+                if (String.IsNullOrWhiteSpace(tb_def.Text))
                 {
                     c.def = -1;
+                }
+                else if (tb_def.Text == "?" || tb_def.Text == "？")
+                {
+                    c.def = -2;
                 }
                 else
                 {
