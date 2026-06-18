@@ -58,7 +58,7 @@ Copy and Replace: If there's a card with same name, replace it.
 Copy without Replace: If there's a card with same name, ignore it.
 
 ★Card search
-1. You can search card with card name/effect/Attribute/Types/Level（racnk）/effect type/card id
+1. You can search a card with id, name, effect, Attribute, Type, Level (Rank)
 2. Search by ATK,DEF：
 	?: -2 or ?
 3. Search by card name：
