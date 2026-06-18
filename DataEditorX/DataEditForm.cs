@@ -462,7 +462,7 @@ namespace DataEditorX
                     };
                     if (mcard.id == oldCard.id)
                     {
-                        items[j].Checked = true;
+                        items[j].Selected = true;
                     }
 
                     if (i % 2 == 0)
