@@ -207,13 +207,15 @@ namespace DataEditorX.Core
 
         public static void AddParameters(SQLiteCommand cmd, Card c)
         {
+            long atk = (c.atk == -1) ? 0 : c.atk;
+            long def = (c.def == -1) ? 0 : c.def;
             cmd.Parameters["@id"].Value = c.id;
             cmd.Parameters["@ot"].Value = c.ot;
             cmd.Parameters["@alias"].Value = c.alias;
             cmd.Parameters["@setcode"].Value = c.setcode;
             cmd.Parameters["@type"].Value = c.type;
-            cmd.Parameters["@atk"].Value = c.atk;
-            cmd.Parameters["@def"].Value = c.def;
+            cmd.Parameters["@atk"].Value = atk;
+            cmd.Parameters["@def"].Value = def;
             cmd.Parameters["@level"].Value = c.level;
             cmd.Parameters["@race"].Value = c.race;
             cmd.Parameters["@attribute"].Value = c.attribute;
@@ -515,7 +517,8 @@ namespace DataEditorX.Core
                     sb.Append(@" AND datas.type = @type");
                     parameters.Add("@type", System.Data.DbType.Int64).Value = CardType.TYPE_TRAP;
                 }
-                else {
+                else
+                {
                     sb.Append(@" AND datas.type & @type = @type");
                     parameters.Add("@type", System.Data.DbType.Int64).Value = c.type;
                 }
@@ -527,13 +530,9 @@ namespace DataEditorX.Core
                 parameters.Add("@category", System.Data.DbType.Int64).Value = c.category;
             }
 
-            if (c.atk == -1)
+            if (c.atk != -1)
             {
-                sb.Append(@" AND datas.type & @monster AND datas.atk = 0");
-            }
-            else if (c.atk < 0 || c.atk > 0)
-            {
-                sb.Append(@" AND datas.atk = @atk");
+                sb.Append(@" AND datas.type & @monster AND datas.atk = @atk");
                 parameters.Add("@atk", System.Data.DbType.Int64).Value = c.atk;
             }
 
@@ -544,13 +543,9 @@ namespace DataEditorX.Core
             }
             else
             {
-                if (c.def == -1)
+                if (c.def != -1)
                 {
-                    sb.Append(@" AND datas.type & @monster AND datas.def = 0");
-                }
-                else if (c.def < 0 || c.def > 0)
-                {
-                    sb.Append(@" AND datas.def = @def");
+                    sb.Append(@" AND datas.type & @monster AND datas.def = @def");
                     parameters.Add("@def", System.Data.DbType.Int64).Value = c.def;
                 }
             }

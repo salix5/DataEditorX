@@ -58,17 +58,15 @@ Copy and Replace: If there's a card with same name, replace it.
 Copy without Replace: If there's a card with same name, ignore it.
 
 ★Card search
-1. Now it can not support search by Pendulum Scale 
-2. You can search card with card name/effect/Attribute/Types/Level（racnk）/effect type/card number
-3. Search by ATK,DEF：
-	If there is a "0", input"-1"or"."
-	If there is a "?", input"-2"or"?"
-4. Search by card name：
+1. You can search a card with id, name, effect, Attribute, Type, Level (Rank)
+2. Search by ATK,DEF：
+	?: -2 or ?
+3. Search by card name：
 	AOJ%%		start with AOJ
 	Shooting%%Dragon		start with “Shooting” and end with “Dragon”
 	%%Warrior		end with “Warrior”
 
-5.Search by card id
+4.Search by card id
 id or alias = 10000000
 id: 10000000, alias: 0
 
