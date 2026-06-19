@@ -907,9 +907,10 @@ namespace DataEditorX
                 Search(c, false);
                 e.SuppressKeyPress = true;
             }
-            if (e.KeyCode == Keys.R && e.Control)
+            else if (e.KeyCode == Keys.R && e.Control)
             {
                 Reset();
+                e.SuppressKeyPress = true;
             }
         }
 
