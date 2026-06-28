@@ -813,7 +813,7 @@ namespace DataEditorX
         //添加
         void Btn_addClick(object sender, EventArgs e)
         {
-            cardedit.AddCommand();
+            cardedit.AddCommand(GetCard());
         }
         //修改
         void Btn_modClick(object sender, EventArgs e)
@@ -875,7 +875,30 @@ namespace DataEditorX
         // Add alias
         private void Btn_alias_Click(object sender, EventArgs e)
         {
+            if (!IsOpened())
+            {
+                MyMsg.Error(LMSG.NotSelectDatabase);
+                return;
+            }
 
+            Card currentCard = GetCard();
+            if (currentCard.id <= 0 || currentCard.alias > 0)
+            {
+                MyMsg.Error(LMSG.InvalidCode);
+                return;
+            }
+
+            long id = currentCard.id;
+            Card c = new(0)
+            {
+                alias = id,
+            };
+
+            Card[] alter = Database.ReadByCondition(nowCdbFile, c);
+            long newId = alter.Length > 0 ? alter[^1].id + 1 : id + 1;
+            currentCard.id = newId;
+            currentCard.alias = id;
+            cardedit.AddCommand(currentCard);
         }
         #endregion
 
