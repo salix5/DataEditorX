@@ -1,4 +1,4 @@
-[DataEditorX]3.11.0[DataEditorX]
+[DataEditorX]3.11.1[DataEditorX]
 
 ★运行环境(Environment)
 .NET Framework 4.8
