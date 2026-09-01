@@ -29,7 +29,7 @@ namespace DataEditorX.Core
         public string rarity = "";
         public string date = "";
 
-        public string GetMseRarity()
+        public string GetRarity()
         {
             if (this.rarity == null)
             {

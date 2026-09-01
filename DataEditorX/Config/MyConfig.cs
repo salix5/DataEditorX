@@ -26,10 +26,6 @@ namespace DataEditorX.Config
         /// </summary>
         public const string PATH_IMAGES = "Images";
         /// <summary>
-        /// MSE
-        /// </summary>
-        public const string TAG_MSE_LANGUAGE = "mse_language";
-        /// <summary>
         /// 卡片信息
         /// </summary>
         public const string TAG_CARDINFO = "cardinfo";
@@ -78,7 +74,7 @@ namespace DataEditorX.Config
         /// </summary>
         public const string TAG_IMAGE_PENDULUM = "image_pendulum";
         /// <summary>
-        /// 图片的宽高，小图w,h大图W,H，共4个
+        /// 图片的宽高
         /// </summary>
         public const string TAG_IMAGE_SIZE = "image";
         /// <summary>
@@ -121,7 +117,6 @@ namespace DataEditorX.Config
         public const string CDB_TYPE = "Database(*.cdb)|*.cdb|All files(*.*)|*.*";
         public const string YDK_TYPE = "Deck(*.ydk)|*.ydk|All files(*.*)|*.*";
         public const string IMAGE_TYPE = "JPEG(*.jpg)|*.jpg|BMP(*.bmp)|*.bmp|PNG(*.png)|*.png|All files(*.*)|*.*";
-        public const string MSE_TYPE = "MSE Set(*.mse-set)|*.mse-set|All files(*.*)|*.*";
         #endregion
 
         #region 读取内容
