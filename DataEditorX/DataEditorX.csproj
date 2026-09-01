@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Common\MyPath.cs" />
     <Compile Include="Controls\History.cs" />
+    <Compile Include="Core\CardPack.cs" />
     <Compile Include="Core\IDataForm.cs" />
     <Compile Include="Controls\IEditForm.cs" />
     <Compile Include="Controls\IMainForm.cs" />
@@ -91,10 +92,6 @@
     <Compile Include="Config\DataConfig.cs" />
     <Compile Include="Config\InfoDictionary.cs" />
     <Compile Include="Config\ImageSet.cs" />
-    <Compile Include="Core\Mse\CardPack.cs" />
-    <Compile Include="Core\Mse\MSECons.cs" />
-    <Compile Include="Core\Mse\MseMaker.cs" />
-    <Compile Include="Core\Mse\MSEConfig.cs" />
     <Compile Include="Core\MyTask.cs" />
     <Compile Include="Core\TaskHelper.cs" />
     <Compile Include="Core\YGOUtil.cs" />
@@ -123,22 +120,13 @@
     <Content Include="data\effect_creator_settings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\mse_Chinese-Traditional.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="readme_english.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\language_english.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\mse_English.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="data\cardinfo_english.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\mse_Japanese.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -179,11 +167,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\language_chinese.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="data\mse_Chinese-Simplified.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
